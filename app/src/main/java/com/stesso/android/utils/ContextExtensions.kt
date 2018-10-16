@@ -3,6 +3,7 @@ package com.example.flame.kotlinstudy.utils
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.widget.TextView
@@ -34,7 +35,7 @@ fun Context.setRobotoFont( textView: TextView){
 fun createShape(color: Int, radius: Int): GradientDrawable {
     val drawable = GradientDrawable()
     drawable.cornerRadius = radius.toFloat()
-    //drawable.setStroke()
+    drawable.setStroke(5, Color.WHITE)
     drawable.setColor(color)
     return drawable
 }
