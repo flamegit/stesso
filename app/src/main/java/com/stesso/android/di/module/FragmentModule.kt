@@ -1,0 +1,13 @@
+package com.example.flame.kotlinstudy.di.module
+
+import dagger.Module
+
+/**
+ * Created by flame on 2018/2/1.
+ */
+@Module
+class FragmentModule(private val url: String){
+
+
+
+}
