@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Stesso</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_declaration">唇印，就是我\n\n我，不追随潮流,\n\n我只引领潮流，\n\nSTESSO,做我自己</string>
 </resources>

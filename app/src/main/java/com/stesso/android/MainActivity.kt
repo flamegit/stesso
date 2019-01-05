@@ -1,9 +1,11 @@
 package com.stesso.android
 
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
+import com.example.flame.kotlinstudy.ui.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.bottom_navigation_bar
 
 class MainActivity : AppCompatActivity() {
@@ -13,13 +15,11 @@ class MainActivity : AppCompatActivity() {
     private var mCurrPosition: Int = 0
     private var mPrePosition: Int = 0
 
-
     private val tag = arrayOf("home", "discover", "news", "person")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         if (savedInstanceState != null) {
             mCurrPosition = savedInstanceState.getInt(CURR_POSITION, 0)
             mPrePosition = savedInstanceState.getInt(PRE_POSITION, -1)
@@ -27,16 +27,31 @@ class MainActivity : AppCompatActivity() {
             mPrePosition = -1
             mCurrPosition = 0
         }
+        init()
 
     }
 
-    fun init() {
-        bottom_navigation_bar.addItem(BottomNavigationItem(R.drawable.navigation_empty_icon, "dd"))
-                .addItem(BottomNavigationItem(R.drawable.navigation_empty_icon, "dd"))
-                .addItem(BottomNavigationItem(R.drawable.navigation_empty_icon, "dd"))
-                .addItem(BottomNavigationItem(R.drawable.navigation_empty_icon, "dd"))
+    private fun init() {
+        bottom_navigation_bar.addItem(BottomNavigationItem(R.drawable.home, "首页").setActiveColor(Color.RED))
+                .addItem(BottomNavigationItem(R.drawable.info_icon, "NOW"))
+                .addItem(BottomNavigationItem(R.drawable.search, "搜索"))
+                .addItem(BottomNavigationItem(R.drawable.navigation_empty_icon, "我的"))
                 .setMode(BottomNavigationBar.MODE_FIXED)
                 .initialise()
+
+        bottom_navigation_bar.setTabSelectedListener(object : BottomNavigationBar.OnTabSelectedListener {
+            override fun onTabReselected(position: Int) {
+
+            }
+
+            override fun onTabUnselected(position: Int) {
+            }
+
+            override fun onTabSelected(position: Int) {
+                fillFragment(position)
+            }
+        })
+
     }
 
     public override fun onSaveInstanceState(outState: Bundle) {

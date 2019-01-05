@@ -1,6 +1,6 @@
-package com.example.flame.kotlinstudy.di.component
+package com.stesso.android.di.component
 
-import com.example.flame.kotlinstudy.di.module.FragmentModule
+import com.stesso.android.di.module.FragmentModule
 import com.example.flame.kotlinstudy.di.scope.FragmentScope
 import dagger.Subcomponent
 
@@ -9,7 +9,7 @@ import dagger.Subcomponent
  */
 
 @FragmentScope
-@Subcomponent(modules = arrayOf(FragmentModule::class))
+@Subcomponent(modules = [FragmentModule::class])
 interface FragmentComponent {
 
 }

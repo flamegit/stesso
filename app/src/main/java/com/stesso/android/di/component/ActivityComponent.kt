@@ -1,7 +1,8 @@
-package com.example.flame.kotlinstudy.di.component
+package com.stesso.android.di.component
 
-import com.example.flame.kotlinstudy.di.module.ActivityModule
+import com.stesso.android.di.module.ActivityModule
 import com.example.flame.kotlinstudy.di.scope.ActivityScope
+import com.stesso.android.account.LoginActivity
 import dagger.Subcomponent
 
 /**
@@ -9,5 +10,8 @@ import dagger.Subcomponent
  */
 
 @ActivityScope
-@Subcomponent(modules = arrayOf(ActivityModule::class))
-interface ActivityComponent {}
+@Subcomponent(modules = [ActivityModule::class])
+interface ActivityComponent {
+    fun inject(activity:LoginActivity)
+
+}
