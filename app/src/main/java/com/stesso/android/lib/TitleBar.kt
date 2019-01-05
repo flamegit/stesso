@@ -40,12 +40,10 @@ class TitleBar(context: Context, attrs: AttributeSet, defStyle: Int) : FrameLayo
 
         val title = TextView(context)
         val centerParams = FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-
         centerParams.gravity = Gravity.CENTER
         addView(title, centerParams)
         title.setText(titleResourceId)
         array.recycle()
-
     }
 
 }

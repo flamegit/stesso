@@ -1,4 +1,4 @@
-package com.example.flame.kotlinstudy.datasource.net
+package com.stesso.android.datasource.net
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -17,7 +17,6 @@ object NetManager {
         if (baseUrl.isEmpty()) {
             throw IllegalStateException("baseUrl can not be null")
         }
-
         return Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(getClient(baseUrl))
@@ -31,12 +30,10 @@ object NetManager {
         if (baseUrl.isEmpty()) {
             throw IllegalStateException("baseUrl can not be null")
         }
-
         return OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(15, TimeUnit.SECONDS)
                 .writeTimeout(15, TimeUnit.SECONDS)
                 .build()
     }
-
 }

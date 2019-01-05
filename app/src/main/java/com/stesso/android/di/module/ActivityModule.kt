@@ -1,4 +1,4 @@
-package com.example.flame.kotlinstudy.di.module
+package com.stesso.android.di.module
 
 import android.support.v7.app.AppCompatActivity
 import dagger.Module

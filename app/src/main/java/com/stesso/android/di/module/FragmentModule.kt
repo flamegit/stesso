@@ -1,4 +1,4 @@
-package com.example.flame.kotlinstudy.di.module
+package com.stesso.android.di.module
 
 import dagger.Module
 
@@ -7,7 +7,5 @@ import dagger.Module
  */
 @Module
 class FragmentModule(private val url: String){
-
-
 
 }
