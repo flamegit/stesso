@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.flame.kotlinstudy.utils.createShape
+import com.example.flame.kotlinstudy.utils.openActivity
 import com.stesso.android.R
+import com.stesso.android.account.LoginActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -28,7 +30,9 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        sign_up_view.background = createShape(Color.BLACK)
+        sign_up_view.setOnClickListener {
+            context?.openActivity(LoginActivity::class.java)
+        }
     }
 
     companion object {
