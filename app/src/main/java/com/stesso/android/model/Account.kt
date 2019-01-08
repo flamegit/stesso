@@ -1,9 +1,9 @@
 package com.stesso.android.model
 
-import com.example.flame.kotlinstudy.utils.TOKEN
-import com.example.flame.kotlinstudy.utils.clear
-import com.example.flame.kotlinstudy.utils.get
-import com.example.flame.kotlinstudy.utils.put
+import com.stesso.android.utils.TOKEN
+import com.stesso.android.utils.clear
+import com.stesso.android.utils.get
+import com.stesso.android.utils.put
 import com.stesso.android.App
 
 object Account {

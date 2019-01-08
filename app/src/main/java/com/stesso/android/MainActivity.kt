@@ -1,14 +1,13 @@
 package com.stesso.android
 
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.example.flame.kotlinstudy.ui.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.bottom_navigation_bar
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private val CURR_POSITION = "curr_position"
     private val PRE_POSITION = "pre_position"

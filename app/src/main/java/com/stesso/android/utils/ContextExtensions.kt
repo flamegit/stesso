@@ -1,4 +1,4 @@
-package com.example.flame.kotlinstudy.utils
+package com.stesso.android.utils
 
 import android.app.Activity
 import android.content.Context
