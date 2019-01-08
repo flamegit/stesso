@@ -61,3 +61,23 @@ fun <T> applySchedulers(): ObservableTransformer<T, T> {
                 .observeOn(AndroidSchedulers.mainThread())
     }
 }
+
+const val TOKEN ="token"
+const val CONFIG ="config"
+
+fun Context.put(key:String,value:String?){
+    getSharedPreferences(CONFIG,Context.MODE_PRIVATE).edit().putString(key,value).apply()
+}
+
+fun Context.clear(){
+    getSharedPreferences(CONFIG,Context.MODE_PRIVATE).edit().clear().apply()
+}
+
+fun Context.get(key:String):String?{
+    return getSharedPreferences(CONFIG,Context.MODE_PRIVATE).getString(key,null)
+}
+
+
+
+
+

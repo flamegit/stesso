@@ -1,3 +1,20 @@
 package com.stesso.android.model
 
-data class User(var name:String, var mobile:String,var gender:Int,var city:String)
+class User {
+
+    var name: String? = null
+    var mobile: String? = null
+    var gender: Int = 0
+    var token: String? = null
+        get() {
+            if (field == null) {
+
+            }
+            return field
+        }
+
+
+}
+
+
+
