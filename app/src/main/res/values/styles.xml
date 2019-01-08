@@ -15,4 +15,9 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="default_font">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/font_4A</item>
+    </style>
+
 </resources>
