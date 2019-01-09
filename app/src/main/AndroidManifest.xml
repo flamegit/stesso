@@ -37,8 +37,7 @@
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".shopcart.ShopCartActivity" />
         <activity
-            android:name=".account.LoginActivity"
-            android:theme="@style/FullScreen" />
+            android:name=".account.LoginActivity" />
         <activity android:name=".BaseActivity" />
         <activity android:name=".account.SettingActivity"></activity>
     </application>

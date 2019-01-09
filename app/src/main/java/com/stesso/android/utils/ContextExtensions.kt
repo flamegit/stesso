@@ -8,6 +8,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.widget.TextView
 import android.widget.Toast
+import io.reactivex.CompletableTransformer
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -55,26 +56,33 @@ fun createShape(fillColor: Int, strokeColor: Int = Color.BLACK, strokeWidth: Int
     return drawable
 }
 
-fun <T> applySchedulers(): ObservableTransformer<T, T> {
+fun <T> applyObservableSchedulers(): ObservableTransformer<T, T> {
     return ObservableTransformer {
         it.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 }
 
-const val TOKEN ="token"
-const val CONFIG ="config"
-
-fun Context.put(key:String,value:String?){
-    getSharedPreferences(CONFIG,Context.MODE_PRIVATE).edit().putString(key,value).apply()
+fun applyCompletableSchedulers(): CompletableTransformer {
+    return CompletableTransformer {
+        it.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
 }
 
-fun Context.clear(){
-    getSharedPreferences(CONFIG,Context.MODE_PRIVATE).edit().clear().apply()
+const val TOKEN = "token"
+const val CONFIG = "config"
+
+fun Context.put(key: String, value: String?) {
+    getSharedPreferences(CONFIG, Context.MODE_PRIVATE).edit().putString(key, value).apply()
 }
 
-fun Context.get(key:String):String?{
-    return getSharedPreferences(CONFIG,Context.MODE_PRIVATE).getString(key,null)
+fun Context.clear() {
+    getSharedPreferences(CONFIG, Context.MODE_PRIVATE).edit().clear().apply()
+}
+
+fun Context.get(key: String): String? {
+    return getSharedPreferences(CONFIG, Context.MODE_PRIVATE).getString(key, null)
 }
 
 
