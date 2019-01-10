@@ -23,6 +23,7 @@ object NetManager {
                 .baseUrl(baseUrl)
                 .client(getClient(baseUrl))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(JSONObjectConverter())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }

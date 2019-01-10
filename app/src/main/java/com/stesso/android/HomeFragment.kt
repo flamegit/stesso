@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.stesso.android.utils.openActivity
 import com.stesso.android.R
 import com.stesso.android.account.LoginActivity
+import com.stesso.android.model.Account
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -31,6 +32,7 @@ class HomeFragment : Fragment() {
         sign_up_view.setOnClickListener {
             context?.openActivity(LoginActivity::class.java)
         }
+        name_view.text = if (Account.isLogin()) "登录" else "未登录"
     }
 
     companion object {
@@ -38,8 +40,8 @@ class HomeFragment : Fragment() {
         fun newInstance(url: String, siteType: Int) =
                 HomeFragment().apply {
                     arguments = Bundle().apply {
-                       // putString(Constants.KEY_URL, url)
-                       // putInt(Constants.KEY_SITE_TYPE, siteType)
+                        // putString(Constants.KEY_URL, url)
+                        // putInt(Constants.KEY_SITE_TYPE, siteType)
                     }
                 }
     }

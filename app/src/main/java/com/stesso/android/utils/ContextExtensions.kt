@@ -10,8 +10,10 @@ import android.widget.TextView
 import android.widget.Toast
 import io.reactivex.CompletableTransformer
 import io.reactivex.ObservableTransformer
+import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONStringer
 
 /**
@@ -56,8 +58,8 @@ fun createShape(fillColor: Int, strokeColor: Int = Color.BLACK, strokeWidth: Int
     return drawable
 }
 
-fun <T> applyObservableSchedulers(): ObservableTransformer<T, T> {
-    return ObservableTransformer {
+fun <T> applySingleSchedulers(): SingleTransformer<T, T> {
+    return SingleTransformer {
         it.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
@@ -68,6 +70,21 @@ fun applyCompletableSchedulers(): CompletableTransformer {
         it.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
+}
+
+fun Context.checkLoginInfo(phoneNum: String, password: String, verifyCode: String = "1234"): Boolean {
+    if (phoneNum.length < 4) {
+        toast("手机号格式错误")
+        return false
+    }
+    if (password.length < 6) {
+        toast("密码至少六位")
+        return false
+    }
+    if (verifyCode.length < 4) {
+        toast("验证码至少思维")
+    }
+    return true
 }
 
 const val TOKEN = "token"
