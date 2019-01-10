@@ -8,6 +8,7 @@ import com.stesso.android.BaseActivity
 import com.stesso.android.R
 import com.stesso.android.datasource.net.ApiService
 import com.stesso.android.utils.applyCompletableSchedulers
+import com.stesso.android.utils.openActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -30,13 +31,20 @@ class LoginActivity : BaseActivity() {
 
         getActivityComponent().inject(this)
         setContentView(R.layout.activity_login)
+
+        register_view.setOnClickListener {
+            openActivity(RegisterActivity::class.java)
+        }
         login_view.setOnClickListener {
+            val mobile = account_view.text
+            val password = password_view.text
             val jsonStringer = JSONStringer().`object`()
-            jsonStringer.endObject()
+                    .key("mobile").value(mobile)
+                    .key("password").value(password)
+                    .endObject()
             val body = RequestBody.create(MediaType.parse("application/json"), jsonStringer.toString())
 
-
-            api.register(body).compose(applyCompletableSchedulers())
+            api.login(body).compose(applyCompletableSchedulers())
                     .subscribe {
 
                     }

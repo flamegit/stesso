@@ -36,8 +36,9 @@
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".shopcart.ShopCartActivity" />
-        <activity
-            android:name=".account.LoginActivity" />
+        <activity android:name=".account.LoginActivity" />
+        <activity android:name=".account.RegisterActivity" />
+
         <activity android:name=".BaseActivity" />
         <activity android:name=".account.SettingActivity"></activity>
     </application>

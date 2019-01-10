@@ -9,4 +9,7 @@ interface ApiService {
 
     @POST("app/register")
     fun register(@Body body:RequestBody):Completable
+
+    @POST("app/login")
+    fun login(@Body body:RequestBody):Completable
 }

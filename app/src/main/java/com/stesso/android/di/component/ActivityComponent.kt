@@ -3,6 +3,7 @@ package com.stesso.android.di.component
 import com.stesso.android.di.module.ActivityModule
 import com.example.flame.kotlinstudy.di.scope.ActivityScope
 import com.stesso.android.account.LoginActivity
+import com.stesso.android.account.RegisterActivity
 import dagger.Subcomponent
 
 /**
@@ -12,6 +13,8 @@ import dagger.Subcomponent
 @ActivityScope
 @Subcomponent(modules = [ActivityModule::class])
 interface ActivityComponent {
-    fun inject(activity:LoginActivity)
+    fun inject(activity: LoginActivity)
+    fun inject(activity: RegisterActivity)
+
 
 }

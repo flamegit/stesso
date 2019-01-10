@@ -1,6 +1,8 @@
 package com.stesso.android.datasource.net
 
+import android.util.Log
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -34,6 +36,13 @@ object NetManager {
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(15, TimeUnit.SECONDS)
                 .writeTimeout(15, TimeUnit.SECONDS)
+                .addInterceptor(getLogInterceptor(HttpLoggingInterceptor.Level.BODY))
                 .build()
+    }
+
+    private fun getLogInterceptor(level: HttpLoggingInterceptor.Level): HttpLoggingInterceptor {
+        val loggingInterceptor = HttpLoggingInterceptor { message -> Log.e("OKHttp-----", message) }
+        loggingInterceptor.level =level
+        return loggingInterceptor
     }
 }
