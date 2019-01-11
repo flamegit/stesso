@@ -45,28 +45,38 @@
 
     <EditText
         android:id="@+id/account_view"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
-        android:paddingBottom="8dp"
-        android:inputType="phone"
-        android:textColor="@android:color/white"
-        android:drawableLeft="@drawable/account"
-        app:layout_constraintEnd_toEndOf="parent"
         android:hint="请输入手机号"
+        android:inputType="phone"
+        android:paddingBottom="8dp"
+        android:textColorHint="@android:color/darker_gray"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingStart="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <EditText
-        android:id="@+id/password_view"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/phone"
+        app:layout_constraintBottom_toBottomOf="@+id/account_view"
+        app:layout_constraintStart_toStartOf="@+id/account_view" />
+
+    <EditText
+        android:id="@+id/password_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         android:drawableLeft="@drawable/password"
         android:ems="10"
         android:hint="请输入密码"

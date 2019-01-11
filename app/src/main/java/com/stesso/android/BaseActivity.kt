@@ -7,11 +7,17 @@ import android.view.View
 import com.stesso.android.datasource.net.ApiService
 import com.stesso.android.di.component.ActivityComponent
 import com.stesso.android.di.module.ActivityModule
+import com.stesso.android.utils.applySingleSchedulers
+import com.stesso.android.utils.toast
+import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
+import org.json.JSONObject
 import javax.inject.Inject
 
 
 open class BaseActivity : AppCompatActivity() {
 
+    private val disposableContainer = CompositeDisposable()
 
     @Inject
     lateinit var apiService: ApiService
@@ -19,7 +25,7 @@ open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.decorView.systemUiVisibility =  View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -28,9 +34,31 @@ open class BaseActivity : AppCompatActivity() {
 //        }
     }
 
-    protected fun getActivityComponent():ActivityComponent{
+    protected fun getActivityComponent(): ActivityComponent {
         val app = application as App
         return app.component.plus(ActivityModule(this))
+    }
+
+
+    protected fun doHttpRequest(single: Single<JSONObject>, onSuccess: (JSONObject) -> Unit) {
+
+        val disposable = single.compose(applySingleSchedulers())
+                .subscribe({ jsonObject ->
+                    val code = jsonObject.optInt("code")
+                    if (code != 0) {
+                        toast(jsonObject.optString("msg"))
+                    } else {
+                        onSuccess(jsonObject)
+                    }
+                }, {
+
+                })
+        disposableContainer.add(disposable)
+    }
+
+    override fun onDestroy() {
+        disposableContainer.dispose()
+        super.onDestroy()
     }
 
 }
