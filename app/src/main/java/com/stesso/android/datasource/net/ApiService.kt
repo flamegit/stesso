@@ -5,6 +5,7 @@ import io.reactivex.Single
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
@@ -14,4 +15,7 @@ interface ApiService {
 
     @POST("app/login")
     fun login(@Body body:JSONObject): Single<JSONObject>
+
+    @GET("wechat/goods/info/{goodId}")
+    fun getDetail():Single<JSONObject>
 }
