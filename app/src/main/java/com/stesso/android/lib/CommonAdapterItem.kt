@@ -1,4 +1,4 @@
-package com.example.flame.kotlinstudy.lib
+package com.stesso.android.lib
 
 
 /**

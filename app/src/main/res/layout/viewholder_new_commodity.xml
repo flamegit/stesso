@@ -7,7 +7,6 @@
     android:layout_height="wrap_content"
     tools:context=".PersonInfoFragment">
 
-
     <ImageView
         android:id="@+id/commodity_img"
         android:layout_width="100dp"

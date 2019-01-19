@@ -1,10 +1,10 @@
 package com.example.flame.kotlinstudy.lib
 
 import android.support.v7.widget.RecyclerView
-import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.stesso.android.lib.CommonViewHolder
 
 /**
  * Created by flame on 2018/2/1.

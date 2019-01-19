@@ -1,4 +1,4 @@
-package com.example.flame.kotlinstudy.lib
+package com.stesso.android.lib
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ class FooterDelegateAdapter : ViewTypeDelegateAdapter {
         return CommonViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CommonViewHolder, position: Int,data :Any?) {
+    override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data :Any?) {
         if(data is String){
             holder.get<TextView>(android.R.id.text1).text=data
         }

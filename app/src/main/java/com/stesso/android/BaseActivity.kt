@@ -41,7 +41,6 @@ open class BaseActivity : AppCompatActivity() {
 
 
     protected fun doHttpRequest(single: Single<JSONObject>, onSuccess: (JSONObject) -> Unit) {
-
         val disposable = single.compose(applySingleSchedulers())
                 .subscribe({ jsonObject ->
                     val code = jsonObject.optInt("code")

@@ -1,10 +1,10 @@
-package com.example.flame.kotlinstudy.lib
+package com.stesso.android.lib
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 
-class DefaultDelegateAdapter :ViewTypeDelegateAdapter {
+class DefaultDelegateAdapter : ViewTypeDelegateAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
 
@@ -12,7 +12,7 @@ class DefaultDelegateAdapter :ViewTypeDelegateAdapter {
         return CommonViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CommonViewHolder, position: Int,data :Any?) {
+    override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data :Any?) {
 
         if(data is String){
             holder.get<TextView>(android.R.id.text1).text=data

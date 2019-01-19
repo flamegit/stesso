@@ -1,5 +1,7 @@
 package com.stesso.android.datasource.net
 
+import com.stesso.android.model.HomeInfo
+import com.stesso.android.model.RootNode
 import io.reactivex.Completable
 import io.reactivex.Single
 import okhttp3.RequestBody
@@ -18,4 +20,7 @@ interface ApiService {
 
     @GET("wechat/goods/info/{goodId}")
     fun getDetail():Single<JSONObject>
+
+    @GET("wx/index/index")
+    fun getHomeContent():Single<RootNode<HomeInfo>>
 }

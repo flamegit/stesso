@@ -1,4 +1,4 @@
-package com.example.flame.kotlinstudy.lib
+package com.stesso.android.lib
 
 import android.view.View
 import android.view.ViewGroup
