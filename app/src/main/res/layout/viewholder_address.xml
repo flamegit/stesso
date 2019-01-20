@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_16"
+    android:paddingBottom="@dimen/padding_16">
+
+    <TextView
+        android:id="@+id/name_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/txt_14" />
+
+    <TextView
+        android:id="@+id/tel_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="@string/app_name"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/txt_14" />
+
+    <TextView
+
+        android:id="@+id/address_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_view"
+        android:layout_marginTop="@dimen/padding_8"
+        android:text="@string/app_name" />
+
+
+    <CheckBox
+        android:id="@+id/default_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/address_view"
+        android:layout_marginTop="@dimen/padding_8" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/default_view"
+        android:layout_marginLeft="@dimen/padding_8"
+        android:layout_toRightOf="@id/default_view"
+        android:text="@string/set_default" />
+
+
+    <TextView
+        android:id="@+id/edit_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/address_view"
+        android:layout_alignParentRight="true"
+        android:drawableLeft="@drawable/edit"
+        android:drawablePadding="@dimen/padding_8"
+        android:gravity="center"
+        android:text="编辑" />
+
+</RelativeLayout>

@@ -42,9 +42,11 @@ object NetManager {
                 .writeTimeout(15, TimeUnit.SECONDS)
                 .addInterceptor(getLogInterceptor(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor { chain ->
-                    val request = chain.request()
+                    var request = chain.request()
                     if (Account.isLogin()) {
-                        request.newBuilder().addHeader("token", Account.token ?: "").build()
+                        Log.d("token", Account.token)
+                        request = request.newBuilder().addHeader("token", Account.token
+                                ?: "").build()
                     }
                     chain.proceed(request)
                 }

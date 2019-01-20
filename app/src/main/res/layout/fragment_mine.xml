@@ -19,7 +19,7 @@
 
 
     <ImageView
-        android:id="@+id/setting_view"
+        android:id="@+id/close_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -40,7 +40,7 @@
         android:textSize="20sp"
         android:text="废了个毛"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_view"
+        app:layout_constraintTop_toBottomOf="@+id/close_view"
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/name_view"
         android:layout_width="wrap_content"

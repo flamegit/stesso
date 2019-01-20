@@ -25,11 +25,11 @@ class LoginActivity : BaseActivity() {
             val password = password_view.text.toString()
             if (checkLoginInfo(mobile, password)) {
                 val body = JSONObject(mapOf(Pair("mobile", mobile), Pair("password", password)))
-                doHttpRequest(apiService.login((body))) { data ->
-                    Account.token = data.optString("token")
+                doHttpRequest(apiService.login(body)) { data ->
+                    Account.token = data?.token
+                    Account.user = data?.userInfo
                 }
             }
         }
     }
-
 }

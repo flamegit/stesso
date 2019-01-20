@@ -7,6 +7,7 @@ import android.view.View
 import com.stesso.android.datasource.net.ApiService
 import com.stesso.android.di.component.ActivityComponent
 import com.stesso.android.di.module.ActivityModule
+import com.stesso.android.model.RootNode
 import com.stesso.android.utils.applySingleSchedulers
 import com.stesso.android.utils.toast
 import io.reactivex.Single
@@ -39,19 +40,30 @@ open class BaseActivity : AppCompatActivity() {
         return app.component.plus(ActivityModule(this))
     }
 
+//    protected fun doHttpRequest(single: Single<JSONObject>, onSuccess: (JSONObject) -> Unit) {
+//        val disposable = single.compose(applySingleSchedulers())
+//                .subscribe({ jsonObject ->
+//                    val code = jsonObject.optInt("errno")
+//                    if (code != 0) {
+//                        toast(jsonObject.optString("errmsg"))
+//                    } else {
+//                        onSuccess(jsonObject)
+//                    }
+//                }, {
+//
+//                })
+//        disposableContainer.add(disposable)
+//    }
 
-    protected fun doHttpRequest(single: Single<JSONObject>, onSuccess: (JSONObject) -> Unit) {
+    protected fun <T> doHttpRequest(single: Single<RootNode<T>>, onSuccess: (T?) -> Unit) {
         val disposable = single.compose(applySingleSchedulers())
-                .subscribe({ jsonObject ->
-                    val code = jsonObject.optInt("code")
-                    if (code != 0) {
-                        toast(jsonObject.optString("msg"))
+                .subscribe({ rootNode ->
+                    if (rootNode.errno != 0) {
+                        toast(rootNode.errmsg?:"")
                     } else {
-                        onSuccess(jsonObject)
+                        onSuccess(rootNode.data)
                     }
-                }, {
-
-                })
+                }, {})
         disposableContainer.add(disposable)
     }
 

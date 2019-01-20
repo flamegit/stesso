@@ -33,6 +33,17 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
             notifyDataSetChanged()
         }
     }
+
+    fun addItem(item: Any?, type: Int = TYPE1, append: Boolean = false) {
+        item?.let {
+            if (!append) {
+                mContent.clear()
+            }
+            mContent.add(transform(item, type))
+            notifyDataSetChanged()
+        }
+    }
+
     fun addHeader(item: String?, type: Int = HEADER) {
         item?.let {
             mContent.add(0, CommonAdapterItem(it, type))
@@ -45,6 +56,10 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
             mContent.add(count, CommonAdapterItem(it, type))
             notifyItemInserted(count)
         }
+    }
+
+    private fun transform(item: Any, type: Int): CommonAdapterItem<*> {
+        return  CommonAdapterItem(item, type)
     }
     private fun transform(items: Collection<*>, type: Int): List<CommonAdapterItem<*>> {
         return items.map { CommonAdapterItem(it, type) }

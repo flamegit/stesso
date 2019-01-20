@@ -9,7 +9,6 @@ import com.stesso.android.App
 object Account {
 
     var user: User? = null
-
     var token: String? = null
         get() {
             if (field == null) {

@@ -3,7 +3,7 @@ package com.stesso.android.lib
 import android.view.View
 import android.view.ViewGroup
 
-class CommonPagerAdapter<T>( val mFactory: (ViewGroup,T) -> View) : android.support.v4.view.PagerAdapter() {
+class CommonPagerAdapter<T>(val mFactory: (ViewGroup, T) -> View) : android.support.v4.view.PagerAdapter() {
 
     private val mContent: MutableList<T> = mutableListOf()
 
@@ -19,8 +19,6 @@ class CommonPagerAdapter<T>( val mFactory: (ViewGroup,T) -> View) : android.supp
         mContent.addAll(lists)
         notifyDataSetChanged()
     }
-
-
     override fun isViewFromObject(view: View, any: Any): Boolean {
         return view === any
     }
@@ -34,7 +32,6 @@ class CommonPagerAdapter<T>( val mFactory: (ViewGroup,T) -> View) : android.supp
         container.addView(view)
         return view
     }
-
-    override fun getPageWidth(position: Int) =0.7f
+    // override fun getPageWidth(position: Int) =0.7f
 
 }

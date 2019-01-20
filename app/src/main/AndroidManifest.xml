@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".address.AddressListActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,14 +37,15 @@
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".shopcart.ShopCartActivity" />
-        <activity android:name=".account.LoginActivity"
-            android:theme="@style/TranslucentTheme"
-            />
-        <activity android:name=".account.RegisterActivity"
-            android:theme="@style/TranslucentTheme"/>
-
+        <activity
+            android:name=".account.LoginActivity"
+            android:theme="@style/TranslucentTheme" />
+        <activity
+            android:name=".account.RegisterActivity"
+            android:theme="@style/TranslucentTheme" />
         <activity android:name=".BaseActivity" />
-        <activity android:name=".account.SettingActivity"></activity>
+        <activity android:name=".account.SettingActivity" />
+        <activity android:name=".address.AddAddressActivity" />
     </application>
 
 </manifest>

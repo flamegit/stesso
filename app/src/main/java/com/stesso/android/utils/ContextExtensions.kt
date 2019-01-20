@@ -8,8 +8,10 @@ import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.widget.TextView
 import android.widget.Toast
+import com.stesso.android.model.RootNode
 import io.reactivex.CompletableTransformer
 import io.reactivex.ObservableTransformer
+import io.reactivex.Single
 import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -63,6 +65,17 @@ fun <T> applySingleSchedulers(): SingleTransformer<T, T> {
         it.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
+}
+
+
+ fun <T> doHttpRequest(single: Single<RootNode<T>>, onSuccess: (T?) -> Unit) {
+    val disposable = single.compose(applySingleSchedulers())
+            .subscribe({ rootNode ->
+                if (rootNode.errno != 0) {
+                } else {
+                    onSuccess(rootNode.data)
+                }
+            }, {})
 }
 
 fun applyCompletableSchedulers(): CompletableTransformer {

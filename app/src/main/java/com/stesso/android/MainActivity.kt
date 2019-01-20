@@ -27,6 +27,7 @@ class MainActivity : BaseActivity() {
             mCurrPosition = 0
         }
         init()
+        fillFragment(mCurrPosition)
 
     }
 
@@ -67,7 +68,7 @@ class MainActivity : BaseActivity() {
         var curr = supportFragmentManager.findFragmentByTag(tag[position])
         if (curr == null) {
             curr = when (position) {
-                0 -> MineFragment()
+                0 -> HomeFragment()
                 1 -> MineFragment()
                 else -> MineFragment()
             }
