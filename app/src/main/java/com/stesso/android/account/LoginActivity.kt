@@ -28,6 +28,7 @@ class LoginActivity : BaseActivity() {
                 doHttpRequest(apiService.login(body)) { data ->
                     Account.token = data?.token
                     Account.user = data?.userInfo
+                    finish()
                 }
             }
         }

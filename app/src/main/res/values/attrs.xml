@@ -3,7 +3,12 @@
     <declare-styleable name="TitleBar">
         <attr name="title_resource" format="reference" />
         <attr name="left_icon" format="reference" />
-        <attr name="right_icon" format="boolean" />
+        <attr name="right_icon" format="reference" />
+        <attr name="left_text" format="string" />
+        <attr name="right_text" format="string" />
+        <attr name="title_text" format="string" />
+
+
 
     </declare-styleable>
 

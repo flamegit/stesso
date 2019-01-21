@@ -10,9 +10,9 @@ import com.stesso.android.di.module.ActivityModule
 import com.stesso.android.model.RootNode
 import com.stesso.android.utils.applySingleSchedulers
 import com.stesso.android.utils.toast
+import com.stesso.android.widget.TitleBar
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import org.json.JSONObject
 import javax.inject.Inject
 
 
@@ -28,16 +28,21 @@ open class BaseActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            val localLayoutParams = window.attributes
-//            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS or localLayoutParams.flags)
-//        }
     }
 
     protected fun getActivityComponent(): ActivityComponent {
         val app = application as App
         return app.component.plus(ActivityModule(this))
+    }
+
+    protected open fun configTitleView(titleBar: TitleBar, leftAction: (View) -> Unit = { onBackPressed() }, rightAction: (View) -> Unit) {
+        titleBar.setLeftAction(leftAction)
+        titleBar.setRightAction(rightAction)
+    }
+
+    protected open fun configTitleView(titleBar: TitleBar) {
+        titleBar.setLeftAction { onBackPressed() }
+
     }
 
 //    protected fun doHttpRequest(single: Single<JSONObject>, onSuccess: (JSONObject) -> Unit) {
@@ -59,7 +64,7 @@ open class BaseActivity : AppCompatActivity() {
         val disposable = single.compose(applySingleSchedulers())
                 .subscribe({ rootNode ->
                     if (rootNode.errno != 0) {
-                        toast(rootNode.errmsg?:"")
+                        toast(rootNode.errmsg ?: "")
                     } else {
                         onSuccess(rootNode.data)
                     }

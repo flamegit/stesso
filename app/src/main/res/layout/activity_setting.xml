@@ -6,22 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".account.SettingActivity">
 
-    <ImageView
-        android:padding="16dp"
-        android:src="@drawable/back"
-        android:id="@+id/back_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
+    <com.stesso.android.widget.TitleBar
         android:id="@+id/title_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="设置中心"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:left_icon="@drawable/back"
+        app:title_text="设置中心"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
 
     <TextView
         style="@style/default_font"

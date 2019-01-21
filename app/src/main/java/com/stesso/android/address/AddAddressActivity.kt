@@ -20,7 +20,7 @@ class AddAddressActivity : BaseActivity() {
             showDialog()
         }
 
-        save_view.setOnClickListener {
+        configTitleView(title_view){
             val name = name_view.text.toString()
             val mobile = tel_view.text.toString()
             val street = detail_view.text.toString()

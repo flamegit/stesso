@@ -6,39 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".address.AddressListActivity">
 
-    <ImageView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:padding="16dp"
-        android:src="@drawable/back"
-        android:id="@+id/back_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
+    <com.stesso.android.widget.TitleBar
         android:id="@+id/title_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="我的地址"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:left_icon="@drawable/back"
+        app:title_text="我的地址"
+        app:right_text="添加地址"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
 
-    <TextView
-
-        android:id="@+id/action_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="添加地址"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/action_view"
+        app:layout_constraintTop_toBottomOf="@+id/title_view"
         app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/recycler_view"
         android:layout_width="0dp"

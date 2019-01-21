@@ -17,15 +17,16 @@ class AddressListActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_address_list)
         getActivityComponent().inject(this)
-        recycler_view.adapter =adapter
+        recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
-        doHttpRequest(apiService.getAddressList()){
+        doHttpRequest(apiService.getAddressList()) {
             adapter.addItems(it, ADDRESS_TYPE)
         }
 
-        action_view.setOnClickListener {
+        configTitleView(title_view) {
             openActivity(AddAddressActivity::class.java)
         }
+
         //doHttpRequest()
     }
 }

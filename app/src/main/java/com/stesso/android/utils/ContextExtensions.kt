@@ -6,16 +6,17 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
+import android.util.DisplayMetrics
+import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
+import com.stesso.android.App
 import com.stesso.android.model.RootNode
 import io.reactivex.CompletableTransformer
-import io.reactivex.ObservableTransformer
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONStringer
 
 /**
@@ -29,9 +30,13 @@ fun <T : Activity> Context.openActivity(activity: Class<T>) {
     startActivity(intent)
 }
 
-fun <T : Activity> Context.openActivity(activity: Class<T>, key: String, value: String) {
+fun <T : Activity, D> Context.openActivity(activity: Class<T>, key: String, value: D) {
     val intent = Intent(this, activity)
-    intent.putExtra(key, value)
+    if (value is String) {
+        intent.putExtra(key, value)
+    } else if (value is Int) {
+        intent.putExtra(key, value)
+    }
     startActivity(intent)
 }
 
@@ -68,7 +73,7 @@ fun <T> applySingleSchedulers(): SingleTransformer<T, T> {
 }
 
 
- fun <T> doHttpRequest(single: Single<RootNode<T>>, onSuccess: (T?) -> Unit) {
+fun <T> doHttpRequest(single: Single<RootNode<T>>, onSuccess: (T?) -> Unit) {
     val disposable = single.compose(applySingleSchedulers())
             .subscribe({ rootNode ->
                 if (rootNode.errno != 0) {
@@ -95,10 +100,18 @@ fun Context.checkLoginInfo(phoneNum: String, password: String, verifyCode: Strin
         return false
     }
     if (verifyCode.length < 4) {
-        toast("验证码至少思维")
+        toast("验证码至少四位")
     }
     return true
 }
+
+fun Context.getWindowWidth(): Int {
+    val metrics = DisplayMetrics()
+    val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    wm.defaultDisplay.getMetrics(metrics)
+    return metrics.widthPixels
+}
+
 
 const val TOKEN = "token"
 const val CONFIG = "config"
@@ -113,6 +126,11 @@ fun Context.clear() {
 
 fun Context.get(key: String): String? {
     return getSharedPreferences(CONFIG, Context.MODE_PRIVATE).getString(key, null)
+}
+
+fun dip2px(dpValue: Int): Int {
+    val scale = App.instance().resources.displayMetrics.density
+    return (dpValue * scale + 0.5f).toInt()
 }
 
 
