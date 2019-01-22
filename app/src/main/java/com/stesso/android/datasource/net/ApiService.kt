@@ -29,6 +29,9 @@ interface ApiService {
     @GET("wx/address/list")
     fun getAddressList(): Single<RootNode<List<Address>>>
 
+    @GET("wx/address/detail")
+    fun getAddressDetail(@Query("id") id:Int): Single<RootNode<Address>>
+
     @POST("wx/address/save")
     fun saveAddress(@Body body: Address): Single<RootNode<String>>
 

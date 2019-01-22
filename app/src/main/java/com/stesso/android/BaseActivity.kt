@@ -3,6 +3,8 @@ package com.stesso.android
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.stesso.android.datasource.net.ApiService
 import com.stesso.android.di.component.ActivityComponent
@@ -45,6 +47,11 @@ open class BaseActivity : AppCompatActivity() {
 
     }
 
+    protected fun configRecyclerView(recyclerView:RecyclerView){
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+    }
+
 //    protected fun doHttpRequest(single: Single<JSONObject>, onSuccess: (JSONObject) -> Unit) {
 //        val disposable = single.compose(applySingleSchedulers())
 //                .subscribe({ jsonObject ->
@@ -61,6 +68,7 @@ open class BaseActivity : AppCompatActivity() {
 //    }
 
     protected fun <T> doHttpRequest(single: Single<RootNode<T>>, onSuccess: (T?) -> Unit) {
+
         val disposable = single.compose(applySingleSchedulers())
                 .subscribe({ rootNode ->
                     if (rootNode.errno != 0) {

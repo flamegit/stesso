@@ -1,13 +1,18 @@
 package com.stesso.android.lib
 
+import ADDRESS_ID
+import android.view.View
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.stesso.android.R
 import com.stesso.android.model.Commodity
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
+import com.stesso.android.address.AddAddressActivity
 import com.stesso.android.model.Address
 import com.stesso.android.model.BannerItem
+import com.stesso.android.utils.openActivity
+
 const val HEADER = 1
 const val FOOTER = 2
 const val TYPE1 = 3
@@ -52,6 +57,11 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.name_view).text = data.name
                         holder.get<TextView>(R.id.tel_view).text = data.mobile
                         holder.get<TextView>(R.id.address_view).text = data.detailedAddress
+                        holder.get<View>(R.id.edit_view).setOnClickListener {
+                            v -> v.context.openActivity(AddAddressActivity::class.java,ADDRESS_ID,data.id)
+                        }
+
+
                     }
                 }
             }

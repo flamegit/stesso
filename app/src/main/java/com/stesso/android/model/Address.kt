@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class Address() : Parcelable {
+    var id = 0
     var name: String? = null
     var mobile: String? = null
     var detailedAddress: String? = null
