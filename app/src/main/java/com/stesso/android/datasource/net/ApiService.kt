@@ -45,7 +45,7 @@ interface ApiService {
     fun deleteCartItem(): Completable
 
     @GET("wx/cart/index")
-    fun getCartItems(): Single<RootNode<String>>
+    fun getCartItems(): Single<RootNode<ShopcartDTO>>
 
     @POST("wx/cart/add")
     fun addCartItem(@Body body: JSONObject): Single<RootNode<String>>

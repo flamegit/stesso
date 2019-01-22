@@ -12,6 +12,7 @@ import com.stesso.android.CommodityDetailActivity
 import com.stesso.android.address.AddAddressActivity
 import com.stesso.android.model.Address
 import com.stesso.android.model.BannerItem
+import com.stesso.android.model.CommodityDetail
 import com.stesso.android.utils.openActivity
 
 const val HEADER = 1
@@ -55,6 +56,16 @@ class DelegateAdapterFactory {
                     }
                 }
             }
+            CART_TYPE -> object: BaseDelegateAdapter(R.layout.viewholder_cart_item){
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if(data is CommodityDetail){
+                        holder.get<TextView>(R.id.name_view).text = data.goodsName
+                        Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
+                        holder.get<TextView>(R.id.info_view).text = data.goodsName
+                    }
+                }
+            }
             ADDRESS_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_address) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
@@ -65,7 +76,6 @@ class DelegateAdapterFactory {
                         holder.get<View>(R.id.edit_view).setOnClickListener {
                             v -> v.context.openActivity(AddAddressActivity::class.java,ADDRESS_ID,data.id)
                         }
-
 
                     }
                 }
