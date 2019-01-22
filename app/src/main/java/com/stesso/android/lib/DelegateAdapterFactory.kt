@@ -8,6 +8,7 @@ import com.stesso.android.R
 import com.stesso.android.model.Commodity
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
+import com.stesso.android.CommodityDetailActivity
 import com.stesso.android.address.AddAddressActivity
 import com.stesso.android.model.Address
 import com.stesso.android.model.BannerItem
@@ -21,6 +22,7 @@ const val NEW_COMMODITY = 5
 const val HOT_COMMODITY = 6
 const val BANNER_TYPE = 7
 const val ADDRESS_TYPE = 8
+const val CART_TYPE = 9
 
 
 class DelegateAdapterFactory {
@@ -44,9 +46,12 @@ class DelegateAdapterFactory {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is Commodity) {
+                        holder.itemView.setOnClickListener {
+                            v -> v.context.openActivity(CommodityDetailActivity::class.java)
+                        }
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<TextView>(R.id.name_view).text = data.name
-                        holder.get<TextView>(R.id.discount_price).text = "$data.counterPrice"
+                        holder.get<TextView>(R.id.discount_price).text = "${data.counterPrice}"
                     }
                 }
             }

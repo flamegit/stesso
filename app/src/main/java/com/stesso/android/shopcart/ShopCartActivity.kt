@@ -1,13 +1,26 @@
 package com.stesso.android.shopcart
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import com.stesso.android.BaseActivity
 import com.stesso.android.R
+import com.stesso.android.lib.MultiTypeAdapter
+import kotlinx.android.synthetic.main.activity_shop_cart.*
 
-class ShopCartActivity : AppCompatActivity() {
+class ShopCartActivity : BaseActivity() {
+
+    private val adapter = MultiTypeAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_cart)
+        configTitleView(title_view)
+        getActivityComponent().inject(this)
+
+        recycler_view.adapter = adapter
+        recycler_view.layoutManager = LinearLayoutManager(this)
+        doHttpRequest(apiService.getCartItems()){
+
+        }
     }
 }

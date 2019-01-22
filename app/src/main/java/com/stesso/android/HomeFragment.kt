@@ -7,6 +7,7 @@ import com.stesso.android.lib.BANNER_TYPE
 import com.stesso.android.lib.HOT_COMMODITY
 import com.stesso.android.lib.MultiTypeAdapter
 import com.stesso.android.lib.NEW_COMMODITY
+import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.openActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -25,10 +26,12 @@ class HomeFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
-        close_view.setOnClickListener{
+        title_view.setLeftAction {
             context?.openActivity(SettingActivity::class.java)
         }
-
+        title_view.setRightAction {
+            context?.openActivity(ShopCartActivity::class.java)
+        }
 
         doHttpRequest(apiService.getHomeContent()) {
             if (it?.banner?.isNotEmpty() == true) {

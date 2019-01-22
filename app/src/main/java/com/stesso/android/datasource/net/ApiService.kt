@@ -32,11 +32,25 @@ interface ApiService {
     @GET("wx/address/detail")
     fun getAddressDetail(@Query("id") id:Int): Single<RootNode<Address>>
 
+    @GET("wx/goods/detail")
+    fun getCommodityDetail(@Query("id") id:Int): Single<RootNode<Address>>
+
     @POST("wx/address/save")
     fun saveAddress(@Body body: Address): Single<RootNode<String>>
 
     @POST("wx/address/delete")
     fun deleteAddress(): Completable
+
+    @POST("wx/cart/delete")
+    fun deleteCartItem(): Completable
+
+    @POST("wx/cart/index")
+    fun getCartItems(): Single<RootNode<String>>
+
+    @POST("wx/cart/add")
+    fun addCartItem(@Body body: JSONObject): Single<RootNode<String>>
+
+
 
 
 }

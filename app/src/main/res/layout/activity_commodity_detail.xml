@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".CommodityDetailActivity">
 
     <com.stesso.android.widget.TitleBar
         android:id="@+id/title_view"
@@ -16,13 +16,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+    <TextView
+        android:padding="@dimen/padding_16"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_view"
+        android:id="@+id/add_cart_view"
+        android:text="添加至购物车"
+        android:gravity="center"
+        android:background="@drawable/solid_black_bg"
         android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        android:layout_height="wrap_content" />
+
+
 
 </android.support.constraint.ConstraintLayout>
