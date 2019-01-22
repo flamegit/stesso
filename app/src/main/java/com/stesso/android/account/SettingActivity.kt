@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.stesso.android.BaseActivity
 import com.stesso.android.R
 import com.stesso.android.address.AddressListActivity
+import com.stesso.android.model.Account
 import com.stesso.android.utils.openActivity
 import kotlinx.android.synthetic.main.activity_setting.*
 
@@ -16,5 +17,7 @@ class SettingActivity : BaseActivity() {
         row6.setOnClickListener{
             openActivity(AddressListActivity::class.java)
         }
+
+        logout.setOnClickListener { Account.logout() }
     }
 }

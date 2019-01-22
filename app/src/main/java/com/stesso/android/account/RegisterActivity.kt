@@ -17,6 +17,12 @@ class RegisterActivity : BaseActivity() {
         getActivityComponent().inject(this)
         setContentView(R.layout.activity_register)
 
+        get_verify_code.setOnClickListener {
+            doHttpRequest(apiService.getVerifyCode("13472661756")){
+
+            }
+        }
+
         register_view.setOnClickListener {
             val mobile = account_view.text.toString()
             val verifyCode = verify_code.text.toString()

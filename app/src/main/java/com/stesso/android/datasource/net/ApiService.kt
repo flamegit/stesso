@@ -44,13 +44,14 @@ interface ApiService {
     @POST("wx/cart/delete")
     fun deleteCartItem(): Completable
 
-    @POST("wx/cart/index")
+    @GET("wx/cart/index")
     fun getCartItems(): Single<RootNode<String>>
 
     @POST("wx/cart/add")
     fun addCartItem(@Body body: JSONObject): Single<RootNode<String>>
 
-
+    @GET("wx/register/sendValidCode")
+    fun getVerifyCode(@Query("mobile") mobile:String):Single<RootNode<String>>
 
 
 }

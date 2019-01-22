@@ -78,6 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/verify_code" />
 
     <TextView
+        android:id="@+id/get_verify_code"
         app:layout_constraintEnd_toEndOf="@+id/verify_code"
         app:layout_constraintBaseline_toBaselineOf="@+id/verify_code"
         android:text="获取验证码"
