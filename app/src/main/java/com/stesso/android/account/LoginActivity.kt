@@ -20,6 +20,15 @@ class LoginActivity : BaseActivity() {
         register_view.setOnClickListener {
             openActivity(RegisterActivity::class.java)
         }
+
+        forget_view.setOnClickListener {
+            openActivity(RegisterActivity::class.java)
+        }
+
+        cancel_view.setOnClickListener {
+            onBackPressed()
+        }
+
         login_view.setOnClickListener {
             val mobile = account_view.text.toString()
             val password = password_view.text.toString()

@@ -14,13 +14,15 @@ class CommodityDetail {
     var addTime: String? = null
     var picUrl: String? = null
 
-//    fun getInfo():String{
-//        if(specifications?.isNotEmpty()==true){
-//          return  specifications.reduce{
-//                v1,v2 -> v1 + v2
-//            }
-//        }
-//    }
+    fun getInfo():String{
+        if(specifications?.isNotEmpty()==true){
+          return  specifications!!.reduce{
+                v1,v2 -> v1 +v2
+
+            }
+        }
+        return ""
+    }
 }
 
 

@@ -1,32 +1,32 @@
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@drawable/login_bg"
     tools:context=".account.LoginActivity">
 
     <TextView
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:text="取消"
-        android:textSize="15sp"
         android:id="@+id/cancel_view"
-        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="取消"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="STESSO"
         android:textColor="@android:color/white"
         android:textSize="45sp"
         android:textStyle="bold"
-        android:text="STESSO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,17 +38,36 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
-        android:drawableLeft="@drawable/phone"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingBottom="8dp"
-        android:text="Name"
+        android:background="@null"
+        android:hint="请输入手机号"
+        android:inputType="phone"
+        android:paddingStart="24dp"
         android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding_4"
+        android:src="@drawable/phone"
+        app:layout_constraintBottom_toBottomOf="@+id/account_view"
+        app:layout_constraintStart_toStartOf="@+id/account_view" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_view" />
 
 
     <EditText
@@ -56,11 +75,36 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
+        android:background="@null"
+        android:inputType="phone"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/account_view" />
+
+
+    <TextView
+        android:id="@+id/get_verify_code"
+        app:layout_constraintEnd_toEndOf="@+id/verify_code"
+        app:layout_constraintBaseline_toBaselineOf="@+id/verify_code"
+        android:text="获取验证码"
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verify_code" />
 
 
     <EditText
@@ -68,39 +112,56 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
-        android:drawableLeft="@drawable/password"
-        android:ems="10"
+        android:background="@null"
+        android:hint="设置密码"
         android:inputType="textPassword"
+        android:paddingStart="24dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/verify_code" />
 
-    <TextView
-        android:id="@+id/get_verify_code"
-        app:layout_constraintEnd_toEndOf="@+id/verify_code"
-        app:layout_constraintBaseline_toBaselineOf="@+id/verify_code"
-        android:text="获取验证码"
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding_4"
+        android:src="@drawable/password"
+        app:layout_constraintBottom_toBottomOf="@+id/password_view"
+        app:layout_constraintStart_toStartOf="@+id/password_view" />
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_view" />
 
 
     <TextView
         android:id="@+id/register_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/stroke_white_bg"
         android:gravity="center"
+        android:minWidth="200dp"
         android:padding="10dp"
-        android:text="登录"
+        android:text="注册"
+        android:textColor="@android:color/white"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:minWidth="150dp"
-        android:background="@drawable/stroke_white_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_view" />
+
+
+
 </android.support.constraint.ConstraintLayout>
+

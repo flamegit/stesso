@@ -32,6 +32,12 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    protected fun setStatusBar() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
+        }
+    }
+
     protected fun getActivityComponent(): ActivityComponent {
         val app = application as App
         return app.component.plus(ActivityModule(this))
@@ -47,7 +53,7 @@ open class BaseActivity : AppCompatActivity() {
 
     }
 
-    protected fun configRecyclerView(recyclerView:RecyclerView){
+    protected fun configRecyclerView(recyclerView: RecyclerView) {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
     }
