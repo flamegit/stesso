@@ -12,7 +12,7 @@ import retrofit2.http.Query
 interface ApiService {
 
     @POST("app/register")
-    fun register(@Body body: JSONObject): Completable
+    fun register(@Body body: JSONObject): Single<RootNode<String>>
 
     @POST("app/login")
     fun login(@Body body: JSONObject): Single<RootNode<UserDTO>>
@@ -52,6 +52,11 @@ interface ApiService {
 
     @GET("wx/register/sendValidCode")
     fun getVerifyCode(@Query("mobile") mobile:String):Single<RootNode<String>>
+
+    @GET("wx/topic/list")
+    fun getNewsList(@Query("page") page:Int,@Query("size") size:Int):Single<RootNode<List<NewsDTO>>>
+
+
 
 
 }

@@ -8,15 +8,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.stesso.android.R
-import com.stesso.android.model.Commodity
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
+import com.stesso.android.App
 import com.stesso.android.CommodityDetailActivity
 import com.stesso.android.address.AddAddressActivity
-import com.stesso.android.model.Address
-import com.stesso.android.model.BannerItem
-import com.stesso.android.model.CommodityDetail
+import com.stesso.android.datasource.net.ApiService
+import com.stesso.android.model.*
 import com.stesso.android.utils.openActivity
+import com.stesso.android.widget.QuantityView
+import javax.inject.Inject
 
 const val HEADER = 1
 const val FOOTER = 2
@@ -28,9 +29,17 @@ const val BANNER_TYPE = 7
 const val ADDRESS_TYPE = 8
 const val CART_TYPE = 9
 const val RECOMMEND_TYPE = 10
+const val NEWS_TYPE = 11
 
 
 class DelegateAdapterFactory {
+
+    @Inject
+    lateinit var apiService: ApiService
+
+    init {
+        App.instance().component.inject(this)
+    }
 
     fun getDelegateAdapter(type: Int): ViewTypeDelegateAdapter {
         return when (type) {
@@ -66,7 +75,16 @@ class DelegateAdapterFactory {
                     if (data is CommodityDetail) {
                         holder.get<TextView>(R.id.name_view).text = data.goodsName
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
-                        holder.get<TextView>(R.id.info_view).text = data.goodsName
+                        holder.get<View>(R.id.delete_view).setOnClickListener {
+
+                        }
+                        //holder.get<TextView>(R.id.info_view).text = data.goodsName
+                        val quantityView = holder.get<QuantityView>(R.id.quantity_view)
+                        quantityView.setQuantityChangeListener(object : QuantityView.OnQuantityChangeListener {
+                            override fun onLimitReached() {}
+                            override fun onMinReached() {}
+                            override fun onQuantityChanged(newQuantity: Int, programmatically: Boolean) {}
+                        })
                     }
                 }
             }
@@ -113,6 +131,16 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.name_view).text = data.name
                         holder.get<TextView>(R.id.brief_view).text = data.brief
                         holder.get<TextView>(R.id.discount_price).text = "${data.counterPrice}"
+                    }
+                }
+            }
+            NEWS_TYPE -> object : BaseDelegateAdapter(R.layout.viewholer_news_list) {
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is NewsDTO) {
+                        holder.get<TextView>(R.id.title_view).text = data.title
+                        Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.cover_view))
+
                     }
                 }
             }
