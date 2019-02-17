@@ -1,7 +1,10 @@
 package com.stesso.android.lib
 
 import ADDRESS_ID
+import GOODS_ID
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.stesso.android.R
@@ -24,6 +27,7 @@ const val HOT_COMMODITY = 6
 const val BANNER_TYPE = 7
 const val ADDRESS_TYPE = 8
 const val CART_TYPE = 9
+const val RECOMMEND_TYPE = 10
 
 
 class DelegateAdapterFactory {
@@ -47,8 +51,8 @@ class DelegateAdapterFactory {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is Commodity) {
-                        holder.itemView.setOnClickListener {
-                            v -> v.context.openActivity(CommodityDetailActivity::class.java)
+                        holder.itemView.setOnClickListener { v ->
+                            v.context.openActivity(CommodityDetailActivity::class.java, GOODS_ID, data.id)
                         }
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<TextView>(R.id.name_view).text = data.name
@@ -56,13 +60,30 @@ class DelegateAdapterFactory {
                     }
                 }
             }
-            CART_TYPE -> object: BaseDelegateAdapter(R.layout.viewholder_cart_item){
+            CART_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_cart_item) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
-                    if(data is CommodityDetail){
+                    if (data is CommodityDetail) {
                         holder.get<TextView>(R.id.name_view).text = data.goodsName
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<TextView>(R.id.info_view).text = data.goodsName
+                    }
+                }
+            }
+            HOT_COMMODITY -> object : BaseDelegateAdapter(R.layout.viewholder_hot_commodity) {
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is List<*>) {
+                        val group = holder.get<ViewGroup>(R.id.container)
+                        var index = 0
+                        data.forEach {
+                            if (it is Commodity) {
+                                val itemView = LayoutInflater.from(holder.itemView.context).inflate(R.layout.hot_commodity_item, group, false)
+                                itemView.findViewById<TextView>(R.id.name_view).text = it.name
+                                Glide.with(holder.itemView).load(it.picUrl).into(itemView.findViewById(R.id.commodity_img))
+                                group.addView(itemView, index++)
+                            }
+                        }
                     }
                 }
             }
@@ -73,10 +94,25 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.name_view).text = data.name
                         holder.get<TextView>(R.id.tel_view).text = data.mobile
                         holder.get<TextView>(R.id.address_view).text = data.detailedAddress
-                        holder.get<View>(R.id.edit_view).setOnClickListener {
-                            v -> v.context.openActivity(AddAddressActivity::class.java,ADDRESS_ID,data.id)
+                        holder.get<View>(R.id.edit_view).setOnClickListener { v ->
+                            v.context.openActivity(AddAddressActivity::class.java, ADDRESS_ID, data.id)
                         }
 
+                    }
+                }
+            }
+
+            RECOMMEND_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_recommend_commodity) {
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is Commodity) {
+                        holder.itemView.setOnClickListener { v ->
+                            v.context.openActivity(CommodityDetailActivity::class.java, GOODS_ID, data.id)
+                        }
+                        Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
+                        holder.get<TextView>(R.id.name_view).text = data.name
+                        holder.get<TextView>(R.id.brief_view).text = data.brief
+                        holder.get<TextView>(R.id.discount_price).text = "${data.counterPrice}"
                     }
                 }
             }

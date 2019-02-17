@@ -33,7 +33,7 @@ interface ApiService {
     fun getAddressDetail(@Query("id") id:Int): Single<RootNode<Address>>
 
     @GET("wx/goods/detail")
-    fun getCommodityDetail(@Query("id") id:Int): Single<RootNode<Address>>
+    fun getCommodityDetail(@Query("id") id:Int): Single<RootNode<CommodityInfoDTO>>
 
     @POST("wx/address/save")
     fun saveAddress(@Body body: Address): Single<RootNode<String>>

@@ -7,54 +7,52 @@
     android:layout_height="wrap_content"
     tools:context=".PersonInfoFragment">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/commodity_img"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="255dp"
+        android:layout_height="255dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/favorite"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/name_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
         android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@+id/commodity_img"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commodity_img" />
+
+    <TextView
+        android:id="@+id/brief_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_view" />
+
+    <TextView
+        android:id="@+id/price_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brief_view" />
 
     <TextView
         android:id="@+id/discount_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/name_view"
-        app:layout_constraintTop_toBottomOf="@+id/name_view" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/red"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="TextView"
-        app:layout_constraintBaseline_toBaselineOf="@+id/discount_price"
-        app:layout_constraintStart_toEndOf="@+id/discount_price" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/price_view"
+        app:layout_constraintStart_toEndOf="@+id/price_view" />
+
 </android.support.constraint.ConstraintLayout>
