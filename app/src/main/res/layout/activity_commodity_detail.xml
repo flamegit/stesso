@@ -1,88 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".CommodityDetailActivity">
 
     <com.stesso.android.widget.TitleBar
         android:id="@+id/title_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:left_icon="@drawable/close"
         app:right_icon="@drawable/shopcart"
         app:title_text="商品详情" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
+    <ScrollView
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="340dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_view" />
+        android:layout_height="0dp"
+        android:fillViewport="true">
 
-    <com.stesso.android.widget.CirclePageIndicator
-        android:id="@+id/indicator_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding_16"
-        app:fillColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/view_pager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:pageColor="@android:color/darker_gray" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants">
 
-    <TextView
-        app:layout_constraintTop_toBottomOf="@+id/view_pager"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/product_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="340dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        app:layout_constraintTop_toBottomOf="@+id/product_name"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/promise_view"
-        android:text="七天包退，正品保证，售后无忧"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <com.stesso.android.widget.CirclePageIndicator
+                android:id="@+id/indicator_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_16"
+                app:fillColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:pageColor="@android:color/darker_gray" />
 
-    <LinearLayout
-        app:layout_constraintTop_toBottomOf="@+id/promise_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/chose_layout"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_pager" />
 
-    <WebView
-        android:nestedScrollingEnabled="false"
-        android:id="@+id/web_view"
-        app:layout_constraintTop_toBottomOf="@+id/chose_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
+            <TextView
+                android:id="@+id/promise_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="七天包退，正品保证，售后无忧"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_name" />
+
+            <LinearLayout
+                android:id="@+id/chose_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/promise_view" />
+
+            <WebView
+                android:id="@+id/web_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chose_layout" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/add_cart_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/solid_black_bg"
         android:gravity="center"
         android:padding="@dimen/padding_16"
         android:text="添加至购物车"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@android:color/white" />
+</LinearLayout>
 
-
-</android.support.constraint.ConstraintLayout>
