@@ -11,6 +11,8 @@ import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import com.stesso.android.App
+import com.stesso.android.account.LoginActivity
+import com.stesso.android.model.Account
 import com.stesso.android.model.RootNode
 import io.reactivex.CompletableTransformer
 import io.reactivex.Single
@@ -69,6 +71,14 @@ fun <T> applySingleSchedulers(): SingleTransformer<T, T> {
     return SingleTransformer {
         it.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+    }
+}
+
+fun Context.checkLogin(action: () -> Unit) {
+    if(Account.isLogin()){
+        action()
+    }else{
+        openActivity(LoginActivity::class.java)
     }
 }
 

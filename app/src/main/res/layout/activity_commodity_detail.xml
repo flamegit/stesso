@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,27 +9,80 @@
 
     <com.stesso.android.widget.TitleBar
         android:id="@+id/title_view"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:left_icon="@drawable/close"
-        app:title_text="购物车"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        app:right_icon="@drawable/shopcart"
+        app:title_text="商品详情" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_view" />
+
+    <com.stesso.android.widget.CirclePageIndicator
+        android:id="@+id/indicator_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_16"
+        app:fillColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:pageColor="@android:color/darker_gray" />
 
     <TextView
-        android:padding="@dimen/padding_16"
-        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@+id/view_pager"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/add_cart_view"
-        android:text="添加至购物车"
-        android:gravity="center"
-        android:background="@drawable/solid_black_bg"
-        android:layout_width="0dp"
+        android:id="@+id/product_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <TextView
+        app:layout_constraintTop_toBottomOf="@+id/product_name"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/promise_view"
+        android:text="七天包退，正品保证，售后无忧"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/promise_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/chose_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <WebView
+        android:nestedScrollingEnabled="false"
+        android:id="@+id/web_view"
+        app:layout_constraintTop_toBottomOf="@+id/chose_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/add_cart_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/solid_black_bg"
+        android:gravity="center"
+        android:padding="@dimen/padding_16"
+        android:text="添加至购物车"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
