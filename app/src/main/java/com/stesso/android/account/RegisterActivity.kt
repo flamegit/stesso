@@ -20,8 +20,9 @@ class RegisterActivity : BaseActivity() {
 
         get_verify_code.setOnClickListener {
             val mobile = account_view.text.toString()
+            val body = JSONObject(mapOf(Pair("mobile", mobile)))
 
-            doHttpRequest(apiService.getVerifyCode(mobile)) {
+            doHttpRequest(apiService.getVerifyCode(body)) {
 
             }
 
