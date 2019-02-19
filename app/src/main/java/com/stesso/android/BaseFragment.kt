@@ -43,7 +43,7 @@ open class BaseFragment : Fragment() {
                         onSuccess(rootNode.data)
                     }
                 }, {
-
+                    it.printStackTrace()
                 })
         disposableContainer.add(disposable)
     }

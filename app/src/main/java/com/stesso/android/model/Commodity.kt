@@ -5,8 +5,8 @@ class Commodity {
     var name: String? = null
     var brief: String? = null
     var picUrl: String? = null
-    var counterPrice:Int? = null
-    var retailPrice:Int? = null
+    var counterPrice:Float? = null
+    var retailPrice:Float? = null
 
 
 }

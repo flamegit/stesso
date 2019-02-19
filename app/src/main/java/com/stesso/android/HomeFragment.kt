@@ -2,6 +2,7 @@ package com.stesso.android
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.stesso.android.account.SettingActivity
 import com.stesso.android.lib.*
 import com.stesso.android.shopcart.ShopCartActivity
@@ -31,6 +32,7 @@ class HomeFragment : BaseFragment() {
         }
 
         doHttpRequest(apiService.getHomeContent()) {
+            Log.d("dd","suddcee")
             if (it?.banner?.isNotEmpty() == true) {
                 adapter.addItem(it.banner?.get(0), BANNER_TYPE)
             }
