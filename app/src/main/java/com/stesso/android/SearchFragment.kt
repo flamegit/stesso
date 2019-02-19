@@ -2,19 +2,18 @@ package com.stesso.android
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.stesso.android.account.SettingActivity
-import com.stesso.android.lib.*
+import com.stesso.android.lib.MultiTypeAdapter
+import com.stesso.android.lib.NEWS_TYPE
 import com.stesso.android.shopcart.ShopCartActivity
-import com.stesso.android.utils.checkLogin
 import com.stesso.android.utils.openActivity
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_news_list.*
 
-class HomeFragment : BaseFragment() {
+class SearchFragment : BaseFragment() {
 
     private val adapter = MultiTypeAdapter()
 
-    override fun getLayoutId() = R.layout.fragment_home
+    override fun getLayoutId() = R.layout.fragment_news_list
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,17 +28,13 @@ class HomeFragment : BaseFragment() {
             context?.openActivity(SettingActivity::class.java)
         }
         title_view.setRightAction {
-            context?.checkLogin { context?.openActivity(ShopCartActivity::class.java) }
+            context?.openActivity(ShopCartActivity::class.java)
         }
 
-        doHttpRequest(apiService.getHomeContent()) {
-            Log.d("dd","suddcee")
-            if (it?.banner?.isNotEmpty() == true) {
-                adapter.addItem(it.banner?.get(0), BANNER_TYPE)
+        doHttpRequest(apiService.getNewsList(1, 15)) {
+            if (it?.data?.isNotEmpty() == true) {
+                adapter.addItems(it?.data, NEWS_TYPE)
             }
-            adapter.addItems(it?.newGoodsList, NEW_COMMODITY, true)
-            adapter.addItem(it?.hotGoodsList, HOT_COMMODITY,true)
-            adapter.addItems(it?.recommendGoodsList, RECOMMEND_TYPE,true)
         }
     }
 

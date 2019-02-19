@@ -46,6 +46,7 @@
             android:theme="@style/TranslucentTheme" />
         <activity android:name=".BaseActivity" />
         <activity android:name=".account.SettingActivity" />
+        <activity android:name=".NewsDetailActivity"/>
         <activity android:name=".address.AddAddressActivity" />
     </application>
 

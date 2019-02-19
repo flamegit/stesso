@@ -32,8 +32,8 @@ class NewsFragment : BaseFragment() {
         }
 
         doHttpRequest(apiService.getNewsList(1, 15)) {
-            if (it?.isNotEmpty() == true) {
-                adapter.addItems(it, NEWS_TYPE)
+            if (it?.data?.isNotEmpty() == true) {
+                adapter.addItems(it?.data, NEWS_TYPE)
             }
         }
     }
