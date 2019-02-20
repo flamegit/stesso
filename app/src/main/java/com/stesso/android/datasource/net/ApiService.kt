@@ -50,13 +50,19 @@ interface ApiService {
     @POST("wx/cart/add")
     fun addCartItem(@Body body: JSONObject): Single<RootNode<String>>
 
-    @GET("wx/register/sendValidCode")
-    fun getVerifyCode(@Query("mobile") mobile:String):Single<RootNode<String>>
+    @POST("wx/auth/sendValidCode")
+    fun getVerifyCode(@Body body: JSONObject):Single<RootNode<String>>
 
     @GET("wx/topic/list")
-    fun getNewsList(@Query("page") page:Int,@Query("size") size:Int):Single<RootNode<List<NewsDTO>>>
+    fun getNewsList(@Query("page") page:Int,@Query("size") size:Int):Single<RootNode<NewsDTO>>
 
+    @GET("wx/topic/detail")
+    fun getNewsDetail(@Query("id") id:Int):Single<RootNode<NewsDetailDTO>>
 
+    @POST("wx/collect/addordelete")
+    fun addOrDelete(@Body body: JSONObject):Single<RootNode<String>>
 
+    @GET("wx/collect/list")
+    fun getCollect(@Query("type") id:Int):Single<RootNode<String>>
 
 }

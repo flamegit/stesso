@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.os.Bundle
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
-import com.example.flame.kotlinstudy.ui.MineFragment
 import kotlinx.android.synthetic.main.activity_main.bottom_navigation_bar
 
 class MainActivity : BaseActivity() {
@@ -69,7 +68,7 @@ class MainActivity : BaseActivity() {
         if (curr == null) {
             curr = when (position) {
                 0 -> HomeFragment()
-                1 -> MineFragment()
+                1 -> NewsFragment()
                 else -> MineFragment()
             }
             supportFragmentManager

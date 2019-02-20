@@ -90,7 +90,9 @@ fun <T> doHttpRequest(single: Single<RootNode<T>>, onSuccess: (T?) -> Unit) {
                 } else {
                     onSuccess(rootNode.data)
                 }
-            }, {})
+            }, {
+                it.printStackTrace()
+            })
 }
 
 fun applyCompletableSchedulers(): CompletableTransformer {

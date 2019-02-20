@@ -2,6 +2,7 @@ package com.stesso.android.lib
 
 import ADDRESS_ID
 import GOODS_ID
+import NEWS_ID
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,14 @@ import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
 import com.stesso.android.App
 import com.stesso.android.CommodityDetailActivity
+import com.stesso.android.NewsDetailActivity
 import com.stesso.android.address.AddAddressActivity
 import com.stesso.android.datasource.net.ApiService
 import com.stesso.android.model.*
+import com.stesso.android.utils.doHttpRequest
 import com.stesso.android.utils.openActivity
 import com.stesso.android.widget.QuantityView
+import org.json.JSONObject
 import javax.inject.Inject
 
 const val HEADER = 1
@@ -66,6 +70,10 @@ class DelegateAdapterFactory {
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<TextView>(R.id.name_view).text = data.name
                         holder.get<TextView>(R.id.discount_price).text = "${data.counterPrice}"
+                        holder.get<View>(R.id.favorite_view).setOnClickListener {
+                            val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", data.id)))
+                            doHttpRequest(apiService.addOrDelete(body)){}
+                        }
                     }
                 }
             }
@@ -137,10 +145,12 @@ class DelegateAdapterFactory {
             NEWS_TYPE -> object : BaseDelegateAdapter(R.layout.viewholer_news_list) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
-                    if (data is NewsDTO) {
+                    if (data is NewsDTO.News) {
                         holder.get<TextView>(R.id.title_view).text = data.title
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.cover_view))
-
+                        holder.itemView.setOnClickListener { v ->
+                            v.context.openActivity(NewsDetailActivity::class.java, NEWS_ID, data.id)
+                        }
                     }
                 }
             }
