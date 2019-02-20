@@ -1,6 +1,7 @@
 package com.stesso.android
 
 import GOODS_ID
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
@@ -52,9 +53,11 @@ class CommodityDetailActivity : BaseActivity() {
             web_view.loadData(getHtmlData(it?.info?.detail), "text/html; charset=utf-8", "utf-8")
         }
         add_cart_view.setOnClickListener {
-
-            val body = JSONObject(mapOf(Pair("goodsId", goodId), Pair("productId", 150), Pair("number", 1)))
-            doHttpRequest(apiService.addCartItem(body)) {}
+            var productId = info?.getProductId(choseArray?.reduce{  acc, s ->"$acc$s" })
+            productId?.let {
+                val body = JSONObject(mapOf(Pair("goodsId", goodId), Pair("productId", it), Pair("number", 1)))
+                doHttpRequest(apiService.addCartItem(body)) {}
+            }
         }
     }
 
@@ -64,6 +67,7 @@ class CommodityDetailActivity : BaseActivity() {
             val tagView = createTagView(info.value)
             tagView.setOnClickListener{
                 choseArray?.set(index,info.value)
+                tagView.setTextColor(Color.RED)
             }
             layout.addView(tagView)
         }
@@ -77,7 +81,7 @@ class CommodityDetailActivity : BaseActivity() {
         return tagView
     }
 
-    private fun createTagView(value: String): View {
+    private fun createTagView(value: String): TextView {
         val tagView = TextView(this)
         tagView.text = value
         tagView.setPadding(16, 16, 16, 16)

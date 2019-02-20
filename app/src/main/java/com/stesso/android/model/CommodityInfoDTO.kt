@@ -10,7 +10,7 @@ class CommodityInfoDTO{
         return info?.gallery
     }
 
-    fun getProductId(specification:String):Int?{
+    fun getProductId(specification:String?):Int?{
         productList?.forEach {
             if(specification == it.getSpecification()){
                 return it.id
