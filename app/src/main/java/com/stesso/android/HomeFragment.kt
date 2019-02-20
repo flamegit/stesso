@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : BaseFragment() {
 
     private val adapter = MultiTypeAdapter()
-
     override fun getLayoutId() = R.layout.fragment_home
 
     override fun onCreate(savedInstanceState: Bundle?) {

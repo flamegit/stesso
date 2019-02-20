@@ -63,6 +63,6 @@ interface ApiService {
     fun addOrDelete(@Body body: JSONObject):Single<RootNode<String>>
 
     @GET("wx/collect/list")
-    fun getCollect(@Query("type") id:Int):Single<RootNode<String>>
+    fun getCollect(@Query("type") id:Int):Single<RootNode<CollectionDTO>>
 
 }
