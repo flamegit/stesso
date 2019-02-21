@@ -84,6 +84,8 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.name_view).text = data.goodsName
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<View>(R.id.delete_view).setOnClickListener {
+                            val body = JSONObject(mapOf(Pair("productIds", listOf(data.productId))))
+                            doHttpRequest(apiService.deleteCartItem(body)){}
 
                         }
                         //holder.get<TextView>(R.id.info_view).text = data.goodsName
@@ -151,6 +153,11 @@ class DelegateAdapterFactory {
                         holder.itemView.setOnClickListener { v ->
                             v.context.openActivity(NewsDetailActivity::class.java, NEWS_ID, data.id)
                         }
+                        holder.get<View>(R.id.favorite_view).setOnClickListener {
+                            val body = JSONObject(mapOf(Pair("type", 1), Pair("valueId", data.id)))
+                            doHttpRequest(apiService.addOrDelete(body)){}
+                        }
+
                     }
                 }
             }

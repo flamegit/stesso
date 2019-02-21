@@ -42,7 +42,7 @@ interface ApiService {
     fun deleteAddress(): Completable
 
     @POST("wx/cart/delete")
-    fun deleteCartItem(): Completable
+    fun deleteCartItem(@Body body: JSONObject): Single<RootNode<String>>
 
     @GET("wx/cart/index")
     fun getCartItems(): Single<RootNode<ShopcartDTO>>
