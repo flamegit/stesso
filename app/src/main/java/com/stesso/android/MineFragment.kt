@@ -33,7 +33,7 @@ class MineFragment : BaseFragment() {
         } else {
 
         }
-        doHttpRequest(apiService.getCollect(0)) {
+        doHttpRequest(apiService.getCollect(1,1,10)) {
             adapter.addItems(it?.collectList, HOT_COMMODITY)
         }
     }
