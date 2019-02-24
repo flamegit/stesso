@@ -39,7 +39,7 @@ interface ApiService {
     fun saveAddress(@Body body: Address): Single<RootNode<String>>
 
     @POST("wx/address/delete")
-    fun deleteAddress(): Completable
+    fun deleteAddress(@Body body: JSONObject): Single<RootNode<String>>
 
     @POST("wx/cart/delete")
     fun deleteCartItem(@Body body: JSONObject): Single<RootNode<String>>

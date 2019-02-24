@@ -7,15 +7,15 @@ import com.stesso.android.BaseActivity
 import com.stesso.android.R
 import com.stesso.android.lib.NetAddressProvider
 import com.stesso.android.model.Address
-import kotlinx.android.synthetic.main.fragment_add_address.*
-
+import kotlinx.android.synthetic.main.activity_add_address.*
+import org.json.JSONObject
 
 class AddAddressActivity : BaseActivity() {
     private var address = Address()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getActivityComponent().inject(this)
-        setContentView(R.layout.fragment_add_address)
+        setContentView(R.layout.activity_add_address)
         val id = intent.getIntExtra(ADDRESS_ID, -1)
         if (id != -1) {
             doHttpRequest(apiService.getAddressDetail(id)) {
@@ -27,8 +27,17 @@ class AddAddressActivity : BaseActivity() {
                 }
             }
         }
+        delete_address.setOnClickListener {
+            if (id == -1) {
+                return@setOnClickListener
+            }
+            val body = JSONObject(mapOf(Pair("id", id)))
+            doHttpRequest(apiService.deleteAddress(body)){
+                onBackPressed()
+            }
+        }
 
-        select_address.setOnClickListener {
+        city_layout.setOnClickListener {
             showDialog()
         }
 
@@ -39,10 +48,12 @@ class AddAddressActivity : BaseActivity() {
             address.name = name
             address.mobile = mobile
             address.address = street
-            doHttpRequest(apiService.saveAddress(address)) {}
+            doHttpRequest(apiService.saveAddress(address)) {
+                onBackPressed()
+            }
         }
-
     }
+
 
     private fun showDialog() {
         val dialog = BottomDialog(this)
@@ -51,6 +62,7 @@ class AddAddressActivity : BaseActivity() {
             address.provinceId = province.id
             address.cityId = city.id
             address.areaId = county.id
+            city_view.text = "${province.name} ${city.name} ${county.name}"
             dialog.dismiss()
         }
         dialog.show()

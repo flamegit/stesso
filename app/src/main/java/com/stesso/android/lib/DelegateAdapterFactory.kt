@@ -15,6 +15,7 @@ import com.stesso.android.App
 import com.stesso.android.CommodityDetailActivity
 import com.stesso.android.NewsDetailActivity
 import com.stesso.android.address.AddAddressActivity
+import com.stesso.android.address.AddressListActivity
 import com.stesso.android.datasource.net.ApiService
 import com.stesso.android.model.*
 import com.stesso.android.utils.doHttpRequest
@@ -34,7 +35,7 @@ const val ADDRESS_TYPE = 8
 const val CART_TYPE = 9
 const val RECOMMEND_TYPE = 10
 const val NEWS_TYPE = 11
-
+const val SETTLEMENT_ADDRESS = 12
 
 class DelegateAdapterFactory {
 
@@ -72,7 +73,7 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.discount_price).text = "${data.counterPrice}"
                         holder.get<View>(R.id.favorite_view).setOnClickListener {
                             val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", data.id)))
-                            doHttpRequest(apiService.addOrDelete(body)){}
+                            doHttpRequest(apiService.addOrDelete(body)) {}
                         }
                     }
                 }
@@ -85,7 +86,7 @@ class DelegateAdapterFactory {
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<View>(R.id.delete_view).setOnClickListener {
                             val body = JSONObject(mapOf(Pair("productIds", listOf(data.productId))))
-                            doHttpRequest(apiService.deleteCartItem(body)){}
+                            doHttpRequest(apiService.deleteCartItem(body)) {}
 
                         }
                         //holder.get<TextView>(R.id.info_view).text = data.goodsName
@@ -119,13 +120,26 @@ class DelegateAdapterFactory {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is Address) {
-                        holder.get<TextView>(R.id.name_view).text = data.name
+                        holder.get<View>(R.id.default_view).visibility = if (data.isDefault) View.VISIBLE else View.INVISIBLE
+                        holder.get<TextView>(R.id.name_view).text = "收货人：${data.name}"
                         holder.get<TextView>(R.id.tel_view).text = data.mobile
-                        holder.get<TextView>(R.id.address_view).text = data.detailedAddress
+                        holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.detailedAddress}"
                         holder.get<View>(R.id.edit_view).setOnClickListener { v ->
                             v.context.openActivity(AddAddressActivity::class.java, ADDRESS_ID, data.id)
                         }
-
+                    }
+                }
+            }
+            SETTLEMENT_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_address) {
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is Address) {
+                        holder.get<TextView>(R.id.name_view).text = "收货人：$data.name"
+                        holder.get<TextView>(R.id.tel_view).text = data.mobile
+                        holder.get<TextView>(R.id.address_detail).text = "收获地址：$data.detailedAddress"
+                        holder.itemView.setOnClickListener { v ->
+                            v.context.openActivity(AddressListActivity::class.java)
+                        }
                     }
                 }
             }
@@ -155,7 +169,7 @@ class DelegateAdapterFactory {
                         }
                         holder.get<View>(R.id.favorite_view).setOnClickListener {
                             val body = JSONObject(mapOf(Pair("type", 1), Pair("valueId", data.id)))
-                            doHttpRequest(apiService.addOrDelete(body)){}
+                            doHttpRequest(apiService.addOrDelete(body)) {}
                         }
 
                     }

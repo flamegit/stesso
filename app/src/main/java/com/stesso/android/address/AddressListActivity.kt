@@ -1,6 +1,7 @@
 package com.stesso.android.address
 
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.stesso.android.BaseActivity
 import com.stesso.android.R
@@ -19,6 +20,8 @@ class AddressListActivity : BaseActivity() {
         getActivityComponent().inject(this)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
+
+        recycler_view.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL))
         doHttpRequest(apiService.getAddressList()) {
             adapter.addItems(it, ADDRESS_TYPE)
         }

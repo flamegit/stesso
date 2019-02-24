@@ -48,6 +48,7 @@
         <activity android:name=".account.SettingActivity" />
         <activity android:name=".NewsDetailActivity"/>
         <activity android:name=".address.AddAddressActivity" />
+        <activity android:name=".SettlementActivity" />
     </application>
 
 </manifest>

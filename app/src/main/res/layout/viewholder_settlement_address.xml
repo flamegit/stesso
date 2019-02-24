@@ -1,44 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:paddingTop="@dimen/padding_10"
-    android:paddingEnd="@dimen/padding_10"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_16">
 
     <TextView
-        android:textSize="@dimen/txt_10"
-        android:paddingLeft="@dimen/padding_4"
-        android:paddingRight="@dimen/padding_4"
-        android:text="默认"
-        android:id="@+id/default_view"
-        android:textColor="@color/white"
-        android:background="@android:color/holo_red_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="13dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        tools:text="dd df"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/default_view"
         android:id="@+id/name_view"
-        android:paddingStart="26dp"
-        android:paddingTop="11dp"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/font_4A"
-        android:textSize="@dimen/txt_13" />
+        android:textSize="@dimen/txt_14" />
 
     <TextView
-        app:layout_constraintEnd_toStartOf="@+id/default_view"
-        android:paddingEnd="20dp"
-        android:paddingTop="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/tel_view"
@@ -48,13 +26,10 @@
         android:textSize="@dimen/txt_13" />
 
     <TextView
-        android:paddingStart="26dp"
-        android:paddingEnd="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/default_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_view"
         android:id="@+id/address_detail"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_8"
         android:textColor="@color/font_4A"
@@ -62,15 +37,10 @@
         />
 
     <ImageView
-        android:layout_marginEnd="13dp"
-        android:id="@+id/edit_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/edit"
+        android:src="@drawable/arrow_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
 </android.support.constraint.ConstraintLayout>
-
-

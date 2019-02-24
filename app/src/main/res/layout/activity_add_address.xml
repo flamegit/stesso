@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.stesso.android.widget.TitleBar
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/title_view"
+        app:left_icon="@drawable/back"
+        app:title_text="添加地址"
+        app:right_text="保存"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <View
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_view"
+        android:background="#F2F2F2"
+        android:layout_width="0dp"
+        android:layout_height="4dp"/>
+
+    <LinearLayout
+        android:id="@+id/name_layout"
+        android:padding="@dimen/padding_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:paddingEnd="@dimen/padding_8"
+            android:textColor="@color/font_4A"
+            android:textSize="@dimen/txt_15"
+            android:text="收货人："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/name_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="textPersonName"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/txt_15" />
+    </LinearLayout>
+
+    <View
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_layout"
+        android:background="#979797"
+        android:layout_width="0dp"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:layout_marginTop="1dp"
+        android:id="@+id/tel_layout"
+        android:padding="@dimen/padding_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:paddingEnd="@dimen/padding_8"
+            android:textColor="@color/font_4A"
+            android:textSize="@dimen/txt_15"
+            android:text="手机号码："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/tel_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="textPersonName"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/txt_15" />
+    </LinearLayout>
+
+    <View
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tel_layout"
+        android:background="#979797"
+        android:layout_width="0dp"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:id="@+id/city_layout"
+        android:padding="@dimen/padding_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:paddingEnd="@dimen/padding_8"
+            android:textColor="@color/font_4A"
+            android:textSize="@dimen/txt_15"
+            android:text="所在地区："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/city_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/txt_15" />
+    </LinearLayout>
+
+    <View
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city_layout"
+        android:background="#979797"
+        android:layout_width="0dp"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:layout_marginTop="1dp"
+        android:id="@+id/detail_layout"
+        android:padding="@dimen/padding_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:paddingEnd="@dimen/padding_8"
+            android:textColor="@color/font_4A"
+            android:textSize="@dimen/txt_15"
+            android:text="地址详情："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/detail_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="textPersonName"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/txt_15" />
+    </LinearLayout>
+
+    <View
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_layout"
+        android:background="#979797"
+        android:layout_width="0dp"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:padding="@dimen/padding_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_layout"
+        android:text="设为默认"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Switch
+        android:padding="@dimen/padding_16"
+        android:id="@+id/default_view"
+        app:layout_constraintTop_toBottomOf="@+id/detail_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/default_view"
+        android:paddingLeft="@dimen/padding_20"
+        android:paddingRight="@dimen/padding_20"
+        android:paddingTop="@dimen/padding_8"
+        android:paddingBottom="@dimen/padding_8"
+        android:layout_marginStart="@dimen/padding_16"
+        android:id="@+id/delete_address"
+        android:text="删除收货地址"
+        android:textColor="#ED1D25"
+        android:background="@drawable/stroke_red_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</android.support.constraint.ConstraintLayout>
+
+
