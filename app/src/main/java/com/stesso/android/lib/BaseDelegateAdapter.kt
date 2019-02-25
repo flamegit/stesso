@@ -6,6 +6,8 @@ import android.view.ViewGroup
 open class BaseDelegateAdapter(private val layoutId:Int) : ViewTypeDelegateAdapter {
 
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
         val view= LayoutInflater.from(parent.context).inflate(layoutId,parent,false)
         return CommonViewHolder(view)

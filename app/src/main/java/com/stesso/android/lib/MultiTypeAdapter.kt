@@ -24,7 +24,7 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
 
     override fun getItemCount(): Int = mContent.size
 
-    fun addItems(items: Collection<*>?, type: Int = TYPE1, append: Boolean = false) {
+    fun  addItems(items: Collection<*>?, type: Int = TYPE1, append: Boolean = false) {
         items?.let {
             if (!append) {
                 mContent.clear()
