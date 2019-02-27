@@ -3,6 +3,7 @@ package com.stesso.android.lib
 import ADDRESS_ID
 import GOODS_ID
 import NEWS_ID
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,11 +37,15 @@ const val CART_TYPE = 9
 const val RECOMMEND_TYPE = 10
 const val NEWS_TYPE = 11
 const val SETTLEMENT_ADDRESS = 12
+const val EMPTY_ADDRESS = 13
+
 
 class DelegateAdapterFactory {
 
     @Inject
     lateinit var apiService: ApiService
+
+    var onItemClick: (position: Int, data: Any?) -> Unit = { _, _ -> }
 
     init {
         App.instance().component.inject(this)
@@ -137,8 +142,8 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.name_view).text = "收货人：$data.name"
                         holder.get<TextView>(R.id.tel_view).text = data.mobile
                         holder.get<TextView>(R.id.address_detail).text = "收获地址：$data.detailedAddress"
-                        holder.itemView.setOnClickListener { v ->
-                            v.context.openActivity(AddressListActivity::class.java)
+                        holder.itemView.setOnClickListener {
+                           onItemClick(position,data)
                         }
                     }
                 }

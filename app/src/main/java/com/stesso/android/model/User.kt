@@ -2,6 +2,7 @@ package com.stesso.android.model
 
 class User {
 
+    var nicknamne: String? = null
     var username: String? = null
     var mobile: String? = null
     var gender: Int = 0
