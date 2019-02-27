@@ -36,11 +36,13 @@ class SettlementActivity : BaseActivity() {
         }
     }
 
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == SELECT_ADDRESS) {
-            adapter.changeItem(0,data?.getParcelableExtra(KEY_ADDRESS),SELECT_ADDRESS)
+            adapter.changeItem(0,data?.getParcelableExtra(KEY_ADDRESS), SETTLEMENT_ADDRESS)
         }
     }
 }

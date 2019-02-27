@@ -117,6 +117,23 @@ fun Context.checkLoginInfo(phoneNum: String, password: String, verifyCode: Strin
     return true
 }
 
+fun Context.checkAddress(phoneNum: String, password: String, verifyCode: String = "1234"): Boolean {
+    if (phoneNum.length < 4) {
+        toast("手机号格式错误")
+        return false
+    }
+    if (password.length < 6) {
+        toast("密码至少六位")
+        return false
+    }
+    if (verifyCode.length < 4) {
+        toast("验证码至少四位")
+    }
+    return true
+}
+
+
+
 fun Context.getWindowWidth(): Int {
     val metrics = DisplayMetrics()
     val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager

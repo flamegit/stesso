@@ -25,7 +25,7 @@ class AddressListActivity : BaseActivity() {
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
 
-        recycler_view.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL))
+        recycler_view.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
         doHttpRequest(apiService.getAddressList()) {
             adapter.addItems(it, ADDRESS_TYPE)
         }

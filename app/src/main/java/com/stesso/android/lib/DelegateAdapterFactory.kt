@@ -132,6 +132,9 @@ class DelegateAdapterFactory {
                         holder.get<View>(R.id.edit_view).setOnClickListener { v ->
                             v.context.openActivity(AddAddressActivity::class.java, ADDRESS_ID, data.id)
                         }
+                        holder.itemView.setOnClickListener {
+                            onItemClick(position,data)
+                        }
                     }
                 }
             }
@@ -139,9 +142,9 @@ class DelegateAdapterFactory {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is Address) {
-                        holder.get<TextView>(R.id.name_view).text = "收货人：$data.name"
+                        holder.get<TextView>(R.id.name_view).text = "收货人：${data.name}"
                         holder.get<TextView>(R.id.tel_view).text = data.mobile
-                        holder.get<TextView>(R.id.address_detail).text = "收获地址：$data.detailedAddress"
+                        holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.detailedAddress}"
                         holder.itemView.setOnClickListener {
                            onItemClick(position,data)
                         }

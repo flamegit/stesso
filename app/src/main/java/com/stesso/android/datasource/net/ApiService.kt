@@ -62,6 +62,10 @@ interface ApiService {
     @POST("wx/collect/addordelete")
     fun addOrDelete(@Body body: JSONObject): Single<RootNode<String>>
 
+    @POST("wx/cart/checked")
+    fun selectCommodity(@Body body: JSONObject): Single<RootNode<String>>
+
+
     @GET("wx/collect/list")
     fun getCollect(@Query("type") id: Int, @Query("page") page: Int, @Query("size") size: Int): Single<RootNode<CollectionDTO>>
 
