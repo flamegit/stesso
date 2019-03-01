@@ -64,6 +64,7 @@ dependencies {
     implementation "com.google.dagger:dagger:2.16"
     kapt "com.google.dagger:dagger-compiler:2.16"
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.githang:com-phillipcalvin-iconbutton:1.0.1@aar'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+' //wei xin zhifu
 
 }

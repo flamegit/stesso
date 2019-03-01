@@ -1,6 +1,9 @@
 package com.stesso.android.model
 
-class CommodityDetail {
+import android.os.Parcel
+import android.os.Parcelable
+
+class CommodityDetail : Parcelable{
     var id = 0
     var userId = 0
     var productId = 0
@@ -13,6 +16,7 @@ class CommodityDetail {
     var goodsName: String? = null
     var addTime: String? = null
     var picUrl: String? = null
+    var isSelect = false
 
     fun getInfo():String{
         if(specifications?.isNotEmpty()==true){
@@ -22,6 +26,22 @@ class CommodityDetail {
             }
         }
         return ""
+    }
+
+    override fun describeContents() = 0
+
+    override fun writeToParcel(p0: Parcel?, p1: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    companion object CREATOR : Parcelable.Creator<Address> {
+        override fun createFromParcel(parcel: Parcel): Address {
+            return Address(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Address?> {
+            return arrayOfNulls(size)
+        }
     }
 }
 

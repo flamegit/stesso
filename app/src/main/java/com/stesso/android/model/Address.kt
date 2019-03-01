@@ -15,26 +15,27 @@ class Address() : Parcelable {
     var address: String? = null
 
     constructor(parcel: Parcel) : this() {
+        id = parcel.readInt()
         name = parcel.readString()
         mobile = parcel.readString()
         detailedAddress = parcel.readString()
         //isDefault = parcel.readByte() != 0.toByte()
-        provinceId = parcel.readInt()
-        cityId = parcel.readInt()
-        areaId = parcel.readInt()
-        address = parcel.readString()
+        //provinceId = parcel.readInt()
+        //cityId = parcel.readInt()
+        //areaId = parcel.readInt()
+        //address = parcel.readString()
     }
 
     override fun writeToParcel(parcel: Parcel?, p1: Int) {
+        parcel?.writeInt(id)
         parcel?.writeString(name)
         parcel?.writeString(mobile)
         parcel?.writeString(detailedAddress)
 
     }
 
-    override fun describeContents(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun describeContents() = 0
+
 
     companion object CREATOR : Parcelable.Creator<Address> {
         override fun createFromParcel(parcel: Parcel): Address {
