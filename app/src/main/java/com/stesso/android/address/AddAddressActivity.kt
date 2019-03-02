@@ -36,11 +36,9 @@ class AddAddressActivity : BaseActivity() {
                 onBackPressed()
             }
         }
-
         city_layout.setOnClickListener {
             showDialog()
         }
-
         configTitleView(title_view) {
             val name = name_view.text.toString()
             val mobile = tel_view.text.toString()
@@ -53,7 +51,6 @@ class AddAddressActivity : BaseActivity() {
             }
         }
     }
-
 
     private fun showDialog() {
         val dialog = BottomDialog(this)

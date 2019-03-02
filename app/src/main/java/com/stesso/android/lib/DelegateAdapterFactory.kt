@@ -7,6 +7,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.stesso.android.R
@@ -38,6 +39,12 @@ const val RECOMMEND_TYPE = 10
 const val NEWS_TYPE = 11
 const val SETTLEMENT_ADDRESS = 12
 const val EMPTY_ADDRESS = 13
+const val SETTLEMENT_PAY = 14
+const val SETTLEMENT_INFO = 15
+
+
+
+
 
 
 class DelegateAdapterFactory {
@@ -45,7 +52,7 @@ class DelegateAdapterFactory {
     @Inject
     lateinit var apiService: ApiService
 
-    var onItemClick: (position: Int, data: Any?) -> Unit = { _, _ -> }
+    var onItemClick: (position: Int, data: Any?,action:Int) -> Unit = { _, _ ,_-> }
 
     init {
         App.instance().component.inject(this)
@@ -90,12 +97,16 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.name_view).text = data.goodsName
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<View>(R.id.delete_view).setOnClickListener {
-                            val body = JSONObject(mapOf(Pair("productIds", listOf(data.productId))))
-                            doHttpRequest(apiService.deleteCartItem(body)) {}
-
+                            onItemClick(position,data,1)
                         }
+                        val checkBox =holder.get<CheckBox>(R.id.checkbox)
+                        checkBox.isChecked = data.checked
+//                        holder.get<CheckBox>(R.id.checkbox).setOnClickListener{
+//                            if()
+//                        }
                         //holder.get<TextView>(R.id.info_view).text = data.goodsName
                         val quantityView = holder.get<QuantityView>(R.id.quantity_view)
+                        quantityView.quantity = data.num
                         quantityView.setQuantityChangeListener(object : QuantityView.OnQuantityChangeListener {
                             override fun onLimitReached() {}
                             override fun onMinReached() {}
@@ -133,7 +144,7 @@ class DelegateAdapterFactory {
                             v.context.openActivity(AddAddressActivity::class.java, ADDRESS_ID, data.id)
                         }
                         holder.itemView.setOnClickListener {
-                            onItemClick(position,data)
+                            onItemClick(position,data,0)
                         }
                     }
                 }
@@ -146,7 +157,7 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.tel_view).text = data.mobile
                         holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.detailedAddress}"
                         holder.itemView.setOnClickListener {
-                           onItemClick(position,data)
+                           onItemClick(position,data,0)
                         }
                     }
                 }

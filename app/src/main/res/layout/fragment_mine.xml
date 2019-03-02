@@ -6,33 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <com.stesso.android.widget.TitleBar
         android:id="@+id/title_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="我的"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/close_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:src="@drawable/setting"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/shopcart_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:src="@drawable/shopcart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:left_icon="@drawable/setting"
+        app:right_icon="@drawable/shopcart"
+        app:title_text="我的"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/name_view"
@@ -40,9 +23,12 @@
         android:layout_height="wrap_content"
         android:text="废了个毛"
         android:textSize="20sp"
+        android:textColor="#251619"
+        android:textStyle="bold"
+        android:paddingTop="@dimen/txt_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/close_view" />
+        app:layout_constraintTop_toBottomOf="@+id/title_view" />
 
     <TextView
         android:id="@+id/time_view"
@@ -51,6 +37,7 @@
         android:text="废了个毛"
         android:textColor="#9B9B9B"
         android:textSize="10sp"
+        android:paddingTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_view" />
@@ -58,18 +45,18 @@
     <View
         android:id="@+id/horizontal_divider_line"
         android:layout_width="0dp"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_marginTop="8dp"
-        android:background="@color/colorAccent"
+        android:background="@color/space"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time_view" />
 
     <View
         android:id="@+id/vertical_divider_first"
-        android:layout_width="1dp"
+        android:layout_width="1px"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:background="@color/space"
         app:layout_constraintBottom_toBottomOf="@+id/order_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.33"
@@ -78,9 +65,9 @@
 
     <View
         android:id="@+id/vertical_divider_second"
-        android:layout_width="1dp"
+        android:layout_width="1px"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
+        android:background="@color/space"
         app:layout_constraintBottom_toBottomOf="@+id/order_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.66"
@@ -103,6 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="订单"
+        android:paddingTop="@dimen/padding_5"
+        android:textSize="@dimen/txt_10"
         app:layout_constraintEnd_toEndOf="@+id/order_icon"
         app:layout_constraintStart_toStartOf="@+id/order_icon"
         app:layout_constraintTop_toBottomOf="@+id/order_icon" />
@@ -111,7 +100,7 @@
         android:id="@+id/commodity_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/shopcart"
+        android:src="@drawable/favorit_commodity"
         app:layout_constraintEnd_toStartOf="@+id/vertical_divider_second"
         app:layout_constraintStart_toEndOf="@+id/vertical_divider_first"
         app:layout_constraintTop_toTopOf="@+id/order_icon" />
@@ -120,7 +109,9 @@
         android:id="@+id/commodity_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="订单"
+        android:text="商品"
+        android:paddingTop="@dimen/padding_5"
+        android:textSize="@dimen/txt_10"
         app:layout_constraintEnd_toEndOf="@+id/commodity_icon"
         app:layout_constraintStart_toStartOf="@+id/commodity_icon"
         app:layout_constraintTop_toBottomOf="@+id/commodity_icon" />
@@ -129,7 +120,7 @@
         android:id="@+id/info_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/shopcart"
+        android:src="@drawable/favorite_news"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/vertical_divider_second"
         app:layout_constraintTop_toTopOf="@+id/order_icon" />
@@ -138,7 +129,9 @@
         android:id="@+id/info_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="订单"
+        android:text="资讯"
+        android:paddingTop="@dimen/padding_5"
+        android:textSize="@dimen/txt_10"
         app:layout_constraintEnd_toEndOf="@+id/info_icon"
         app:layout_constraintStart_toStartOf="@+id/info_icon"
         app:layout_constraintTop_toBottomOf="@+id/info_icon" />
@@ -149,7 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/red"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +154,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="@string/app_declaration"
@@ -176,7 +169,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/solid_black_bg"
         android:gravity="center"
@@ -196,12 +189,13 @@
         android:gravity="center"
         android:text="@string/stesso_explain"
         android:textColor="@color/font_4A"
-        android:textSize="10sp"
+        android:textSize="@dimen/txt_10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_view" />
 
     <android.support.v7.widget.RecyclerView
+
         android:id="@+id/recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -210,7 +204,6 @@
         app:layout_constraintTop_toBottomOf="@+id/sign_up_view" />
 
     <android.support.constraint.Group
-
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

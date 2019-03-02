@@ -34,7 +34,7 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
         }
     }
 
-    fun setOnItemClick(callback: (position: Int, data: Any?) -> Unit) {
+    fun setOnItemClick(callback: (position: Int, data: Any?,action:Int) -> Unit) {
         mFactory.onItemClick = callback
     }
 
@@ -65,7 +65,6 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
                 notifyItemChanged(position)
             }
         }
-
     }
 
     fun addHeader(item: String?, type: Int = HEADER) {
@@ -74,7 +73,6 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
             notifyItemInserted(0)
         }
     }
-
     fun addFooter(item: String?, type: Int = FOOTER) {
         item?.let {
             val count = mContent.size
