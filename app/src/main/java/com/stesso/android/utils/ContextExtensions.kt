@@ -6,11 +6,13 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
+import android.support.v7.app.AlertDialog
 import android.util.DisplayMetrics
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import com.stesso.android.App
+import com.stesso.android.R
 import com.stesso.android.account.LoginActivity
 import com.stesso.android.model.Account
 import com.stesso.android.model.RootNode
@@ -75,9 +77,9 @@ fun <T> applySingleSchedulers(): SingleTransformer<T, T> {
 }
 
 fun Context.checkLogin(action: () -> Unit) {
-    if(Account.isLogin()){
+    if (Account.isLogin()) {
         action()
-    }else{
+    } else {
         openActivity(LoginActivity::class.java)
     }
 }
@@ -117,6 +119,11 @@ fun Context.checkLoginInfo(phoneNum: String, password: String, verifyCode: Strin
     return true
 }
 
+fun Context.createProgressDialog(): AlertDialog {
+    return AlertDialog.Builder(this, R.style.ProgressDialog).setView(R.layout.dialog_progress)
+            .create()
+}
+
 fun Context.checkAddress(phoneNum: String, password: String, verifyCode: String = "1234"): Boolean {
     if (phoneNum.length < 4) {
         toast("手机号格式错误")
@@ -131,7 +138,6 @@ fun Context.checkAddress(phoneNum: String, password: String, verifyCode: String 
     }
     return true
 }
-
 
 
 fun Context.getWindowWidth(): Int {

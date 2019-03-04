@@ -3,6 +3,7 @@ package com.stesso.android
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -11,6 +12,7 @@ import com.stesso.android.di.component.ActivityComponent
 import com.stesso.android.di.module.ActivityModule
 import com.stesso.android.model.RootNode
 import com.stesso.android.utils.applySingleSchedulers
+import com.stesso.android.utils.createProgressDialog
 import com.stesso.android.utils.toast
 import com.stesso.android.widget.TitleBar
 import io.reactivex.Single
@@ -24,6 +26,8 @@ open class BaseActivity : AppCompatActivity() {
 
     @Inject
     lateinit var apiService: ApiService
+
+    val progressDialog: AlertDialog = createProgressDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +78,7 @@ open class BaseActivity : AppCompatActivity() {
 //    }
 
     protected fun <T> doHttpRequest(single: Single<RootNode<T>>, onSuccess: (T?) -> Unit) {
-
+        progressDialog.show()
         val disposable = single.compose(applySingleSchedulers())
                 .subscribe({ rootNode ->
                     if (rootNode.errno != 0) {
