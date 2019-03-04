@@ -8,6 +8,11 @@ class User {
     var gender: Int = 0
     var addTime: String? = null
     var avatar: String? = null
+
+
+    fun getGender(): String {
+        return if (gender == 0) "男" else "女"
+    }
 }
 
 

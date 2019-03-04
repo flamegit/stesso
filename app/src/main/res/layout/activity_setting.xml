@@ -1,342 +1,381 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".account.SettingActivity">
 
     <com.stesso.android.widget.TitleBar
         android:id="@+id/title_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:left_icon="@drawable/back"
-        app:title_text="设置中心"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        app:title_text="设置中心" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+        <android.support.constraint.ConstraintLayout
+            android:descendantFocusability="blocksDescendants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/head_space"
+                android:layout_width="0dp"
+                android:layout_height="5dp"
+                android:background="@color/space"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/row1"
+                style="@style/default_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_16"
+                android:text="昵称"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/head_space" />
+
+            <TextView
+                android:id="@+id/row1_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="设置中心"
+                android:textColor="@color/font_4A"
+                android:textSize="@dimen/txt_13"
+                app:layout_constraintBottom_toBottomOf="@+id/row1"
+                app:layout_constraintEnd_toStartOf="@+id/row1_arrow"
+                app:layout_constraintTop_toTopOf="@+id/row1" />
+
+            <ImageView
+                android:id="@+id/row1_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/arrow_right"
+                app:layout_constraintBottom_toBottomOf="@+id/row1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/row1" />
+
+            <!--row2-->
+            <TextView
+                android:id="@+id/row2"
+                style="@style/default_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/padding_16"
+                android:text="生日"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row1" />
+
+            <TextView
+                android:id="@+id/row2_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="设置中心"
+                android:textColor="@color/font_4A"
+                android:textSize="@dimen/txt_13"
+                app:layout_constraintBottom_toBottomOf="@+id/row2"
+                app:layout_constraintEnd_toStartOf="@+id/row2_arrow"
+                app:layout_constraintTop_toTopOf="@+id/row2" />
+
+            <ImageView
+                android:id="@+id/row2_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/arrow_right"
+                app:layout_constraintBottom_toBottomOf="@+id/row2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/row2" />
+
+            <!--row3-->
+            <TextView
+                android:id="@+id/row3"
+                style="@style/default_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_16"
+                android:text="性别"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row2" />
+
+            <TextView
+                android:id="@+id/row3_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="设置中心"
+                android:textColor="@color/font_4A"
+                android:textSize="@dimen/txt_13"
+                app:layout_constraintBottom_toBottomOf="@+id/row3"
+                app:layout_constraintEnd_toStartOf="@+id/row3_arrow"
+                app:layout_constraintTop_toTopOf="@+id/row3" />
+
+            <ImageView
+                android:id="@+id/row3_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/arrow_right"
+                app:layout_constraintBottom_toBottomOf="@+id/row3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/row3" />
+
+            <!--row4-->
+            <TextView
+                android:id="@+id/row4"
+                style="@style/default_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/padding_16"
+                android:paddingBottom="@dimen/padding_16"
+                android:text="手机号"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row3" />
+
+            <TextView
+                android:id="@+id/row4_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/font_4A"
+                android:textSize="@dimen/txt_13"
+                app:layout_constraintBottom_toBottomOf="@+id/row4"
+                app:layout_constraintEnd_toStartOf="@+id/row4_arrow"
+                app:layout_constraintTop_toTopOf="@+id/row4" />
+
+            <ImageView
+                android:id="@+id/row4_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/arrow_right"
+                app:layout_constraintBottom_toBottomOf="@+id/row4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/row4" />
+
+            <View
+                android:id="@+id/middle_space"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:background="@color/space"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row4" />
+
+            <TextView
+                android:id="@+id/row5"
+                style="@style/default_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_16"
+                android:text="地址管理"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/middle_space" />
+
+            <ImageView
+                android:id="@+id/row5_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/arrow_right"
+                app:layout_constraintBottom_toBottomOf="@+id/row5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/row5" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:background="@color/divider_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row5" />
 
 
+            <TextView
+                android:id="@+id/row6"
+                style="@style/default_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_16"
+                android:text="修改密码"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row5" />
+
+            <ImageView
+                android:id="@+id/row6_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/arrow_right"
+                app:layout_constraintBottom_toBottomOf="@+id/row6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/row6" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:background="@color/divider_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row6" />
+
+            <TextView
+                android:id="@+id/row7"
+                style="@style/default_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="系统通知"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row6" />
+
+            <Switch
+                android:id="@+id/row7_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/row7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/row7" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:background="@color/divider_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row7" />
+
+            <TextView
+                android:id="@+id/row8"
+                style="@style/default_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_16"
+                android:text="我要反馈"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row7" />
+
+            <ImageView
+                android:id="@+id/row8_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/arrow_right"
+                app:layout_constraintBottom_toBottomOf="@+id/row8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/row8" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:background="@color/divider_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row8" />
+
+
+            <TextView
+                android:id="@+id/row9"
+                style="@style/default_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="清楚缓存"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row8" />
+
+            <ImageView
+                android:id="@+id/row9_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/arrow_right"
+                app:layout_constraintBottom_toBottomOf="@+id/row9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/row9" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:background="@color/divider_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row9" />
+
+            <TextView
+                android:id="@+id/row10"
+                style="@style/default_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_16"
+                android:text="当前版本"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row9" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1px"
+                android:background="@color/divider_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row10" />
+
+            <TextView
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_16"
+                android:layout_marginTop="@dimen/padding_16"
+                android:background="@drawable/stroke_red_bg"
+                android:paddingLeft="@dimen/padding_25"
+                android:paddingTop="@dimen/padding_7"
+                android:paddingRight="@dimen/padding_25"
+                android:paddingBottom="@dimen/padding_7"
+                android:text="退出当前账号"
+                android:textColor="@color/font_red"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/row10" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
     <TextView
-        style="@style/default_font"
-        android:id="@+id/row1"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="昵称"
-        app:layout_constraintTop_toBottomOf="@+id/title_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginBottom="@dimen/padding_10"
+        android:gravity="center"
+        android:text="Copyright 2018-2019 stesso.cn Corporation,All Rights Reserved"
+        android:textColor="@color/font_4A"
+        android:textSize="@dimen/txt_10" />
+</LinearLayout>
 
-    <TextView
-        android:id="@+id/row1_text"
-        style="@style/default_font"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="设置中心"
-        app:layout_constraintTop_toTopOf="@+id/row1"
-        app:layout_constraintBottom_toBottomOf="@+id/row1"
-        app:layout_constraintEnd_toStartOf="@+id/row1_arrow" />
-
-    <ImageView
-        android:id="@+id/row1_arrow"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/row1"
-        app:layout_constraintBottom_toBottomOf="@+id/row1"
-        android:src="@drawable/arrow_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-    <TextView
-        style="@style/default_font"
-        android:id="@+id/row2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="生日"
-        app:layout_constraintTop_toBottomOf="@+id/row1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        style="@style/default_font"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="设置中心"
-        android:id="@+id/row2_text"
-        app:layout_constraintTop_toTopOf="@+id/row2"
-        app:layout_constraintBottom_toBottomOf="@+id/row2"
-        app:layout_constraintEnd_toStartOf="@+id/row2_arrow" />
-
-    <ImageView
-        android:id="@+id/row2_arrow"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/row2"
-        app:layout_constraintBottom_toBottomOf="@+id/row2"
-        android:src="@drawable/arrow_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-    <TextView
-        style="@style/default_font"
-        android:id="@+id/row3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="性别"
-        app:layout_constraintTop_toBottomOf="@+id/row2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/row3_text"
-        style="@style/default_font"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="设置中心"
-        app:layout_constraintTop_toTopOf="@+id/row3"
-        app:layout_constraintBottom_toBottomOf="@+id/row3"
-        app:layout_constraintEnd_toStartOf="@+id/row3_arrow" />
-
-    <ImageView
-        android:id="@+id/row3_arrow"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/row3"
-        app:layout_constraintBottom_toBottomOf="@+id/row3"
-        android:src="@drawable/arrow_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-    <TextView
-        style="@style/default_font"
-        android:id="@+id/row4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="手机号"
-        app:layout_constraintTop_toBottomOf="@+id/row3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/row4_text"
-        style="@style/default_font"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="设置中心"
-        app:layout_constraintTop_toTopOf="@+id/row4"
-        app:layout_constraintBottom_toBottomOf="@+id/row4"
-        app:layout_constraintEnd_toStartOf="@+id/row4_arrow" />
-
-    <ImageView
-        android:id="@+id/row4_arrow"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/row4"
-        app:layout_constraintBottom_toBottomOf="@+id/row4"
-        android:src="@drawable/arrow_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-    <TextView
-        style="@style/default_font"
-        android:id="@+id/row5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="昵称"
-        app:layout_constraintTop_toBottomOf="@+id/row4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/row5_arrow"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/row5"
-        app:layout_constraintBottom_toBottomOf="@+id/row5"
-        android:src="@drawable/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <View
-        app:layout_constraintTop_toBottomOf="@+id/row5"
-        android:background="@color/font_4A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="1dp"/>
-
-
-    <TextView
-        style="@style/default_font"
-        android:id="@+id/row6"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="地址管理"
-        app:layout_constraintTop_toBottomOf="@+id/row5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/row6_arrow"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/row6"
-        app:layout_constraintBottom_toBottomOf="@+id/row6"
-        android:src="@drawable/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <View
-        app:layout_constraintTop_toBottomOf="@+id/row6"
-        android:background="@color/font_4A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="1dp"/>
-
-
-
-    <TextView
-        style="@style/default_font"
-        android:id="@+id/row7"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="修改密码"
-        app:layout_constraintTop_toBottomOf="@+id/row6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/row7_arrow"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/row7"
-        app:layout_constraintBottom_toBottomOf="@+id/row7"
-        android:src="@drawable/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <View
-        app:layout_constraintTop_toBottomOf="@+id/row7"
-        android:background="@color/font_4A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="1dp"/>
-
-
-    <TextView
-        style="@style/default_font"
-        android:id="@+id/row8"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="系统通知"
-        app:layout_constraintTop_toBottomOf="@+id/row7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/row8_arrow"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/row8"
-        app:layout_constraintBottom_toBottomOf="@+id/row8"
-        android:src="@drawable/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <View
-        app:layout_constraintTop_toBottomOf="@+id/row8"
-        android:background="@color/font_4A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="1dp"/>
-
-
-    <TextView
-        style="@style/default_font"
-        android:id="@+id/row9"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="我要反馈"
-        app:layout_constraintTop_toBottomOf="@+id/row8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/row9_arrow"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/row9"
-        app:layout_constraintBottom_toBottomOf="@+id/row9"
-        android:src="@drawable/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <!--<View-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/row9"-->
-        <!--android:background="@color/font_4A"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="1dp"/>-->
-
-    <TextView
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/row9"
-        android:id="@+id/logout"
-        android:text="注销"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</android.support.constraint.ConstraintLayout>

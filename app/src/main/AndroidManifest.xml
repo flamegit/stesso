@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CommodityDetailActivity"></activity>
+        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".CommodityDetailActivity" />
         <activity android:name=".address.AddressListActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -46,7 +47,7 @@
             android:theme="@style/TranslucentTheme" />
         <activity android:name=".BaseActivity" />
         <activity android:name=".account.SettingActivity" />
-        <activity android:name=".NewsDetailActivity"/>
+        <activity android:name=".NewsDetailActivity" />
         <activity android:name=".address.AddAddressActivity" />
         <activity android:name=".SettlementActivity" />
     </application>

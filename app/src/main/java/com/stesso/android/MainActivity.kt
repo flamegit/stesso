@@ -69,6 +69,7 @@ class MainActivity : BaseActivity() {
             curr = when (position) {
                 0 -> HomeFragment()
                 1 -> NewsFragment()
+                2 -> SearchFragment()
                 else -> MineFragment()
             }
             supportFragmentManager

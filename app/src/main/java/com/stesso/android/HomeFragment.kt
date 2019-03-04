@@ -25,21 +25,20 @@ class HomeFragment : BaseFragment() {
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
         title_view.setLeftAction {
-            context?.openActivity(SettingActivity::class.java)
+            context?.checkLogin { context?.openActivity(SettingActivity::class.java) }
         }
         title_view.setRightAction {
             context?.checkLogin { context?.openActivity(ShopCartActivity::class.java) }
         }
 
         doHttpRequest(apiService.getHomeContent()) {
-            Log.d("dd","suddcee")
+            Log.d("dd", "suddcee")
             if (it?.banner?.isNotEmpty() == true) {
                 adapter.addItem(it.banner?.get(0), BANNER_TYPE)
             }
             adapter.addItems(it?.newGoodsList, NEW_COMMODITY, true)
-            adapter.addItem(it?.hotGoodsList, HOT_COMMODITY,true)
-            adapter.addItems(it?.recommendGoodsList, RECOMMEND_TYPE,true)
+            adapter.addItem(it?.hotGoodsList, HOT_COMMODITY, true)
+            adapter.addItems(it?.recommendGoodsList, RECOMMEND_TYPE, true)
         }
     }
-
 }
