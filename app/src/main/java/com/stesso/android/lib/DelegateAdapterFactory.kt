@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.stesso.android.R
@@ -20,6 +21,7 @@ import com.stesso.android.address.AddAddressActivity
 import com.stesso.android.address.AddressListActivity
 import com.stesso.android.datasource.net.ApiService
 import com.stesso.android.model.*
+import com.stesso.android.utils.dip2px
 import com.stesso.android.utils.doHttpRequest
 import com.stesso.android.utils.openActivity
 import com.stesso.android.widget.QuantityView
@@ -43,16 +45,12 @@ const val SETTLEMENT_PAY = 14
 const val SETTLEMENT_INFO = 15
 
 
-
-
-
-
 class DelegateAdapterFactory {
 
     @Inject
     lateinit var apiService: ApiService
 
-    var onItemClick: (position: Int, data: Any?,action:Int) -> Unit = { _, _ ,_-> }
+    var onItemClick: (position: Int, data: Any?, action: Int) -> Unit = { _, _, _ -> }
 
     init {
         App.instance().component.inject(this)
@@ -97,16 +95,16 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.name_view).text = data.goodsName
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<View>(R.id.delete_view).setOnClickListener {
-                            onItemClick(position,data,1)
+                            onItemClick(position, data, 1)
                         }
-                        val checkBox =holder.get<CheckBox>(R.id.checkbox)
+                        val checkBox = holder.get<CheckBox>(R.id.checkbox)
                         checkBox.isChecked = data.checked
 //                        holder.get<CheckBox>(R.id.checkbox).setOnClickListener{
 //                            if()
 //                        }
                         //holder.get<TextView>(R.id.info_view).text = data.goodsName
                         val quantityView = holder.get<QuantityView>(R.id.quantity_view)
-                        quantityView.quantity = data.num
+                        quantityView.quantity = data.number
                         quantityView.setQuantityChangeListener(object : QuantityView.OnQuantityChangeListener {
                             override fun onLimitReached() {}
                             override fun onMinReached() {}
@@ -126,10 +124,12 @@ class DelegateAdapterFactory {
                                 val itemView = LayoutInflater.from(holder.itemView.context).inflate(R.layout.hot_commodity_item, group, false)
                                 itemView.findViewById<TextView>(R.id.name_view).text = it.name
                                 Glide.with(holder.itemView).load(it.picUrl).into(itemView.findViewById(R.id.commodity_img))
-                                group.addView(itemView, index++)
+                                val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                                params.marginStart = if (index++ == 0) 0 else dip2px(14)
+                                group.addView(itemView, params)
                             }
                         }
-                    }
+                        group.scrollBy(120,0)                    }
                 }
             }
             ADDRESS_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_address) {
@@ -144,7 +144,7 @@ class DelegateAdapterFactory {
                             v.context.openActivity(AddAddressActivity::class.java, ADDRESS_ID, data.id)
                         }
                         holder.itemView.setOnClickListener {
-                            onItemClick(position,data,0)
+                            onItemClick(position, data, 0)
                         }
                     }
                 }
@@ -157,7 +157,7 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.tel_view).text = data.mobile
                         holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.detailedAddress}"
                         holder.itemView.setOnClickListener {
-                           onItemClick(position,data,0)
+                            onItemClick(position, data, 0)
                         }
                     }
                 }
@@ -173,7 +173,9 @@ class DelegateAdapterFactory {
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<TextView>(R.id.name_view).text = data.name
                         holder.get<TextView>(R.id.brief_view).text = data.brief
-                        holder.get<TextView>(R.id.discount_price).text = "${data.counterPrice}"
+                        holder.get<TextView>(R.id.discount_price).text = "￥：${data.counterPrice}"
+                        holder.get<TextView>(R.id.price_view).text = "￥：${data.retailPrice}"
+
                     }
                 }
             }

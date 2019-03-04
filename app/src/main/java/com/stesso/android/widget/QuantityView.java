@@ -24,7 +24,7 @@ public class QuantityView extends LinearLayout implements View.OnClickListener {
 
 
     public interface OnQuantityChangeListener {
-        void onQuantityChanged(int newQuantity, boolean programmatically);
+        void onQuantityChanged(int newQuantity, boolean programmatically,boolean minus);
         void onLimitReached();
         void onMinReached();
     }
@@ -99,7 +99,7 @@ public class QuantityView extends LinearLayout implements View.OnClickListener {
                 quantity += 1;
                 mTextViewQuantity.setText(String.valueOf(quantity));
                 if (onQuantityChangeListener != null)
-                    onQuantityChangeListener.onQuantityChanged(quantity, false);
+                    onQuantityChangeListener.onQuantityChanged(quantity, false,false);
             }
         } else if (v == mRemoveView) {
             if (quantity <=1) {
@@ -108,7 +108,7 @@ public class QuantityView extends LinearLayout implements View.OnClickListener {
                 quantity -= 1;
                 mTextViewQuantity.setText(String.valueOf(quantity));
                 if (onQuantityChangeListener != null)
-                    onQuantityChangeListener.onQuantityChanged(quantity, false);
+                    onQuantityChangeListener.onQuantityChanged(quantity, false,true);
             }
         }
     }

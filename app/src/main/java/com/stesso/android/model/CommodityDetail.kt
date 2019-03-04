@@ -3,12 +3,12 @@ package com.stesso.android.model
 import android.os.Parcel
 import android.os.Parcelable
 
-class CommodityDetail : Parcelable{
+class CommodityDetail() : Parcelable {
     var id = 0
     var userId = 0
     var productId = 0
-    var price = 1.00
-    var num = 1
+    var price = 1.0
+    var number = 1
     var specifications: List<String>? = null
     var checked = false
     var goodsId: String? = null
@@ -18,11 +18,20 @@ class CommodityDetail : Parcelable{
     var picUrl: String? = null
     var isSelect = false
 
-    fun getInfo():String{
-        if(specifications?.isNotEmpty()==true){
-          return  specifications!!.reduce{
-                v1,v2 -> v1 +v2
 
+    constructor(parcel: Parcel) : this() {
+        id = parcel.readInt()
+        number = parcel.readInt()
+        goodsName = parcel.readString()
+        picUrl = parcel.readString()
+        price = parcel.readDouble()
+
+    }
+
+    fun getInfo(): String {
+        if (specifications?.isNotEmpty() == true) {
+            return specifications!!.reduce { v1, v2 ->
+                v1 + v2
             }
         }
         return ""
@@ -30,16 +39,20 @@ class CommodityDetail : Parcelable{
 
     override fun describeContents() = 0
 
-    override fun writeToParcel(p0: Parcel?, p1: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun writeToParcel(parcel: Parcel?, p1: Int) {
+        parcel?.writeInt(id)
+        parcel?.writeInt(number)
+        parcel?.writeString(goodsName)
+        parcel?.writeString(picUrl)
+        parcel?.writeDouble(price)
     }
 
-    companion object CREATOR : Parcelable.Creator<Address> {
-        override fun createFromParcel(parcel: Parcel): Address {
-            return Address(parcel)
+    companion object CREATOR : Parcelable.Creator<CommodityDetail> {
+        override fun createFromParcel(parcel: Parcel): CommodityDetail {
+            return CommodityDetail(parcel)
         }
 
-        override fun newArray(size: Int): Array<Address?> {
+        override fun newArray(size: Int): Array<CommodityDetail?> {
             return arrayOfNulls(size)
         }
     }

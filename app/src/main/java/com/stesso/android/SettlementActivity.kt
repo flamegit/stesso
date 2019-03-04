@@ -22,7 +22,7 @@ class SettlementActivity : BaseActivity() {
         setContentView(R.layout.activity_settlement)
         recycler_view.adapter = adapter
 
-        adapter.setOnItemClick { _, _ ->
+        adapter.setOnItemClick { _, _, _ ->
             val intent = Intent(this@SettlementActivity, AddressListActivity::class.java)
             this@SettlementActivity.startActivityForResult(intent, SELECT_ADDRESS)
         }
@@ -35,8 +35,6 @@ class SettlementActivity : BaseActivity() {
             }
         }
     }
-
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

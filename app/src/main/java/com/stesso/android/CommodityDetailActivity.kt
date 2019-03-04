@@ -70,6 +70,8 @@ class CommodityDetailActivity : BaseActivity() {
         info?.specificationList?.forEach {
             chose_layout.addView(createTitleView(it.name))
             chose_layout.addView(createTagLayout(it.valueList, index++))
+            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            params.marginStart = if (index == 0) 0 else dip2px(14)
         }
         web_view.loadData(getHtmlData(info?.info?.detail), "text/html; charset=utf-8", "utf-8")
     }

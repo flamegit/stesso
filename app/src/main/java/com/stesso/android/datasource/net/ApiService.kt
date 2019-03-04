@@ -42,10 +42,13 @@ interface ApiService {
     fun deleteAddress(@Body body: JSONObject): Single<RootNode<String>>
 
     @POST("wx/cart/delete")
-    fun deleteCartItem(@Body body: JSONObject): Single<RootNode<String>>
+    fun deleteCartItem(@Body body: JSONObject): Single<RootNode<ShopcartDTO>>
 
     @GET("wx/cart/index")
     fun getCartItems(): Single<RootNode<ShopcartDTO>>
+
+    @POST("wx/cart/minus")
+    fun minusCartItems(@Body body: JSONObject): Single<RootNode<String>>
 
     @POST("wx/cart/add")
     fun addCartItem(@Body body: JSONObject): Single<RootNode<String>>

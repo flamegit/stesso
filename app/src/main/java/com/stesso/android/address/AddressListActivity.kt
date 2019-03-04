@@ -30,7 +30,7 @@ class AddressListActivity : BaseActivity() {
             adapter.addItems(it, ADDRESS_TYPE)
         }
 
-        adapter.setOnItemClick { _,data ->
+        adapter.setOnItemClick { _,data,_ ->
             if(data is Address){
                 setResult(Activity.RESULT_OK,Intent().putExtra(KEY_ADDRESS,data))
                 finish()

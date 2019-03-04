@@ -26,6 +26,11 @@ open class CommonAdapter<T>(private val mLayoutId: Int, val bind: (CommonViewHol
     protected fun createView(parent: ViewGroup, viewType: Int): View {
         return LayoutInflater.from(parent.context).inflate(mLayoutId, parent, false)
     }
+
+    fun removeItem(position:Int){
+        mContent.removeAt(position)
+        notifyItemRemoved(position)
+    }
     fun addItems(items: Collection<T>?, append: Boolean) {
         items?.let {
             if (!append) {

@@ -32,7 +32,7 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected fun setStatusBar() {
+    protected fun setStatusBarDark() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
         }
@@ -82,7 +82,9 @@ open class BaseActivity : AppCompatActivity() {
                     } else {
                         onSuccess(rootNode.data)
                     }
-                }, {})
+                }, {
+                    it.printStackTrace()
+                })
         disposableContainer.add(disposable)
     }
 
