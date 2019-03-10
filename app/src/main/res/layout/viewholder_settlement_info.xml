@@ -26,6 +26,7 @@
             android:textSize="@dimen/txt_13" />
 
         <TextView
+            android:id="@+id/total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -45,7 +46,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="商品总价"
+            android:text="商品运费"
             android:textColor="#9B9B9B"
             android:textSize="@dimen/txt_13" />
 
@@ -53,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="微信支付"
+            android:text="￥: 0.00"
             android:textColor="#9B9B9B"
             android:textSize="@dimen/txt_13" />
 
@@ -69,7 +70,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="商品总价"
+            android:text="商品优惠"
             android:textColor="#9B9B9B"
             android:textSize="@dimen/txt_13" />
 
@@ -77,10 +78,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="微信支付"
+            android:text="￥: 0.00"
             android:textColor="#9B9B9B"
             android:textSize="@dimen/txt_13" />
-
 
     </FrameLayout>
 
@@ -98,6 +98,7 @@
             android:textSize="@dimen/txt_13" />
 
         <TextView
+            android:id="@+id/order_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

@@ -1,6 +1,5 @@
 package com.stesso.android
 
-import GOODS_ID
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat

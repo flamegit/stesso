@@ -2,6 +2,7 @@ package com.stesso.android.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.math.BigDecimal
 
 class CommodityDetail() : Parcelable {
     var id = 0
@@ -16,7 +17,7 @@ class CommodityDetail() : Parcelable {
     var goodsName: String? = null
     var addTime: String? = null
     var picUrl: String? = null
-    var isSelect = false
+    //var isSelect = false
 
 
     constructor(parcel: Parcel) : this() {
@@ -26,6 +27,10 @@ class CommodityDetail() : Parcelable {
         picUrl = parcel.readString()
         price = parcel.readDouble()
 
+    }
+
+    fun getTotalPrice():Float{
+        return BigDecimal(price).multiply(BigDecimal(number)).toFloat()
     }
 
     fun getInfo(): String {

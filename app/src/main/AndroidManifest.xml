@@ -18,29 +18,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".OrderDetailActivity"/>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/TranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".CommodityDetailActivity" />
         <activity android:name=".address.AddressListActivity" />
-        <activity android:name=".MainActivity"/>
-        <activity
-            android:name="com.alipay.sdk.app.H5PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
-            android:exported="false"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name="com.alipay.sdk.app.H5AuthActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
-            android:exported="false"
-            android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".shopcart.ShopCartActivity" />
         <activity
             android:name=".account.LoginActivity"
@@ -53,6 +43,11 @@
         <activity android:name=".NewsDetailActivity" />
         <activity android:name=".address.AddAddressActivity" />
         <activity android:name=".SettlementActivity" />
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity android:name=".PayActivity" />
     </application>
 
 </manifest>

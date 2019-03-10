@@ -7,6 +7,7 @@ import com.stesso.android.account.LoginActivity
 import com.stesso.android.account.SettingActivity
 import com.stesso.android.lib.HOT_COMMODITY
 import com.stesso.android.lib.MultiTypeAdapter
+import com.stesso.android.lib.ORDER_LIST
 import com.stesso.android.model.Account
 import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.checkLogin
@@ -41,8 +42,12 @@ class MineFragment : BaseFragment() {
             time_view.text =Account.user?.addTime
             group.visibility = View.INVISIBLE
 
-            doHttpRequest(apiService.getCollect(1,1,10)) {
-                adapter.addItems(it?.collectList, HOT_COMMODITY)
+//            doHttpRequest(apiService.getCollect(1,1,10)) {
+//                adapter.addItems(it?.collectList, HOT_COMMODITY)
+//            }
+
+            doHttpRequest(apiService.getOrderList(1)){
+                 adapter.addItems(it?.data, ORDER_LIST)
             }
 
         } else {

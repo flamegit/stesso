@@ -9,6 +9,7 @@ import com.stesso.android.address.AddAddressActivity
 import com.stesso.android.address.AddressListActivity
 import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.NewsDetailActivity
+import com.stesso.android.OrderDetailActivity
 import com.stesso.android.SettlementActivity
 import dagger.Subcomponent
 
@@ -27,9 +28,6 @@ interface ActivityComponent {
     fun inject(activity: ShopCartActivity)
     fun inject(activity: NewsDetailActivity)
     fun inject(activity: SettlementActivity)
-
-
-
-
+    fun inject(activity: OrderDetailActivity)
 }
 

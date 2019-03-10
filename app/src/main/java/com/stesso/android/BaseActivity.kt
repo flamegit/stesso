@@ -22,15 +22,16 @@ import javax.inject.Inject
 
 open class BaseActivity : AppCompatActivity() {
 
-    private val disposableContainer = CompositeDisposable()
+    protected val disposableContainer = CompositeDisposable()
 
     @Inject
     lateinit var apiService: ApiService
 
-    val progressDialog: AlertDialog = createProgressDialog()
+    lateinit var progressDialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        progressDialog = createProgressDialog()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
@@ -41,7 +42,6 @@ open class BaseActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
         }
     }
-
     protected fun getActivityComponent(): ActivityComponent {
         val app = application as App
         return app.component.plus(ActivityModule(this))
@@ -81,12 +81,14 @@ open class BaseActivity : AppCompatActivity() {
         progressDialog.show()
         val disposable = single.compose(applySingleSchedulers())
                 .subscribe({ rootNode ->
+                    progressDialog.dismiss()
                     if (rootNode.errno != 0) {
                         toast(rootNode.errmsg ?: "")
                     } else {
                         onSuccess(rootNode.data)
                     }
                 }, {
+                    progressDialog.hide()
                     it.printStackTrace()
                 })
         disposableContainer.add(disposable)

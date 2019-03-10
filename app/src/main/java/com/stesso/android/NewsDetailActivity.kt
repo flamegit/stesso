@@ -1,7 +1,6 @@
 package com.stesso.android
 
 
-import NEWS_ID
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_news_detail.*
 

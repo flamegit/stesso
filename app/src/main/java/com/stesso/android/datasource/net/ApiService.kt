@@ -56,6 +56,9 @@ interface ApiService {
     @POST("wx/auth/sendValidCode")
     fun getVerifyCode(@Body body: JSONObject): Single<RootNode<String>>
 
+    @GET("wx/order/list")
+    fun getOrderList(@Query("showType") type: Int): Single<RootNode<OrderList>>
+
     @GET("wx/topic/list")
     fun getNewsList(@Query("page") page: Int, @Query("size") size: Int): Single<RootNode<NewsDTO>>
 
@@ -65,9 +68,23 @@ interface ApiService {
     @POST("wx/collect/addordelete")
     fun addOrDelete(@Body body: JSONObject): Single<RootNode<String>>
 
+    @POST("wx/order/submit")
+    @JvmSuppressWildcards
+    fun submitOrder(@Body body: Map<String, Any?>): Single<RootNode<String>>
+
+    @JvmSuppressWildcards
+    @POST("wx/order/prepay")
+    fun getWechatPayInfo(@Body body: Map<String, Any?>): Single<RootNode<WechatPayDTO>>
+
+    @JvmSuppressWildcards
+    @POST("alipay/prepay")
+    fun getAlipayInfo(@Body body: Map<String, Any?>): Single<RootNode<String>>
+
     @POST("wx/cart/checked")
     fun selectCommodity(@Body body: JSONObject): Single<RootNode<String>>
 
+    @GET("order/cancelOrder")
+    fun cancelOrder(@Query("orderId") id: Int): Single<RootNode<String>>
 
     @GET("wx/collect/list")
     fun getCollect(@Query("type") id: Int, @Query("page") page: Int, @Query("size") size: Int): Single<RootNode<CollectionDTO>>

@@ -58,6 +58,13 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
         }
     }
 
+    fun addTopItem(item: Any?, type: Int = TYPE1) {
+        item?.let {
+            mContent.add(0,transform(item, type))
+            notifyItemInserted(0)
+        }
+    }
+
     fun changeItem(position: Int, item: Any?, type: Int) {
         item?.let {
             if (position < mContent.size) {

@@ -1,6 +1,6 @@
 package com.stesso.android.address
 
-import ADDRESS_ID
+import com.stesso.android.ADDRESS_ID
 import android.os.Bundle
 import chihane.jdaddressselector.BottomDialog
 import com.stesso.android.BaseActivity

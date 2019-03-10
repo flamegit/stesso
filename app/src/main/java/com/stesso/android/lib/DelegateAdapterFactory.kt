@@ -1,9 +1,8 @@
 package com.stesso.android.lib
 
-import ADDRESS_ID
-import GOODS_ID
-import NEWS_ID
-import android.content.Intent
+import com.stesso.android.ADDRESS_ID
+import com.stesso.android.GOODS_ID
+import com.stesso.android.NEWS_ID
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +10,10 @@ import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.stesso.android.R
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
-import com.stesso.android.App
-import com.stesso.android.CommodityDetailActivity
-import com.stesso.android.NewsDetailActivity
+import com.stesso.android.*
 import com.stesso.android.address.AddAddressActivity
-import com.stesso.android.address.AddressListActivity
 import com.stesso.android.datasource.net.ApiService
 import com.stesso.android.model.*
 import com.stesso.android.utils.dip2px
@@ -41,8 +36,12 @@ const val RECOMMEND_TYPE = 10
 const val NEWS_TYPE = 11
 const val SETTLEMENT_ADDRESS = 12
 const val EMPTY_ADDRESS = 13
+
 const val SETTLEMENT_PAY = 14
 const val SETTLEMENT_INFO = 15
+const val SETTLEMENT_ITEM = 16
+const val ORDER_LIST = 17
+
 
 
 class DelegateAdapterFactory {
@@ -88,6 +87,42 @@ class DelegateAdapterFactory {
                     }
                 }
             }
+            ORDER_LIST -> object : BaseDelegateAdapter(R.layout.viewholder_order_item){
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if(data is OrderList.OrderInfo) {
+                        holder.get<TextView>(R.id.order_no).text = data.orderSn
+                        holder.get<TextView>(R.id.order_date).text = data.orderStatusText
+                        holder.itemView.setOnClickListener{ v ->
+                            v.context.openActivity(OrderDetailActivity::class.java, ORDER_ID, data.id)
+                        }
+                    }
+                }
+            }
+
+            SETTLEMENT_INFO -> object :BaseDelegateAdapter(R.layout.viewholder_settlement_info){
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if(data is ShopcartDTO){
+                        holder.get<TextView>(R.id.total_price).text ="￥：${data.getTotalPrice()}"
+                        holder.get<TextView>(R.id.order_price).text ="￥：${data.getTotalPrice()}"
+                    }
+                }
+            }
+            SETTLEMENT_PAY -> object :BaseDelegateAdapter(R.layout.viewholder_pay_method){
+
+            }
+            SETTLEMENT_ITEM -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_item) {
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is CommodityDetail) {
+                        holder.get<TextView>(R.id.name_view).text = data.goodsName
+                        Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
+                        holder.get<TextView>(R.id.info_view).text = "${data.getInfo()} ${data.number}件"
+                        holder.get<TextView>(R.id.price_view).text ="￥：${data.price}"
+                    }
+                }
+            }
             CART_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_cart_item) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
@@ -108,7 +143,7 @@ class DelegateAdapterFactory {
                         quantityView.setQuantityChangeListener(object : QuantityView.OnQuantityChangeListener {
                             override fun onLimitReached() {}
                             override fun onMinReached() {}
-                            override fun onQuantityChanged(newQuantity: Int, programmatically: Boolean) {}
+                            override fun onQuantityChanged(newQuantity: Int, programmatically: Boolean, minus: Boolean) {}
                         })
                     }
                 }
@@ -129,7 +164,8 @@ class DelegateAdapterFactory {
                                 group.addView(itemView, params)
                             }
                         }
-                        group.scrollBy(120,0)                    }
+                        group.scrollBy(120, 0)
+                    }
                 }
             }
             ADDRESS_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_address) {

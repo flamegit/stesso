@@ -1,6 +1,6 @@
 package com.stesso.android.address
 
-import KEY_ADDRESS
+import com.stesso.android.KEY_ADDRESS
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle

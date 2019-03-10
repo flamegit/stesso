@@ -7,8 +7,8 @@ import com.stesso.android.utils.put
 import com.stesso.android.App
 
 object Account {
-
     var user: User? = null
+    var shopCart: ShopcartDTO? = null
     var token: String? = null
         get() {
             if (field == null) {
@@ -20,7 +20,7 @@ object Account {
             field = value
             if (value == null) {
                 App.instance().clear()
-            }else{
+            } else {
                 App.instance().put(TOKEN, value)
             }
 
