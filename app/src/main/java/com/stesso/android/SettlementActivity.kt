@@ -49,6 +49,4 @@ class SettlementActivity : PayActivity() {
             adapter.changeItem(0, data?.getParcelableExtra(KEY_ADDRESS), SETTLEMENT_ADDRESS)
         }
     }
-
-
 }

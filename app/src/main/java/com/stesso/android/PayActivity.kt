@@ -15,13 +15,13 @@ open class PayActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        wxApi = WXAPIFactory.createWXAPI(this, BuildConfig.WXAPPID, true)
+        wxApi = WXAPIFactory.createWXAPI(this, BuildConfig.WXAPPID)
         wxApi?.registerApp(BuildConfig.WXAPPID)
     }
 
     fun alipay(orderNo: Int) {
         progressDialog.show()
-        val disposable = apiService.getAlipayInfo(mapOf(Pair("orderId", 124))).flatMap {
+        val disposable = apiService.getAlipayInfo(mapOf(Pair("orderId", orderNo))).flatMap {
             Single.just(it.data)
         }.map {
             PayTask(this).payV2(it, true)
@@ -44,7 +44,7 @@ open class PayActivity : BaseActivity() {
     }
 
     fun wechatPay(orderNo: Int) {
-        doHttpRequest(apiService.getWechatPayInfo(mapOf(Pair("orderId", 124)))) { info ->
+        doHttpRequest(apiService.getWechatPayInfo(mapOf(Pair("orderId", orderNo)))) { info ->
             val req = PayReq()
             info?.let {
                 req.appId = it.appId

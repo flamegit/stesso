@@ -16,9 +16,9 @@
         app:title_text="商品详情" />
 
     <ScrollView
-        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1"
         android:fillViewport="true">
 
         <android.support.constraint.ConstraintLayout
@@ -46,24 +46,24 @@
                 app:pageColor="@android:color/darker_gray" />
 
             <TextView
-                android:textSize="@dimen/txt_15"
-                android:textColor="@color/font_4A"
                 android:id="@+id/product_name"
-                android:padding="@dimen/padding_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
                 android:minLines="2"
+                android:padding="@dimen/padding_16"
+                android:textColor="@color/font_4A"
+                android:textSize="@dimen/txt_15"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view_pager" />
 
             <TextView
-                android:paddingLeft="@dimen/padding_16"
                 android:id="@+id/promise_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/padding_16"
+                android:text="·七天包退，·正品保证，·售后无忧"
                 android:textColor="#9B9B9B"
                 android:textSize="@dimen/txt_10"
-                android:text="·七天包退，·正品保证，·售后无忧"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/product_name" />
 
@@ -78,21 +78,21 @@
 
             <TextView
                 android:id="@+id/select_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:padding="@dimen/padding_16"
-                app:layout_constraintTop_toBottomOf="@+id/chose_layout"
-                app:layout_constraintStart_toStartOf="parent"
+                android:text="选择数量"
                 android:textColor="@color/font_4A"
                 android:textSize="@dimen/txt_13"
-                android:text="选择数量"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chose_layout" />
 
             <com.stesso.android.widget.QuantityView
                 android:id="@+id/quantity_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/select_num"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/select_num"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <WebView
                 android:id="@+id/web_view"
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chose_layout" />
+                app:layout_constraintTop_toBottomOf="@+id/quantity_view" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
@@ -109,14 +109,14 @@
         android:id="@+id/add_cart_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/solid_black_bg"
-        android:gravity="center"
         android:layout_margin="@dimen/padding_16"
+        android:background="@drawable/solid_black_bg"
         android:drawableLeft="@drawable/cart_white"
-        app:iconPadding="@dimen/padding_10"
+        android:gravity="center"
         android:text="添加至购物车"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/txt_15"
-        android:textColor="@android:color/white"/>
+        app:iconPadding="@dimen/padding_10" />
 
 
 </LinearLayout>

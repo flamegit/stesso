@@ -1,10 +1,8 @@
 package com.stesso.android
 
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -22,17 +20,20 @@ class CommodityDetailActivity : BaseActivity() {
 
     var pagerAdapter: CommonPagerAdapter<String>? = null
     var choseValues: Array<String?>? = null
-    var chosePositions: Array<Int?>? = null
-
+    var choseViews: Array<TextView?>? = null
     var info: CommodityInfoDTO? = null
-
-    val paddingSmall = dip2px(16)
-    val paddingBig = dip2px(32)
-
+    private val paddingSmall = dip2px(8)
+    private val paddingBig = dip2px(16)
+    private var tagRed = 0
+    private var tagGray = 0
+    private var fontColor = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_commodity_detail)
+        tagGray = ContextCompat.getColor(this, R.color.divider_color)
+        tagRed = ContextCompat.getColor(this, R.color.tag_red)
+        fontColor = ContextCompat.getColor(this, R.color.font_4A)
         getActivityComponent().inject(this)
         val goodId = intent.getIntExtra(GOODS_ID, 0)
         configTitleView(title_view) {
@@ -59,12 +60,12 @@ class CommodityDetailActivity : BaseActivity() {
         }
     }
 
-    private fun fillView(info:CommodityInfoDTO?){
+    private fun fillView(info: CommodityInfoDTO?) {
         pagerAdapter?.addItems(info?.getGallery())
         product_name.text = info?.info?.name
         val size = info?.specificationList?.size ?: 2
         choseValues = arrayOfNulls(size)
-        chosePositions = arrayOfNulls(size)
+        choseViews = arrayOfNulls(size)
         var index = 0
         info?.specificationList?.forEach {
             chose_layout.addView(createTitleView(it.name))
@@ -81,29 +82,33 @@ class CommodityDetailActivity : BaseActivity() {
             val tagView = createTagView(info.value)
             tagView.setOnClickListener {
                 choseValues?.set(index, info.value)
-                tagView.setTextColor(Color.RED)
-                lightView(layout,tagView)
+                val lastView = choseViews?.get(index)
+                choseViews?.set(index, tagView)
+                if (lastView != tagView) {
+                    selectView(lastView, false)
+                    selectView(tagView, true)
+                }
             }
-            layout.addView(tagView)
+            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            params.marginStart = paddingBig
+            layout.addView(tagView, params)
         }
         return layout
     }
 
-    private fun lightView(parent: ViewGroup, tagView: TextView) {
-        for (i in 0 until parent.childCount) {
-            val child = parent.getChildAt(i) as TextView
-            if (child == tagView) {
-                child.setTextColor(Color.RED)
-            }else{
-                child.setTextColor(Color.BLACK)
-            }
+    private fun selectView(tagView: TextView?, select: Boolean) {
+        if (select) {
+            tagView?.setTextColor(tagRed)
+            tagView?.background = ContextCompat.getDrawable(this, R.drawable.tag_red_bg)
+        } else {
+            tagView?.setTextColor(fontColor)
+            tagView?.background = ContextCompat.getDrawable(this, R.drawable.tag_gray_bg)
         }
     }
 
-
     private fun createTitleView(value: String): View {
         val tagView = TextView(this)
-        tagView.setPadding(paddingSmall,paddingSmall,paddingSmall,paddingSmall)
+        tagView.setPadding(paddingSmall, paddingSmall, paddingSmall, paddingSmall)
         tagView.text = value
         return tagView
     }
@@ -112,7 +117,7 @@ class CommodityDetailActivity : BaseActivity() {
         val tagView = TextView(this)
         tagView.text = value
         tagView.setPadding(paddingBig, paddingSmall, paddingBig, paddingSmall)
-        tagView.background = ContextCompat.getDrawable(this, R.drawable.stroke_gray_bg)
+        tagView.background = ContextCompat.getDrawable(this, R.drawable.tag_gray_bg)
         return tagView
     }
 
