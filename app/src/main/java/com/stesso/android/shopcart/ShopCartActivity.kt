@@ -1,6 +1,7 @@
 package com.stesso.android.shopcart
 
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.CheckBox
@@ -22,38 +23,35 @@ class ShopCartActivity : BaseActivity() {
 
     // private val adapter = MultiTypeAdapter()
     private var adapter: CommonAdapter<CommodityDetail>? = null
-    private var shopCart:ShopcartDTO? = null
+    private var shopCart: ShopcartDTO? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_cart)
         configTitleView(title_view)
         getActivityComponent().inject(this)
-
         settlement_view.setOnClickListener {
             Account.shopCart = shopCart
             openActivity(SettlementActivity::class.java)
         }
-
         adapter = CommonAdapter(R.layout.viewholder_cart_item) { holder, position, data ->
             holder.get<TextView>(R.id.name_view).text = data.goodsName
             Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
             holder.get<View>(R.id.delete_view).setOnClickListener {
-                val body = JSONObject(mapOf(Pair("productIds",data.productId)))
+                val body = JSONObject(mapOf(Pair("productIds", data.productId)))
                 doHttpRequest(apiService.deleteCartItem(body)) {
                     adapter?.removeItem(position)
                 }
             }
+
             val checkBox = holder.get<CheckBox>(R.id.checkbox)
             checkBox.isChecked = data.checked
-            checkBox.setOnCheckedChangeListener { view, programmatically ->
-                if (!programmatically) {
-                    val body = JSONObject(mapOf(Pair("productIds",data.productId.toString()), Pair("isChecked",if(view.isChecked) 1 else 0)))
-                    doHttpRequest(apiService.selectCommodity(body)){
-                   }
+            checkBox.setOnCheckedChangeListener { button, isChecked ->
+                if (button.isPressed) {
+                    data.checked = isChecked
                 }
             }
-            holder.get<TextView>(R.id.price_view).text ="￥：${data.price}"
+            holder.get<TextView>(R.id.price_view).text = "￥：${data.price}"
             holder.get<TextView>(R.id.info_view).text = data.getInfo()
             val quantityView = holder.get<QuantityView>(R.id.quantity_view)
             quantityView.quantity = data.number
@@ -71,9 +69,16 @@ class ShopCartActivity : BaseActivity() {
 
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
+        recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         doHttpRequest(apiService.getCartItems()) {
             shopCart = it
-            adapter?.addItems(it?.cartList, false)
+            if (it?.cartList?.isEmpty() == true) {
+                group.visibility = View.INVISIBLE
+            } else {
+                settlement_view.visibility = View.VISIBLE
+                group.visibility = View.INVISIBLE
+                adapter?.addItems(it?.cartList, false)
+            }
         }
     }
 }

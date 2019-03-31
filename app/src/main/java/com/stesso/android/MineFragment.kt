@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.stesso.android.account.LoginActivity
 import com.stesso.android.account.SettingActivity
-import com.stesso.android.lib.HOT_COMMODITY
 import com.stesso.android.lib.MultiTypeAdapter
 import com.stesso.android.lib.ORDER_LIST
 import com.stesso.android.model.Account
@@ -23,6 +22,29 @@ class MineFragment : BaseFragment() {
         getFragmentComponent().inject(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+        fillView()
+    }
+
+    fun fillView() {
+        if (Account.isLogin()) {
+            name_view.text = Account.user?.username
+            time_view.text = Account.user?.addTime
+            group.visibility = View.INVISIBLE
+//            doHttpRequest(apiService.getCollect(1,1,10)) {
+//                adapter.addItems(it?.collectList, HOT_COMMODITY)
+//            }
+            doHttpRequest(apiService.getOrderList(1)) {
+                adapter.addItems(it?.data, ORDER_LIST)
+            }
+        } else {
+            group.visibility = View.VISIBLE
+            time_view.visibility = View.INVISIBLE
+            name_view.visibility = View.INVISIBLE
+        }
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         sign_up_view.setOnClickListener {
@@ -36,26 +58,6 @@ class MineFragment : BaseFragment() {
         }
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
-
-        if (Account.isLogin()) {
-            name_view.text =Account.user?.username
-            time_view.text =Account.user?.addTime
-            group.visibility = View.INVISIBLE
-
-//            doHttpRequest(apiService.getCollect(1,1,10)) {
-//                adapter.addItems(it?.collectList, HOT_COMMODITY)
-//            }
-
-            doHttpRequest(apiService.getOrderList(1)){
-                 adapter.addItems(it?.data, ORDER_LIST)
-            }
-
-        } else {
-            group.visibility = View.VISIBLE
-            time_view.visibility =View.INVISIBLE
-            name_view.visibility = View.INVISIBLE
-        }
-
     }
 
 }

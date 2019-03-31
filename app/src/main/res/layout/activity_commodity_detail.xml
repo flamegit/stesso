@@ -36,7 +36,7 @@
 
             <com.stesso.android.widget.CirclePageIndicator
                 android:id="@+id/indicator_view"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/padding_16"
                 app:fillColor="@android:color/white"
@@ -44,6 +44,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:pageColor="@android:color/darker_gray" />
+
+            <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--android:background="@color/font_blue"-->
+                <!--android:padding="@dimen/padding_4"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintBottom_toBottomOf="@+id/view_pager"-->
+                <!--android:src="@drawable/share"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+            <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--android:background="@color/white"-->
+                <!--android:padding="@dimen/padding_16"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintBottom_toBottomOf="@+id/view_pager"-->
+                <!--android:src="@drawable/red_mouth"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
 
             <TextView
                 android:id="@+id/product_name"
@@ -55,6 +73,20 @@
                 android:textSize="@dimen/txt_15"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view_pager" />
+
+            <TextView
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_pager"
+                android:id="@+id/discount_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                app:layout_constraintTop_toBottomOf="@+id/discount_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/price_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/promise_view"
@@ -72,6 +104,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingLeft="@dimen/padding_16"
+                android:paddingRight="@dimen/padding_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/promise_view" />
@@ -94,13 +128,25 @@
                 app:layout_constraintBottom_toBottomOf="@id/select_num"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+            <TextView
+                android:id="@+id/divider_view"
+                android:padding="@dimen/padding_4"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@+id/quantity_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="商品介绍"
+                android:background="@color/space"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
             <WebView
                 android:id="@+id/web_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/quantity_view" />
+                app:layout_constraintTop_toBottomOf="@+id/divider_view" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

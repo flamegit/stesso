@@ -2,6 +2,7 @@ package com.stesso.android
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -13,6 +14,8 @@ import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.checkLogin
 import com.stesso.android.utils.dip2px
 import com.stesso.android.utils.openActivity
+import com.stesso.android.utils.toast
+import com.stesso.android.widget.QuantityView
 import kotlinx.android.synthetic.main.activity_commodity_detail.*
 import org.json.JSONObject
 
@@ -27,6 +30,7 @@ class CommodityDetailActivity : BaseActivity() {
     private var tagRed = 0
     private var tagGray = 0
     private var fontColor = 0
+    private var num = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,16 +49,32 @@ class CommodityDetailActivity : BaseActivity() {
             Glide.with(group).load(str).into(imageView)
             imageView
         }
+        quantity_view.setQuantityChangeListener(object : QuantityView.OnQuantityChangeListener {
+            override fun onLimitReached() {}
+            override fun onMinReached() {}
+            override fun onQuantityChanged(newQuantity: Int, programmatically: Boolean, minus: Boolean) {
+                num = newQuantity
+            }
+        })
         view_pager.adapter = pagerAdapter
         indicator_view.setViewPager(view_pager)
         doHttpRequest(apiService.getCommodityDetail(goodId)) {
             info = it
             fillView(it)
         }
+        //TODO
         add_cart_view.setOnClickListener {
-            var productId = info?.getProductId(choseValues?.reduce { acc, s -> "$acc$s" })
+            if (choseValues?.get(0) == null) {
+                toast("请选择颜色")
+                return@setOnClickListener
+            }
+            if (choseValues?.get(1) == null) {
+                toast("请选择尺码")
+                return@setOnClickListener
+            }
+            val productId = info?.getProductId(choseValues?.reduce { acc, s -> "$acc$s" })
             productId?.let {
-                val body = JSONObject(mapOf(Pair("goodsId", goodId), Pair("productId", it), Pair("number", 1)))
+                val body = JSONObject(mapOf(Pair("goodsId", goodId), Pair("productId", it), Pair("number", num)))
                 doHttpRequest(apiService.addCartItem(body)) {}
             }
         }
@@ -108,7 +128,9 @@ class CommodityDetailActivity : BaseActivity() {
 
     private fun createTitleView(value: String): View {
         val tagView = TextView(this)
-        tagView.setPadding(paddingSmall, paddingSmall, paddingSmall, paddingSmall)
+        tagView.setPadding(0, paddingBig, 0, paddingBig)
+        tagView.setTextColor(fontColor)
+        tagView.setTextSize(TypedValue.COMPLEX_UNIT_SP,13F)
         tagView.text = value
         return tagView
     }
@@ -116,6 +138,7 @@ class CommodityDetailActivity : BaseActivity() {
     private fun createTagView(value: String): TextView {
         val tagView = TextView(this)
         tagView.text = value
+        tagView.setTextSize(TypedValue.COMPLEX_UNIT_SP,13F)
         tagView.setPadding(paddingBig, paddingSmall, paddingBig, paddingSmall)
         tagView.background = ContextCompat.getDrawable(this, R.drawable.tag_gray_bg)
         return tagView

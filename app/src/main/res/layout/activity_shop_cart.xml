@@ -8,36 +8,80 @@
 
     <com.stesso.android.widget.TitleBar
         android:id="@+id/title_view"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:left_icon="@drawable/close"
-        app:title_text="购物车"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        app:title_text="购物车" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_view"
         android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_view" />
 
+    <ImageView
+        android:layout_marginTop="@dimen/padding_32"
+        android:id="@+id/empty_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/empty_cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_view" />
+
+    <TextView
+        android:id="@+id/empty_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/padding_20"
+        android:paddingBottom="@dimen/padding_20"
+        android:text="Oooops，你的购物车是空的！"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empty_view" />
 
     <com.phillipcalvin.iconbutton.IconButton
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/select_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_16"
+        android:background="@drawable/solid_black_bg"
+        android:drawableLeft="@drawable/cart_white"
+        android:gravity="center"
+        android:text="果断挑选几件"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/txt_15"
+        app:iconPadding="@dimen/padding_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empty_text" />
+
+    <com.phillipcalvin.iconbutton.IconButton
+        android:visibility="invisible"
         android:id="@+id/settlement_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/solid_black_bg"
-        android:gravity="center"
         android:layout_margin="@dimen/padding_16"
+        android:background="@drawable/solid_black_bg"
         android:drawableLeft="@drawable/cart_white"
-        app:iconPadding="@dimen/padding_10"
+        android:gravity="center"
         android:text="添加至购物车"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/txt_15"
-        android:textColor="@android:color/white"/>
+        app:iconPadding="@dimen/padding_10"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <android.support.constraint.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="empty_view,empty_text,select_view" />
 
 </android.support.constraint.ConstraintLayout>
