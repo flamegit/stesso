@@ -4,11 +4,11 @@ import com.stesso.android.KEY_ADDRESS
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.stesso.android.BaseActivity
 import com.stesso.android.R
 import com.stesso.android.lib.ADDRESS_TYPE
+import com.stesso.android.lib.DividerItemDecoration
 import com.stesso.android.lib.MultiTypeAdapter
 import com.stesso.android.model.Address
 import com.stesso.android.utils.openActivity
@@ -25,7 +25,7 @@ class AddressListActivity : BaseActivity() {
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
 
-        recycler_view.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
+        recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL,false))
         doHttpRequest(apiService.getAddressList()) {
             adapter.addItems(it, ADDRESS_TYPE)
         }

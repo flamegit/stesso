@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.stesso.android.account.SettingActivity
 import com.stesso.android.lib.*
+import com.stesso.android.model.VideoItem
 import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.checkLogin
 import com.stesso.android.utils.openActivity
@@ -32,13 +33,7 @@ class HomeFragment : BaseFragment() {
         }
 
         doHttpRequest(apiService.getHomeContent()) {
-            Log.d("dd", "suddcee")
-            if (it?.banner?.isNotEmpty() == true) {
-                adapter.addItem(it.banner?.get(0), BANNER_TYPE)
-            }
-            adapter.addItems(it?.newGoodsList, NEW_COMMODITY, true)
-            adapter.addItem(it?.hotGoodsList, HOT_COMMODITY, true)
-            adapter.addItems(it?.recommendGoodsList, RECOMMEND_TYPE, true)
+            adapter.addItem(VideoItem(it?.videoFaceImage,it?.video), BANNER_TYPE)
         }
     }
 }

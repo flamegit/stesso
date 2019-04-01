@@ -75,7 +75,9 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     kapt 'com.github.bumptech.glide:compiler:4.6.1'
-    implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
+
+    implementation 'cn.jzvd:jiaozivideoplayer:7.0_preview'
+
 
 //    //信鸽普通版本jar，不包含厂商通道
     //implementation 'com.tencent.xinge:xinge:4.0.5-release'

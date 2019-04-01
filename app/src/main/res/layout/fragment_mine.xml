@@ -8,24 +8,24 @@
 
     <com.stesso.android.widget.TitleBar
         android:id="@+id/title_view"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:left_icon="@drawable/setting"
         app:right_icon="@drawable/shopcart"
-        app:title_text="我的"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        app:title_text="我的" />
 
     <TextView
         android:id="@+id/name_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="废了个毛"
-        android:textSize="20sp"
-        android:textColor="#251619"
-        android:textStyle="bold"
         android:paddingTop="@dimen/txt_8"
+        android:text="废了个毛"
+        android:textColor="#251619"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_view" />
@@ -34,10 +34,10 @@
         android:id="@+id/time_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="5dp"
         android:text="废了个毛"
         android:textColor="#9B9B9B"
         android:textSize="10sp"
-        android:paddingTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_view" />
@@ -89,12 +89,40 @@
         android:id="@+id/order_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="订单"
         android:paddingTop="@dimen/padding_5"
+        android:text="订单"
         android:textSize="@dimen/txt_10"
         app:layout_constraintEnd_toEndOf="@+id/order_icon"
         app:layout_constraintStart_toStartOf="@+id/order_icon"
         app:layout_constraintTop_toBottomOf="@+id/order_icon" />
+
+    <View
+        app:layout_constraintBottom_toBottomOf="@+id/order_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_divider_line"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_divider_first"
+        android:id="@+id/order_section"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+    <View
+        app:layout_constraintBottom_toBottomOf="@+id/order_text"
+        app:layout_constraintStart_toStartOf="@+id/vertical_divider_first"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_divider_line"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_divider_second"
+        android:id="@+id/commodity_section"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+    <View
+        app:layout_constraintBottom_toBottomOf="@+id/order_text"
+        app:layout_constraintStart_toStartOf="@+id/vertical_divider_second"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_divider_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/info_section"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
 
     <ImageView
         android:id="@+id/commodity_icon"
@@ -109,8 +137,8 @@
         android:id="@+id/commodity_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="商品"
         android:paddingTop="@dimen/padding_5"
+        android:text="商品"
         android:textSize="@dimen/txt_10"
         app:layout_constraintEnd_toEndOf="@+id/commodity_icon"
         app:layout_constraintStart_toStartOf="@+id/commodity_icon"
@@ -129,8 +157,8 @@
         android:id="@+id/info_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="资讯"
         android:paddingTop="@dimen/padding_5"
+        android:text="资讯"
         android:textSize="@dimen/txt_10"
         app:layout_constraintEnd_toEndOf="@+id/info_icon"
         app:layout_constraintStart_toStartOf="@+id/info_icon"
@@ -140,9 +168,9 @@
         android:id="@+id/recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_text" />
 
 

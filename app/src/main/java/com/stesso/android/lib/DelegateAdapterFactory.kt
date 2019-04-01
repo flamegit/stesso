@@ -43,7 +43,6 @@ const val SETTLEMENT_ITEM = 16
 const val ORDER_LIST = 17
 
 
-
 class DelegateAdapterFactory {
 
     @Inject
@@ -63,10 +62,10 @@ class DelegateAdapterFactory {
             BANNER_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_top_vedio) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
-                    if (data is BannerItem) {
+                    if (data is VideoItem) {
                         val jzvdStd = holder.get<JzvdStd>(R.id.video_player)
-                        jzvdStd.setUp(data.url, data.name, Jzvd.SCREEN_WINDOW_NORMAL)
-                        //jzvdStd.thumbImageView.setImage("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640")
+                        jzvdStd.setUp(data.url, "", Jzvd.SCREEN_NORMAL)
+                        Glide.with(holder.itemView).load(data.cover).into(jzvdStd.thumbImageView)
                     }
                 }
             }
@@ -87,29 +86,29 @@ class DelegateAdapterFactory {
                     }
                 }
             }
-            ORDER_LIST -> object : BaseDelegateAdapter(R.layout.viewholder_order_item){
+            ORDER_LIST -> object : BaseDelegateAdapter(R.layout.viewholder_order_item) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
-                    if(data is OrderList.OrderInfo) {
+                    if (data is OrderList.OrderInfo) {
                         holder.get<TextView>(R.id.order_no).text = data.orderSn
                         holder.get<TextView>(R.id.order_date).text = data.orderStatusText
-                        holder.itemView.setOnClickListener{ v ->
+                        holder.itemView.setOnClickListener { v ->
                             v.context.openActivity(OrderDetailActivity::class.java, ORDER_ID, data.id)
                         }
                     }
                 }
             }
 
-            SETTLEMENT_INFO -> object :BaseDelegateAdapter(R.layout.viewholder_settlement_info){
+            SETTLEMENT_INFO -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_info) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
-                    if(data is ShopcartDTO){
-                        holder.get<TextView>(R.id.total_price).text ="￥：${data.getTotalPrice()}"
-                        holder.get<TextView>(R.id.order_price).text ="￥：${data.getTotalPrice()}"
+                    if (data is ShopcartDTO) {
+                        holder.get<TextView>(R.id.total_price).text = "￥：${data.getTotalPrice()}"
+                        holder.get<TextView>(R.id.order_price).text = "￥：${data.getTotalPrice()}"
                     }
                 }
             }
-            SETTLEMENT_PAY -> object :BaseDelegateAdapter(R.layout.viewholder_pay_method){
+            SETTLEMENT_PAY -> object : BaseDelegateAdapter(R.layout.viewholder_pay_method) {
 
             }
             SETTLEMENT_ITEM -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_item) {
@@ -119,7 +118,7 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.name_view).text = data.goodsName
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<TextView>(R.id.info_view).text = "${data.getInfo()} ${data.number}件"
-                        holder.get<TextView>(R.id.price_view).text ="￥：${data.price}"
+                        holder.get<TextView>(R.id.price_view).text = "￥：${data.price}"
                     }
                 }
             }

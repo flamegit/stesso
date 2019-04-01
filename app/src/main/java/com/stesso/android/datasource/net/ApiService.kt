@@ -20,7 +20,7 @@ interface ApiService {
     @GET("wechat/goods/info/{goodId}")
     fun getDetail(): Single<JSONObject>
 
-    @GET("wx/index/index")
+    @GET("wx/index/index1")
     fun getHomeContent(): Single<RootNode<HomeInfo>>
 
     @GET("wx/region/list")

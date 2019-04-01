@@ -1,7 +1,6 @@
 package com.stesso.android.shopcart
 
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.CheckBox
@@ -11,6 +10,7 @@ import com.example.flame.kotlinstudy.lib.CommonAdapter
 import com.stesso.android.BaseActivity
 import com.stesso.android.R
 import com.stesso.android.SettlementActivity
+import com.stesso.android.lib.DividerItemDecoration
 import com.stesso.android.model.Account
 import com.stesso.android.model.CommodityDetail
 import com.stesso.android.model.ShopcartDTO
@@ -69,7 +69,7 @@ class ShopCartActivity : BaseActivity() {
 
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(this)
-        recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL, false))
         doHttpRequest(apiService.getCartItems()) {
             shopCart = it
             if (it?.cartList?.isEmpty() == true) {
