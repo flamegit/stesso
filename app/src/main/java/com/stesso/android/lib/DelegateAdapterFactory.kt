@@ -81,19 +81,21 @@ class DelegateAdapterFactory {
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<TextView>(R.id.name_view).text = data.name
                         holder.get<TextView>(R.id.discount_price).text = "${data.counterPrice}"
-                        holder.get<View>(R.id.favorite_view).setOnClickListener {
-                            val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", data.id)))
-                            doHttpRequest(apiService.addOrDelete(body)) {}
-                        }
+//                        holder.get<View>(R.id.favorite_view).setOnClickListener {
+//                            val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", data.id)))
+//                            doHttpRequest(apiService.addOrDelete(body)) {}
+//                        }
                     }
                 }
             }
-            ORDER_LIST -> object : BaseDelegateAdapter(R.layout.viewholder_order_item) {
+            ORDER_LIST -> object : BaseDelegateAdapter(R.layout.order_item) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is OrderList.OrderInfo) {
-                        holder.get<TextView>(R.id.order_no).text = data.orderSn
-                        holder.get<TextView>(R.id.order_date).text = data.orderStatusText
+                        holder.get<TextView>(R.id.name_view).text = data.goodsList[0].goodsName
+                        holder.get<TextView>(R.id.state_view).text = data.orderStatusText
+                        holder.get<TextView>(R.id.price_view).text = "总计：${data.actualPrice}"
+                        Glide.with(holder.itemView).load(data.goodsList[0].picUrl).into(holder.get(R.id.commodity_img))
                         holder.itemView.setOnClickListener { v ->
                             v.context.openActivity(OrderDetailActivity::class.java, ORDER_ID, data.id)
                         }

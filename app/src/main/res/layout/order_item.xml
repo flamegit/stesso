@@ -1,57 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/padding_16"
-    android:layout_marginRight="@dimen/padding_16"
     android:layout_marginTop="@dimen/padding_10"
+    android:layout_marginRight="@dimen/padding_16"
     android:background="@color/white"
     tools:context=".PersonInfoFragment">
 
     <ImageView
+        android:scaleType="centerCrop"
         android:id="@+id/commodity_img"
-        android:layout_width="80dp"
-        android:layout_height="100dp"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
         android:layout_margin="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/name_view"
+        android:id="@+id/state_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="@dimen/padding_16"
+        android:layout_marginStart="10dp"
         android:text="TextView"
-        android:textColor="@color/font_251619"
         android:textSize="@dimen/txt_15"
+        app:layout_constraintBottom_toTopOf="@id/name_view"
         app:layout_constraintStart_toEndOf="@+id/commodity_img"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
-        android:id="@+id/discount_price"
+        android:id="@+id/name_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="TextView"
-        android:textColor="@color/font_red"
+        android:textColor="@color/font_9B"
         android:textSize="@dimen/txt_13"
-        app:layout_constraintStart_toStartOf="@+id/name_view"
-        app:layout_constraintTop_toBottomOf="@+id/name_view" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/state_view"
+        app:layout_constraintTop_toBottomOf="@+id/state_view" />
+
 
     <TextView
         android:id="@+id/price_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="24dp"
         android:text="TextView"
         android:textColor="@color/font_9B"
         android:textSize="@dimen/txt_13"
-        app:layout_constraintBaseline_toBaselineOf="@+id/discount_price"
-        app:layout_constraintStart_toEndOf="@+id/discount_price" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
