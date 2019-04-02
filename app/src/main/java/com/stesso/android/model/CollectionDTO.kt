@@ -1,3 +1,3 @@
 package com.stesso.android.model
 
-data class CollectionDTO(val totalPages: Int, val collectList: List<Commodity>)
+data class CollectionDTO<T>(val totalPages: Int, val collectList: List<T>)

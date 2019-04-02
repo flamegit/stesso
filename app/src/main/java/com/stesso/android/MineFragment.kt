@@ -5,9 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.stesso.android.account.LoginActivity
 import com.stesso.android.account.SettingActivity
-import com.stesso.android.lib.HOT_COMMODITY
-import com.stesso.android.lib.MultiTypeAdapter
-import com.stesso.android.lib.ORDER_LIST
+import com.stesso.android.lib.*
 import com.stesso.android.model.Account
 import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.checkLogin
@@ -38,16 +36,15 @@ class MineFragment : BaseFragment() {
             }
 
             info_section.setOnClickListener {
-                doHttpRequest(apiService.getCollect(1, 1, 10)) {
-                    adapter.addItems(it?.collectList, HOT_COMMODITY)
+                doHttpRequest(apiService.getCollectInfo(1, 1, 10)) {
+                    adapter.addItems(it?.collectList, FAVORITE_NEWS)
                 }
             }
 
             commodity_section.setOnClickListener {
-                doHttpRequest(apiService.getCollect(2, 1, 10)) {
+                doHttpRequest(apiService.getCollectCommodity(0, 1, 10)) {
                     adapter.addItems(it?.collectList, HOT_COMMODITY)
                 }
-
             }
 
             order_icon.setOnClickListener {

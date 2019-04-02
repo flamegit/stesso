@@ -56,6 +56,15 @@ class CommodityDetailActivity : BaseActivity() {
                 num = newQuantity
             }
         })
+
+        favorite_view.setOnClickListener {
+            val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", info?.info?.id)))
+
+            doHttpRequest(apiService.addOrDelete(body)) {
+
+            }
+        }
+
         view_pager.adapter = pagerAdapter
         indicator_view.setViewPager(view_pager)
         doHttpRequest(apiService.getCommodityDetail(goodId)) {
@@ -130,7 +139,7 @@ class CommodityDetailActivity : BaseActivity() {
         val tagView = TextView(this)
         tagView.setPadding(0, paddingBig, 0, paddingBig)
         tagView.setTextColor(fontColor)
-        tagView.setTextSize(TypedValue.COMPLEX_UNIT_SP,13F)
+        tagView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13F)
         tagView.text = value
         return tagView
     }
@@ -138,7 +147,7 @@ class CommodityDetailActivity : BaseActivity() {
     private fun createTagView(value: String): TextView {
         val tagView = TextView(this)
         tagView.text = value
-        tagView.setTextSize(TypedValue.COMPLEX_UNIT_SP,13F)
+        tagView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13F)
         tagView.setPadding(paddingBig, paddingSmall, paddingBig, paddingSmall)
         tagView.background = ContextCompat.getDrawable(this, R.drawable.tag_gray_bg)
         return tagView

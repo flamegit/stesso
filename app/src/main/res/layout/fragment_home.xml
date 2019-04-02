@@ -6,24 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.stesso.android.widget.TitleBar
-        android:id="@+id/title_view"
+    <ImageView
+        android:padding="@dimen/padding_8"
+        android:layout_width="wrap_content"
+        android:src="@drawable/info"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:padding="@dimen/padding_16"
+        android:layout_width="wrap_content"
+        android:src="@drawable/shopcart"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:left_icon="@drawable/setting"
-        app:right_icon="@drawable/shopcart"
-        app:title_text="我的"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_view"
+        android:gravity="center"
+        android:padding="@dimen/padding_16"
+        android:drawablePadding="@dimen/padding_4"
+        android:drawableLeft="@drawable/red_mouth"
+        android:textSize="@dimen/txt_15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STESSO"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/font_red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_view"
         android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_view" />
 
 </android.support.constraint.ConstraintLayout>

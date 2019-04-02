@@ -42,6 +42,8 @@ const val SETTLEMENT_INFO = 15
 const val SETTLEMENT_ITEM = 16
 const val ORDER_LIST = 17
 
+const val FAVORITE_NEWS = 18
+
 
 class DelegateAdapterFactory {
 
@@ -214,10 +216,24 @@ class DelegateAdapterFactory {
                     }
                 }
             }
+            FAVORITE_NEWS -> object : BaseDelegateAdapter(R.layout.viewholer_news_list) {
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is FavoriteNews) {
+                        val news = data.info
+                        holder.get<TextView>(R.id.title_view).text = news?.title
+                        Glide.with(holder.itemView).load(news?.picUrl).into(holder.get(R.id.cover_view))
+                        holder.itemView.setOnClickListener { v ->
+                            v.context.openActivity(NewsDetailActivity::class.java, NEWS_ID, news?.id)
+                        }
+                    }
+                }
+            }
+
             NEWS_TYPE -> object : BaseDelegateAdapter(R.layout.viewholer_news_list) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
-                    if (data is NewsDTO.News) {
+                    if (data is News) {
                         holder.get<TextView>(R.id.title_view).text = data.title
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.cover_view))
                         holder.itemView.setOnClickListener { v ->

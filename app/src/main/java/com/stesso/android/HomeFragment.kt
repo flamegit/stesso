@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.stesso.android.account.SettingActivity
 import com.stesso.android.lib.*
+import com.stesso.android.model.Commodity
 import com.stesso.android.model.VideoItem
 import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.checkLogin
@@ -25,15 +26,36 @@ class HomeFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
-        title_view.setLeftAction {
-            context?.checkLogin { context?.openActivity(SettingActivity::class.java) }
-        }
-        title_view.setRightAction {
-            context?.checkLogin { context?.openActivity(ShopCartActivity::class.java) }
-        }
+//        title_view.setLeftAction {
+//            context?.checkLogin { context?.openActivity(SettingActivity::class.java) }
+//        }
+//        title_view.setRightAction {
+//            context?.checkLogin { context?.openActivity(ShopCartActivity::class.java) }
+//        }
 
         doHttpRequest(apiService.getHomeContent()) {
-            adapter.addItem(VideoItem(it?.videoFaceImage,it?.video), BANNER_TYPE)
+            adapter.addItem(VideoItem(it?.videoFaceImage, it?.video), BANNER_TYPE)
+            var hotList = mutableListOf<Commodity>()
+            it?.goodsList?.forEach { commodity ->
+                when (commodity.stype) {
+                    2, 3 -> {
+                        if(hotList.isNotEmpty()){
+                            adapter.addItem(hotList, HOT_COMMODITY,true)
+                            hotList.clear()
+                        }
+                        adapter.addItem(commodity, if (commodity.stype == 2) NEW_COMMODITY else RECOMMEND_TYPE,true)
+                    }
+                    else -> {
+                        hotList.add(commodity)
+                    }
+                }
+                if(hotList.isNotEmpty()){
+                    adapter.addItem(hotList, HOT_COMMODITY,true)
+                    hotList.clear()
+                }
+
+            }
+
         }
     }
 }

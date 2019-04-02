@@ -19,7 +19,7 @@ class CommodityInfoDTO{
         return null
     }
 
-    data class Info(val name:String,val brief:String,val gallery:List<String>,val detail:String)
+    data class Info(val name:String,val brief:String,val gallery:List<String>,val detail:String,val id:Int)
     data class Value(val id:Int,val goodsId:Int,val specifications:String,val value:String)
     data class Category(val name:String,val valueList:List<Value>)
     data class Product(val id:Int,val goodsId:Int,val specifications:List<String>,val number:Int){
