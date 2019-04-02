@@ -36,13 +36,12 @@ const val RECOMMEND_TYPE = 10
 const val NEWS_TYPE = 11
 const val SETTLEMENT_ADDRESS = 12
 const val EMPTY_ADDRESS = 13
-
 const val SETTLEMENT_PAY = 14
 const val SETTLEMENT_INFO = 15
 const val SETTLEMENT_ITEM = 16
 const val ORDER_LIST = 17
-
 const val FAVORITE_NEWS = 18
+const val FAVORITE_COMMODITY = 19
 
 
 class DelegateAdapterFactory {
@@ -88,6 +87,22 @@ class DelegateAdapterFactory {
                     }
                 }
             }
+            FAVORITE_COMMODITY -> object : BaseDelegateAdapter(R.layout.viewholder_new_commodity) {
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is FavoriteCommodity) {
+                        val commodity = data.info
+                        holder.itemView.setOnClickListener { v ->
+                            v.context.openActivity(CommodityDetailActivity::class.java, GOODS_ID, commodity?.id)
+                        }
+                        Glide.with(holder.itemView).load(commodity?.picUrl).into(holder.get(R.id.commodity_img))
+                        holder.get<TextView>(R.id.name_view).text = commodity?.name
+                        holder.get<TextView>(R.id.discount_price).text = "${commodity?.counterPrice}"
+                    }
+                }
+            }
+
+
             ORDER_LIST -> object : BaseDelegateAdapter(R.layout.order_item) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)

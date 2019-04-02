@@ -1,6 +1,8 @@
 package com.stesso.android
 
+import android.animation.ValueAnimator
 import android.os.Bundle
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.stesso.android.account.LoginActivity
@@ -16,6 +18,8 @@ class MineFragment : BaseFragment() {
 
     private val adapter = MultiTypeAdapter()
     override fun getLayoutId() = R.layout.fragment_mine
+
+    private var currIndex = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getFragmentComponent().inject(this)
@@ -31,25 +35,24 @@ class MineFragment : BaseFragment() {
             name_view.text = Account.user?.username
             time_view.text = Account.user?.addTime
             group.visibility = View.INVISIBLE
-            doHttpRequest(apiService.getOrderList(1)) {
-                adapter.addItems(it?.data, ORDER_LIST)
-            }
+
+            loadData(currIndex)
 
             info_section.setOnClickListener {
-                doHttpRequest(apiService.getCollectInfo(1, 1, 10)) {
-                    adapter.addItems(it?.collectList, FAVORITE_NEWS)
-                }
+                setIndicatorView(3)
+                loadData(3)
             }
 
             commodity_section.setOnClickListener {
-                doHttpRequest(apiService.getCollectCommodity(0, 1, 10)) {
-                    adapter.addItems(it?.collectList, HOT_COMMODITY)
-                }
+                setIndicatorView(2)
+                loadData(2)
             }
 
             order_icon.setOnClickListener {
-
+                setIndicatorView(1)
+                loadData(1)
             }
+
         } else {
             group.visibility = View.VISIBLE
             time_view.visibility = View.INVISIBLE
@@ -57,6 +60,41 @@ class MineFragment : BaseFragment() {
         }
     }
 
+    private fun setIndicatorView(index: Int){
+        if (index == currIndex) {
+            return
+        }
+        ViewCompat.animate(indicator_view).translationX(300f).start()
+
+
+    }
+
+    private fun loadData(index: Int) {
+        if (index == currIndex) {
+            return
+        }
+        currIndex = index
+        when (index) {
+            1 -> {
+                doHttpRequest(apiService.getOrderList(1)) {
+                    adapter.addItems(it?.data, ORDER_LIST)
+                }
+
+            }
+            2 -> {
+                doHttpRequest(apiService.getCollectCommodity(0, 1, 10)) {
+                    adapter.addItems(it?.collectList, FAVORITE_COMMODITY)
+                }
+
+            }
+            3 -> {
+                doHttpRequest(apiService.getCollectInfo(1, 1, 10)) {
+                    adapter.addItems(it?.collectList, FAVORITE_NEWS)
+                }
+
+            }
+        }
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

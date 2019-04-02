@@ -97,31 +97,41 @@
         app:layout_constraintTop_toBottomOf="@+id/order_icon" />
 
     <View
-        app:layout_constraintBottom_toBottomOf="@+id/order_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal_divider_line"
-        app:layout_constraintEnd_toStartOf="@+id/vertical_divider_first"
         android:id="@+id/order_section"
         android:layout_width="0dp"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/order_text"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_divider_first"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_divider_line" />
 
     <View
-        app:layout_constraintBottom_toBottomOf="@+id/order_text"
-        app:layout_constraintStart_toStartOf="@+id/vertical_divider_first"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal_divider_line"
-        app:layout_constraintEnd_toStartOf="@+id/vertical_divider_second"
+        android:id="@+id/indicator_view"
+        android:layout_marginTop="@dimen/padding_4"
+        app:layout_constraintTop_toBottomOf="@+id/order_text"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_divider_first"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/tag_red"
+        android:layout_width="0dp"
+        android:layout_height="5dp"/>
+
+    <View
         android:id="@+id/commodity_section"
         android:layout_width="0dp"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/order_text"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_divider_second"
+        app:layout_constraintStart_toStartOf="@+id/vertical_divider_first"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_divider_line" />
 
     <View
-        app:layout_constraintBottom_toBottomOf="@+id/order_text"
-        app:layout_constraintStart_toStartOf="@+id/vertical_divider_second"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal_divider_line"
-        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/info_section"
         android:layout_width="0dp"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/order_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/vertical_divider_second"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_divider_line" />
 
 
     <ImageView
@@ -171,6 +181,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:padding="@dimen/padding_16"
         app:layout_constraintTop_toBottomOf="@+id/order_text" />
 
 

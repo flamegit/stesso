@@ -87,7 +87,7 @@ interface ApiService {
     fun cancelOrder(@Query("orderId") id: Int): Single<RootNode<String>>
 
     @GET("wx/collect/list")
-    fun getCollectCommodity(@Query("type") id: Int = 0, @Query("page") page: Int, @Query("size") size: Int): Single<RootNode<CollectionDTO<String>>>
+    fun getCollectCommodity(@Query("type") id: Int = 0, @Query("page") page: Int, @Query("size") size: Int): Single<RootNode<CollectionDTO<FavoriteCommodity>>>
 
     @GET("wx/collect/list")
     fun getCollectInfo(@Query("type") id: Int = 1, @Query("page") page: Int, @Query("size") size: Int): Single<RootNode<CollectionDTO<FavoriteNews>>>
