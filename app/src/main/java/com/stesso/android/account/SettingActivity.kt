@@ -3,6 +3,7 @@ package com.stesso.android.account
 import android.os.Bundle
 import com.stesso.android.BaseActivity
 import com.stesso.android.R
+import com.stesso.android.SuggestionActivity
 import com.stesso.android.address.AddressListActivity
 import com.stesso.android.model.Account
 import com.stesso.android.utils.openActivity
@@ -24,6 +25,17 @@ class SettingActivity : BaseActivity() {
         row2_text.text = user?.addTime
         row3_text.text = user?.getGender()
         row4_text.text = user?.mobile?.replaceRange(1,4,"*")
+
+
+        row8.setOnClickListener {
+            openActivity(SuggestionActivity::class.java)
+        }
+
+        row6.setOnClickListener {
+            openActivity(ModifyPasswordActivity::class.java)
+        }
+
+
 
         logout.setOnClickListener { Account.logout() }
     }

@@ -4,7 +4,7 @@
     package="com.stesso.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -20,7 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".OrderDetailActivity"/>
+        <activity android:name=".SuggestionActivity"></activity>
+        <activity android:name=".account.ModifyPasswordActivity" />
+        <activity android:name=".MessageActivity" />
+        <activity android:name=".OrderDetailActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/TranslucentTheme">
@@ -46,14 +49,20 @@
         <activity android:name=".address.AddAddressActivity" />
         <activity android:name=".SettlementActivity" />
 
-        <service android:name="com.talkingdata.sdk.TDAntiCheatingService"
-            android:process="com.talkingdata.sdk.TDAntiCheatingService">  <!--用户质量评估Service可以配置在主进程或者单独进程-->
+        <service
+            android:name="com.talkingdata.sdk.TDAntiCheatingService"
+            android:process="com.talkingdata.sdk.TDAntiCheatingService"> <!-- 用户质量评估Service可以配置在主进程或者单独进程 -->
             <intent-filter>
                 <action android:name="com.talkingdata.sdk.TDAntiCheatingService" />
             </intent-filter>
         </service>
-        <meta-data android:name="TD_APP_ID" android:value="4D54D4B060B04746924DAD11943DA73D" />
-        <meta-data android:name="TD_CHANNEL_ID" android:value="channel_id" />
+
+        <meta-data
+            android:name="TD_APP_ID"
+            android:value="4D54D4B060B04746924DAD11943DA73D" />
+        <meta-data
+            android:name="TD_CHANNEL_ID"
+            android:value="channel_id" />
 
         <activity
             android:name=".wxapi.WXPayEntryActivity"

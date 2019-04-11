@@ -14,4 +14,8 @@
     <string name="edit">编辑</string>
 
     <string name="stesso_explain">stesso源于意大利语，意为“自我”。\nstesso唯一售卖渠道为官方APP，其他任何平台皆非正品。</string>
+
+    <string name="suggestion_hint">※ 有任何意见或者建议都可以向我们反馈噢\n\n※ 微博、微信公众号：stesso潮牌\n\n※ 客服QQ：2201131110</string>
+
+    <string name="password_hint">※ 长度为8-12个字符\n\n※ 建议至少含数字/字母/符号2种组合</string>
 </resources>

@@ -2,15 +2,13 @@ package com.stesso.android.di.component
 
 import com.stesso.android.di.module.ActivityModule
 import com.example.flame.kotlinstudy.di.scope.ActivityScope
-import com.stesso.android.CommodityDetailActivity
+import com.stesso.android.*
 import com.stesso.android.account.LoginActivity
+import com.stesso.android.account.ModifyPasswordActivity
 import com.stesso.android.account.RegisterActivity
 import com.stesso.android.address.AddAddressActivity
 import com.stesso.android.address.AddressListActivity
 import com.stesso.android.shopcart.ShopCartActivity
-import com.stesso.android.NewsDetailActivity
-import com.stesso.android.OrderDetailActivity
-import com.stesso.android.SettlementActivity
 import dagger.Subcomponent
 
 /**
@@ -29,5 +27,11 @@ interface ActivityComponent {
     fun inject(activity: NewsDetailActivity)
     fun inject(activity: SettlementActivity)
     fun inject(activity: OrderDetailActivity)
+    fun inject(activity: SuggestionActivity)
+    fun inject(activity: MessageActivity)
+    fun inject(activity: ModifyPasswordActivity)
+
+
+
 }
 
