@@ -45,6 +45,16 @@
         <activity android:name=".NewsDetailActivity" />
         <activity android:name=".address.AddAddressActivity" />
         <activity android:name=".SettlementActivity" />
+
+        <service android:name="com.talkingdata.sdk.TDAntiCheatingService"
+            android:process="com.talkingdata.sdk.TDAntiCheatingService">  <!--用户质量评估Service可以配置在主进程或者单独进程-->
+            <intent-filter>
+                <action android:name="com.talkingdata.sdk.TDAntiCheatingService" />
+            </intent-filter>
+        </service>
+        <meta-data android:name="TD_APP_ID" android:value="4D54D4B060B04746924DAD11943DA73D" />
+        <meta-data android:name="TD_CHANNEL_ID" android:value="channel_id" />
+
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"

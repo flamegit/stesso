@@ -60,7 +60,7 @@ repositories {
 dependencies {
 
     implementation project(':library')
-    //implementation files('libs/alipaySingle-20170510.jar')
+    implementation files('libs/SaaS_AppAnalytics_Android_SDK_V4.0.26.jar') //talkingdata
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.2'

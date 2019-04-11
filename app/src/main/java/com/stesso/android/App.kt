@@ -1,9 +1,11 @@
 package com.stesso.android
 
 import android.app.Application
+import cn.jpush.android.api.JPushInterface
 import com.stesso.android.di.component.AppComponent
 import com.stesso.android.di.component.DaggerAppComponent
 import com.stesso.android.di.module.AppModule
+import com.tendcloud.tenddata.TCAgent
 
 
 /**
@@ -17,18 +19,18 @@ class App : Application() {
         instance = this
         super.onCreate()
         component = DaggerAppComponent.builder().appModule(AppModule(this)).build()
-//        XGPushConfig.enableDebug(this, true)
-//        XGPushManager.bindAccount(this, "XINGE")
-//        XGPushManager.setTag(this,"XINGE")
-//        XGPushManager.registerPush(this, object : XGIOperateCallback {
-//            override fun onFail(p0: Any?, p1: Int, p2: String?) {
-//                toast("fail")
-//            }
-//            override fun onSuccess(p0: Any?, p1: Int) {
-//                toast("success")
-//            }
-//        })
-        //toast(""+android.os.Process.myPid())
+
+        TCAgent.LOG_ON=true
+        // App ID: 在TalkingData创建应用后，进入数据报表页中，在“系统设置”-“编辑应用”页面里查看App ID。
+        // 渠道 ID: 是渠道标识符，可通过不同渠道单独追踪数据。
+        TCAgent.init(this)
+        // 如果已经在AndroidManifest.xml配置了App ID和渠道ID，调用TCAgent.init(this)即可；或与AndroidManifest.xml中的对应参数保持一致。
+        TCAgent.setReportUncaughtExceptions(true)
+
+        //极光推送
+        JPushInterface.setDebugMode(true)
+        JPushInterface.init(this)
+
     }
 
     companion object {
