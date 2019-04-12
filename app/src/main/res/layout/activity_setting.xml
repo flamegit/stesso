@@ -214,36 +214,6 @@
 
 
             <TextView
-                android:id="@+id/row6"
-                style="@style/default_font"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/padding_16"
-                android:text="修改密码"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/row5" />
-
-            <ImageView
-                android:id="@+id/row6_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/arrow_right"
-                app:layout_constraintBottom_toBottomOf="@+id/row6"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/row6" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1px"
-                android:background="@color/divider_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/row6" />
-
-            <TextView
                 android:id="@+id/row7"
                 style="@style/default_font"
                 android:layout_width="0dp"
@@ -252,7 +222,7 @@
                 android:text="系统通知"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/row6" />
+                app:layout_constraintTop_toBottomOf="@+id/row5" />
 
             <Switch
                 android:id="@+id/row7_switch"

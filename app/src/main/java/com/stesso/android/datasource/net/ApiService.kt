@@ -93,8 +93,6 @@ interface ApiService {
     fun updateUserInfo(@Body body: SuggestionDTO): Single<RootNode<String>>
 
 
-
-
     @GET("wx/collect/list")
     fun getCollectCommodity(@Query("type") id: Int = 0, @Query("page") page: Int, @Query("size") size: Int): Single<RootNode<CollectionDTO<FavoriteCommodity>>>
 

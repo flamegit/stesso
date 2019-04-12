@@ -26,16 +26,9 @@ class SettingActivity : BaseActivity() {
         row3_text.text = user?.getGender()
         row4_text.text = user?.mobile?.replaceRange(1,4,"*")
 
-
         row8.setOnClickListener {
             openActivity(SuggestionActivity::class.java)
         }
-
-        row6.setOnClickListener {
-            openActivity(ModifyPasswordActivity::class.java)
-        }
-
-
 
         logout.setOnClickListener { Account.logout() }
     }
