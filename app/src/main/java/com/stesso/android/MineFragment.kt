@@ -36,7 +36,7 @@ class MineFragment : BaseFragment() {
             time_view.text = Account.user?.addTime
             group.visibility = View.INVISIBLE
 
-            loadData(currIndex)
+            loadData(if(currIndex==0) 1 else currIndex)
 
             info_section.setOnClickListener {
                 setIndicatorView(3)

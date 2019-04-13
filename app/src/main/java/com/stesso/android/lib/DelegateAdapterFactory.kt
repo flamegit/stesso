@@ -45,6 +45,15 @@ const val FAVORITE_NEWS = 18
 const val FAVORITE_COMMODITY = 19
 
 const val ORDER_INFO = 20
+const val ORDER_PRICE = 21
+
+const val ORDER_ADDRESS = 22
+const val ORDER_GOODS = 23
+
+
+
+
+
 
 
 class DelegateAdapterFactory {
@@ -134,7 +143,7 @@ class DelegateAdapterFactory {
             SETTLEMENT_PAY -> object : BaseDelegateAdapter(R.layout.viewholder_pay_method) {
 
             }
-            SETTLEMENT_ITEM -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_item) {
+            SETTLEMENT_ITEM, ORDER_GOODS -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_item) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is CommodityDetail) {
@@ -279,6 +288,30 @@ class DelegateAdapterFactory {
                     }
                 }
             }
+            ORDER_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_address){
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if(data is OrderInfo){
+                        holder.get<TextView>(R.id.name_view).text = "收货人：${data.consignee}"
+                        holder.get<TextView>(R.id.tel_view).text = data.mobile
+                        holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.address}"
+                    }
+                }
+            }
+
+//            ORDER_GOODS -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_item) {
+//                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+//                    super.onBindViewHolder(holder, position, data)
+//                    if (data is GoodsInfo) {
+//                        holder.get<TextView>(R.id.name_view).text = data.goodsName
+//                        Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
+//                        holder.get<TextView>(R.id.info_view).text = "${data.number}件"
+//                        holder.get<TextView>(R.id.price_view).text = "￥：${data.price}"
+//                    }
+//                }
+//            }
+
+
 
 
             else -> {
