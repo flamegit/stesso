@@ -81,6 +81,7 @@ class CommodityDetailActivity : BaseActivity() {
                 toast("请选择尺码")
                 return@setOnClickListener
             }
+            num = quantity_view.quantity
             val productId = info?.getProductId(choseValues?.reduce { acc, s -> "$acc$s" })
             productId?.let {
                 val body = JSONObject(mapOf(Pair("goodsId", goodId), Pair("productId", it), Pair("number", num)))

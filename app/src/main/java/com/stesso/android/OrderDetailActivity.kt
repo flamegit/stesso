@@ -11,6 +11,10 @@ class OrderDetailActivity : PayActivity() {
         setContentView(R.layout.activity_order_detail)
         val orderId = intent.getIntExtra(ORDER_ID, 0)
 
+        doHttpRequest(apiService.getOrderDetail(orderId)){
+
+        }
+
         pay_view.setOnClickListener {
             val dialog = PaymentFragment()
             dialog.setActionCallback { _, payTye ->

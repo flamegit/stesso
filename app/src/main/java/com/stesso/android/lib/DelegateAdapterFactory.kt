@@ -40,8 +40,11 @@ const val SETTLEMENT_PAY = 14
 const val SETTLEMENT_INFO = 15
 const val SETTLEMENT_ITEM = 16
 const val ORDER_LIST = 17
+
 const val FAVORITE_NEWS = 18
 const val FAVORITE_COMMODITY = 19
+
+const val ORDER_INFO = 20
 
 
 class DelegateAdapterFactory {
@@ -106,7 +109,7 @@ class DelegateAdapterFactory {
             ORDER_LIST -> object : BaseDelegateAdapter(R.layout.order_item) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
-                    if (data is OrderList.OrderInfo) {
+                    if (data is OrderList.OrderItem) {
                         holder.get<TextView>(R.id.name_view).text = data.goodsList[0].goodsName
                         holder.get<TextView>(R.id.state_view).text = data.orderStatusText
                         holder.get<TextView>(R.id.price_view).text = "总计：${data.actualPrice}"
@@ -127,6 +130,7 @@ class DelegateAdapterFactory {
                     }
                 }
             }
+
             SETTLEMENT_PAY -> object : BaseDelegateAdapter(R.layout.viewholder_pay_method) {
 
             }
@@ -264,6 +268,19 @@ class DelegateAdapterFactory {
                     }
                 }
             }
+
+            ORDER_INFO -> object : BaseDelegateAdapter(R.layout.viewholder_order_info) {
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is OrderInfo) {
+                        holder.get<TextView>(R.id.order_date).text = data.payTime
+                        holder.get<TextView>(R.id.order_no).text = data.orderSn
+                        holder.get<TextView>(R.id.pay_type).text = data.payType
+                    }
+                }
+            }
+
+
             else -> {
                 DefaultDelegateAdapter()
             }

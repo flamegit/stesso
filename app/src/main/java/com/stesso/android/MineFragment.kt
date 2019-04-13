@@ -19,7 +19,7 @@ class MineFragment : BaseFragment() {
     private val adapter = MultiTypeAdapter()
     override fun getLayoutId() = R.layout.fragment_mine
 
-    private var currIndex = 1
+    private var currIndex = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getFragmentComponent().inject(this)
