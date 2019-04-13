@@ -72,6 +72,7 @@ class DelegateAdapterFactory {
             HEADER -> HeaderDelegateAdapter()
             FOOTER -> FooterDelegateAdapter()
             TYPE1 -> HeaderDelegateAdapter()
+            //TODO 暂停
             BANNER_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_top_vedio) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
@@ -310,8 +311,6 @@ class DelegateAdapterFactory {
 //                    }
 //                }
 //            }
-
-
 
 
             else -> {

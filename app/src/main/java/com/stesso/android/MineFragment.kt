@@ -1,9 +1,7 @@
 package com.stesso.android
 
-import android.animation.ValueAnimator
 import android.os.Bundle
 import android.support.v4.view.ViewCompat
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.stesso.android.account.LoginActivity
 import com.stesso.android.account.SettingActivity
@@ -36,7 +34,7 @@ class MineFragment : BaseFragment() {
             time_view.text = Account.user?.addTime
             group.visibility = View.INVISIBLE
 
-            loadData(if(currIndex==0) 1 else currIndex)
+            loadData(if (currIndex == 0) 1 else currIndex)
 
             info_section.setOnClickListener {
                 setIndicatorView(3)
@@ -48,7 +46,7 @@ class MineFragment : BaseFragment() {
                 loadData(2)
             }
 
-            order_icon.setOnClickListener {
+            order_section.setOnClickListener {
                 setIndicatorView(1)
                 loadData(1)
             }
@@ -60,12 +58,12 @@ class MineFragment : BaseFragment() {
         }
     }
 
-    private fun setIndicatorView(index: Int){
+    private fun setIndicatorView(index: Int) {
         if (index == currIndex) {
             return
         }
-        ViewCompat.animate(indicator_view).translationX(300f).start()
-
+        val w = 1.0F * indicator_view.width
+        ViewCompat.animate(indicator_view).translationX((index - 1) * w).start()
 
     }
 
@@ -108,7 +106,7 @@ class MineFragment : BaseFragment() {
             context?.checkLogin { context?.openActivity(ShopCartActivity::class.java) }
         }
         recycler_view.adapter = adapter
-        recycler_view.layoutManager = LinearLayoutManager(context)
+        //recycler_view.layoutManager = LinearLayoutManager(context)
     }
 
 }
