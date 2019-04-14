@@ -31,10 +31,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun init() {
-        bottom_navigation_bar.addItem(BottomNavigationItem(R.drawable.home, "首页").setActiveColor(Color.RED))
+        bottom_navigation_bar.addItem(BottomNavigationItem(R.drawable.home, "首页"))
                 .addItem(BottomNavigationItem(R.drawable.info_icon, "NOW"))
                 .addItem(BottomNavigationItem(R.drawable.search, "搜索"))
-                .addItem(BottomNavigationItem(R.drawable.navigation_empty_icon, "我的"))
+                .addItem(BottomNavigationItem(R.drawable.account_gray, "我的"))
                 .setMode(BottomNavigationBar.MODE_FIXED)
                 .initialise()
 

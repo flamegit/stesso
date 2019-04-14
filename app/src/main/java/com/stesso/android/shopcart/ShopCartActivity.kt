@@ -73,7 +73,7 @@ class ShopCartActivity : BaseActivity() {
         doHttpRequest(apiService.getCartItems()) {
             shopCart = it
             if (it?.cartList?.isEmpty() == true) {
-                group.visibility = View.INVISIBLE
+                group.visibility = View.VISIBLE
             } else {
                 settlement_view.visibility = View.VISIBLE
                 group.visibility = View.INVISIBLE

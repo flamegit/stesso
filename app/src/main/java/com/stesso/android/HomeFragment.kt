@@ -26,6 +26,9 @@ class HomeFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
+        message_view.setOnClickListener{
+            context.openActivity(MessageActivity::class.java)
+        }
 //        title_view.setLeftAction {
 //            context?.checkLogin { context?.openActivity(SettingActivity::class.java) }
 //        }
@@ -35,7 +38,7 @@ class HomeFragment : BaseFragment() {
 
         doHttpRequest(apiService.getHomeContent()) {
             adapter.addItem(VideoItem(it?.videoFaceImage, it?.video), BANNER_TYPE)
-            var hotList = mutableListOf<Commodity>()
+            val hotList = mutableListOf<Commodity>()
             it?.goodsList?.forEach { commodity ->
                 when (commodity.stype) {
                     2, 3 -> {
@@ -55,7 +58,6 @@ class HomeFragment : BaseFragment() {
                 }
 
             }
-
         }
     }
 }

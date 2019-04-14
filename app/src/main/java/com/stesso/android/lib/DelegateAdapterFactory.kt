@@ -14,13 +14,12 @@ import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
 import com.stesso.android.*
 import com.stesso.android.address.AddAddressActivity
+import com.stesso.android.address.AddressListActivity
 import com.stesso.android.datasource.net.ApiService
 import com.stesso.android.model.*
 import com.stesso.android.utils.dip2px
-import com.stesso.android.utils.doHttpRequest
 import com.stesso.android.utils.openActivity
 import com.stesso.android.widget.QuantityView
-import org.json.JSONObject
 import javax.inject.Inject
 
 const val HEADER = 1
@@ -40,19 +39,13 @@ const val SETTLEMENT_PAY = 14
 const val SETTLEMENT_INFO = 15
 const val SETTLEMENT_ITEM = 16
 const val ORDER_LIST = 17
-
 const val FAVORITE_NEWS = 18
 const val FAVORITE_COMMODITY = 19
-
 const val ORDER_INFO = 20
 const val ORDER_PRICE = 21
-
 const val ORDER_ADDRESS = 22
 const val ORDER_GOODS = 23
-
-
-
-
+const val ORDER_STATUS = 24
 
 
 
@@ -80,6 +73,16 @@ class DelegateAdapterFactory {
                         val jzvdStd = holder.get<JzvdStd>(R.id.video_player)
                         jzvdStd.setUp(data.url, "", Jzvd.SCREEN_NORMAL)
                         Glide.with(holder.itemView).load(data.cover).into(jzvdStd.thumbImageView)
+                    }
+                }
+            }
+            EMPTY_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_empty_address){
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if(data is EmptyAddress){
+                        holder.itemView.setOnClickListener{ v ->
+                            v.context.openActivity(AddressListActivity::class.java)
+                        }
                     }
                 }
             }
@@ -114,8 +117,6 @@ class DelegateAdapterFactory {
                     }
                 }
             }
-
-
             ORDER_LIST -> object : BaseDelegateAdapter(R.layout.order_item) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
@@ -135,14 +136,34 @@ class DelegateAdapterFactory {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is ShopcartDTO) {
-                        holder.get<TextView>(R.id.total_price).text = "￥：${data.getTotalPrice()}"
-                        holder.get<TextView>(R.id.order_price).text = "￥：${data.getTotalPrice()}"
+                        holder.get<TextView>(R.id.total_price).text = "￥:${data.getTotalPrice()}"
+                        holder.get<TextView>(R.id.order_price).text = "￥:${data.getTotalPrice()}"
                     }
                 }
             }
-
             SETTLEMENT_PAY -> object : BaseDelegateAdapter(R.layout.viewholder_pay_method) {
-
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    val alipayView = holder.get<CheckBox>(R.id.alipay_view)
+                    val wechatPayView = holder.get<CheckBox>(R.id.wechat_pay)
+                    alipayView.isEnabled = false
+                    alipayView.setOnCheckedChangeListener { button, isChecked ->
+                        if (isChecked and button.isPressed) {
+                            onItemClick(position, data, 0)
+                            button.isEnabled = false
+                            wechatPayView.isEnabled = true
+                            wechatPayView.isChecked = false
+                        }
+                    }
+                    wechatPayView.setOnCheckedChangeListener { button, isChecked ->
+                        if (isChecked and button.isPressed) {
+                            onItemClick(position, data, 1)
+                            button.isEnabled = false
+                            alipayView.isEnabled = true
+                            alipayView.isChecked = false
+                        }
+                    }
+                }
             }
             SETTLEMENT_ITEM, ORDER_GOODS -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_item) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
@@ -150,7 +171,7 @@ class DelegateAdapterFactory {
                     if (data is CommodityDetail) {
                         holder.get<TextView>(R.id.name_view).text = data.goodsName
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
-                        holder.get<TextView>(R.id.info_view).text = "${data.getInfo()} ${data.number}件"
+                        holder.get<TextView>(R.id.info_view).text = "${data.getInfo()}  ${data.number}件"
                         holder.get<TextView>(R.id.price_view).text = "￥：${data.price}"
                     }
                 }
@@ -196,7 +217,7 @@ class DelegateAdapterFactory {
                                 group.addView(itemView, params)
                             }
                         }
-                        group.scrollBy(120, 0)
+                        //group.scrollBy(120, 0)
                     }
                 }
             }
@@ -218,18 +239,32 @@ class DelegateAdapterFactory {
                 }
             }
             SETTLEMENT_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_address) {
-                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
-                    super.onBindViewHolder(holder, position, data)
-                    if (data is Address) {
-                        holder.get<TextView>(R.id.name_view).text = "收货人：${data.name}"
-                        holder.get<TextView>(R.id.tel_view).text = data.mobile
-                        holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.detailedAddress}"
-                        holder.itemView.setOnClickListener {
-                            onItemClick(position, data, 0)
+                    override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                        super.onBindViewHolder(holder, position, data)
+                        if (data is Address) {
+                            holder.get<TextView>(R.id.name_view).text = "收货人：${data.name}"
+                            holder.get<TextView>(R.id.tel_view).text = data.mobile
+                            holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.detailedAddress}"
+                            holder.itemView.setOnClickListener {
+                                onItemClick(position, data, SETTLEMENT_ADDRESS)
+                            }
                         }
                     }
-                }
             }
+
+//            ORDER_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_address) {
+//                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+//                    super.onBindViewHolder(holder, position, data)
+//                    if (data is Address) {
+//                        holder.get<TextView>(R.id.name_view).text = "收货人：${data.name}"
+//                        holder.get<TextView>(R.id.tel_view).text = data.mobile
+//                        holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.detailedAddress}"
+//                        holder.itemView.setOnClickListener {
+//                            onItemClick(position, data, SETTLEMENT_ADDRESS)
+//                        }
+//                    }
+//                }
+//            }
 
             RECOMMEND_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_recommend_commodity) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
@@ -266,15 +301,15 @@ class DelegateAdapterFactory {
                     super.onBindViewHolder(holder, position, data)
                     if (data is News) {
                         holder.get<TextView>(R.id.title_view).text = data.title
+                        holder.get<TextView>(R.id.time_view).text = data.addTime
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.cover_view))
                         holder.itemView.setOnClickListener { v ->
                             v.context.openActivity(NewsDetailActivity::class.java, NEWS_ID, data.id)
                         }
-                        holder.get<View>(R.id.favorite_view).setOnClickListener {
-                            val body = JSONObject(mapOf(Pair("type", 1), Pair("valueId", data.id)))
-                            doHttpRequest(apiService.addOrDelete(body)) {}
-                        }
-
+//                        holder.get<View>(R.id.favorite_view).setOnClickListener {
+//                            val body = JSONObject(mapOf(Pair("type", 1), Pair("valueId", data.id)))
+//                            doHttpRequest(apiService.addOrDelete(body)) {}
+//                        }
                     }
                 }
             }
@@ -289,13 +324,23 @@ class DelegateAdapterFactory {
                     }
                 }
             }
-            ORDER_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_address){
+            ORDER_PRICE -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_info) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
-                    if(data is OrderInfo){
-                        holder.get<TextView>(R.id.name_view).text = "收货人：${data.consignee}"
+                    if (data is OrderInfo) {
+                        holder.get<TextView>(R.id.total_price).text = "￥:${data.actualPrice}"
+                        holder.get<TextView>(R.id.order_price).text = "￥:${data.goodsPrice}"
+                    }
+                }
+            }
+
+            ORDER_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_order_address) {
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is OrderInfo) {
+                        holder.get<TextView>(R.id.name_view).text = "${data.consignee}"
                         holder.get<TextView>(R.id.tel_view).text = data.mobile
-                        holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.address}"
+                        holder.get<TextView>(R.id.address_detail).text = "${data.address}"
                     }
                 }
             }

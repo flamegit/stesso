@@ -59,7 +59,6 @@ class CommodityDetailActivity : BaseActivity() {
 
         favorite_view.setOnClickListener {
             val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", info?.info?.id)))
-
             doHttpRequest(apiService.addOrDelete(body)) {
 
             }

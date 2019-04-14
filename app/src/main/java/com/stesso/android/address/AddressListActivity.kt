@@ -40,7 +40,5 @@ class AddressListActivity : BaseActivity() {
         configTitleView(title_view) {
             openActivity(AddAddressActivity::class.java)
         }
-
-        //doHttpRequest()
     }
 }

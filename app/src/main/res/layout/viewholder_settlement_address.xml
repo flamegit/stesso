@@ -4,12 +4,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/padding_16">
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/top_divider"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/space"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/padding_4"/>
 
     <TextView
+        android:paddingTop="@dimen/padding_16"
+        android:layout_marginStart="@dimen/padding_16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_divider"
         android:id="@+id/name_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,8 +27,9 @@
         android:textSize="@dimen/txt_14" />
 
     <TextView
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:paddingRight="@dimen/padding_4"
+        app:layout_constraintEnd_toStartOf="@+id/arrow_view"
+        app:layout_constraintBaseline_toBaselineOf="@+id/name_view"
         android:id="@+id/tel_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,21 +37,35 @@
         android:textSize="@dimen/txt_13" />
 
     <TextView
-        app:layout_constraintStart_toStartOf="parent"
+        android:paddingRight="@dimen/padding_4"
+        app:layout_constraintEnd_toStartOf="@+id/arrow_view"
+        android:paddingBottom="@dimen/padding_16"
+        app:layout_constraintStart_toStartOf="@+id/name_view"
         app:layout_constraintTop_toBottomOf="@+id/name_view"
         android:id="@+id/address_detail"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_8"
+        android:layout_marginTop="@dimen/padding_10"
         android:textColor="@color/font_4A"
         android:textSize="@dimen/txt_13"
         />
 
     <ImageView
-        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/arrow_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/padding_16"
+        android:src="@drawable/arrow_right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/arrow_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        app:layout_constraintTop_toBottomOf="@+id/address_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/space"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/padding_4"/>
+
 </android.support.constraint.ConstraintLayout>

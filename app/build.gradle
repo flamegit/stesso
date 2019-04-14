@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -43,7 +42,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -68,7 +66,6 @@ dependencies {
     implementation 'com.android.support:design:26.0.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
-
     implementation 'com.squareup.retrofit2:retrofit:' + rootProject.retrofitVersion
     implementation 'com.squareup.retrofit2:converter-gson:' + rootProject.retrofitVersion
     implementation 'com.squareup.retrofit2:adapter-rxjava2:' + rootProject.retrofitVersion
@@ -78,7 +75,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     kapt 'com.github.bumptech.glide:compiler:4.6.1'
-
     implementation 'cn.jzvd:jiaozivideoplayer:7.0_preview'
     implementation 'cn.jiguang.sdk:jpush:3.2.0'  // 此处以JPush 3.2.0 版本为例。
     implementation 'cn.jiguang.sdk:jcore:1.2.7'  // 此处以JCore 1.2.7 版本为例。
@@ -89,7 +85,6 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:2.16"
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
-
     implementation 'com.githang:com-phillipcalvin-iconbutton:1.0.1@aar'
     implementation(name: 'alipaySdk-15.6.0-20190226104053', ext: 'aar') //alipay
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+' //wei xin zhifu

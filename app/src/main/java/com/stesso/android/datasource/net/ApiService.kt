@@ -89,14 +89,14 @@ interface ApiService {
     @POST("wx/feedback/submit")
     fun submitSuggestion(@Body body: SuggestionDTO): Single<RootNode<String>>
 
-
     @GET("wx/order/detail")
-    fun getOrderDetail(@Query("orderId") id:Int): Single<RootNode<OrderDetail>>
+    fun getOrderDetail(@Query("orderId") id: Int): Single<RootNode<OrderDetail>>
 
+    @GET("wx/notifyMsg/list")
+    fun getMsgList(@Query("page") page: Int, @Query("size") size: Int, @Query("msgLastTime") lastTime: String?): Single<RootNode<OrderDetail>>
 
     @POST("wx/user/update")
     fun updateUserInfo(@Body body: SuggestionDTO): Single<RootNode<String>>
-
 
     @GET("wx/collect/list")
     fun getCollectCommodity(@Query("type") id: Int = 0, @Query("page") page: Int, @Query("size") size: Int): Single<RootNode<CollectionDTO<FavoriteCommodity>>>

@@ -36,7 +36,7 @@ class CommodityDetail() : Parcelable {
     fun getInfo(): String {
         if (specifications?.isNotEmpty() == true) {
             return specifications!!.reduce { v1, v2 ->
-                 "$v1 $v2"
+                 "$v1  $v2"
             }
         }
         return ""

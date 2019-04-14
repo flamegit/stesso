@@ -16,6 +16,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"/>
 
+    <!--<View-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--android:background="@color/space"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/title_view"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="200dp"/>-->
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
@@ -25,6 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title_view"
         android:layout_width="0dp"
         android:layout_height="0dp"/>
+
 
     <com.phillipcalvin.iconbutton.IconButton
         app:layout_constraintBottom_toBottomOf="parent"

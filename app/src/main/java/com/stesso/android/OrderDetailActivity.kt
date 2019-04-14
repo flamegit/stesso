@@ -1,10 +1,7 @@
 package com.stesso.android
 
 import android.os.Bundle
-import com.stesso.android.lib.MultiTypeAdapter
-import com.stesso.android.lib.ORDER_ADDRESS
-import com.stesso.android.lib.ORDER_GOODS
-import com.stesso.android.lib.ORDER_INFO
+import com.stesso.android.lib.*
 import kotlinx.android.synthetic.main.activity_order_detail.*
 
 class OrderDetailActivity : PayActivity() {
@@ -23,6 +20,9 @@ class OrderDetailActivity : PayActivity() {
         doHttpRequest(apiService.getOrderDetail(orderId)){
             adapter.addItems(it?.orderGoods, ORDER_GOODS)
             adapter.addItem(it?.orderInfo, ORDER_ADDRESS,true)
+
+            adapter.addItem(it?.orderInfo, ORDER_ADDRESS,true)
+            adapter.addItem(it?.orderInfo, ORDER_PRICE,true)
             adapter.addItem(it?.orderInfo, ORDER_INFO,true)
         }
 

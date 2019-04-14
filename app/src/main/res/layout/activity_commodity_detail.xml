@@ -45,22 +45,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:pageColor="@android:color/darker_gray" />
 
-            <!--<de.hdodenhof.circleimageview.CircleImageView-->
-                <!--android:background="@color/font_blue"-->
-                <!--android:padding="@dimen/padding_4"-->
-                <!--app:layout_constraintStart_toStartOf="parent"-->
-                <!--app:layout_constraintBottom_toBottomOf="@+id/view_pager"-->
-                <!--android:src="@drawable/share"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content" />-->
+            <ImageView
+                android:id="@+id/share_view"
+                android:background="@color/font_blue"
+                android:padding="@dimen/padding_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+                android:src="@drawable/circle_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/favorite_view"
                 android:background="@color/white"
                 android:padding="@dimen/padding_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/view_pager"
-                android:src="@drawable/red_mouth"
+                android:src="@drawable/circle_red_mouth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
