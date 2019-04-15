@@ -48,7 +48,11 @@ object NetManager {
                         request = request.newBuilder().addHeader("token", Account.token
                                 ?: "").build()
                     }
-                    chain.proceed(request)
+                    val response = chain.proceed(request)
+                    if (response.code() == 401) {
+                        Account.logout()
+                    }
+                    response
                 }
                 .build()
     }

@@ -74,6 +74,8 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
         }
     }
 
+
+
     fun addHeader(item: String?, type: Int = HEADER) {
         item?.let {
             mContent.add(0, CommonAdapterItem(it, type))

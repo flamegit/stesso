@@ -22,6 +22,10 @@ import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.json.JSONStringer
+import java.text.SimpleDateFormat
+import java.text.ParseException
+import java.util.*
+
 
 /**
  * Created by flame on 2018/2/17.
@@ -166,6 +170,14 @@ fun Context.get(key: String): String? {
 fun dip2px(dpValue: Int): Int {
     val scale = App.instance().resources.displayMetrics.density
     return (dpValue * scale + 0.5f).toInt()
+}
+
+@Throws(ParseException::class)
+fun parseTime(strDate: String): Date {
+
+    val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault())
+
+    return sdf.parse(strDate)
 }
 
 

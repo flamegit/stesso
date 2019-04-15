@@ -44,7 +44,7 @@ class SettlementActivity : PayActivity() {
                 //adapter.addTopItem(EmptyAddress(), EMPTY_ADDRESS)
             } else {
                 address = it?.get(0)
-                adapter.changeItem(0,address, SETTLEMENT_ADDRESS)
+                adapter.changeItem(0, address, SETTLEMENT_ADDRESS)
             }
         }
         settlement_view.setOnClickListener {
@@ -53,14 +53,16 @@ class SettlementActivity : PayActivity() {
                 return@setOnClickListener
             }
             val body = mapOf(Pair("addressId", address?.id), Pair("cartId", shopCart?.getIdList()), Pair("message", "dd"))
-            doHttpRequest(apiService.submitOrder(body)) {
-                Log.d("STESSO",it)
-                val jsonObject = JSONObject(it)
-                val orderId = jsonObject.optInt("orderId")
-                if (payType == 0) alipay(orderId) else wechatPay(orderId)
+            doHttpRequest(apiService.submitOrder(body)) { data ->
+
+                data?.orderId?.let {
+                    if (payType == 0) alipay(it) else wechatPay(it)
+                }
+
             }
         }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == SELECT_ADDRESS) {

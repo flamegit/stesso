@@ -23,6 +23,8 @@
         tools:text="dddfsd" />
 
     <TextView
+        android:drawableLeft="@drawable/time"
+        android:drawablePadding="@dimen/padding_4"
         android:id="@+id/time_view"
         android:paddingTop="@dimen/padding_10"
         android:layout_width="wrap_content"

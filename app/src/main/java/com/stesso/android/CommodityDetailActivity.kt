@@ -8,7 +8,9 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.stesso.android.account.LoginActivity
 import com.stesso.android.lib.CommonPagerAdapter
+import com.stesso.android.model.Account
 import com.stesso.android.model.CommodityInfoDTO
 import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.checkLogin
@@ -58,9 +60,12 @@ class CommodityDetailActivity : BaseActivity() {
         })
 
         favorite_view.setOnClickListener {
-            val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", info?.info?.id)))
-            doHttpRequest(apiService.addOrDelete(body)) {
 
+            checkLogin {
+                val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", info?.info?.id)))
+                doHttpRequest(apiService.addOrDelete(body)) {
+                    openActivity(ShopCartActivity::class.java)
+                }
             }
         }
 
@@ -72,6 +77,9 @@ class CommodityDetailActivity : BaseActivity() {
         }
         //TODO
         add_cart_view.setOnClickListener {
+            if (!Account.isLogin()) {
+                openActivity(LoginActivity::class.java)
+            }
             if (choseValues?.get(0) == null) {
                 toast("请选择颜色")
                 return@setOnClickListener
@@ -84,7 +92,9 @@ class CommodityDetailActivity : BaseActivity() {
             val productId = info?.getProductId(choseValues?.reduce { acc, s -> "$acc$s" })
             productId?.let {
                 val body = JSONObject(mapOf(Pair("goodsId", goodId), Pair("productId", it), Pair("number", num)))
-                doHttpRequest(apiService.addCartItem(body)) {}
+                doHttpRequest(apiService.addCartItem(body)) {
+                    openActivity(ShopCartActivity::class.java)
+                }
             }
         }
     }

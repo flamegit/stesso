@@ -1,7 +1,6 @@
 package com.stesso.android.datasource.net
 
 import com.stesso.android.model.*
-import io.reactivex.Completable
 import io.reactivex.Single
 import org.json.JSONObject
 import retrofit2.http.Body
@@ -13,6 +12,9 @@ interface ApiService {
 
     @POST("app/register")
     fun register(@Body body: JSONObject): Single<RootNode<String>>
+
+    @POST("wx/auth/reset")
+    fun resetPassword(@Body body: JSONObject): Single<RootNode<String>>
 
     @POST("app/login")
     fun login(@Body body: JSONObject): Single<RootNode<UserDTO>>
@@ -70,7 +72,7 @@ interface ApiService {
 
     @POST("wx/order/submit")
     @JvmSuppressWildcards
-    fun submitOrder(@Body body: Map<String, Any?>): Single<RootNode<String>>
+    fun submitOrder(@Body body: Map<String, Any?>): Single<RootNode<OrderIdDTO>>
 
     @JvmSuppressWildcards
     @POST("wx/order/prepay")
@@ -83,8 +85,8 @@ interface ApiService {
     @POST("wx/cart/checked")
     fun selectCommodity(@Body body: JSONObject): Single<RootNode<String>>
 
-    @GET("order/cancelOrder")
-    fun cancelOrder(@Query("orderId") id: Int): Single<RootNode<String>>
+    @POST("wx/order/cancel")
+    fun cancelOrder(@Body body: JSONObject): Single<RootNode<String>>
 
     @POST("wx/feedback/submit")
     fun submitSuggestion(@Body body: SuggestionDTO): Single<RootNode<String>>

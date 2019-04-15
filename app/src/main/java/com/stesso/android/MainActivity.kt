@@ -2,6 +2,7 @@ package com.stesso.android
 
 import android.graphics.Color
 import android.os.Bundle
+import cn.jzvd.Jzvd
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import kotlinx.android.synthetic.main.activity_main.bottom_navigation_bar
@@ -80,8 +81,8 @@ class MainActivity : BaseActivity() {
         } else {
             supportFragmentManager
                     .beginTransaction()
-                    .show(curr)
-                    //.attach(curr)
+                    //.show(curr)
+                    .attach(curr)
                     .commit()
         }
         if (mPrePosition != -1) {
@@ -89,12 +90,19 @@ class MainActivity : BaseActivity() {
             if (pre != null) {
                 supportFragmentManager
                         .beginTransaction()
-                        .hide(pre)
-                        //.detach(pre)
+                        //.hide(pre)
+                        .detach(pre)
                         .commit()
             }
         }
         mPrePosition = mCurrPosition
+    }
+
+    override fun onBackPressed() {
+        if (Jzvd.backPress()) {
+            return
+        }
+        super.onBackPressed()
     }
 
 }

@@ -25,6 +25,7 @@ class MineFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
+        currIndex = 0
         fillView()
     }
 

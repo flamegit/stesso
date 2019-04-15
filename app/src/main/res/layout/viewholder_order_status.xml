@@ -11,6 +11,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/cancel_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/stroke_4a_bg"
@@ -23,6 +24,7 @@
             android:textSize="@dimen/txt_13" />
 
         <TextView
+            android:id="@+id/pay_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_32"

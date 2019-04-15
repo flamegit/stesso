@@ -19,6 +19,7 @@ import com.stesso.android.datasource.net.ApiService
 import com.stesso.android.model.*
 import com.stesso.android.utils.dip2px
 import com.stesso.android.utils.openActivity
+import com.stesso.android.utils.parseTime
 import com.stesso.android.widget.QuantityView
 import javax.inject.Inject
 
@@ -301,7 +302,7 @@ class DelegateAdapterFactory {
                     super.onBindViewHolder(holder, position, data)
                     if (data is News) {
                         holder.get<TextView>(R.id.title_view).text = data.title
-                        holder.get<TextView>(R.id.time_view).text = data.addTime
+                        holder.get<TextView>(R.id.time_view).text = parseTime(data.addTime).toString()
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.cover_view))
                         holder.itemView.setOnClickListener { v ->
                             v.context.openActivity(NewsDetailActivity::class.java, NEWS_ID, data.id)
@@ -341,6 +342,23 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.name_view).text = "${data.consignee}"
                         holder.get<TextView>(R.id.tel_view).text = data.mobile
                         holder.get<TextView>(R.id.address_detail).text = "${data.address}"
+                    }
+                }
+            }
+
+            ORDER_STATUS -> object : BaseDelegateAdapter(R.layout.viewholder_order_status) {
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is OrderInfo) {
+
+                        holder.get<View>(R.id.cancel_order).setOnClickListener{
+                            onItemClick(position,data,1)
+                        }
+
+                        holder.get<View>(R.id.pay_order).setOnClickListener{
+                            onItemClick(position,data,2)
+                        }
+
                     }
                 }
             }

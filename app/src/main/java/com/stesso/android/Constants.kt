@@ -12,6 +12,9 @@ const val KEY_ADDRESS = "key_address"
 
 const val ORDER_ID = "order_id"
 
+const val TYPE = "type"
+
+
 
 
 

@@ -3,9 +3,12 @@ package com.stesso.android.account
 import android.os.Bundle
 import com.stesso.android.BaseActivity
 import com.stesso.android.R
+import com.stesso.android.TYPE
+import com.stesso.android.model.RootNode
 import com.stesso.android.utils.checkLoginInfo
 import com.stesso.android.utils.toast
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_register.*
 import org.json.JSONObject
@@ -17,6 +20,7 @@ class RegisterActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         getActivityComponent().inject(this)
         setContentView(R.layout.activity_register)
+        val type = intent.getIntExtra(TYPE, 0)
 
         get_verify_code.setOnClickListener {
             val mobile = account_view.text.toString()
@@ -33,11 +37,13 @@ class RegisterActivity : BaseActivity() {
                         if (it > 60) {
                             get_verify_code.isEnabled = true
                         } else {
-                            get_verify_code.text ="等待 ${60-it} s"
+                            get_verify_code.text = "等待 ${60 - it} s"
                         }
                     }
 
         }
+
+        register_view.text = if (type == 0) "注册" else "重置密码"
 
         register_view.setOnClickListener {
             val mobile = account_view.text.toString()
@@ -45,8 +51,10 @@ class RegisterActivity : BaseActivity() {
             val password = password_view.text.toString()
             if (checkLoginInfo(mobile, password, verifyCode)) {
                 val body = JSONObject(mapOf(Pair("mobile", mobile), Pair("password", password), Pair("vcode", verifyCode)))
-                doHttpRequest(apiService.register(body)) {
-                    toast("注册成功")
+                val single = if (type == 0) apiService.register(body) else apiService.resetPassword(body)
+
+                doHttpRequest(single) {
+                    toast(if (type == 0) "注册成功" else "重置密码成功")
                     onBackPressed()
                 }
             }

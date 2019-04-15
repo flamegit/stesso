@@ -3,6 +3,7 @@ package com.stesso.android
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import cn.jzvd.JZMediaInterface
 import com.stesso.android.account.SettingActivity
 import com.stesso.android.lib.*
 import com.stesso.android.model.Commodity
@@ -11,6 +12,9 @@ import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.checkLogin
 import com.stesso.android.utils.openActivity
 import kotlinx.android.synthetic.main.fragment_home.*
+import cn.jzvd.Jzvd
+import cn.jzvd.JzvdStd
+
 
 class HomeFragment : BaseFragment() {
 
@@ -60,4 +64,13 @@ class HomeFragment : BaseFragment() {
             }
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        JzvdStd.goOnPlayOnPause()
+    }
+
+
+
+
 }

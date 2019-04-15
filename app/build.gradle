@@ -86,6 +86,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
     implementation 'com.githang:com-phillipcalvin-iconbutton:1.0.1@aar'
+    implementation 'net.danlew:android.joda:2.9.5'
     implementation(name: 'alipaySdk-15.6.0-20190226104053', ext: 'aar') //alipay
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+' //wei xin zhifu
 }

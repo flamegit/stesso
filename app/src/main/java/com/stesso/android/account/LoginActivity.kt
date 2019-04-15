@@ -3,6 +3,7 @@ package com.stesso.android.account
 import android.os.Bundle
 import com.stesso.android.BaseActivity
 import com.stesso.android.R
+import com.stesso.android.TYPE
 import com.stesso.android.model.Account
 import com.stesso.android.utils.checkLoginInfo
 import com.stesso.android.utils.openActivity
@@ -22,7 +23,7 @@ class LoginActivity : BaseActivity() {
         }
 
         forget_view.setOnClickListener {
-            openActivity(RegisterActivity::class.java)
+            openActivity(RegisterActivity::class.java, TYPE,1)
         }
 
         cancel_view.setOnClickListener {
