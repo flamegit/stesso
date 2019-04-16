@@ -47,8 +47,7 @@
 
             <ImageView
                 android:id="@+id/share_view"
-                android:background="@color/font_blue"
-                android:padding="@dimen/padding_4"
+                android:layout_margin="@dimen/padding_16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/view_pager"
                 android:src="@drawable/circle_share"
@@ -58,7 +57,7 @@
             <ImageView
                 android:id="@+id/favorite_view"
                 android:background="@color/white"
-                android:padding="@dimen/padding_16"
+                android:layout_margin="@dimen/padding_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@+id/view_pager"
                 android:src="@drawable/circle_red_mouth"
