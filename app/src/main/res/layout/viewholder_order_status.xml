@@ -3,6 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="@dimen/padding_16">
 
     <LinearLayout
@@ -38,6 +39,26 @@
             android:textSize="@dimen/txt_13" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/state_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/stroke_4a_bg"
+        android:paddingLeft="@dimen/padding_12"
+        android:paddingTop="@dimen/padding_4"
+        android:paddingRight="@dimen/padding_12"
+        android:paddingBottom="@dimen/padding_4"
+        android:text="取消订单"
+        android:textColor="@color/font_4A"
+        android:textSize="@dimen/txt_13" />
+
+    <TextView
+        android:layout_gravity="right"
+        android:text="dd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 
 
 </LinearLayout>

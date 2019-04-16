@@ -10,6 +10,7 @@ import android.view.View
 import com.stesso.android.datasource.net.ApiService
 import com.stesso.android.di.component.ActivityComponent
 import com.stesso.android.di.module.ActivityModule
+import com.stesso.android.model.Account
 import com.stesso.android.model.RootNode
 import com.stesso.android.utils.applySingleSchedulers
 import com.stesso.android.utils.createProgressDialog
@@ -83,6 +84,9 @@ open class BaseActivity : AppCompatActivity() {
                 .subscribe({ rootNode ->
                     progressDialog.dismiss()
                     if (rootNode.errno != 0) {
+                        if(rootNode.errno ==501){
+                            Account.logout()
+                        }
                         toast(rootNode.errmsg ?: "")
                     } else {
                         onSuccess(rootNode.data)

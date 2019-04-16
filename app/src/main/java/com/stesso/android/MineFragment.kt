@@ -75,7 +75,7 @@ class MineFragment : BaseFragment() {
         currIndex = index
         when (index) {
             1 -> {
-                doHttpRequest(apiService.getOrderList(1)) {
+                doHttpRequest(apiService.getOrderList(0)) {
                     adapter.addItems(it?.data, ORDER_LIST)
                 }
 

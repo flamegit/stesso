@@ -350,6 +350,24 @@ class DelegateAdapterFactory {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is OrderInfo) {
+                        when(data.orderStatus){
+                            101 -> {
+
+                            }
+                            //已付款
+                            201 -> {
+
+                            }
+                            //售后
+                            501 ->{
+
+                            }
+                            //售后完成
+                            502 ->{
+
+                            }
+
+                        }
 
                         holder.get<View>(R.id.cancel_order).setOnClickListener{
                             onItemClick(position,data,1)
