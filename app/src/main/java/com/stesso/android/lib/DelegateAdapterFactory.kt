@@ -47,6 +47,8 @@ const val ORDER_PRICE = 21
 const val ORDER_ADDRESS = 22
 const val ORDER_GOODS = 23
 const val ORDER_STATUS = 24
+const val EXPRESS_INFO = 25
+
 
 
 
@@ -350,13 +352,17 @@ class DelegateAdapterFactory {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is OrderInfo) {
+                        val actionView = holder.get<TextView>(R.id.action_view)
                         when(data.orderStatus){
                             101 -> {
 
                             }
                             //已付款
                             201 -> {
-
+                               actionView.text ="等待发货"
+                            }
+                            301 ->{
+                                actionView.text ="运输中"
                             }
                             //售后
                             501 ->{
@@ -369,7 +375,7 @@ class DelegateAdapterFactory {
 
                         }
 
-                        holder.get<View>(R.id.cancel_order).setOnClickListener{
+                        holder.get<View>(R.id.action_view).setOnClickListener{
                             onItemClick(position,data,1)
                         }
 
