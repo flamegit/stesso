@@ -153,6 +153,9 @@ fun Context.getWindowWidth(): Int {
 
 
 const val TOKEN = "token"
+const val USER_INFO = "user_info"
+
+
 const val CONFIG = "config"
 
 fun Context.put(key: String, value: String?) {

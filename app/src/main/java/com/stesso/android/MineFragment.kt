@@ -25,12 +25,17 @@ class MineFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        currIndex = 0
+        if(reload){
+            currIndex = 0
+            reload = false
+        }
         fillView()
     }
 
     fun fillView() {
         if (Account.isLogin()) {
+            time_view.visibility = View.VISIBLE
+            name_view.visibility = View.VISIBLE
             name_view.text = Account.user?.username
             time_view.text = Account.user?.addTime
             group.visibility = View.INVISIBLE
@@ -108,6 +113,10 @@ class MineFragment : BaseFragment() {
         }
         recycler_view.adapter = adapter
         //recycler_view.layoutManager = LinearLayoutManager(context)
+    }
+
+    companion object {
+        var reload = false
     }
 
 }

@@ -2,6 +2,7 @@ package com.stesso.android.account
 
 import android.os.Bundle
 import com.stesso.android.BaseActivity
+import com.stesso.android.MineFragment
 import com.stesso.android.R
 import com.stesso.android.TYPE
 import com.stesso.android.model.Account
@@ -38,6 +39,7 @@ class LoginActivity : BaseActivity() {
                 doHttpRequest(apiService.login(body)) { data ->
                     Account.token = data?.token
                     Account.user = data?.userInfo
+                    MineFragment.reload = true
                     finish()
                 }
             }
