@@ -103,8 +103,8 @@ interface ApiService {
     //http://localhost:8080/wx/goods/list?page =1&size =20&sort ='price'&order ='desc'&keyword=&page=1&size=20&sort='price'&order='desc'
 
     @GET("wx/goods/list")
-    fun getGoodLists(@Query("page") page: Int, @Query("size") size: Int, @Query("sort") sort: String = "price",
-                     @Query("order") order: String ="desc",@Query("keyword") keyword: String? = null)
+    fun getGoodLists(@Query("page") page: Int, @Query("size") size: Int, @Query("sort") sort: String = "",
+                     @Query("order") order: String = "desc", @Query("keyword") keyword: String? = null): Single<RootNode<String>>
 
 
     @GET("wx/collect/list")

@@ -11,7 +11,7 @@ class MessageActivity : BaseActivity() {
         setContentView(R.layout.activity_message)
         getActivityComponent().inject(this)
 
-        doHttpRequest(apiService.getMsgList(1,20,DateTime.now().toString("yyyy-MM-dd HH:mm:ss"))){
+        doHttpRequest(apiService.getMsgList(1,20,DateTime.now().toString("yyyy-MM-dd HH:mm"))){
 
         }
     }
