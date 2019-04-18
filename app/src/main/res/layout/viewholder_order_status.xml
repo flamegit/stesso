@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/cancel_order"
+            android:id="@+id/action_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/stroke_4a_bg"
@@ -41,24 +41,10 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/state_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/stroke_4a_bg"
-        android:paddingLeft="@dimen/padding_12"
-        android:paddingTop="@dimen/padding_4"
-        android:paddingRight="@dimen/padding_12"
-        android:paddingBottom="@dimen/padding_4"
-        android:text="取消订单"
-        android:textColor="@color/font_4A"
-        android:textSize="@dimen/txt_13" />
-
-    <TextView
+        android:visibility="gone"
         android:layout_gravity="right"
         android:text="dd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-
 
 </LinearLayout>
