@@ -4,9 +4,9 @@ import com.stesso.android.KEY_ADDRESS
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import com.stesso.android.BaseActivity
 import com.stesso.android.R
+import com.stesso.android.TYPE
 import com.stesso.android.lib.ADDRESS_TYPE
 import com.stesso.android.lib.DividerItemDecoration
 import com.stesso.android.lib.MultiTypeAdapter
@@ -21,24 +21,36 @@ class AddressListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_address_list)
+        val type = intent.getIntExtra(TYPE, 0)
         getActivityComponent().inject(this)
         recycler_view.adapter = adapter
-        recycler_view.layoutManager = LinearLayoutManager(this)
+        recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL, false))
 
-        recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL,false))
-        doHttpRequest(apiService.getAddressList()) {
-            adapter.addItems(it, ADDRESS_TYPE)
-        }
-
-        adapter.setOnItemClick { _,data,_ ->
-            if(data is Address){
-                setResult(Activity.RESULT_OK,Intent().putExtra(KEY_ADDRESS,data))
-                finish()
+        if (type == 1) {
+            adapter.setOnItemClick { _, data, _ ->
+                if (data is Address) {
+                    setResult(Activity.RESULT_OK, Intent().putExtra(KEY_ADDRESS, data))
+                    finish()
+                }
             }
         }
 
         configTitleView(title_view) {
             openActivity(AddAddressActivity::class.java)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(reload){
+            doHttpRequest(apiService.getAddressList()) {
+                reload = false
+                adapter.addItems(it, ADDRESS_TYPE)
+            }
+        }
+    }
+
+    companion object {
+        var reload = true
     }
 }

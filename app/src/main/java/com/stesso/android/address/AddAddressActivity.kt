@@ -7,6 +7,7 @@ import com.stesso.android.BaseActivity
 import com.stesso.android.R
 import com.stesso.android.lib.NetAddressProvider
 import com.stesso.android.model.Address
+import com.stesso.android.utils.toast
 import kotlinx.android.synthetic.main.activity_add_address.*
 import org.json.JSONObject
 
@@ -23,7 +24,9 @@ class AddAddressActivity : BaseActivity() {
                     address = it
                     name_view.setText(address.name)
                     tel_view.setText(address.mobile)
+                    city_view.text ="${address.provinceName}${address.cityName}${address.areaName}"
                     detail_view.setText(address.address)
+                    default_view.isChecked = address.isDefault
                 }
             }
         }
@@ -34,6 +37,7 @@ class AddAddressActivity : BaseActivity() {
             val body = JSONObject(mapOf(Pair("id", id)))
             doHttpRequest(apiService.deleteAddress(body)){
                 onBackPressed()
+                AddressListActivity.reload = true
             }
         }
         city_layout.setOnClickListener {
@@ -46,8 +50,28 @@ class AddAddressActivity : BaseActivity() {
             address.name = name
             address.mobile = mobile
             address.address = street
+
+            if(name.isEmpty()){
+                toast("姓名不能为空")
+                return@configTitleView
+            }
+            if(mobile.isEmpty()){
+                toast("电话号码不能为空")
+                return@configTitleView
+            }
+            if(street.isEmpty()){
+                toast("地址详情不能为空")
+                return@configTitleView
+            }
+            if(address.provinceId ==0){
+                toast("请选择所在地区")
+                return@configTitleView
+            }
+
+            address.isDefault = default_view.isChecked
             doHttpRequest(apiService.saveAddress(address)) {
                 onBackPressed()
+                AddressListActivity.reload = true
             }
         }
     }

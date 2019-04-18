@@ -56,9 +56,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_layout"
-        android:background="#979797"
+        android:background="@color/divider_color"
         android:layout_width="0dp"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/pix1"/>
 
     <LinearLayout
         android:layout_marginTop="1dp"
@@ -92,9 +92,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tel_layout"
-        android:background="#979797"
+        android:background="@color/divider_color"
         android:layout_width="0dp"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/pix1"/>
 
     <LinearLayout
         android:id="@+id/city_layout"
@@ -124,9 +124,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city_layout"
-        android:background="#979797"
+        android:background="@color/divider_color"
         android:layout_width="0dp"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/pix1"/>
 
     <LinearLayout
         android:layout_marginTop="1dp"
@@ -160,9 +160,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detail_layout"
-        android:background="#979797"
+        android:background="@color/divider_color"
         android:layout_width="0dp"
-        android:layout_height="1dp"/>
+        android:layout_height="@dimen/pix1"/>
 
     <TextView
         android:padding="@dimen/padding_16"

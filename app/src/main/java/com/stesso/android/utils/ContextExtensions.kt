@@ -21,6 +21,8 @@ import io.reactivex.Single
 import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
 import org.json.JSONStringer
 import java.text.SimpleDateFormat
 import java.text.ParseException
@@ -128,22 +130,6 @@ fun Context.createProgressDialog(): AlertDialog {
             .create()
 }
 
-fun Context.checkAddress(phoneNum: String, password: String, verifyCode: String = "1234"): Boolean {
-    if (phoneNum.length < 4) {
-        toast("手机号格式错误")
-        return false
-    }
-    if (password.length < 6) {
-        toast("密码至少六位")
-        return false
-    }
-    if (verifyCode.length < 4) {
-        toast("验证码至少四位")
-    }
-    return true
-}
-
-
 fun Context.getWindowWidth(): Int {
     val metrics = DisplayMetrics()
     val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -154,8 +140,6 @@ fun Context.getWindowWidth(): Int {
 
 const val TOKEN = "token"
 const val USER_INFO = "user_info"
-
-
 const val CONFIG = "config"
 
 fun Context.put(key: String, value: String?) {
@@ -175,12 +159,10 @@ fun dip2px(dpValue: Int): Int {
     return (dpValue * scale + 0.5f).toInt()
 }
 
-@Throws(ParseException::class)
-fun parseTime(strDate: String): Date {
-
-    val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault())
-
-    return sdf.parse(strDate)
+fun parseTime(strDate: String): String {
+    //val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault())
+    val dateTime = DateTime.parse(strDate, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"))
+    return dateTime.toString("yyyy-MM-dd")
 }
 
 

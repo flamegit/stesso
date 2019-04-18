@@ -1,6 +1,7 @@
 package com.stesso.android
 
 import android.os.Bundle
+import org.joda.time.DateTime
 
 class MessageActivity : BaseActivity() {
 
@@ -10,7 +11,7 @@ class MessageActivity : BaseActivity() {
         setContentView(R.layout.activity_message)
         getActivityComponent().inject(this)
 
-        doHttpRequest(apiService.getMsgList(1,20,null)){
+        doHttpRequest(apiService.getMsgList(1,20,DateTime.now().toString("yyyy-MM-dd HH:mm:ss"))){
 
         }
     }

@@ -302,7 +302,7 @@ class DelegateAdapterFactory {
                     super.onBindViewHolder(holder, position, data)
                     if (data is News) {
                         holder.get<TextView>(R.id.title_view).text = data.title
-                        holder.get<TextView>(R.id.time_view).text = parseTime(data.addTime).toString()
+                        holder.get<TextView>(R.id.time_view).text = parseTime(data.addTime)
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.cover_view))
                         holder.itemView.setOnClickListener { v ->
                             v.context.openActivity(NewsDetailActivity::class.java, NEWS_ID, data.id)

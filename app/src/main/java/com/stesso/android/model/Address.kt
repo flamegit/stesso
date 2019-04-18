@@ -13,6 +13,10 @@ class Address() : Parcelable {
     var cityId = 0
     var areaId = 0
     var address: String? = null
+    var cityName: String? =null
+    var provinceName: String? =null
+    var areaName: String? =null
+
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readInt()
