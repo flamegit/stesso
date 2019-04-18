@@ -18,7 +18,7 @@
 
     <TextView
         android:layout_marginStart="@dimen/padding_16"
-        android:id="@+id/company_name"
+        android:id="@+id/company_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/font_4A"
@@ -34,7 +34,7 @@
         android:layout_marginEnd="16dp"
         android:textColor="@color/font_4A"
         android:textSize="@dimen/txt_13"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/arrow_view"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="ddddd" />
 
@@ -43,10 +43,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_8"
-        android:textColor="@color/font_4A"
+        android:textColor="@color/font_9B"
         android:textSize="@dimen/txt_13"
-        app:layout_constraintStart_toStartOf="@+id/company_name"
-        app:layout_constraintTop_toBottomOf="@+id/company_name"
+        app:layout_constraintStart_toStartOf="@+id/company_view"
+        app:layout_constraintTop_toBottomOf="@+id/company_view"
         tools:text="ddddd" />
 
     <TextView
@@ -54,13 +54,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_8"
-        android:textColor="@color/font_4A"
+        android:textColor="@color/font_9B"
         android:textSize="@dimen/txt_13"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/arrow_view"
         app:layout_constraintBaseline_toBaselineOf="@+id/time_view"
         tools:text="ddddd" />
 
     <ImageView
+        android:id="@+id/arrow_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingRight="@dimen/padding_16"

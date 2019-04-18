@@ -2,7 +2,6 @@ package com.stesso.android
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.stesso.android.address.AddressListActivity
 import com.stesso.android.lib.*
 import com.stesso.android.model.Account
@@ -10,7 +9,6 @@ import com.stesso.android.model.Address
 import com.stesso.android.model.EmptyAddress
 import com.stesso.android.utils.toast
 import kotlinx.android.synthetic.main.activity_settlement.*
-import org.json.JSONObject
 
 class SettlementActivity : PayActivity() {
 
@@ -18,6 +16,7 @@ class SettlementActivity : PayActivity() {
     private var address: Address? = null
     private val shopCart = Account.shopCart
     private var payType = 0
+    private var orderId = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getActivityComponent().inject(this)
@@ -34,16 +33,16 @@ class SettlementActivity : PayActivity() {
                 }
                 else -> {
                     val intent = Intent(this@SettlementActivity, AddressListActivity::class.java)
+                    intent.putExtra(TYPE, 1)
                     this@SettlementActivity.startActivityForResult(intent, SELECT_ADDRESS)
                 }
             }
-
         }
         doHttpRequest(apiService.getAddressList()) {
-            if (it?.isEmpty() == true) {
+            if (it == null || it.isEmpty()) {
                 //adapter.addTopItem(EmptyAddress(), EMPTY_ADDRESS)
             } else {
-                address = it?.get(0)
+                address = getDefaultAddress(it)
                 adapter.changeItem(0, address, SETTLEMENT_ADDRESS)
             }
         }
@@ -52,15 +51,29 @@ class SettlementActivity : PayActivity() {
                 toast("请选择地址")
                 return@setOnClickListener
             }
-            val body = mapOf(Pair("addressId", address?.id), Pair("cartId", shopCart?.getIdList()), Pair("message", "dd"))
-            doHttpRequest(apiService.submitOrder(body)) { data ->
-
-                data?.orderId?.let {
-                    if (payType == 0) alipay(it) else wechatPay(it)
+            if (orderId != -1) {
+                if (payType == 0) alipay(orderId) else wechatPay(orderId)
+            } else {
+                val body = mapOf(Pair("addressId", address?.id), Pair("cartId", shopCart?.getIdList()), Pair("message", "dd"))
+                doHttpRequest(apiService.submitOrder(body)) { data ->
+                    data?.orderId?.let {
+                        orderId = it
+                        if (payType == 0) alipay(it) else wechatPay(it)
+                    }
                 }
-
             }
         }
+    }
+
+    private fun getDefaultAddress(list: List<Address>): Address {
+        var default = list[0]
+        list.forEach {
+            if (it.isDefault) {
+                default = it
+                return@forEach
+            }
+        }
+        return default
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

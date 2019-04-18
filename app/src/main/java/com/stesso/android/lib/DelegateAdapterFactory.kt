@@ -348,6 +348,20 @@ class DelegateAdapterFactory {
                 }
             }
 
+            EXPRESS_INFO -> object : BaseDelegateAdapter(R.layout.viewholder_order_express) {
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is ExpressInfo) {
+                        holder.get<TextView>(R.id.company_view).text = "${data.shipperName}"
+                        holder.get<TextView>(R.id.code_view).text = "${data.logisticCode}"
+                        if(data.trace.isNotEmpty()){
+                            holder.get<TextView>(R.id.time_view).text = "${data.trace[0].acceptTime}"
+                            holder.get<TextView>(R.id.station_view).text = "${data.trace[0].acceptStation}"
+                        }
+                    }
+                }
+            }
+
             ORDER_STATUS -> object : BaseDelegateAdapter(R.layout.viewholder_order_status) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
@@ -386,6 +400,8 @@ class DelegateAdapterFactory {
                     }
                 }
             }
+
+
 
 //            ORDER_GOODS -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_item) {
 //                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
