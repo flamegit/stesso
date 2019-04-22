@@ -71,7 +71,10 @@ class MainActivity : BaseActivity() {
                 0 -> HomeFragment()
                 1 -> NewsFragment()
                 2 -> SearchFragment()
-                else -> MineFragment()
+                else -> {
+                    MineFragment.reload = true
+                    MineFragment()
+                }
             }
             supportFragmentManager
                     .beginTransaction()

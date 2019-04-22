@@ -36,9 +36,9 @@ class HomeFragment : BaseFragment() {
 //        title_view.setLeftAction {
 //            context?.checkLogin { context?.openActivity(SettingActivity::class.java) }
 //        }
-//        title_view.setRightAction {
-//            context?.checkLogin { context?.openActivity(ShopCartActivity::class.java) }
-//        }
+        shopcart_view.setOnClickListener {
+            context?.checkLogin { context?.openActivity(ShopCartActivity::class.java) }
+        }
 
         doHttpRequest(apiService.getHomeContent()) {
             adapter.addItem(VideoItem(it?.videoFaceImage, it?.video), BANNER_TYPE)
