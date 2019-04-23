@@ -1,5 +1,7 @@
 package com.stesso.android.lib
 
+import android.graphics.Color
+import android.graphics.Paint
 import com.stesso.android.ADDRESS_ID
 import com.stesso.android.GOODS_ID
 import com.stesso.android.NEWS_ID
@@ -48,8 +50,7 @@ const val ORDER_ADDRESS = 22
 const val ORDER_GOODS = 23
 const val ORDER_STATUS = 24
 const val EXPRESS_INFO = 25
-
-
+const val SEARCH_GOODS = 26
 
 
 class DelegateAdapterFactory {
@@ -68,7 +69,6 @@ class DelegateAdapterFactory {
             HEADER -> HeaderDelegateAdapter()
             FOOTER -> FooterDelegateAdapter()
             TYPE1 -> HeaderDelegateAdapter()
-            //TODO 暂停
             BANNER_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_top_vedio) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
@@ -79,11 +79,11 @@ class DelegateAdapterFactory {
                     }
                 }
             }
-            EMPTY_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_empty_address){
+            EMPTY_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_empty_address) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
-                    if(data is EmptyAddress){
-                        holder.itemView.setOnClickListener{ v ->
+                    if (data is EmptyAddress) {
+                        holder.itemView.setOnClickListener { v ->
                             v.context.openActivity(AddressListActivity::class.java)
                         }
                     }
@@ -99,24 +99,29 @@ class DelegateAdapterFactory {
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<TextView>(R.id.name_view).text = data.name
                         holder.get<TextView>(R.id.discount_price).text = "${data.counterPrice}"
-//                        holder.get<View>(R.id.favorite_view).setOnClickListener {
-//                            val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", data.id)))
-//                            doHttpRequest(apiService.addOrDelete(body)) {}
-//                        }
                     }
                 }
             }
-            FAVORITE_COMMODITY -> object : BaseDelegateAdapter(R.layout.viewholder_new_commodity) {
+
+            FAVORITE_COMMODITY, SEARCH_GOODS -> object : BaseDelegateAdapter(R.layout.viewholder_goods_itemt) {
+                private fun bindView(holder: CommonViewHolder, commodity: Commodity?) {
+                    holder.itemView.setOnClickListener { v ->
+                        v.context.openActivity(CommodityDetailActivity::class.java, GOODS_ID, commodity?.id)
+                    }
+                    Glide.with(holder.itemView).load(commodity?.picUrl).into(holder.get(R.id.commodity_img))
+                    holder.get<TextView>(R.id.name_view).text = commodity?.name
+                    holder.get<TextView>(R.id.discount_price).text = "￥:${commodity?.retailPrice}"
+                    val priceView = holder.get<TextView>(R.id.price_view)
+                    priceView.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG //中划线
+                    priceView.text = "￥:${commodity?.counterPrice}"
+                }
+
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is FavoriteCommodity) {
-                        val commodity = data.info
-                        holder.itemView.setOnClickListener { v ->
-                            v.context.openActivity(CommodityDetailActivity::class.java, GOODS_ID, commodity?.id)
-                        }
-                        Glide.with(holder.itemView).load(commodity?.picUrl).into(holder.get(R.id.commodity_img))
-                        holder.get<TextView>(R.id.name_view).text = commodity?.name
-                        holder.get<TextView>(R.id.discount_price).text = "${commodity?.counterPrice}"
+                        bindView(holder, data.info)
+                    } else if (data is Commodity) {
+                        bindView(holder, data)
                     }
                 }
             }
@@ -134,7 +139,6 @@ class DelegateAdapterFactory {
                     }
                 }
             }
-
             SETTLEMENT_INFO -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_info) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
@@ -220,7 +224,6 @@ class DelegateAdapterFactory {
                                 group.addView(itemView, params)
                             }
                         }
-                        //group.scrollBy(120, 0)
                     }
                 }
             }
@@ -242,33 +245,18 @@ class DelegateAdapterFactory {
                 }
             }
             SETTLEMENT_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_address) {
-                    override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
-                        super.onBindViewHolder(holder, position, data)
-                        if (data is Address) {
-                            holder.get<TextView>(R.id.name_view).text = "收货人：${data.name}"
-                            holder.get<TextView>(R.id.tel_view).text = data.mobile
-                            holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.detailedAddress}"
-                            holder.itemView.setOnClickListener {
-                                onItemClick(position, data, SETTLEMENT_ADDRESS)
-                            }
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is Address) {
+                        holder.get<TextView>(R.id.name_view).text = "收货人：${data.name}"
+                        holder.get<TextView>(R.id.tel_view).text = data.mobile
+                        holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.detailedAddress}"
+                        holder.itemView.setOnClickListener {
+                            onItemClick(position, data, SETTLEMENT_ADDRESS)
                         }
                     }
+                }
             }
-
-//            ORDER_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_address) {
-//                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
-//                    super.onBindViewHolder(holder, position, data)
-//                    if (data is Address) {
-//                        holder.get<TextView>(R.id.name_view).text = "收货人：${data.name}"
-//                        holder.get<TextView>(R.id.tel_view).text = data.mobile
-//                        holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.detailedAddress}"
-//                        holder.itemView.setOnClickListener {
-//                            onItemClick(position, data, SETTLEMENT_ADDRESS)
-//                        }
-//                    }
-//                }
-//            }
-
             RECOMMEND_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_recommend_commodity) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
@@ -298,7 +286,6 @@ class DelegateAdapterFactory {
                     }
                 }
             }
-
             NEWS_TYPE -> object : BaseDelegateAdapter(R.layout.viewholer_news_list) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
@@ -316,12 +303,11 @@ class DelegateAdapterFactory {
                     }
                 }
             }
-
             ORDER_INFO -> object : BaseDelegateAdapter(R.layout.viewholder_order_info) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is OrderInfo) {
-                        holder.get<TextView>(R.id.order_date).text = data.payTime
+                        holder.get<TextView>(R.id.order_date).text = parseTime(data.payTime)
                         holder.get<TextView>(R.id.order_no).text = data.orderSn
                         holder.get<TextView>(R.id.pay_type).text = data.payType
                     }
@@ -336,7 +322,6 @@ class DelegateAdapterFactory {
                     }
                 }
             }
-
             ORDER_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_order_address) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
@@ -347,75 +332,72 @@ class DelegateAdapterFactory {
                     }
                 }
             }
-
             EXPRESS_INFO -> object : BaseDelegateAdapter(R.layout.viewholder_order_express) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is ExpressInfo) {
                         holder.get<TextView>(R.id.company_view).text = "${data.shipperName}"
                         holder.get<TextView>(R.id.code_view).text = "${data.logisticCode}"
-                        if(data.trace.isNotEmpty()){
-                            holder.get<TextView>(R.id.time_view).text = "${data.trace[0].acceptTime}"
-                            holder.get<TextView>(R.id.station_view).text = "${data.trace[0].acceptStation}"
+                        if (data.traces.isNotEmpty()) {
+                            holder.get<TextView>(R.id.time_view).text = "${data.traces[0].acceptTime}"
+                            holder.get<TextView>(R.id.station_view).text = "${data.traces[0].acceptStation}"
                         }
                     }
                 }
             }
-
             ORDER_STATUS -> object : BaseDelegateAdapter(R.layout.viewholder_order_status) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is OrderInfo) {
-                        val actionView = holder.get<TextView>(R.id.action_view)
-                        when(data.orderStatus){
+                        val action1View = holder.get<TextView>(R.id.action_one)
+                        val action2View = holder.get<TextView>(R.id.action_two)
+                        when (data.orderStatus) {
                             101 -> {
-
+                                action1View.visibility = View.VISIBLE
+                                action2View.text = "继续支付"
+                                action1View.text = "取消订单"
+                                action2View.setTextColor(Color.parseColor("#FFFFFF"))
+                                action2View.setBackgroundResource(R.drawable.solid_red_bg)
+                                action1View.setOnClickListener {
+                                    onItemClick(position, data, 1)
+                                }
+                                action2View.setOnClickListener {
+                                    onItemClick(position, data, 2)
+                                }
                             }
                             //已付款
                             201 -> {
-                               actionView.text ="等待发货"
+                                action1View.text = "等待发货"
                             }
-                            301 ->{
-                                actionView.text ="运输中"
+                            301 -> {
+                                action1View.visibility = View.VISIBLE
+                                action2View.setTextColor(Color.parseColor("#FFFFFF"))
+                                action2View.setBackgroundResource(R.drawable.solid_red_bg)
+                                action2View.text = "确认收货"
+                                action1View.text = "运送中"
+                                action2View.setOnClickListener {
+                                    onItemClick(position, data, 3)
+                                }
+                            }
+                            401, 402 -> {
+                                action1View.visibility = View.VISIBLE
+                                action2View.text = "已送达"
+                                action1View.text = "退货"
+                                action1View.setOnClickListener {
+                                    onItemClick(position, data, 4)
+                                }
                             }
                             //售后
-                            501 ->{
-
+                            501 -> {
                             }
                             //售后完成
-                            502 ->{
-
+                            502 -> {
                             }
-
-                        }
-
-                        holder.get<View>(R.id.action_view).setOnClickListener{
-                            onItemClick(position,data,1)
-                        }
-
-                        holder.get<View>(R.id.pay_order).setOnClickListener{
-                            onItemClick(position,data,2)
                         }
 
                     }
                 }
             }
-
-
-
-//            ORDER_GOODS -> object : BaseDelegateAdapter(R.layout.viewholder_settlement_item) {
-//                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
-//                    super.onBindViewHolder(holder, position, data)
-//                    if (data is GoodsInfo) {
-//                        holder.get<TextView>(R.id.name_view).text = data.goodsName
-//                        Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
-//                        holder.get<TextView>(R.id.info_view).text = "${data.number}件"
-//                        holder.get<TextView>(R.id.price_view).text = "￥：${data.price}"
-//                    }
-//                }
-//            }
-
-
             else -> {
                 DefaultDelegateAdapter()
             }

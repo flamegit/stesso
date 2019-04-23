@@ -10,15 +10,12 @@ class OrderDetailActivity : PayActivity() {
 
     private val adapter = MultiTypeAdapter()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getActivityComponent().inject(this)
         setContentView(R.layout.activity_order_detail)
         val orderId = intent.getIntExtra(ORDER_ID, 0)
-
         recycler_view.adapter = adapter
-
         adapter.setOnItemClick { _, data, action ->
             if (data is OrderInfo) {
                 when (action) {
@@ -37,19 +34,29 @@ class OrderDetailActivity : PayActivity() {
                         dialog.show(supportFragmentManager, "")
 
                     }
+                    3 ->{
+                        val body = JSONObject(mapOf(Pair("orderId", data.id)))
+                        doHttpRequest(apiService.confirmOrder(body)) {
+                            //onBackPressed()
+                        }
+                    }
+                    4 ->{
+                        val body = JSONObject(mapOf(Pair("orderId", data.id)))
+                        doHttpRequest(apiService.confirmOrder(body)) {
+                            //onBackPressed()
+                        }
+                    }
                     else -> {
 
                     }
                 }
             }
-
         }
-
         doHttpRequest(apiService.getOrderDetail(orderId)) {
             adapter.addItems(it?.orderGoods, ORDER_GOODS)
             adapter.addItem(it?.orderInfo, ORDER_STATUS, true)
             if(it?.orderInfo?.orderStatus==301 && it.expressInfo!=null){
-                adapter.addItem(it.expressInfo, EXPRESS_INFO)
+                adapter.addItem(it.expressInfo, EXPRESS_INFO,true)
             }
             adapter.addItem(it?.orderInfo, ORDER_ADDRESS, true)
             adapter.addItem(it?.orderInfo, ORDER_PRICE, true)

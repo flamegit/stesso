@@ -34,6 +34,11 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
         }
     }
 
+    fun clear(){
+        mContent.clear()
+        notifyDataSetChanged()
+    }
+
     fun setOnItemClick(callback: (position: Int, data: Any?,action:Int) -> Unit) {
         mFactory.onItemClick = callback
     }

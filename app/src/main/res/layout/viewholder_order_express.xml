@@ -8,6 +8,7 @@
     android:paddingTop="@dimen/padding_16">
 
     <ImageView
+        android:layout_marginTop="@dimen/padding_10"
         android:id="@+id/location_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +32,7 @@
         android:id="@+id/code_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="10dp"
         android:textColor="@color/font_4A"
         android:textSize="@dimen/txt_13"
         app:layout_constraintEnd_toStartOf="@+id/arrow_view"
@@ -40,7 +41,7 @@
 
     <TextView
         android:id="@+id/time_view"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_8"
         android:textColor="@color/font_9B"
@@ -50,13 +51,14 @@
         tools:text="ddddd" />
 
     <TextView
+        android:gravity="right"
         android:id="@+id/station_view"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_8"
         android:textColor="@color/font_9B"
         android:textSize="@dimen/txt_13"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toStartOf="@+id/arrow_view"
         app:layout_constraintBaseline_toBaselineOf="@+id/time_view"
         tools:text="ddddd" />

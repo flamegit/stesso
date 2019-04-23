@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".SuggestionActivity"></activity>
+        <activity android:name=".RefundActivity"></activity>
+        <activity android:name=".SuggestionActivity" />
         <activity android:name=".account.ModifyPasswordActivity" />
         <activity android:name=".MessageActivity" />
         <activity android:name=".OrderDetailActivity" />
@@ -35,7 +36,9 @@
         </activity>
         <activity android:name=".CommodityDetailActivity" />
         <activity android:name=".address.AddressListActivity" />
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".shopcart.ShopCartActivity" />
         <activity
             android:name=".account.LoginActivity"

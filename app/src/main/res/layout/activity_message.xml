@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:left_icon="@drawable/back"
-        app:right_text="保存"
-        app:title_text="修改密码" />
+        app:right_text="全部已读"
+        app:title_text="消息中心" />
 
 </android.support.constraint.ConstraintLayout>

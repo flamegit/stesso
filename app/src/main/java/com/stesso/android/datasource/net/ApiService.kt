@@ -100,11 +100,14 @@ interface ApiService {
     @POST("wx/user/update")
     fun updateUserInfo(@Body body: SuggestionDTO): Single<RootNode<String>>
 
+    @POST("wx/order/confirm")
+    fun confirmOrder(@Body body: JSONObject): Single<RootNode<String>>
+
     //http://localhost:8080/wx/goods/list?page =1&size =20&sort ='price'&order ='desc'&keyword=&page=1&size=20&sort='price'&order='desc'
 
     @GET("wx/goods/list")
     fun getGoodLists(@Query("page") page: Int, @Query("size") size: Int, @Query("sort") sort: String = "",
-                     @Query("order") order: String = "desc", @Query("keyword") keyword: String? = null): Single<RootNode<String>>
+                     @Query("order") order: String = "desc", @Query("keyword") keyword: String? = null): Single<RootNode<GoodListDTO>>
 
 
     @GET("wx/collect/list")

@@ -2,19 +2,31 @@ package com.stesso.android
 
 
 import android.os.Bundle
+import com.stesso.android.model.News
+import com.stesso.android.utils.toast
 import kotlinx.android.synthetic.main.activity_news_detail.*
+import org.json.JSONObject
 
 class NewsDetailActivity : BaseActivity() {
+    var news: News? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         getActivityComponent().inject(this)
         setContentView(R.layout.activity_news_detail)
-
-        doHttpRequest(apiService.getNewsDetail(intent.getIntExtra(NEWS_ID,0))) {
+        doHttpRequest(apiService.getNewsDetail(intent.getIntExtra(NEWS_ID, 0))) {
+            news = it?.topic
             web_view.loadData(getHtmlData(it?.topic?.content), "text/html; charset=utf-8", "utf-8")
+        }
 
+        favorite_view.setOnClickListener {
+            if (news == null) {
+                return@setOnClickListener
+            }
+            val body = JSONObject(mapOf(Pair("type", 1), Pair("valueId", news?.id)))
+            doHttpRequest(apiService.addOrDelete(body)) {
+                toast(it ?: "")
+            }
         }
     }
 

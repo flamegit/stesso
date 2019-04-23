@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RefundActivity">
+
+    <com.stesso.android.widget.TitleBar
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:left_icon="@drawable/back"
+        app:right_icon="@drawable/shopcart"
+        app:title_text="申请退货" />
+
+    <TextView
+        android:id="@+id/hint1_view"
+        android:textSize="@dimen/txt_15"
+        android:textColor="@color/font_4A"
+        android:text="选择您需要退还的宝贝："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toBottomOf="@id/title_view"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/hint2_view"
+        android:textSize="@dimen/txt_15"
+        android:textColor="@color/font_4A"
+        android:text="请您简单描述退货理由："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toBottomOf="@id/hint1_view"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/hint3_view"
+        android:textSize="@dimen/txt_15"
+        android:textColor="@color/font_4A"
+        android:text="请输入您的手机号："
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/reason_view"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:textSize="@dimen/txt_10"
+        android:textColor="@color/font_4A"
+        android:text="(暂不支持无理由退货)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/hint2_view"
+        app:layout_constraintStart_toEndOf="@id/hint2_view"  />
+
+    <TextView
+        android:textSize="@dimen/txt_10"
+        android:textColor="@color/font_4A"
+        android:text="(方便客服与您联系)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/hint3_view"
+        app:layout_constraintStart_toEndOf="@id/hint3_view"  />
+
+    <EditText
+        android:layout_marginTop="@dimen/padding_10"
+        android:id="@+id/reason_view"
+        app:layout_constraintTop_toBottomOf="@id/hint2_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <EditText
+        android:layout_marginTop="@dimen/padding_10"
+        android:id="@+id/mobile_view"
+        app:layout_constraintTop_toBottomOf="@id/hint3_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:background="@drawable/stroke_4a_bg"
+        android:padding="@dimen/padding_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="提交"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mobile_view" />
+
+</android.support.constraint.ConstraintLayout>

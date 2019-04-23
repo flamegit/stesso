@@ -6,25 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/back_view"
+        android:padding="@dimen/padding_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <EditText
-        android:id="@+id/search_bar"
+        android:layout_marginTop="@dimen/padding_4"
+        android:id="@+id/search_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@null"
+        android:background="@color/space"
         android:drawableLeft="@drawable/search_gray"
-        android:drawablePadding="@dimen/padding_16"
+        android:drawablePadding="@dimen/padding_8"
         android:hint="Search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
+        android:padding="@dimen/padding_8"
+        app:layout_constraintEnd_toStartOf="@+id/cart_view"
+        app:layout_constraintStart_toEndOf="@+id/back_view"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/cart_view"
+        android:padding="@dimen/padding_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/shopcart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <android.support.design.widget.TabLayout
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        app:layout_constraintTop_toBottomOf="@+id/search_view"
         android:id="@+id/tab_layout"
         app:tabMode="fixed"
         android:layout_width="match_parent"
@@ -42,7 +63,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="咨询">
+            android:text="Lookbook">
 
         </android.support.design.widget.TabItem>
 
@@ -54,7 +75,7 @@
         android:id="@+id/recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="0dp"
         android:layout_height="0dp"/>

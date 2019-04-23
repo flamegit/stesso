@@ -12,30 +12,29 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/action_view"
+            android:visibility="invisible"
+            android:id="@+id/action_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/stroke_4a_bg"
             android:paddingLeft="@dimen/padding_12"
             android:paddingTop="@dimen/padding_4"
             android:paddingRight="@dimen/padding_12"
             android:paddingBottom="@dimen/padding_4"
-            android:text="取消订单"
+            android:background="@drawable/stroke_4a_bg"
             android:textColor="@color/font_4A"
             android:textSize="@dimen/txt_13" />
 
         <TextView
-            android:id="@+id/pay_order"
+            android:id="@+id/action_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_32"
-            android:background="@drawable/solid_red_bg"
             android:paddingLeft="@dimen/padding_12"
             android:paddingTop="@dimen/padding_4"
             android:paddingRight="@dimen/padding_12"
             android:paddingBottom="@dimen/padding_4"
-            android:text="继续支付"
-            android:textColor="@color/white"
+            android:background="@drawable/stroke_4a_bg"
+            android:textColor="@color/font_4A"
             android:textSize="@dimen/txt_13" />
 
     </LinearLayout>

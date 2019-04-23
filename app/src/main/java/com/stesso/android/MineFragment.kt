@@ -2,6 +2,8 @@ package com.stesso.android
 
 import android.os.Bundle
 import android.support.v4.view.ViewCompat
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.stesso.android.account.LoginActivity
 import com.stesso.android.account.SettingActivity
@@ -10,6 +12,7 @@ import com.stesso.android.model.Account
 import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.checkLogin
 import com.stesso.android.utils.openActivity
+import com.stesso.android.utils.parseTime
 import kotlinx.android.synthetic.main.fragment_mine.*
 
 class MineFragment : BaseFragment() {
@@ -37,7 +40,7 @@ class MineFragment : BaseFragment() {
             time_view.visibility = View.VISIBLE
             name_view.visibility = View.VISIBLE
             name_view.text = Account.user?.username
-            time_view.text = Account.user?.addTime
+            time_view.text = "${parseTime(Account.user?.addTime?:"")}加入"
             group.visibility = View.INVISIBLE
 
             loadData(if (currIndex == 0) 1 else currIndex)
@@ -80,18 +83,24 @@ class MineFragment : BaseFragment() {
         currIndex = index
         when (index) {
             1 -> {
+                adapter.clear()
+                recycler_view.layoutManager = LinearLayoutManager(context)
                 doHttpRequest(apiService.getOrderList(0)) {
                     adapter.addItems(it?.data, ORDER_LIST)
                 }
 
             }
             2 -> {
+                adapter.clear()
+                recycler_view.layoutManager = GridLayoutManager(context,2)
                 doHttpRequest(apiService.getCollectCommodity(0, 1, 10)) {
                     adapter.addItems(it?.collectList, FAVORITE_COMMODITY)
                 }
 
             }
             3 -> {
+                adapter.clear()
+                recycler_view.layoutManager = LinearLayoutManager(context)
                 doHttpRequest(apiService.getCollectInfo(1, 1, 10)) {
                     adapter.addItems(it?.collectList, FAVORITE_NEWS)
                 }
@@ -112,7 +121,6 @@ class MineFragment : BaseFragment() {
             context?.checkLogin { context?.openActivity(ShopCartActivity::class.java) }
         }
         recycler_view.adapter = adapter
-        //recycler_view.layoutManager = LinearLayoutManager(context)
     }
 
     companion object {

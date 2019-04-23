@@ -8,7 +8,9 @@ import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.support.v7.app.AlertDialog
 import android.util.DisplayMetrics
+import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import com.stesso.android.App
@@ -160,12 +162,20 @@ fun dip2px(dpValue: Int): Int {
 }
 
 fun parseTime(strDate: String): String {
-    //val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault())
-    val dateTime = DateTime.parse(strDate, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"))
-    return dateTime.toString("yyyy-MM-dd")
+    return parseTime(strDate,"yyyy年MM月dd日")
 }
 
+fun parseTime(strDate: String, format: String): String {
+    if(strDate.isEmpty()){
+        return strDate
+    }
+    val dateTime = DateTime.parse(strDate, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"))
+    return dateTime.toString(format)
+}
 
-
+fun Context.hideKeyboard(view: View) {
+    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(view.windowToken, 0)
+}
 
 

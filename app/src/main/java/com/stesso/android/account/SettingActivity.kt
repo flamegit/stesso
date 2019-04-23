@@ -24,7 +24,7 @@ class SettingActivity : BaseActivity() {
         row1_text.text = user?.nicknamne
         row2_text.text = user?.addTime
         row3_text.text = user?.getGender()
-        row4_text.text = user?.mobile?.replaceRange(1,4,"*")
+        row4_text.text = user?.mobile?.replaceRange(3,7,"****")
 
         row8.setOnClickListener {
             openActivity(SuggestionActivity::class.java)
