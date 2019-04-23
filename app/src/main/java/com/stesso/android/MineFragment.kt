@@ -86,7 +86,7 @@ class MineFragment : BaseFragment() {
                 adapter.clear()
                 recycler_view.layoutManager = LinearLayoutManager(context)
                 doHttpRequest(apiService.getOrderList(0)) {
-                    adapter.addItems(it?.data, ORDER_LIST)
+                    adapter.addItems(it?.data?.filter { !it.orderStatusText.startsWith("已取消") }, ORDER_LIST)
                 }
 
             }
