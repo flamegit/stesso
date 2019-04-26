@@ -1,6 +1,6 @@
 package com.stesso.android
 
-import android.graphics.Color
+import android.content.Intent
 import android.os.Bundle
 import cn.jzvd.Jzvd
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
@@ -31,6 +31,12 @@ class MainActivity : BaseActivity() {
 
     }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        val index =intent?.getIntExtra(INDEX,0)
+        bottom_navigation_bar.selectTab(index?:0)
+    }
+
     private fun init() {
         bottom_navigation_bar.addItem(BottomNavigationItem(R.drawable.home, "首页"))
                 .addItem(BottomNavigationItem(R.drawable.info_icon, "NOW"))
@@ -41,7 +47,6 @@ class MainActivity : BaseActivity() {
 
         bottom_navigation_bar.setTabSelectedListener(object : BottomNavigationBar.OnTabSelectedListener {
             override fun onTabReselected(position: Int) {
-
             }
 
             override fun onTabUnselected(position: Int) {

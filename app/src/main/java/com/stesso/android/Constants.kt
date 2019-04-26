@@ -14,6 +14,8 @@ const val ORDER_ID = "order_id"
 
 const val TYPE = "type"
 
+const val INDEX = "index"
+
 
 
 

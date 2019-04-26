@@ -37,6 +37,7 @@
         <activity android:name=".CommodityDetailActivity" />
         <activity android:name=".address.AddressListActivity" />
         <activity
+            android:launchMode="singleTask"
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".shopcart.ShopCartActivity" />

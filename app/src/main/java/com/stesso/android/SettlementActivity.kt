@@ -8,7 +8,9 @@ import com.stesso.android.model.Account
 import com.stesso.android.model.Address
 import com.stesso.android.model.EmptyAddress
 import com.stesso.android.utils.toast
+import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.activity_settlement.*
+import kotlinx.android.synthetic.main.activity_settlement.title_view
 
 class SettlementActivity : PayActivity() {
 
@@ -21,6 +23,7 @@ class SettlementActivity : PayActivity() {
         super.onCreate(savedInstanceState)
         getActivityComponent().inject(this)
         setContentView(R.layout.activity_settlement)
+        configTitleView(title_view)
         recycler_view.adapter = adapter
         adapter.addItem(EmptyAddress(), EMPTY_ADDRESS)
         adapter.addItems(shopCart?.getSelectItems(), SETTLEMENT_ITEM, true)

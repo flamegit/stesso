@@ -3,6 +3,7 @@ package com.stesso.android
 import android.os.Bundle
 import com.stesso.android.lib.*
 import com.stesso.android.model.OrderInfo
+import com.stesso.android.utils.openActivity
 import kotlinx.android.synthetic.main.activity_order_detail.*
 import org.json.JSONObject
 
@@ -34,17 +35,18 @@ class OrderDetailActivity : PayActivity() {
                         dialog.show(supportFragmentManager, "")
 
                     }
-                    3 ->{
+                    3 -> {
                         val body = JSONObject(mapOf(Pair("orderId", data.id)))
                         doHttpRequest(apiService.confirmOrder(body)) {
                             //onBackPressed()
                         }
                     }
-                    4 ->{
-                        val body = JSONObject(mapOf(Pair("orderId", data.id)))
-                        doHttpRequest(apiService.confirmOrder(body)) {
-                            //onBackPressed()
-                        }
+                    4 -> {
+                        openActivity(RefundActivity::class.java)
+
+                    }
+                    5 -> {
+
                     }
                     else -> {
 
@@ -55,8 +57,8 @@ class OrderDetailActivity : PayActivity() {
         doHttpRequest(apiService.getOrderDetail(orderId)) {
             adapter.addItems(it?.orderGoods, ORDER_GOODS)
             adapter.addItem(it?.orderInfo, ORDER_STATUS, true)
-            if(it?.orderInfo?.orderStatus==301 && it.expressInfo!=null){
-                adapter.addItem(it.expressInfo, EXPRESS_INFO,true)
+            if (it?.orderInfo?.orderStatus == 301 && it.expressInfo != null) {
+                adapter.addItem(it.expressInfo, EXPRESS_INFO, true)
             }
             adapter.addItem(it?.orderInfo, ORDER_ADDRESS, true)
             adapter.addItem(it?.orderInfo, ORDER_PRICE, true)

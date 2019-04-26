@@ -279,6 +279,7 @@ class DelegateAdapterFactory {
                     if (data is FavoriteNews) {
                         val news = data.info
                         holder.get<TextView>(R.id.title_view).text = news?.title
+                        holder.get<TextView>(R.id.time_view).text = parseTime(news?.addTime ?: "")
                         Glide.with(holder.itemView).load(news?.picUrl).into(holder.get(R.id.cover_view))
                         holder.itemView.setOnClickListener { v ->
                             v.context.openActivity(NewsDetailActivity::class.java, NEWS_ID, news?.id)
@@ -389,6 +390,7 @@ class DelegateAdapterFactory {
                             }
                             //售后
                             501 -> {
+
                             }
                             //售后完成
                             502 -> {

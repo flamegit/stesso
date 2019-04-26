@@ -7,9 +7,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.flame.kotlinstudy.lib.CommonAdapter
-import com.stesso.android.BaseActivity
-import com.stesso.android.R
-import com.stesso.android.SettlementActivity
+import com.stesso.android.*
 import com.stesso.android.lib.DividerItemDecoration
 import com.stesso.android.model.Account
 import com.stesso.android.model.CommodityDetail
@@ -65,6 +63,9 @@ class ShopCartActivity : BaseActivity() {
                     }
                 }
             })
+        }
+        select_view.setOnClickListener{
+            openActivity(MainActivity::class.java,INDEX,1)
         }
 
         recycler_view.adapter = adapter

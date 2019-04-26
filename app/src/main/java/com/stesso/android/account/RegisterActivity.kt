@@ -43,6 +43,10 @@ class RegisterActivity : BaseActivity() {
 
         }
 
+        cancel_view.setOnClickListener{
+            onBackPressed()
+        }
+
         register_view.text = if (type == 0) "注册" else "重置密码"
 
         register_view.setOnClickListener {

@@ -29,18 +29,10 @@
         android:imeOptions="actionSearch"
         android:singleLine="true"
         android:padding="@dimen/padding_8"
-        app:layout_constraintEnd_toStartOf="@+id/cart_view"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/back_view"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/cart_view"
-        android:padding="@dimen/padding_16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/shopcart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <android.support.design.widget.TabLayout
         app:layout_constraintEnd_toEndOf="parent"

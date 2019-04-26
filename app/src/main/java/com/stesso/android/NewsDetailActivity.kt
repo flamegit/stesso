@@ -14,6 +14,7 @@ class NewsDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         getActivityComponent().inject(this)
         setContentView(R.layout.activity_news_detail)
+        configTitleView(title_view)
         doHttpRequest(apiService.getNewsDetail(intent.getIntExtra(NEWS_ID, 0))) {
             news = it?.topic
             web_view.loadData(getHtmlData(it?.topic?.content), "text/html; charset=utf-8", "utf-8")

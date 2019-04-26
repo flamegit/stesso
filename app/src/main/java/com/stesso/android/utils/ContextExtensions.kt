@@ -3,6 +3,8 @@ package com.stesso.android.utils
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
@@ -50,6 +52,22 @@ fun <T : Activity, D> Context.openActivity(activity: Class<T>, key: String, valu
         intent.putExtra(key, value)
     }
     startActivity(intent)
+}
+
+
+fun Context.getAppVersion(): String {
+    var pi: PackageInfo? = null
+    try {
+        val pm = packageManager
+        pi = pm.getPackageInfo(packageName,
+                PackageManager.GET_CONFIGURATIONS)
+
+        return pi.versionName
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+    return ""
+
 }
 
 fun Context.setRobotoFont(textView: TextView) {
