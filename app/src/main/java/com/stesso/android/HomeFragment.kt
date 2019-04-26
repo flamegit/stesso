@@ -41,7 +41,10 @@ class HomeFragment : BaseFragment() {
         }
 
         doHttpRequest(apiService.getHomeContent()) {
-            adapter.addItem(VideoItem(it?.videoFaceImage, it?.video), BANNER_TYPE)
+
+            if(!it?.video.isNullOrEmpty()){
+                adapter.addItem(VideoItem(it?.videoFaceImage, it?.video), BANNER_TYPE)
+            }
             val hotList = mutableListOf<Commodity>()
             it?.goodsList?.forEach { commodity ->
                 when (commodity.stype) {
