@@ -68,7 +68,7 @@ interface ApiService {
     fun getNewsDetail(@Query("id") id: Int): Single<RootNode<NewsDetailDTO>>
 
     @POST("wx/collect/addordelete")
-    fun addOrDelete(@Body body: JSONObject): Single<RootNode<String>>
+    fun addOrDelete(@Body body: JSONObject): Single<RootNode<Type>>
 
     @POST("wx/order/submit")
     @JvmSuppressWildcards

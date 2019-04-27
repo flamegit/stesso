@@ -1,5 +1,6 @@
 package com.stesso.android
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.util.TypedValue
@@ -63,7 +64,15 @@ class CommodityDetailActivity : BaseActivity() {
             checkLogin {
                 val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", info?.info?.id)))
                 doHttpRequest(apiService.addOrDelete(body)) {
-                    openActivity(ShopCartActivity::class.java)
+                    if(it?.type=="delete"){
+                        toast("取消收藏")
+                        favorite_view.setImageResource(R.drawable.circle_gray_mouth)
+
+                    }else{
+                        toast("加入收藏")
+                        favorite_view.setImageResource(R.drawable.circle_red_mouth)
+
+                    }
                 }
             }
         }
@@ -111,6 +120,10 @@ class CommodityDetailActivity : BaseActivity() {
             val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             params.marginStart = if (index == 0) 0 else dip2px(14)
         }
+        price_view.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG //中划线
+        price_view.text ="￥：${info?.info?.counterPrice}"
+        discount_price.text = "￥：${info?.info?.retailPrice}"
+        favorite_view.setImageResource(if(info?.userHasCollect==1) R.drawable.circle_red_mouth else R.drawable.circle_gray_mouth)
         web_view.loadData(getHtmlData(info?.info?.detail), "text/html; charset=utf-8", "utf-8")
     }
 

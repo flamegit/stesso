@@ -14,6 +14,8 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.stesso.android.*
 import com.stesso.android.address.AddAddressActivity
 import com.stesso.android.address.AddressListActivity
@@ -75,7 +77,8 @@ class DelegateAdapterFactory {
                     if (data is VideoItem) {
                         val jzvdStd = holder.get<JzvdStd>(R.id.video_player)
                         jzvdStd.setUp(data.url, "", Jzvd.SCREEN_NORMAL)
-                        Glide.with(holder.itemView).load(data.cover).into(jzvdStd.thumbImageView)
+                        val options= RequestOptions.bitmapTransform(RoundedCorners(10)).centerCrop()
+                        Glide.with(holder.itemView).load(data.cover).apply(options).into(jzvdStd.thumbImageView)
                     }
                 }
             }
@@ -268,8 +271,11 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.name_view).text = data.name
                         holder.get<TextView>(R.id.brief_view).text = data.brief
                         holder.get<TextView>(R.id.discount_price).text = "￥：${data.counterPrice}"
-                        holder.get<TextView>(R.id.price_view).text = "￥：${data.retailPrice}"
-
+                        val priceView = holder.get<TextView>(R.id.price_view)
+                        priceView.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG //中划线
+                        if (data.counterPrice != data.retailPrice) {
+                            priceView.text = "￥：${data.retailPrice}"
+                        }
                     }
                 }
             }
