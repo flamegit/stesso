@@ -16,6 +16,9 @@ const val TYPE = "type"
 
 const val INDEX = "index"
 
+const val GOODS_LIST ="goods_list"
+
+
 
 
 

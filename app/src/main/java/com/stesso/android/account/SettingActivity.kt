@@ -21,6 +21,7 @@ class SettingActivity : BaseActivity() {
         setContentView(R.layout.activity_setting)
         configTitleView(title_view)
         row5.setOnClickListener {
+            AddressListActivity.reload = true
             openActivity(AddressListActivity::class.java)
         }
 

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.stesso.android.datasource.net.ApiService
 import com.stesso.android.di.component.FragmentComponent
 import com.stesso.android.di.module.FragmentModule
+import com.stesso.android.model.Account
 import com.stesso.android.model.RootNode
 import com.stesso.android.utils.applySingleSchedulers
 import com.stesso.android.utils.createProgressDialog
@@ -50,6 +51,9 @@ open class BaseFragment : Fragment() {
         val disposable = single.compose(applySingleSchedulers())
                 .subscribe({ rootNode ->
                     if (rootNode.errno != 0) {
+                        if (rootNode.errno == 501) {
+                            Account.logout()
+                        }
                         context?.toast(rootNode.errmsg ?: "")
                     } else {
                         onSuccess(rootNode.data)

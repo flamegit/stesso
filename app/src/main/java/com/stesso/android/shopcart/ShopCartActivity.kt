@@ -1,6 +1,7 @@
 package com.stesso.android.shopcart
 
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.CheckBox
@@ -9,6 +10,8 @@ import com.bumptech.glide.Glide
 import com.example.flame.kotlinstudy.lib.CommonAdapter
 import com.stesso.android.*
 import com.stesso.android.lib.DividerItemDecoration
+import com.stesso.android.lib.FAVORITE_COMMODITY
+import com.stesso.android.lib.MultiTypeAdapter
 import com.stesso.android.model.Account
 import com.stesso.android.model.CommodityDetail
 import com.stesso.android.model.ShopcartDTO
@@ -21,6 +24,8 @@ class ShopCartActivity : BaseActivity() {
 
     // private val adapter = MultiTypeAdapter()
     private var adapter: CommonAdapter<CommodityDetail>? = null
+
+    private var adapter2 = MultiTypeAdapter()
     private var shopCart: ShopcartDTO? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +44,10 @@ class ShopCartActivity : BaseActivity() {
                 val body = JSONObject(mapOf(Pair("productIds", data.productId)))
                 doHttpRequest(apiService.deleteCartItem(body)) {
                     adapter?.removeItem(position)
+                    if(adapter?.itemCount ==0){
+                        group.visibility = View.VISIBLE
+                        settlement_view.visibility = View.INVISIBLE
+                    }
                 }
             }
 
@@ -65,7 +74,7 @@ class ShopCartActivity : BaseActivity() {
             })
         }
         select_view.setOnClickListener{
-            openActivity(MainActivity::class.java,INDEX,1)
+            openActivity(MainActivity::class.java,INDEX,0)
         }
 
         recycler_view.adapter = adapter
@@ -80,6 +89,13 @@ class ShopCartActivity : BaseActivity() {
                 group.visibility = View.INVISIBLE
                 adapter?.addItems(it?.cartList, false)
             }
+        }
+
+        related_view.adapter =adapter2
+        related_view.layoutManager = GridLayoutManager(this,2)
+
+        doHttpRequest(apiService.getRelatedGoods()){
+          adapter2.addItems(it?.goodsList, FAVORITE_COMMODITY)
         }
     }
 }

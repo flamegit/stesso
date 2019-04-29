@@ -30,7 +30,7 @@ class HomeFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
-        message_view.setOnClickListener{
+        message_view.setOnClickListener {
             context.openActivity(MessageActivity::class.java)
         }
 //        title_view.setLeftAction {
@@ -42,25 +42,25 @@ class HomeFragment : BaseFragment() {
 
         doHttpRequest(apiService.getHomeContent()) {
 
-            if(!it?.video.isNullOrEmpty()){
+            if (!it?.video.isNullOrEmpty()) {
                 adapter.addItem(VideoItem(it?.videoFaceImage, it?.video), BANNER_TYPE)
             }
             val hotList = mutableListOf<Commodity>()
             it?.goodsList?.forEach { commodity ->
                 when (commodity.stype) {
                     2, 3 -> {
-                        if(hotList.isNotEmpty()){
-                            adapter.addItem(hotList, HOT_COMMODITY,true)
+                        if (hotList.isNotEmpty()) {
+                            adapter.addItem(hotList, HOT_COMMODITY, true)
                             hotList.clear()
                         }
-                        adapter.addItem(commodity, if (commodity.stype == 2) NEW_COMMODITY else RECOMMEND_TYPE,true)
+                        adapter.addItem(commodity, if (commodity.stype == 2) NEW_COMMODITY else RECOMMEND_TYPE, true)
                     }
                     else -> {
                         hotList.add(commodity)
                     }
                 }
-                if(hotList.isNotEmpty()){
-                    adapter.addItem(hotList, HOT_COMMODITY,true)
+                if (hotList.isNotEmpty()) {
+                    adapter.addItem(hotList, HOT_COMMODITY, true)
                     hotList.clear()
                 }
 
@@ -72,8 +72,6 @@ class HomeFragment : BaseFragment() {
         super.onPause()
         JzvdStd.goOnPlayOnPause()
     }
-
-
 
 
 }

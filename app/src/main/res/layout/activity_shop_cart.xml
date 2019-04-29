@@ -19,8 +19,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="260dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_view" />
@@ -72,11 +71,11 @@
         android:background="@drawable/solid_black_bg"
         android:drawableLeft="@drawable/cart_white"
         android:gravity="center"
-        android:text="添加至购物车"
+        android:text="进入结算中心"
         android:textColor="@android:color/white"
         android:textSize="@dimen/txt_15"
         app:iconPadding="@dimen/padding_10"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
 
     <android.support.constraint.Group
         android:visibility="gone"
@@ -84,5 +83,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="empty_view,empty_text,select_view" />
+
+    <TextView
+        android:id="@+id/hint_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/red_mouth"
+        android:drawablePadding="@dimen/padding_4"
+        android:text="猜你喜欢"
+        android:textColor="@color/font_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settlement_view" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/related_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hint_view" />
 
 </android.support.constraint.ConstraintLayout>

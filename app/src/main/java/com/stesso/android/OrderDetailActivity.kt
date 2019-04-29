@@ -1,7 +1,9 @@
 package com.stesso.android
 
+import android.content.Intent
 import android.os.Bundle
 import com.stesso.android.lib.*
+import com.stesso.android.model.OrderDetail
 import com.stesso.android.model.OrderInfo
 import com.stesso.android.utils.openActivity
 import kotlinx.android.synthetic.main.activity_order_detail.*
@@ -10,6 +12,7 @@ import org.json.JSONObject
 class OrderDetailActivity : PayActivity() {
 
     private val adapter = MultiTypeAdapter()
+    private var orderDetail: OrderDetail? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +45,9 @@ class OrderDetailActivity : PayActivity() {
                         }
                     }
                     4 -> {
-                        openActivity(RefundActivity::class.java)
-
+                        val intent = Intent(this, RefundActivity::class.java)
+                        intent.putParcelableArrayListExtra(GOODS_LIST, orderDetail?.orderGoods)
+                        startActivity(intent)
                     }
                     5 -> {
 
@@ -55,6 +59,7 @@ class OrderDetailActivity : PayActivity() {
             }
         }
         doHttpRequest(apiService.getOrderDetail(orderId)) {
+            orderDetail = it
             adapter.addItems(it?.orderGoods, ORDER_GOODS)
             adapter.addItem(it?.orderInfo, ORDER_STATUS, true)
             if (it?.orderInfo?.orderStatus == 301 && it.expressInfo != null) {

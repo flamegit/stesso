@@ -38,10 +38,7 @@ class SearchFragment : BaseFragment() {
             }
             false
         }
-        back_view.setOnClickListener{
-            search_view.setText("")
-            adapter.clear()
-        }
+
         recycler_view.adapter = adapter
         tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {}

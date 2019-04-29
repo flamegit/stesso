@@ -69,6 +69,7 @@ class MainActivity : BaseActivity() {
         if (mPrePosition == position) {
             return
         }
+        MineFragment.reload = true
         mCurrPosition = position
         var curr = supportFragmentManager.findFragmentByTag(tag[position])
         if (curr == null) {
@@ -77,7 +78,6 @@ class MainActivity : BaseActivity() {
                 1 -> NewsFragment()
                 2 -> SearchFragment()
                 else -> {
-                    MineFragment.reload = true
                     MineFragment()
                 }
             }

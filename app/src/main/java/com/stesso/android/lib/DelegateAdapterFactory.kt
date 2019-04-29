@@ -76,7 +76,7 @@ class DelegateAdapterFactory {
                     super.onBindViewHolder(holder, position, data)
                     if (data is VideoItem) {
                         val jzvdStd = holder.get<JzvdStd>(R.id.video_player)
-                        jzvdStd.setUp(data.url, "", Jzvd.SCREEN_NORMAL)
+                        jzvdStd.setUp(data.url, "", Jzvd.SCREEN_WINDOW_LIST)
                         val options= RequestOptions.bitmapTransform(RoundedCorners(10)).centerCrop()
                         Glide.with(holder.itemView).load(data.cover).apply(options).into(jzvdStd.thumbImageView)
                     }
@@ -303,10 +303,6 @@ class DelegateAdapterFactory {
                         holder.itemView.setOnClickListener { v ->
                             v.context.openActivity(NewsDetailActivity::class.java, NEWS_ID, data.id)
                         }
-//                        holder.get<View>(R.id.favorite_view).setOnClickListener {
-//                            val body = JSONObject(mapOf(Pair("type", 1), Pair("valueId", data.id)))
-//                            doHttpRequest(apiService.addOrDelete(body)) {}
-//                        }
                     }
                 }
             }

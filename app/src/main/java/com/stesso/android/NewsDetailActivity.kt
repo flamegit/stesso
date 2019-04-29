@@ -26,7 +26,7 @@ class NewsDetailActivity : BaseActivity() {
             }
             val body = JSONObject(mapOf(Pair("type", 1), Pair("valueId", news?.id)))
             doHttpRequest(apiService.addOrDelete(body)) {
-                toast(it ?: "")
+                //toast(it ?: "")
             }
         }
     }

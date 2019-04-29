@@ -18,7 +18,7 @@ class SplashActivity : BaseActivity() {
                 android.Manifest.permission.READ_EXTERNAL_STORAGE,android.Manifest.permission.READ_PHONE_STATE)
                 .subscribe{
                     if(it){
-                        toast("通过")
+                        //toast("通过")
                     }
                 }
 
