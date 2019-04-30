@@ -24,14 +24,8 @@ class NewsFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
-        title_view.setLeftAction {
-            context?.openActivity(SettingActivity::class.java)
-        }
-        title_view.setRightAction {
-            context?.openActivity(ShopCartActivity::class.java)
-        }
 
-        doHttpRequest(apiService.getNewsList(1, 15)) {
+        doHttpRequest(apiService.getNewsList(1, 100)) {
             if (it?.data?.isNotEmpty() == true) {
                 adapter.addItems(it?.data, NEWS_TYPE)
             }

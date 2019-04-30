@@ -14,6 +14,8 @@ import com.stesso.android.utils.openActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
+import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 
 
 class HomeFragment : BaseFragment() {
@@ -40,8 +42,25 @@ class HomeFragment : BaseFragment() {
             context?.checkLogin { context?.openActivity(ShopCartActivity::class.java) }
         }
 
-        doHttpRequest(apiService.getHomeContent()) {
+        refreshLayout.setOnRefreshListener(object : RefreshListenerAdapter() {
+            override fun onRefresh(refreshLayout: TwinklingRefreshLayout) {
+                loadData(true)
+            }
+        })
+        loadData(false)
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        JzvdStd.goOnPlayOnPause()
+    }
+    // TODO bug
+    private fun loadData(refresh: Boolean) {
+        doHttpRequest(apiService.getHomeContent()) {
+            if (refresh) {
+                refreshLayout.finishRefreshing()
+            }
             if (!it?.video.isNullOrEmpty()) {
                 adapter.addItem(VideoItem(it?.videoFaceImage, it?.video), BANNER_TYPE)
             }
@@ -66,11 +85,6 @@ class HomeFragment : BaseFragment() {
 
             }
         }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        JzvdStd.goOnPlayOnPause()
     }
 
 

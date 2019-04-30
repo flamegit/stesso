@@ -222,7 +222,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/solid_black_bg"
         android:gravity="center"
-        android:padding="16dp"
+        android:padding="@dimen/padding_8"
         android:text="加入STESSO"
         android:textColor="@android:color/white"
         android:textSize="15sp"

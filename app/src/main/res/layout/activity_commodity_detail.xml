@@ -95,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/padding_16"
-                android:text="·七天包退，·正品保证，·售后无忧"
+                android:text="·限量发售，·正品保证，·售后无忧"
                 android:textColor="#9B9B9B"
                 android:textSize="@dimen/txt_10"
                 app:layout_constraintStart_toStartOf="parent"

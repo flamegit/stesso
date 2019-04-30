@@ -2,6 +2,7 @@ package com.stesso.android.lib
 
 import android.graphics.Color
 import android.graphics.Paint
+import android.os.Build
 import com.stesso.android.ADDRESS_ID
 import com.stesso.android.GOODS_ID
 import com.stesso.android.NEWS_ID
@@ -72,12 +73,23 @@ class DelegateAdapterFactory {
             FOOTER -> FooterDelegateAdapter()
             TYPE1 -> HeaderDelegateAdapter()
             BANNER_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_top_vedio) {
+
+                override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
+                    val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
+                    val jzvdStd = view.findViewById<JzvdStd>(R.id.video_player)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        jzvdStd.outlineProvider = JzViewOutlineProvider(20f)
+                        jzvdStd.clipToOutline = true
+                    }
+                    return CommonViewHolder(view)
+                }
+
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is VideoItem) {
                         val jzvdStd = holder.get<JzvdStd>(R.id.video_player)
                         jzvdStd.setUp(data.url, "", Jzvd.SCREEN_WINDOW_LIST)
-                        val options= RequestOptions.bitmapTransform(RoundedCorners(10)).centerCrop()
+                        val options = RequestOptions.bitmapTransform(RoundedCorners(10)).centerCrop()
                         Glide.with(holder.itemView).load(data.cover).apply(options).into(jzvdStd.thumbImageView)
                     }
                 }

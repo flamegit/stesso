@@ -89,6 +89,8 @@ dependencies {
     implementation 'net.danlew:android.joda:2.9.5'
     implementation(name: 'alipaySdk-15.6.0-20190226104053', ext: 'aar') //alipay
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+' //wei xin zhifu
+    implementation 'com.lcodecorex:tkrefreshlayout:1.0.7' //下拉刷新
+
 
 //    implementation 'cn.jiguang.sdk:jshare:1.6.1'
 //    // 此处以JShare 1.6.0 版本为例，具体版本请参考压缩包libs的jar包版本。

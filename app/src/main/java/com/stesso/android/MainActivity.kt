@@ -46,11 +46,9 @@ class MainActivity : BaseActivity() {
                 .initialise()
 
         bottom_navigation_bar.setTabSelectedListener(object : BottomNavigationBar.OnTabSelectedListener {
-            override fun onTabReselected(position: Int) {
-            }
+            override fun onTabReselected(position: Int) {}
 
-            override fun onTabUnselected(position: Int) {
-            }
+            override fun onTabUnselected(position: Int) {}
 
             override fun onTabSelected(position: Int) {
                 fillFragment(position)

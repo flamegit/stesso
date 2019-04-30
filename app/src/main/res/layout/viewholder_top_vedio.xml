@@ -8,6 +8,7 @@
     tools:context=".PersonInfoFragment">
 
     <cn.jzvd.JzvdStd
+        android:background="@android:color/transparent"
         android:id="@+id/video_player"
         android:layout_width="match_parent"
         android:layout_height="160dp"/>
