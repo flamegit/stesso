@@ -1,7 +1,7 @@
 package com.stesso.android
 
 import android.app.Application
-import cn.jpush.android.api.JPushInterface
+import android.support.multidex.MultiDexApplication
 import com.stesso.android.di.component.AppComponent
 import com.stesso.android.di.component.DaggerAppComponent
 import com.stesso.android.di.module.AppModule
@@ -13,7 +13,7 @@ import com.umeng.socialize.PlatformConfig
 /**
  * Created by flame on 2018/9/17.
  */
-class App : Application() {
+class App : MultiDexApplication() {
 
     lateinit var component: AppComponent
 
@@ -30,8 +30,8 @@ class App : Application() {
         TCAgent.setReportUncaughtExceptions(true)
 
         //极光推送
-        JPushInterface.setDebugMode(true)
-        JPushInterface.init(this)
+//        JPushInterface.setDebugMode(true)
+//        JPushInterface.init(this)
 
         UMConfigure.init(this,"5cc80f934ca3578209000666"
                 ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"")
