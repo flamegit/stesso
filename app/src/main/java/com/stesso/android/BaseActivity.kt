@@ -92,7 +92,7 @@ open class BaseActivity : AppCompatActivity() {
                         onSuccess(rootNode.data)
                     }
                 }, {
-                    progressDialog.hide()
+                    progressDialog.dismiss()
                     it.printStackTrace()
                 })
         disposableContainer.add(disposable)

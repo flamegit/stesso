@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/space"
+    tools:context=".SuggestionActivity">
+
+    <com.stesso.android.widget.TitleBar
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:left_icon="@drawable/back"
+        app:right_text="保存"
+        app:title_text="更改昵称" />
+
+    <EditText
+        android:hint="新的昵称"
+        android:singleLine="true"
+        android:layout_marginTop="@dimen/padding_8"
+        android:background="@color/white"
+        android:padding="@dimen/padding_10"
+        app:layout_constraintTop_toBottomOf="@+id/title_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/name_view"
+        android:layout_width="0dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/txt_15"
+        android:gravity="top"
+        android:layout_height="wrap_content" />
+
+
+</android.support.constraint.ConstraintLayout>

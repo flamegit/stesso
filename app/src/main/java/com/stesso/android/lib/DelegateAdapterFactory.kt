@@ -328,7 +328,7 @@ class DelegateAdapterFactory {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is OrderInfo) {
-                        holder.get<TextView>(R.id.order_date).text = parseTime(data.payTime)
+                        holder.get<TextView>(R.id.order_date).text = parseTime(data.addTime)
                         holder.get<TextView>(R.id.order_no).text = data.orderSn
                         holder.get<TextView>(R.id.pay_type).text = data.payType
                     }
@@ -378,7 +378,6 @@ class DelegateAdapterFactory {
                                 action1View.visibility = View.VISIBLE
                                 action2View.text = "继续支付"
                                 action1View.text = "取消订单"
-
                                 var left = (parseTimeMillis(data.addTime) - 27000 * 1000 - DateTime.now().millis) / 1000
                                 if (left > 0) {
                                     descView.visibility = View.VISIBLE

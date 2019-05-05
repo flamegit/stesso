@@ -4,6 +4,10 @@ package com.stesso.android
 import android.os.Bundle
 import com.stesso.android.model.News
 import com.stesso.android.utils.toast
+import com.umeng.socialize.ShareAction
+import com.umeng.socialize.UMShareListener
+import com.umeng.socialize.bean.SHARE_MEDIA
+import com.umeng.socialize.media.UMWeb
 import kotlinx.android.synthetic.main.activity_news_detail.*
 import org.json.JSONObject
 
@@ -35,6 +39,26 @@ class NewsDetailActivity : BaseActivity() {
                     favorite_view.setImageResource(R.drawable.red_mouth)
                 }
             }
+        }
+
+        share_view.setOnClickListener{
+            val web = UMWeb("https://a.app.qq.com/o/simple.jsp?pkgname=com.stesso.android")
+            web.title = "Stesso"//标题
+            web.description = "my description"//描述
+
+            ShareAction(this).withText("hello").setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN,SHARE_MEDIA.QZONE)
+                    .withMedia(web)
+                    .setCallback(object : UMShareListener {
+                        override fun onResult(p0: SHARE_MEDIA?) {
+                        }
+                        override fun onError(p0: SHARE_MEDIA?, p1: Throwable?) {
+                            p1?.printStackTrace()
+                        }
+                        override fun onCancel(p0: SHARE_MEDIA?) {
+                        }
+                        override fun onStart(p0: SHARE_MEDIA?) {
+                        }
+                    }).open()
         }
     }
 

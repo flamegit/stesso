@@ -33,6 +33,7 @@ interface ActivityComponent {
     fun inject(activity: ModifyPasswordActivity)
     fun inject(activity: SettingActivity)
     fun inject(activity: RefundActivity)
+    fun inject(activity: ModifyNameActivity)
 
 }
 

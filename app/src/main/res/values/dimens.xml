@@ -36,5 +36,6 @@
     <dimen name="padding_40">40dp</dimen>
     <dimen name="divide_1">1dp</dimen>
     <dimen name="pix1">1px</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

@@ -91,6 +91,9 @@ interface ApiService {
     @POST("wx/feedback/submit")
     fun submitSuggestion(@Body body: SuggestionDTO): Single<RootNode<String>>
 
+    @POST("wx/feedback/orderSubmit")
+    fun submit(@Body body: SuggestionDTO): Single<RootNode<String>>
+
     @GET("wx/order/detail")
     fun getOrderDetail(@Query("orderId") id: Int): Single<RootNode<OrderDetail>>
 
@@ -102,7 +105,7 @@ interface ApiService {
 
     @JvmSuppressWildcards
     @POST("wx/user/update")
-    fun updateUserInfo(@Body body: Map<String, Any?>): Single<RootNode<String>>
+    fun updateUserInfo(@Body body: Map<String, Any?>): Single<RootNode<User>>
 
     @POST("wx/order/confirm")
     fun confirmOrder(@Body body: JSONObject): Single<RootNode<String>>

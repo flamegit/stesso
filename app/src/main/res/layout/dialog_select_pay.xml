@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_16"
     android:orientation="vertical">
 
     <TextView
@@ -76,7 +77,7 @@
         android:layout_margin="@dimen/padding_16"
         android:drawableLeft="@drawable/select_white"
         app:iconPadding="@dimen/padding_10"
-        android:text="提交订单"
+        android:text="立即支付"
         android:textSize="@dimen/txt_15"
         android:textColor="@android:color/white"/>
 

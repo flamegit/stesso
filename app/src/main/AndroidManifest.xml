@@ -20,7 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".RefundActivity"></activity>
+        <activity
+            android:name=".ModifyNameActivity"
+            android:label="@string/title_activity_modify_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".RefundActivity" />
         <activity android:name=".SuggestionActivity" />
         <activity android:name=".account.ModifyPasswordActivity" />
         <activity android:name=".MessageActivity" />
@@ -37,9 +41,9 @@
         <activity android:name=".CommodityDetailActivity" />
         <activity android:name=".address.AddressListActivity" />
         <activity
-            android:launchMode="singleTask"
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".shopcart.ShopCartActivity" />
@@ -75,14 +79,11 @@
             android:exported="true"
             android:launchMode="singleTop" />
         <activity android:name=".PayActivity" />
-
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-
     </application>
 
 </manifest>

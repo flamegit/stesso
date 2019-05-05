@@ -47,8 +47,8 @@ class RefundActivity : BaseActivity() {
         }
         submit_view.setOnClickListener {
             val mobile = mobile_view.text.toString()
-            val body = SuggestionDTO(mobile, 2, "refund", orderId, getIdList())
-            doHttpRequest(apiService.submitSuggestion(body)) {
+            val body = SuggestionDTO(mobile, 2, "refund", orderId.toString(), getIdList())
+            doHttpRequest(apiService.submit(body)) {
 
             }
         }
