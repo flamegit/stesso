@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".PersonInfoFragment">
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/commodity_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="@dimen/padding_16"
+        app:layout_constraintStart_toEndOf="@+id/checkbox"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/name_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/font_4A"
+        android:textSize="@dimen/txt_15"
+        android:layout_marginStart="@dimen/padding_16"
+        app:layout_constraintStart_toEndOf="@+id/commodity_img"
+        app:layout_constraintTop_toTopOf="@+id/commodity_img"
+        app:layout_constraintBottom_toTopOf="@+id/price_view"/>
+
+    <TextView
+        android:id="@+id/info_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="price"
+        android:textColor="@color/font_4A"
+        android:textSize="@dimen/txt_15"
+        android:layout_marginStart="@dimen/padding_16"
+        app:layout_constraintStart_toEndOf="@+id/commodity_img"
+        app:layout_constraintTop_toBottomOf="@+id/name_view"
+        app:layout_constraintBottom_toBottomOf="@+id/commodity_img" />
+
+    <TextView
+        android:id="@+id/price_view"
+        android:textColor="@color/font_4A"
+        android:textSize="@dimen/txt_15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="inf"
+        app:layout_constraintBaseline_toBaselineOf="@id/info_view"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:layout_marginTop="@dimen/padding_20"
+        app:layout_constraintTop_toBottomOf="@+id/commodity_img"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/divider_color"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/pix1"/>
+
+</android.support.constraint.ConstraintLayout>

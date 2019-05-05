@@ -17,6 +17,7 @@ class NewsDetailActivity : BaseActivity() {
         configTitleView(title_view)
         doHttpRequest(apiService.getNewsDetail(intent.getIntExtra(NEWS_ID, 0))) {
             news = it?.topic
+            favorite_view.setImageResource(if(it?.userHasCollect==0) R.drawable.gray_mouth else R.drawable.red_mouth)
             web_view.loadData(getHtmlData(it?.topic?.content), "text/html; charset=utf-8", "utf-8")
         }
 
@@ -26,7 +27,13 @@ class NewsDetailActivity : BaseActivity() {
             }
             val body = JSONObject(mapOf(Pair("type", 1), Pair("valueId", news?.id)))
             doHttpRequest(apiService.addOrDelete(body)) {
-                //toast(it ?: "")
+                if (it?.type == "delete") {
+                    toast("取消收藏")
+                    favorite_view.setImageResource(R.drawable.gray_mouth)
+                } else {
+                    toast("加入收藏")
+                    favorite_view.setImageResource(R.drawable.red_mouth)
+                }
             }
         }
     }

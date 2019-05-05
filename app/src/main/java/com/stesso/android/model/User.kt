@@ -8,6 +8,7 @@ class User {
     var gender: Int = 0
     var addTime: String? = null
     var avatar: String? = null
+    var birthday:String? = null
 
 
     fun getGender(): String {

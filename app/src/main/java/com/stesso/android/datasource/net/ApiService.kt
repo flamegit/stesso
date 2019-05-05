@@ -95,18 +95,17 @@ interface ApiService {
     fun getOrderDetail(@Query("orderId") id: Int): Single<RootNode<OrderDetail>>
 
     @GET("wx/goods/related")
-    fun getRelatedGoods(@Query("id") id: Int=1): Single<RootNode<GoodListDTO>>
+    fun getRelatedGoods(@Query("id") id: Int = 1): Single<RootNode<GoodListDTO>>
 
     @GET("wx/notifyMsg/list")
     fun getMsgList(@Query("page") page: Int, @Query("size") size: Int, @Query("msgLastTime") lastTime: String?): Single<RootNode<OrderDetail>>
 
+    @JvmSuppressWildcards
     @POST("wx/user/update")
-    fun updateUserInfo(@Body body: SuggestionDTO): Single<RootNode<String>>
+    fun updateUserInfo(@Body body: Map<String, Any?>): Single<RootNode<String>>
 
     @POST("wx/order/confirm")
     fun confirmOrder(@Body body: JSONObject): Single<RootNode<String>>
-
-    //http://localhost:8080/wx/goods/list?page =1&size =20&sort ='price'&order ='desc'&keyword=&page=1&size=20&sort='price'&order='desc'
 
     @GET("wx/goods/list")
     fun getGoodLists(@Query("page") page: Int, @Query("size") size: Int, @Query("sort") sort: String = "",

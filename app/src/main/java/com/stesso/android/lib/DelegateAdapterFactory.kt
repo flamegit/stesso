@@ -2,6 +2,7 @@ package com.stesso.android.lib
 
 import android.graphics.Color
 import android.graphics.Paint
+import android.opengl.Visibility
 import android.os.Build
 import com.stesso.android.ADDRESS_ID
 import com.stesso.android.GOODS_ID
@@ -25,7 +26,12 @@ import com.stesso.android.model.*
 import com.stesso.android.utils.dip2px
 import com.stesso.android.utils.openActivity
 import com.stesso.android.utils.parseTime
+import com.stesso.android.utils.parseTimeMillis
 import com.stesso.android.widget.QuantityView
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import org.joda.time.DateTime
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 const val HEADER = 1
@@ -366,11 +372,27 @@ class DelegateAdapterFactory {
                     if (data is OrderInfo) {
                         val action1View = holder.get<TextView>(R.id.action_one)
                         val action2View = holder.get<TextView>(R.id.action_two)
+                        val descView = holder.get<TextView>(R.id.desc_view)
                         when (data.orderStatus) {
                             101 -> {
                                 action1View.visibility = View.VISIBLE
                                 action2View.text = "继续支付"
                                 action1View.text = "取消订单"
+
+                                var left = (parseTimeMillis(data.addTime) - 27000 * 1000 - DateTime.now().millis) / 1000
+                                if (left > 0) {
+                                    descView.visibility = View.VISIBLE
+                                    Observable.intervalRange(0, left, 0, 1, TimeUnit.SECONDS)
+                                            .observeOn(AndroidSchedulers.mainThread())
+                                            .subscribe {
+                                                left -= 1
+                                                val m = left / 60
+                                                val s = left % 60
+                                                descView.text = "${m}分${s}秒后关闭"
+                                            }
+                                } else {
+                                    descView.visibility = View.GONE
+                                }
                                 action2View.setTextColor(Color.parseColor("#FFFFFF"))
                                 action2View.setBackgroundResource(R.drawable.solid_red_bg)
                                 action1View.setOnClickListener {

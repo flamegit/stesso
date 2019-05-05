@@ -1,6 +1,3 @@
 package com.stesso.android.model
 
-class NewsDetailDTO {
-
-    var topic: News? = null
-}
+data class NewsDetailDTO(val userHasCollect:Int,val topic:News)
