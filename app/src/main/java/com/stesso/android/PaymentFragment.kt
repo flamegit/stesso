@@ -44,8 +44,6 @@ class PaymentFragment : BottomSheetDialogFragment() {
             callback(1, payType)
             dismiss()
         }
-
     }
-
 
 }

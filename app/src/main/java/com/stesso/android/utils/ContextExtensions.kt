@@ -181,11 +181,19 @@ fun dip2px(dpValue: Int): Int {
 }
 
 fun parseTime(strDate: String): String {
-    return parseTime(strDate,"yyyy年MM月dd日")
+    return parseTime(strDate, "yyyy年MM月dd日")
 }
 
+fun parseTimeMillis(strDate: String): Long {
+    if (strDate.isEmpty()) {
+        return DateTime.now().millis
+    }
+    return DateTime.parse(strDate, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")).millis
+}
+
+
 fun parseTime(strDate: String, format: String): String {
-    if(strDate.isEmpty()){
+    if (strDate.isEmpty()) {
         return strDate
     }
     val dateTime = DateTime.parse(strDate, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"))

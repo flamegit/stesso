@@ -17,15 +17,17 @@ class CommodityDetail() : Parcelable {
     var goodsName: String? = null
     var addTime: String? = null
     var picUrl: String? = null
+    var desc: String?= null
     //var isSelect = false
 
 
     constructor(parcel: Parcel) : this() {
-        id = parcel.readInt()
+        productId = parcel.readInt()
         number = parcel.readInt()
         goodsName = parcel.readString()
         picUrl = parcel.readString()
         price = parcel.readDouble()
+        desc = parcel.readString()
 
     }
 
@@ -45,11 +47,12 @@ class CommodityDetail() : Parcelable {
     override fun describeContents() = 0
 
     override fun writeToParcel(parcel: Parcel?, p1: Int) {
-        parcel?.writeInt(id)
+        parcel?.writeInt(productId)
         parcel?.writeInt(number)
         parcel?.writeString(goodsName)
         parcel?.writeString(picUrl)
         parcel?.writeDouble(price)
+        parcel?.writeString(getInfo())
     }
 
     companion object CREATOR : Parcelable.Creator<CommodityDetail> {

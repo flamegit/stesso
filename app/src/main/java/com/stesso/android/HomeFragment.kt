@@ -33,7 +33,9 @@ class HomeFragment : BaseFragment() {
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
         message_view.setOnClickListener {
-            context.openActivity(MessageActivity::class.java)
+            context.checkLogin {
+                context.openActivity(MessageActivity::class.java)
+            }
         }
 //        title_view.setLeftAction {
 //            context?.checkLogin { context?.openActivity(SettingActivity::class.java) }
@@ -55,6 +57,7 @@ class HomeFragment : BaseFragment() {
         super.onPause()
         JzvdStd.goOnPlayOnPause()
     }
+
     // TODO bug
     private fun loadData(refresh: Boolean) {
         doHttpRequest(apiService.getHomeContent()) {
@@ -82,10 +85,8 @@ class HomeFragment : BaseFragment() {
                     adapter.addItem(hotList, HOT_COMMODITY, true)
                     hotList.clear()
                 }
-
             }
         }
     }
-
 
 }

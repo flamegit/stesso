@@ -19,8 +19,13 @@ import com.stesso.android.utils.dip2px
 import com.stesso.android.utils.openActivity
 import com.stesso.android.utils.toast
 import com.stesso.android.widget.QuantityView
+import com.umeng.socialize.ShareAction
+import com.umeng.socialize.UMShareListener
+import com.umeng.socialize.bean.SHARE_MEDIA
 import kotlinx.android.synthetic.main.activity_commodity_detail.*
 import org.json.JSONObject
+import com.umeng.socialize.media.UMWeb
+
 
 class CommodityDetailActivity : BaseActivity() {
 
@@ -65,17 +70,36 @@ class CommodityDetailActivity : BaseActivity() {
             checkLogin {
                 val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", info?.info?.id)))
                 doHttpRequest(apiService.addOrDelete(body)) {
-                    if(it?.type=="delete"){
+                    if (it?.type == "delete") {
                         toast("取消收藏")
                         favorite_view.setImageResource(R.drawable.circle_gray_mouth)
-
-                    }else{
+                    } else {
                         toast("加入收藏")
                         favorite_view.setImageResource(R.drawable.circle_red_mouth)
-
                     }
                 }
             }
+        }
+
+        share_view.setOnClickListener {
+
+            val web = UMWeb("https://a.app.qq.com/o/simple.jsp?pkgname=com.stesso.android")
+            web.title = "Stesso"//标题
+            web.description = "my description"//描述
+
+            ShareAction(this).withText("hello").setDisplayList(SHARE_MEDIA.SINA, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
+                    .withMedia(web)
+                    .setCallback(object : UMShareListener {
+                        override fun onResult(p0: SHARE_MEDIA?) {
+                        }
+                        override fun onError(p0: SHARE_MEDIA?, p1: Throwable?) {
+                            p1?.printStackTrace()
+                        }
+                        override fun onCancel(p0: SHARE_MEDIA?) {
+                        }
+                        override fun onStart(p0: SHARE_MEDIA?) {
+                        }
+                    }).open()
         }
 
         view_pager.adapter = pagerAdapter
@@ -122,9 +146,9 @@ class CommodityDetailActivity : BaseActivity() {
             params.marginStart = if (index == 0) 0 else dip2px(14)
         }
         price_view.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG //中划线
-        price_view.text ="￥：${info?.info?.counterPrice}"
+        price_view.text = "￥：${info?.info?.counterPrice}"
         discount_price.text = "￥：${info?.info?.retailPrice}"
-        favorite_view.setImageResource(if(info?.userHasCollect==1) R.drawable.circle_red_mouth else R.drawable.circle_gray_mouth)
+        favorite_view.setImageResource(if (info?.userHasCollect == 1) R.drawable.circle_red_mouth else R.drawable.circle_gray_mouth)
         web_view.loadData(getHtmlData(info?.info?.detail), "text/html; charset=utf-8", "utf-8")
     }
 

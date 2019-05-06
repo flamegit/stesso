@@ -11,6 +11,7 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0.0"
+        multiDexEnabled true //important
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         buildConfigField "String", "WXAPPID", "\"wx42ca6381207ede20\""
@@ -58,6 +59,8 @@ repositories {
 dependencies {
 
     implementation project(':library')
+    implementation project(':share')
+    implementation 'com.android.support:multidex:1.0.3'
     implementation files('libs/SaaS_AppAnalytics_Android_SDK_V4.0.26.jar') //talkingdata
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -76,8 +79,8 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     kapt 'com.github.bumptech.glide:compiler:4.6.1'
     implementation 'cn.jzvd:jiaozivideoplayer:7.0_preview'
-    implementation 'cn.jiguang.sdk:jpush:3.2.0'  // 此处以JPush 3.2.0 版本为例。
-    implementation 'cn.jiguang.sdk:jcore:1.2.7'  // 此处以JCore 1.2.7 版本为例。
+//    implementation 'cn.jiguang.sdk:jpush:3.2.0'  // 此处以JPush 3.2.0 版本为例。
+//    implementation 'cn.jiguang.sdk:jcore:1.2.7'  // 此处以JCore 1.2.7 版本为例。
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -92,14 +95,6 @@ dependencies {
     implementation 'com.lcodecorex:tkrefreshlayout:1.0.7' //下拉刷新
 
 
-//    implementation 'cn.jiguang.sdk:jshare:1.6.1'
-//    // 此处以JShare 1.6.0 版本为例，具体版本请参考压缩包libs的jar包版本。
-//    implementation 'cn.jiguang.sdk:jshare-qqmodel:1.6.1'
-//    // 此处以jshare-qqmodel 1.6.0  版本为例，具体版本请参考压缩包libs的jar包版本。
-//    implementation 'cn.jiguang.sdk:jshare-wechatmodel:1.6.1'
-//    // 此处以jshare-wechatmodel 1.6.0  版本为例，具体版本请参考压缩包libs的jar包版本。
-//    implementation 'cn.jiguang.sdk:jshare-sinamodel:1.6.1'
-//    // 此处以jshare-sinamodel 1.6.0  版本为例，具体版本请参考压缩包libs的jar包版本。
 }
 
 

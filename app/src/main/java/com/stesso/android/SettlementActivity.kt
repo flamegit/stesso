@@ -57,7 +57,7 @@ class SettlementActivity : PayActivity() {
             if (orderId != -1) {
                 if (payType == 0) alipay(orderId) else wechatPay(orderId)
             } else {
-                val body = mapOf(Pair("addressId", address?.id), Pair("cartId", shopCart?.getIdList()), Pair("message", "dd"))
+                val body = mapOf(Pair("addressId", address?.id), Pair("cartId", shopCart?.getIdList()), Pair("message", "pay"))
                 doHttpRequest(apiService.submitOrder(body)) { data ->
                     data?.orderId?.let {
                         orderId = it

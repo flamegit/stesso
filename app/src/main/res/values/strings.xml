@@ -18,4 +18,5 @@
     <string name="suggestion_hint">※ 有任何意见或者建议都可以向我们反馈噢\n\n※ 微博、微信公众号：stesso潮牌\n\n※ 客服QQ：2201131110</string>
 
     <string name="password_hint">※ 长度为8-12个字符\n\n※ 建议至少含数字/字母/符号2种组合</string>
+    <string name="title_activity_modify_name">ModifyNameActivity</string>
 </resources>

@@ -1,11 +1,11 @@
 package com.stesso.android
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import com.stesso.android.lib.*
 import com.stesso.android.model.OrderDetail
 import com.stesso.android.model.OrderInfo
-import com.stesso.android.utils.openActivity
 import kotlinx.android.synthetic.main.activity_order_detail.*
 import org.json.JSONObject
 
@@ -18,6 +18,7 @@ class OrderDetailActivity : PayActivity() {
         super.onCreate(savedInstanceState)
         getActivityComponent().inject(this)
         setContentView(R.layout.activity_order_detail)
+        configTitleView(title_view)
         val orderId = intent.getIntExtra(ORDER_ID, 0)
         recycler_view.adapter = adapter
         adapter.setOnItemClick { _, data, action ->
@@ -25,10 +26,16 @@ class OrderDetailActivity : PayActivity() {
                 when (action) {
                     //
                     1 -> {
-                        val body = JSONObject(mapOf(Pair("orderId", data.id)))
-                        doHttpRequest(apiService.cancelOrder(body)) {
-                            onBackPressed()
-                        }
+                        AlertDialog.Builder(this).setTitle("取消订单")
+                                .setMessage("确定取消订单？")
+                                .setNegativeButton("取消") { dialog, _ ->
+                                    dialog.dismiss()
+                                }.setPositiveButton("确定") { dialog, _ ->
+                                    val body = JSONObject(mapOf(Pair("orderId", data.id)))
+                                    doHttpRequest(apiService.cancelOrder(body)) {
+                                        onBackPressed()
+                                    }
+                                }.show()
                     }
                     2 -> {
                         val dialog = PaymentFragment()
@@ -36,7 +43,6 @@ class OrderDetailActivity : PayActivity() {
                             if (payTye == 0) alipay(orderId) else wechatPay(orderId)
                         }
                         dialog.show(supportFragmentManager, "")
-
                     }
                     3 -> {
                         val body = JSONObject(mapOf(Pair("orderId", data.id)))
@@ -46,6 +52,7 @@ class OrderDetailActivity : PayActivity() {
                     }
                     4 -> {
                         val intent = Intent(this, RefundActivity::class.java)
+                        intent.putExtra(ORDER_ID, orderId)
                         intent.putParcelableArrayListExtra(GOODS_LIST, orderDetail?.orderGoods)
                         startActivity(intent)
                     }

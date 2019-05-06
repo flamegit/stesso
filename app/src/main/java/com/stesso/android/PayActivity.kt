@@ -20,7 +20,7 @@ open class PayActivity : BaseActivity() {
     }
 
     fun alipay(orderNo: Int) {
-        progressDialog.show()
+        //progressDialog.show()
         val disposable = apiService.getAlipayInfo(mapOf(Pair("orderId", orderNo))).flatMap {
             Single.just(it.data)
         }.map {
@@ -28,7 +28,7 @@ open class PayActivity : BaseActivity() {
         }.compose(applySingleSchedulers())
                 .subscribe(
                         {
-                            progressDialog.hide()
+                           // progressDialog.dismiss()
                             if (it["resultStatus"] == "9000") {
                                 //success
                             } else {
@@ -36,7 +36,7 @@ open class PayActivity : BaseActivity() {
                             }
                         },
                         {
-                            progressDialog.hide()
+                           // progressDialog.dismiss()
                             it.printStackTrace()
                         }
                 )

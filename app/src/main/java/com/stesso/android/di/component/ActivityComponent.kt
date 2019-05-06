@@ -6,6 +6,7 @@ import com.stesso.android.*
 import com.stesso.android.account.LoginActivity
 import com.stesso.android.account.ModifyPasswordActivity
 import com.stesso.android.account.RegisterActivity
+import com.stesso.android.account.SettingActivity
 import com.stesso.android.address.AddAddressActivity
 import com.stesso.android.address.AddressListActivity
 import com.stesso.android.shopcart.ShopCartActivity
@@ -30,8 +31,9 @@ interface ActivityComponent {
     fun inject(activity: SuggestionActivity)
     fun inject(activity: MessageActivity)
     fun inject(activity: ModifyPasswordActivity)
-
-
+    fun inject(activity: SettingActivity)
+    fun inject(activity: RefundActivity)
+    fun inject(activity: ModifyNameActivity)
 
 }
 
