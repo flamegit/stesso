@@ -1,4 +1,4 @@
-package com.example.flame.kotlinstudy.di.scope
+package com.stesso.android.di.scope
 
 import javax.inject.Scope
 

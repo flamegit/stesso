@@ -1,7 +1,7 @@
 package com.stesso.android.di.component
 
 import com.stesso.android.di.module.ActivityModule
-import com.example.flame.kotlinstudy.di.scope.ActivityScope
+import com.stesso.android.di.scope.ActivityScope
 import com.stesso.android.*
 import com.stesso.android.account.LoginActivity
 import com.stesso.android.account.ModifyPasswordActivity
