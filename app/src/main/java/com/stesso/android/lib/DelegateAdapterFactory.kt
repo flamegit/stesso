@@ -83,6 +83,7 @@ class DelegateAdapterFactory {
                 override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
                     val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
                     val jzvdStd = view.findViewById<JzvdStd>(R.id.video_player)
+                    jzvdStd.backButton.visibility = View.INVISIBLE
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         jzvdStd.outlineProvider = JzViewOutlineProvider(20f)
                         jzvdStd.clipToOutline = true
@@ -95,6 +96,7 @@ class DelegateAdapterFactory {
                     if (data is VideoItem) {
                         val jzvdStd = holder.get<JzvdStd>(R.id.video_player)
                         jzvdStd.setUp(data.url, "", Jzvd.SCREEN_WINDOW_LIST)
+                        jzvdStd.titleTextView.text = "STESSO"
                         val options = RequestOptions.bitmapTransform(RoundedCorners(10)).centerCrop()
                         Glide.with(holder.itemView).load(data.cover).apply(options).into(jzvdStd.thumbImageView)
                     }
@@ -215,10 +217,6 @@ class DelegateAdapterFactory {
                         }
                         val checkBox = holder.get<CheckBox>(R.id.checkbox)
                         checkBox.isChecked = data.checked
-//                        holder.get<CheckBox>(R.id.checkbox).setOnClickListener{
-//                            if()
-//                        }
-                        //holder.get<TextView>(R.id.info_view).text = data.goodsName
                         val quantityView = holder.get<QuantityView>(R.id.quantity_view)
                         quantityView.quantity = data.number
                         quantityView.setQuantityChangeListener(object : QuantityView.OnQuantityChangeListener {

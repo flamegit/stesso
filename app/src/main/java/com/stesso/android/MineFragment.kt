@@ -39,12 +39,10 @@ class MineFragment : BaseFragment() {
         if (Account.isLogin()) {
             time_view.visibility = View.VISIBLE
             name_view.visibility = View.VISIBLE
-            name_view.text = Account.user?.username
+            name_view.text = Account.user?.nickname
             time_view.text = "${parseTime(Account.user?.addTime?:"")}加入"
             group.visibility = View.INVISIBLE
-
             loadData(if (currIndex == 0) 1 else currIndex)
-
             info_section.setOnClickListener {
                 setIndicatorView(3)
                 loadData(3)
