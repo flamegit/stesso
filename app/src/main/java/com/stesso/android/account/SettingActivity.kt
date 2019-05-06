@@ -1,5 +1,6 @@
 package com.stesso.android.account
 
+import android.animation.ValueAnimator
 import android.app.AlertDialog
 import android.os.Bundle
 import com.stesso.android.BaseActivity
@@ -8,7 +9,9 @@ import com.stesso.android.R
 import com.stesso.android.SuggestionActivity
 import com.stesso.android.address.AddressListActivity
 import com.stesso.android.model.Account
+import com.stesso.android.utils.clearCache
 import com.stesso.android.utils.getAppVersion
+import com.stesso.android.utils.getCacheSize
 import com.stesso.android.utils.openActivity
 import kotlinx.android.synthetic.main.activity_setting.*
 
@@ -28,6 +31,16 @@ class SettingActivity : BaseActivity() {
         row1_text.text = user?.nicknamne
         row2_text.text = user?.addTime
         row3_text.text = user?.getGender()
+        row9_text.text = String.format("%.2f MB", getCacheSize(this))
+
+        row9.setOnClickListener {
+            val start = getCacheSize(this).toFloat()
+            clearCache(this)
+            val animator = ValueAnimator.ofFloat(start, 0F)
+            animator.addUpdateListener { animation ->  row9_text.text =String.format("%.2f MB", animation.animatedValue) }
+            animator.setDuration(500).start()
+
+        }
         row4_text.text = user?.mobile?.replaceRange(3, 7, "****")
 
         row8.setOnClickListener {

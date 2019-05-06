@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#D81B60</color>
     <color name="font_4A">#4A4A4A</color>
+    <color name="font_4A_A">#884A4A4A</color>
+
     <color name="font_9B">#9B9B9B</color>
     <color name="font_red">#ED1D25</color>
     <color name="font_251619">#251619</color>

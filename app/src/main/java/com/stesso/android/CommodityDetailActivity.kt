@@ -49,6 +49,7 @@ class CommodityDetailActivity : BaseActivity() {
 
         pagerAdapter = CommonPagerAdapter { group, str ->
             val imageView = ImageView(group.context)
+            imageView.scaleType=ImageView.ScaleType.CENTER_CROP
             Glide.with(group).load(str).into(imageView)
             imageView
         }

@@ -28,6 +28,7 @@ import io.reactivex.schedulers.Schedulers
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 import org.json.JSONStringer
+import java.io.File
 import java.text.SimpleDateFormat
 import java.text.ParseException
 import java.util.*
@@ -194,6 +195,52 @@ fun parseTime(strDate: String, format: String): String {
 fun Context.hideKeyboard(view: View) {
     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(view.windowToken, 0)
+}
+
+fun getSize(file: File): Double {
+    //判断文件是否存在
+    if (file.exists()) {
+        //如果是目录则递归计算其内容的总大小，如果是文件则直接返回其大小
+        if (!file.isFile) {
+            //获取文件大小
+            val fl = file.listFiles()
+            var ss = 0.0
+            for (f in fl)
+                ss += getSize(f)
+            return ss
+        } else {
+            val ss = file.length().toDouble() / 1024.0 / 1024.0
+            println(file.name + " : " + ss + "MB")
+            return ss
+        }
+    } else {
+        println("文件或者文件夹不存在，请检查路径是否正确！")
+        return 0.0
+    }
+}
+
+fun getCacheSize(context: Context): Double {
+    val file = context.cacheDir
+    return getSize(file)
+}
+
+fun clearCache(context: Context) {
+    val root = context.cacheDir
+    clearCache(root)
+}
+
+fun clearCache(file: File) {
+    if (file.isDirectory) {
+        for (f in file.listFiles()) {
+            if (f.isFile) {
+                f.delete()
+            } else {
+                clearCache(f)
+            }
+        }
+    } else {
+        file.delete()
+    }
 }
 
 
