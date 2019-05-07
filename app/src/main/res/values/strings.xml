@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Stesso</string>
+    <string name="app_name">STESSO</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_declaration">唇印，就是我\n\n我，不追随潮流,\n\n我只引领潮流，\n\nSTESSO,做我自己</string>
@@ -15,7 +15,7 @@
 
     <string name="stesso_explain">stesso源于意大利语，意为“自我”。\nstesso唯一售卖渠道为官方APP，其他任何平台皆非正品。</string>
 
-    <string name="suggestion_hint">※ 有任何意见或者建议都可以向我们反馈噢\n\n※ 微博、微信公众号：stesso潮牌\n\n※ 客服QQ：2201131110</string>
+    <string name="suggestion_hint">※ 有任何意见或者建议都可以向我们反馈噢</string>
 
     <string name="password_hint">※ 长度为8-12个字符\n\n※ 建议至少含数字/字母/符号2种组合</string>
     <string name="title_activity_modify_name">ModifyNameActivity</string>

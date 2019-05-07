@@ -36,4 +36,8 @@ class ShopcartDTO {
         }
         return sum
     }
+
+    fun getCartCount():Int?{
+        return cartList?.size
+    }
 }

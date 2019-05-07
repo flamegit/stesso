@@ -35,7 +35,6 @@ class WXPayEntryActivity : AppCompatActivity(), IWXAPIEventHandler {
             if (resp.errCode == 0) {
                 toast("支付成功")
             } else {
-                toast("${resp.errCode}")
                 toast("支付失败")
             }
             finish()

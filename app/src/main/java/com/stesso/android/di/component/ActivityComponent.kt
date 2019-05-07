@@ -19,21 +19,7 @@ import dagger.Subcomponent
 @ActivityScope
 @Subcomponent(modules = [ActivityModule::class])
 interface ActivityComponent {
-    fun inject(activity: LoginActivity)
-    fun inject(activity: RegisterActivity)
-    fun inject(activity: AddAddressActivity)
-    fun inject(activity: AddressListActivity)
-    fun inject(activity: CommodityDetailActivity)
-    fun inject(activity: ShopCartActivity)
-    fun inject(activity: NewsDetailActivity)
-    fun inject(activity: SettlementActivity)
-    fun inject(activity: OrderDetailActivity)
-    fun inject(activity: SuggestionActivity)
-    fun inject(activity: MessageActivity)
-    fun inject(activity: ModifyPasswordActivity)
-    fun inject(activity: SettingActivity)
-    fun inject(activity: RefundActivity)
-    fun inject(activity: ModifyNameActivity)
+    fun inject(activity: BaseActivity)
 
 }
 

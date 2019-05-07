@@ -96,7 +96,7 @@ class DelegateAdapterFactory {
                     if (data is VideoItem) {
                         val jzvdStd = holder.get<JzvdStd>(R.id.video_player)
                         jzvdStd.setUp(data.url, "", Jzvd.SCREEN_WINDOW_LIST)
-                        jzvdStd.titleTextView.text = "STESSO"
+                        //jzvdStd.titleTextView.text = "STESSO"
                         val options = RequestOptions.bitmapTransform(RoundedCorners(10)).centerCrop()
                         Glide.with(holder.itemView).load(data.cover).apply(options).into(jzvdStd.thumbImageView)
                     }

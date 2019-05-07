@@ -37,6 +37,10 @@ class MineFragment : BaseFragment() {
 
     fun fillView() {
         if (Account.isLogin()) {
+            val count =Account.shopCart?.getCartCount()?:0
+            if(count>0){
+                title_view.setCount(count)
+            }
             time_view.visibility = View.VISIBLE
             name_view.visibility = View.VISIBLE
             name_view.text = Account.user?.nickname

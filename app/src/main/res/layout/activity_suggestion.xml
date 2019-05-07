@@ -16,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:left_icon="@drawable/back"
-        app:right_text="意见反馈"
-        app:title_text="提交" />
+        app:right_text="提交"
+        app:title_text="意见反馈" />
 
 
 

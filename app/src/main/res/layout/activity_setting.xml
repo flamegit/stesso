@@ -157,19 +157,9 @@
                 android:textColor="@color/font_4A"
                 android:textSize="@dimen/txt_13"
                 app:layout_constraintBottom_toBottomOf="@+id/row4"
-                app:layout_constraintEnd_toStartOf="@+id/row4_arrow"
-                app:layout_constraintTop_toTopOf="@+id/row4" />
-
-            <ImageView
-                android:id="@+id/row4_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/arrow_right"
-                app:layout_constraintBottom_toBottomOf="@+id/row4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/row4" />
+
 
             <View
                 android:id="@+id/middle_space"
