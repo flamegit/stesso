@@ -37,9 +37,9 @@ object NetManager {
             throw IllegalStateException("baseUrl can not be null")
         }
         return OkHttpClient.Builder()
-                .connectTimeout(15, TimeUnit.SECONDS)
-                .readTimeout(15, TimeUnit.SECONDS)
-                .writeTimeout(15, TimeUnit.SECONDS)
+                .connectTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .writeTimeout(20, TimeUnit.SECONDS)
                 .addInterceptor(getLogInterceptor(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor { chain ->
                     var request = chain.request()
