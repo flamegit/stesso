@@ -20,6 +20,10 @@ import com.stesso.android.R
 import com.stesso.android.account.LoginActivity
 import com.stesso.android.model.Account
 import com.stesso.android.model.RootNode
+import com.umeng.socialize.ShareAction
+import com.umeng.socialize.UMShareListener
+import com.umeng.socialize.bean.SHARE_MEDIA
+import com.umeng.socialize.media.UMWeb
 import io.reactivex.CompletableTransformer
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
@@ -156,6 +160,29 @@ fun Context.getWindowWidth(): Int {
     val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
     wm.defaultDisplay.getMetrics(metrics)
     return metrics.widthPixels
+}
+
+fun Activity.share() {
+    val web = UMWeb("https://a.app.qq.com/o/simple.jsp?pkgname=com.stesso.android")
+    web.title = "STESSO限量发售"//标题
+    web.description = "我从不随波逐流，我只引领潮流"//描述
+
+    ShareAction(this).withText("hello").setDisplayList(SHARE_MEDIA.SINA, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.QZONE)
+            .withMedia(web)
+            .setCallback(object : UMShareListener {
+                override fun onResult(p0: SHARE_MEDIA?) {
+                }
+
+                override fun onError(p0: SHARE_MEDIA?, p1: Throwable?) {
+                    p1?.printStackTrace()
+                }
+
+                override fun onCancel(p0: SHARE_MEDIA?) {
+                }
+
+                override fun onStart(p0: SHARE_MEDIA?) {
+                }
+            }).open()
 }
 
 

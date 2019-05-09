@@ -3,6 +3,9 @@ package com.stesso.android
 import android.os.Bundle
 import com.alipay.sdk.app.PayTask
 import com.stesso.android.utils.applySingleSchedulers
+import com.stesso.android.utils.openActivity
+import com.stesso.android.utils.toast
+import com.stesso.android.wxapi.WXPayEntryActivity
 import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.IWXAPI
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
@@ -28,15 +31,15 @@ open class PayActivity : BaseActivity() {
         }.compose(applySingleSchedulers())
                 .subscribe(
                         {
-                           // progressDialog.dismiss()
+                            // progressDialog.dismiss()
                             if (it["resultStatus"] == "9000") {
-                                //success
+                                openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
                             } else {
-
+                                toast("支付失败")
                             }
                         },
                         {
-                           // progressDialog.dismiss()
+                            // progressDialog.dismiss()
                             it.printStackTrace()
                         }
                 )
@@ -47,6 +50,7 @@ open class PayActivity : BaseActivity() {
         doHttpRequest(apiService.getWechatPayInfo(mapOf(Pair("orderId", orderNo)))) { info ->
             val req = PayReq()
             info?.let {
+                WXPayEntryActivity.orderNo = orderNo
                 req.appId = it.appId
                 req.nonceStr = it.nonceStr
                 req.packageValue = it.packageValue

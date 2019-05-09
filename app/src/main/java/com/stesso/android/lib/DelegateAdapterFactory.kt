@@ -2,20 +2,16 @@ package com.stesso.android.lib
 
 import android.graphics.Color
 import android.graphics.Paint
-import android.opengl.Visibility
 import android.os.Build
-import com.stesso.android.ADDRESS_ID
-import com.stesso.android.GOODS_ID
-import com.stesso.android.NEWS_ID
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.stesso.android.*

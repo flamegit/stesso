@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.CheckBox
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.example.flame.kotlinstudy.lib.CommonAdapter
+import com.stesso.android.lib.CommonAdapter
 import com.stesso.android.*
 import com.stesso.android.lib.DividerItemDecoration
 import com.stesso.android.lib.FAVORITE_COMMODITY

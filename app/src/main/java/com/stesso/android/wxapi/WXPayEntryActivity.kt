@@ -3,6 +3,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.stesso.android.BuildConfig
+import com.stesso.android.ORDER_ID
+import com.stesso.android.OrderDetailActivity
+import com.stesso.android.utils.openActivity
 import com.stesso.android.utils.toast
 import com.tencent.mm.opensdk.constants.ConstantsAPI
 import com.tencent.mm.opensdk.modelbase.BaseReq
@@ -33,11 +36,16 @@ class WXPayEntryActivity : AppCompatActivity(), IWXAPIEventHandler {
     override fun onResp(resp: BaseResp) {
         if (resp.type == ConstantsAPI.COMMAND_PAY_BY_WX) {
             if (resp.errCode == 0) {
+                openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
+
                 toast("支付成功")
             } else {
                 toast("支付失败")
             }
             finish()
         }
+    }
+    companion object{
+        var orderNo :Int?=0
     }
 }

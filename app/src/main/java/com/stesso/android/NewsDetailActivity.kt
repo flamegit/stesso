@@ -3,6 +3,7 @@ package com.stesso.android
 
 import android.os.Bundle
 import com.stesso.android.model.News
+import com.stesso.android.utils.share
 import com.stesso.android.utils.toast
 import com.umeng.socialize.ShareAction
 import com.umeng.socialize.UMShareListener
@@ -21,7 +22,7 @@ class NewsDetailActivity : BaseActivity() {
         configTitleView(title_view)
         doHttpRequest(apiService.getNewsDetail(intent.getIntExtra(NEWS_ID, 0))) {
             news = it?.topic
-            favorite_view.setImageResource(if(it?.userHasCollect==0) R.drawable.gray_mouth else R.drawable.red_mouth)
+            favorite_view.setImageResource(if (it?.userHasCollect == 0) R.drawable.gray_mouth else R.drawable.red_mouth)
             web_view.loadData(getHtmlData(it?.topic?.content), "text/html; charset=utf-8", "utf-8")
         }
 
@@ -41,24 +42,8 @@ class NewsDetailActivity : BaseActivity() {
             }
         }
 
-        share_view.setOnClickListener{
-            val web = UMWeb("https://a.app.qq.com/o/simple.jsp?pkgname=com.stesso.android")
-            web.title = "Stesso"//标题
-            web.description = "my description"//描述
-
-            ShareAction(this).withText("hello").setDisplayList(SHARE_MEDIA.SINA,SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN,SHARE_MEDIA.QZONE)
-                    .withMedia(web)
-                    .setCallback(object : UMShareListener {
-                        override fun onResult(p0: SHARE_MEDIA?) {
-                        }
-                        override fun onError(p0: SHARE_MEDIA?, p1: Throwable?) {
-                            p1?.printStackTrace()
-                        }
-                        override fun onCancel(p0: SHARE_MEDIA?) {
-                        }
-                        override fun onStart(p0: SHARE_MEDIA?) {
-                        }
-                    }).open()
+        share_view.setOnClickListener {
+            this.share()
         }
     }
 

@@ -1,5 +1,6 @@
 package com.stesso.android.lib
 
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 
@@ -9,8 +10,10 @@ import android.view.ViewGroup
 
 class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
 
-    private val mContent: MutableList<CommonAdapterItem<*>> = mutableListOf()
+    private val mContent: MutableList<CommonAdapterItem> = mutableListOf()
+
     private val mFactory = DelegateAdapterFactory()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
         return mFactory.getDelegateAdapter(viewType).onCreateViewHolder(parent, viewType)
     }
@@ -24,7 +27,7 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
 
     override fun getItemCount(): Int = mContent.size
 
-    fun addItems(items: Collection<*>?, type: Int = TYPE1, append: Boolean = false) {
+    fun addItems(items: Collection<Any>?, type: Int = TYPE1, append: Boolean = false) {
         items?.let {
             if (!append) {
                 mContent.clear()
@@ -34,16 +37,16 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
         }
     }
 
-    fun clear(){
+    fun clear() {
         mContent.clear()
         notifyDataSetChanged()
     }
 
-    fun setOnItemClick(callback: (position: Int, data: Any?,action:Int) -> Unit) {
+    fun setOnItemClick(callback: (position: Int, data: Any?, action: Int) -> Unit) {
         mFactory.onItemClick = callback
     }
 
-    fun addItem(item: Collection<*>?, type: Int = TYPE1, append: Boolean = false) {
+    fun addItem(item: Collection<Any>?, type: Int = TYPE1, append: Boolean = false) {
         item?.let {
             if (!append) {
                 mContent.clear()
@@ -63,13 +66,6 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
         }
     }
 
-    fun addTopItem(item: Any?, type: Int = TYPE1) {
-        item?.let {
-            mContent.add(0,transform(item, type))
-            notifyItemInserted(0)
-        }
-    }
-
     fun changeItem(position: Int, item: Any?, type: Int) {
         item?.let {
             if (position < mContent.size) {
@@ -79,27 +75,25 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
         }
     }
 
-
-
-    fun addHeader(item: String?, type: Int = HEADER) {
-        item?.let {
-            mContent.add(0, CommonAdapterItem(it, type))
-            notifyItemInserted(0)
-        }
-    }
-    fun addFooter(item: String?, type: Int = FOOTER) {
-        item?.let {
-            val count = mContent.size
-            mContent.add(count, CommonAdapterItem(it, type))
-            notifyItemInserted(count)
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
+        super.onAttachedToRecyclerView(recyclerView)
+        val manager = recyclerView?.layoutManager
+        if (manager is GridLayoutManager) {
+            manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return mContent[position].spanSize
+                }
+            }
         }
     }
 
-    private fun transform(item: Any, type: Int): CommonAdapterItem<*> {
+    private fun transform(item: Any, type: Int): CommonAdapterItem {
         return CommonAdapterItem(item, type)
     }
 
-    private fun transform(items: Collection<*>, type: Int): List<CommonAdapterItem<*>> {
+    private fun transform(items: Collection<Any>, type: Int): List<CommonAdapterItem> {
         return items.map { CommonAdapterItem(it, type) }
     }
+
+    data class CommonAdapterItem(val data: Any, val type: Int, val spanSize: Int = 1)
 }

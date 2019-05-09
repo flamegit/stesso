@@ -14,10 +14,7 @@ import com.stesso.android.lib.CommonPagerAdapter
 import com.stesso.android.model.Account
 import com.stesso.android.model.CommodityInfoDTO
 import com.stesso.android.shopcart.ShopCartActivity
-import com.stesso.android.utils.checkLogin
-import com.stesso.android.utils.dip2px
-import com.stesso.android.utils.openActivity
-import com.stesso.android.utils.toast
+import com.stesso.android.utils.*
 import com.stesso.android.widget.QuantityView
 import com.umeng.socialize.ShareAction
 import com.umeng.socialize.UMShareListener
@@ -82,27 +79,7 @@ class CommodityDetailActivity : BaseActivity() {
         }
 
         share_view.setOnClickListener {
-
-            val web = UMWeb("https://a.app.qq.com/o/simple.jsp?pkgname=com.stesso.android")
-            web.title = "Stesso"//标题
-            web.description = "my description"//描述
-
-            ShareAction(this).withText("hello").setDisplayList(SHARE_MEDIA.SINA, SHARE_MEDIA.QQ, SHARE_MEDIA.WEIXIN)
-                    .withMedia(web)
-                    .setCallback(object : UMShareListener {
-                        override fun onResult(p0: SHARE_MEDIA?) {
-                        }
-
-                        override fun onError(p0: SHARE_MEDIA?, p1: Throwable?) {
-                            p1?.printStackTrace()
-                        }
-
-                        override fun onCancel(p0: SHARE_MEDIA?) {
-                        }
-
-                        override fun onStart(p0: SHARE_MEDIA?) {
-                        }
-                    }).open()
+            this.share()
         }
 
         view_pager.adapter = pagerAdapter

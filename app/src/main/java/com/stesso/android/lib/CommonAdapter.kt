@@ -1,10 +1,9 @@
-package com.example.flame.kotlinstudy.lib
+package com.stesso.android.lib
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.stesso.android.lib.CommonViewHolder
 
 /**
  * Created by flame on 2018/2/1.
