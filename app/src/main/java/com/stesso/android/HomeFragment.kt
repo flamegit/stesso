@@ -1,20 +1,20 @@
 package com.stesso.android
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import cn.jzvd.JzvdStd
+import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
 import com.stesso.android.lib.*
+import com.stesso.android.model.Account
 import com.stesso.android.model.Commodity
 import com.stesso.android.model.VideoItem
 import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.checkLogin
 import com.stesso.android.utils.openActivity
 import kotlinx.android.synthetic.main.fragment_home.*
-import cn.jzvd.JzvdStd
-import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
-import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
-import com.stesso.android.model.Account
-import kotlinx.android.synthetic.main.fragment_home.recycler_view
-import kotlinx.android.synthetic.main.fragment_home.title_view
 
 
 class HomeFragment : BaseFragment() {
@@ -49,11 +49,14 @@ class HomeFragment : BaseFragment() {
             }
         })
         loadData(false)
-        val count = Account.shopCart?.getCartCount()?:0
-        if(count>0){
-            //title_view.setCount(count)
-        }
 
+        doHttpRequest(apiService.getCartItems(), true) {
+            Account.count = it?.cartTotal?.goodsCount ?: 0
+            if (Account.count > 0) {
+                count_view.visibility= View.VISIBLE
+                count_view.text = Account.count.toString()
+            }
+        }
     }
 
     override fun onPause() {

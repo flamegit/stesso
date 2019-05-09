@@ -46,7 +46,7 @@ open class BaseFragment : Fragment() {
         return App.instance().component.plus(FragmentModule())
     }
 
-    protected fun <T> doHttpRequest(single: Single<RootNode<T>>, onSuccess: (T?) -> Unit) {
+    protected fun <T> doHttpRequest(single: Single<RootNode<T>>, quite: Boolean = false, onSuccess: (T?) -> Unit) {
         progressDialog.show()
         val disposable = single.compose(applySingleSchedulers())
                 .subscribe({ rootNode ->
@@ -54,7 +54,9 @@ open class BaseFragment : Fragment() {
                         if (rootNode.errno == 501) {
                             Account.logout()
                         }
-                        context?.toast(rootNode.errmsg ?: "")
+                        if (!quite) {
+                            context?.toast(rootNode.errmsg ?: "")
+                        }
                     } else {
                         onSuccess(rootNode.data)
                         progressDialog.dismiss()

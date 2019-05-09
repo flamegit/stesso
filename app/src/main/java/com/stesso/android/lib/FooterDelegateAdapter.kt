@@ -1,22 +1,21 @@
 package com.stesso.android.lib
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.FrameLayout
+import com.stesso.android.utils.dip2px
 
 class FooterDelegateAdapter : ViewTypeDelegateAdapter {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder {
 
-        val view=LayoutInflater.from(parent.context)
-                .inflate(android.R.layout.simple_list_item_1,parent,false)
+        val padding = dip2px(40)
+        val view =FrameLayout(parent.context)
+        view.setPadding(padding,padding,padding,padding)
         return CommonViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data :Any?) {
-        if(data is String){
-            holder.get<TextView>(android.R.id.text1).text=data
-        }
+
     }
 
 

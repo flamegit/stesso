@@ -22,7 +22,6 @@ import org.json.JSONObject
 
 class ShopCartActivity : BaseActivity() {
 
-    // private val adapter = MultiTypeAdapter()
     private var adapter: CommonAdapter<CommodityDetail>? = null
 
     private var adapter2 = MultiTypeAdapter()
@@ -44,7 +43,7 @@ class ShopCartActivity : BaseActivity() {
                 val body = JSONObject(mapOf(Pair("productIds", data.productId)))
                 doHttpRequest(apiService.deleteCartItem(body)) {
                     adapter?.removeItem(position)
-                    if(adapter?.itemCount ==0){
+                    if (adapter?.itemCount == 0) {
                         group.visibility = View.VISIBLE
                         settlement_view.visibility = View.INVISIBLE
                     }
@@ -69,12 +68,13 @@ class ShopCartActivity : BaseActivity() {
                     val body = JSONObject(mapOf(Pair("productId", data.productId), Pair("goodsId", data.goodsId), Pair("number", 1)))
                     val single = if (minus) apiService.minusCartItems(body) else apiService.addCartItem(body)
                     doHttpRequest(single) {
+                        shopCart?.updateNum(position, newQuantity)
                     }
                 }
             })
         }
-        select_view.setOnClickListener{
-            openActivity(MainActivity::class.java,INDEX,0)
+        select_view.setOnClickListener {
+            openActivity(MainActivity::class.java, INDEX, 0)
         }
 
         recycler_view.adapter = adapter
@@ -82,6 +82,8 @@ class ShopCartActivity : BaseActivity() {
         recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL, false))
         doHttpRequest(apiService.getCartItems()) {
             shopCart = it
+            Account.count = it?.cartTotal?.goodsCount ?: 0
+            //title_view.setCount(Account.count)
             if (it?.cartList?.isEmpty() == true) {
                 group.visibility = View.VISIBLE
             } else {
@@ -91,11 +93,11 @@ class ShopCartActivity : BaseActivity() {
             }
         }
 
-        related_view.adapter =adapter2
-        related_view.layoutManager = GridLayoutManager(this,2)
+        related_view.adapter = adapter2
+        related_view.layoutManager = GridLayoutManager(this, 2)
 
-        doHttpRequest(apiService.getRelatedGoods()){
-          adapter2.addItems(it?.goodsList, FAVORITE_COMMODITY)
+        doHttpRequest(apiService.getRelatedGoods()) {
+            adapter2.addItems(it?.goodsList, FAVORITE_COMMODITY)
         }
     }
 }

@@ -28,7 +28,7 @@ class MineFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        if(reload){
+        if (reload) {
             currIndex = 0
             reload = false
         }
@@ -37,14 +37,14 @@ class MineFragment : BaseFragment() {
 
     fun fillView() {
         if (Account.isLogin()) {
-            val count =Account.shopCart?.getCartCount()?:0
-            if(count>0){
+            val count = Account.count
+            if (count > 0) {
                 title_view.setCount(count)
             }
             time_view.visibility = View.VISIBLE
             name_view.visibility = View.VISIBLE
             name_view.text = Account.user?.nickname
-            time_view.text = "${parseTime(Account.user?.addTime?:"")}加入"
+            time_view.text = "${parseTime(Account.user?.addTime ?: "")}加入"
             group.visibility = View.INVISIBLE
             loadData(if (currIndex == 0) 1 else currIndex)
             info_section.setOnClickListener {
@@ -94,7 +94,7 @@ class MineFragment : BaseFragment() {
             }
             2 -> {
                 adapter.clear()
-                recycler_view.layoutManager = GridLayoutManager(context,2)
+                recycler_view.layoutManager = GridLayoutManager(context, 2)
                 doHttpRequest(apiService.getCollectCommodity(0, 1, 10)) {
                     adapter.addItems(it?.collectList, FAVORITE_COMMODITY)
                 }

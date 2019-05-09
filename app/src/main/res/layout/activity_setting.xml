@@ -352,7 +352,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding_10"
         android:gravity="center"
-        android:text="Copyright 2018-2019 stesso.cn Corporation,All Rights Reserved"
+        android:text="Copyright 2018-2019 上海拾石信息技术有限公司,All Rights Reserved"
         android:textColor="@color/font_4A"
         android:textSize="@dimen/txt_10" />
 </LinearLayout>

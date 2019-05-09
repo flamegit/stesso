@@ -29,6 +29,7 @@ class SettlementActivity : PayActivity() {
         adapter.addItems(shopCart?.getSelectItems(), SETTLEMENT_ITEM, true)
         adapter.addItem(shopCart, SETTLEMENT_INFO, true)
         adapter.addItem("pay", SETTLEMENT_PAY, true)
+        adapter.addItem("footer", FOOTER,true)
         adapter.setOnItemClick { _, _, action ->
             when (action) {
                 0, 1 -> {

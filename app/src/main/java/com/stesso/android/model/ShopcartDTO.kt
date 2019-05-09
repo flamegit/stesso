@@ -37,7 +37,11 @@ class ShopcartDTO {
         return sum
     }
 
-    fun getCartCount():Int?{
+    fun updateNum(position: Int, count: Int) {
+        cartList?.get(position)?.number = count
+    }
+
+    fun getCartCount(): Int? {
         return cartList?.size
     }
 }

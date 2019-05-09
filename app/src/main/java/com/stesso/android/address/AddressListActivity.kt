@@ -38,19 +38,24 @@ class AddressListActivity : BaseActivity() {
         configTitleView(title_view) {
             openActivity(AddAddressActivity::class.java)
         }
+        loadData()
     }
 
     override fun onResume() {
         super.onResume()
-        if(reload){
-            doHttpRequest(apiService.getAddressList()) {
-                reload = false
-                adapter.addItems(it, ADDRESS_TYPE)
-            }
+        if (reload) {
+            loadData()
+        }
+    }
+
+    fun loadData() {
+        doHttpRequest(apiService.getAddressList()) {
+            reload = false
+            adapter.addItems(it, ADDRESS_TYPE)
         }
     }
 
     companion object {
-        var reload = true
+        var reload = false
     }
 }

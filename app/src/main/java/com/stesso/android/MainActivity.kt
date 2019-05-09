@@ -1,6 +1,7 @@
 package com.stesso.android
 
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import cn.jzvd.Jzvd
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
@@ -38,10 +39,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun init() {
-        bottom_navigation_bar.addItem(BottomNavigationItem(R.drawable.home, "首页"))
-                .addItem(BottomNavigationItem(R.drawable.info_icon, "NOW"))
-                .addItem(BottomNavigationItem(R.drawable.search, "搜索"))
-                .addItem(BottomNavigationItem(R.drawable.account_gray, "我的"))
+        bottom_navigation_bar.addItem(BottomNavigationItem(R.drawable.icon1_drawable, "首页"))
+                .addItem(BottomNavigationItem(R.drawable.icon2_drawable, "NOW"))
+                .addItem(BottomNavigationItem(R.drawable.icon3_drawable, "搜索"))
+                .addItem(BottomNavigationItem(R.drawable.icon4_drawable, "我的"))
                 .setMode(BottomNavigationBar.MODE_FIXED)
                 .initialise()
 

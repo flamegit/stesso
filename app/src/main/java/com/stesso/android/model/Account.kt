@@ -22,6 +22,7 @@ object Account {
 
         }
     var shopCart: ShopcartDTO? = null
+    var count = 0
     var token: String? = null
         get() {
             if (field == null) {

@@ -54,7 +54,7 @@ class CommodityDetailActivity : BaseActivity() {
 
         pagerAdapter = CommonPagerAdapter { group, str ->
             val imageView = ImageView(group.context)
-            imageView.scaleType=ImageView.ScaleType.CENTER_CROP
+            imageView.scaleType = ImageView.ScaleType.CENTER_CROP
             Glide.with(group).load(str).into(imageView)
             imageView
         }
@@ -92,11 +92,14 @@ class CommodityDetailActivity : BaseActivity() {
                     .setCallback(object : UMShareListener {
                         override fun onResult(p0: SHARE_MEDIA?) {
                         }
+
                         override fun onError(p0: SHARE_MEDIA?, p1: Throwable?) {
                             p1?.printStackTrace()
                         }
+
                         override fun onCancel(p0: SHARE_MEDIA?) {
                         }
+
                         override fun onStart(p0: SHARE_MEDIA?) {
                         }
                     }).open()
@@ -122,11 +125,11 @@ class CommodityDetailActivity : BaseActivity() {
                 return@setOnClickListener
             }
             num = quantity_view.quantity
-            val productId = info?.getProductId(choseValues?.reduce { acc, s -> "$acc$s" })
+            val productId = info?.getProduct(choseValues?.reduce { acc, s -> "$acc$s" })?.id
             productId?.let {
                 val body = JSONObject(mapOf(Pair("goodsId", goodId), Pair("productId", it), Pair("number", num)))
                 doHttpRequest(apiService.addCartItem(body)) {
-                    openActivity(ShopCartActivity::class.java)
+                   toast("加入成功")
                 }
             }
         }
@@ -154,16 +157,29 @@ class CommodityDetailActivity : BaseActivity() {
 
     private fun createTagLayout(valueList: List<CommodityInfoDTO.Value>, index: Int): View {
         val layout = LinearLayout(this)
-        valueList.forEach { info ->
-            val tagView = createTagView(info.value)
+        valueList.forEach { value ->
+            val tagView = createTagView(value.value)
             tagView.setOnClickListener {
-                choseValues?.set(index, info.value)
+                choseValues?.set(index, value.value)
                 val lastView = choseViews?.get(index)
                 choseViews?.set(index, tagView)
                 if (lastView != tagView) {
                     selectView(lastView, false)
                     selectView(tagView, true)
                 }
+                if (choseValues?.size == 2) {
+                    val product = info?.getProduct(choseValues?.reduce { acc, s -> "$acc$s" })
+                    if (product != null && product.number > 0) {
+                        add_cart_view.isEnabled = true
+                        add_cart_view.text = "添加到购物车"
+                        discount_price.text = "￥：${product?.price}"
+                    } else if (product != null) {
+                        add_cart_view.isEnabled = false
+                        add_cart_view.text = "Hey,下次来早点"
+
+                    }
+                }
+
             }
             val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             params.marginStart = paddingBig
