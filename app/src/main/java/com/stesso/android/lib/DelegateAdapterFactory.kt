@@ -56,7 +56,9 @@ const val ORDER_GOODS = 23
 const val ORDER_STATUS = 24
 const val EXPRESS_INFO = 25
 const val SEARCH_GOODS = 26
-
+const val EMPTY_CART = 27
+const val ACTION_BUTTON = 28
+const val TITLE_TYPE = 29
 
 class DelegateAdapterFactory {
 
@@ -101,10 +103,29 @@ class DelegateAdapterFactory {
             EMPTY_ADDRESS -> object : BaseDelegateAdapter(R.layout.viewholder_empty_address) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
-                    if (data is EmptyAddress) {
+                    if (data is EmptyItem) {
                         holder.itemView.setOnClickListener { v ->
                             v.context.openActivity(AddressListActivity::class.java)
                         }
+                    }
+                }
+            }
+            TITLE_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_title_view) {
+
+            }
+            EMPTY_CART -> object :BaseDelegateAdapter(R.layout.viewholder_empty_cart){
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    holder.get<View>(R.id.action_view).setOnClickListener{
+                        onItemClick(position,data,4,null)
+                    }
+                }
+            }
+            ACTION_BUTTON -> object :BaseDelegateAdapter(R.layout.viewholder_action_button){
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    holder.get<View>(R.id.action_view).setOnClickListener{
+                        onItemClick(position,data,4,null)
                     }
                 }
             }
