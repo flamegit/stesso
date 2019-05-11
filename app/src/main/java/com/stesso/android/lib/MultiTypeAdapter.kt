@@ -42,8 +42,14 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun setOnItemClick(callback: (position: Int, data: Any?, action: Int) -> Unit) {
+    fun setOnItemClick(callback: (position: Int, data: Any?, action: Int, extra: Any?) -> Unit) {
         mFactory.onItemClick = callback
+    }
+
+    fun setOnItemClick(callback: (position: Int, data: Any?, action: Int) -> Unit) {
+        mFactory.onItemClick = { position, data, action, _ ->
+            callback(position, data, action)
+        }
     }
 
     fun addItem(item: Collection<Any>?, type: Int = TYPE1, append: Boolean = false) {

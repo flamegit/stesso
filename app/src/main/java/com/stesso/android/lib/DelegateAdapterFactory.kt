@@ -63,7 +63,7 @@ class DelegateAdapterFactory {
     @Inject
     lateinit var apiService: ApiService
 
-    var onItemClick: (position: Int, data: Any?, action: Int) -> Unit = { _, _, _ -> }
+    var onItemClick: (position: Int, data: Any?, action: Int,extra:Any?) -> Unit = { _, _, _,_ -> }
 
     init {
         App.instance().component.inject(this)
@@ -176,7 +176,7 @@ class DelegateAdapterFactory {
                     alipayView.isEnabled = false
                     alipayView.setOnCheckedChangeListener { button, isChecked ->
                         if (isChecked and button.isPressed) {
-                            onItemClick(position, data, 0)
+                            onItemClick(position, data, 0,null)
                             button.isEnabled = false
                             wechatPayView.isEnabled = true
                             wechatPayView.isChecked = false
@@ -184,7 +184,7 @@ class DelegateAdapterFactory {
                     }
                     wechatPayView.setOnCheckedChangeListener { button, isChecked ->
                         if (isChecked and button.isPressed) {
-                            onItemClick(position, data, 1)
+                            onItemClick(position, data, 1,null)
                             button.isEnabled = false
                             alipayView.isEnabled = true
                             alipayView.isChecked = false
@@ -210,16 +210,25 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.name_view).text = data.goodsName
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<View>(R.id.delete_view).setOnClickListener {
-                            onItemClick(position, data, 1)
+                            onItemClick(holder.adapterPosition, data, 1,null)
                         }
                         val checkBox = holder.get<CheckBox>(R.id.checkbox)
                         checkBox.isChecked = data.checked
+                        checkBox.setOnCheckedChangeListener { button, isChecked ->
+                            if (button.isPressed) {
+                                data.checked = isChecked
+                            }
+                        }
+                        holder.get<TextView>(R.id.price_view).text = "￥：${data.price}"
+                        holder.get<TextView>(R.id.info_view).text = data.getInfo()
                         val quantityView = holder.get<QuantityView>(R.id.quantity_view)
                         quantityView.quantity = data.number
                         quantityView.setQuantityChangeListener(object : QuantityView.OnQuantityChangeListener {
                             override fun onLimitReached() {}
                             override fun onMinReached() {}
-                            override fun onQuantityChanged(newQuantity: Int, programmatically: Boolean, minus: Boolean) {}
+                            override fun onQuantityChanged(newQuantity: Int, programmatically: Boolean, minus: Boolean) {
+                                onItemClick(position, data, if (minus) 2 else 3,newQuantity)
+                            }
                         })
                     }
                 }
@@ -255,7 +264,7 @@ class DelegateAdapterFactory {
                             v.context.openActivity(AddAddressActivity::class.java, ADDRESS_ID, data.id)
                         }
                         holder.itemView.setOnClickListener {
-                            onItemClick(position, data, 0)
+                            onItemClick(position, data, 0,null)
                         }
                     }
                 }
@@ -268,7 +277,7 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.tel_view).text = data.mobile
                         holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.detailedAddress}"
                         holder.itemView.setOnClickListener {
-                            onItemClick(position, data, SETTLEMENT_ADDRESS)
+                            onItemClick(position, data, SETTLEMENT_ADDRESS,null)
                         }
                     }
                 }
@@ -391,10 +400,10 @@ class DelegateAdapterFactory {
                                 action2View.setTextColor(Color.parseColor("#FFFFFF"))
                                 action2View.setBackgroundResource(R.drawable.solid_red_bg)
                                 action1View.setOnClickListener {
-                                    onItemClick(position, data, 1)
+                                    onItemClick(position, data, 1,null)
                                 }
                                 action2View.setOnClickListener {
-                                    onItemClick(position, data, 2)
+                                    onItemClick(position, data, 2,null)
                                 }
                             }
                             //已付款
@@ -408,7 +417,7 @@ class DelegateAdapterFactory {
                                 action2View.text = "确认收货"
                                 action1View.text = "运送中"
                                 action2View.setOnClickListener {
-                                    onItemClick(position, data, 3)
+                                    onItemClick(position, data, 3,null)
                                 }
                             }
                             401, 402 -> {
@@ -416,7 +425,7 @@ class DelegateAdapterFactory {
                                 action2View.text = "已送达"
                                 action1View.text = "退货"
                                 action1View.setOnClickListener {
-                                    onItemClick(position, data, 4)
+                                    onItemClick(position, data, 4,null)
                                 }
                             }
                             //售后

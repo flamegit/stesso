@@ -1,16 +1,12 @@
 package com.stesso.android.widget;
-
-
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.stesso.android.R;
 
 
@@ -38,51 +34,38 @@ public class QuantityView extends LinearLayout implements View.OnClickListener {
         init();
     }
 
-    public int getHintCount(){
-        return hintCount;
-    }
-
-    public void setHintCount(int count){
-        hintCount=count;
-    }
-
-    public void setMaxQuantity(int max){
-        maxQuantity=max;
-    }
-
     public void setQuantityChangeListener(OnQuantityChangeListener listener){
         onQuantityChangeListener=listener;
     }
     private void init() {
         maxQuantity=50;
-        hintCount=0;
-        quantity=1;
-        int dp5 = pxFromDp(5);
+
+        int dp8 = pxFromDp(8);
         int dp20 = pxFromDp(20);
+        int dp36 = pxFromDp(36);
+
         mAddView = new ImageView(getContext());
         mAddView.setImageResource(R.drawable.ic_add_black_24dp);
-        mAddView.setPadding(dp5, dp5, dp5, dp5);
-        mAddView.setBackgroundColor(Color.WHITE);
+        mAddView.setBackground(getResources().getDrawable(R.drawable.circl_gray_bg));
         mRemoveView = new ImageView(getContext());
-        mRemoveView.setPadding(dp5, dp5, dp5, dp5);
         mRemoveView.setImageResource(R.drawable.ic_remove_black_24dp);
-        mRemoveView.setBackgroundColor(Color.WHITE);
+        mRemoveView.setBackground(getResources().getDrawable(R.drawable.circl_gray_bg));
+
         mTextViewQuantity = new TextView(getContext());
-        mTextViewQuantity.setPadding(dp20,dp5,dp20,dp5);
         mTextViewQuantity.setGravity(Gravity.CENTER);
         mTextViewQuantity.setTextSize(15);
-        mTextViewQuantity.setText(quantity+"");
-        mTextViewQuantity.setBackgroundColor(Color.WHITE);
+        setQuantity(1);
+        mTextViewQuantity.setBackgroundColor(getResources().getColor(R.color.space));
 
-        LayoutParams params=new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.setMargins(2,2,2,2);
-        LayoutParams params2=new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        params2.setMargins(0,2,0,2);
-        setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        LayoutParams params=new LayoutParams(dp36, dp20);
+        params.setMargins(dp8,0,dp8,0);
+
         setOrientation(HORIZONTAL);
-        addView(mRemoveView,params);
-        addView(mTextViewQuantity, params2);
-        addView(mAddView, params);
+
+        addView(mRemoveView,new LayoutParams(dp20, dp20));
+        addView(mTextViewQuantity, params);
+        addView(mAddView, new LayoutParams(dp20, dp20));
+
         mAddView.setOnClickListener(this);
         mRemoveView.setOnClickListener(this);
     }
