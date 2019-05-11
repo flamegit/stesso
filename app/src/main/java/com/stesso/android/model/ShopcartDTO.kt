@@ -32,7 +32,9 @@ class ShopcartDTO {
     fun getTotalPrice(): Float {
         var sum = 0.0F
         cartList?.forEach {
-            sum += it.getTotalPrice()
+            if(it.checked){
+                sum += it.getTotalPrice()
+            }
         }
         return sum
     }

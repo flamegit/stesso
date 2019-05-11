@@ -12,7 +12,7 @@
         android:layout_margin="@dimen/padding_16"
         android:background="@drawable/solid_black_bg"
         android:drawableLeft="@drawable/cart_white"
-        android:text="果断挑选几件"
+        android:text="进入结算中心"
         android:textColor="@android:color/white"
         android:textSize="@dimen/txt_15"
         app:iconPadding="@dimen/padding_10" />

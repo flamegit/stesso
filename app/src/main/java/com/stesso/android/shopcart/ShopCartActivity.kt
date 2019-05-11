@@ -8,6 +8,8 @@ import com.stesso.android.model.Account
 import com.stesso.android.model.CommodityDetail
 import com.stesso.android.model.EmptyItem
 import com.stesso.android.model.ShopcartDTO
+import com.stesso.android.utils.openActivity
+import com.stesso.android.utils.toast
 import kotlinx.android.synthetic.main.activity_shop_cart.*
 import org.json.JSONObject
 
@@ -30,7 +32,7 @@ class ShopCartActivity : BaseActivity() {
                 adapter.addItem(EmptyItem(), EMPTY_CART, spanSize = 2)
             } else {
                 adapter.addItems(it?.cartList, CART_TYPE, spanSize = 2)
-                adapter.addItem("", ACTION_BUTTON, true, 2)
+                adapter.addItem("进入结算中心", ACTION_BUTTON, true, 2)
             }
             doHttpRequest(apiService.getRelatedGoods()) {
                 if (it?.goodsList?.isEmpty() == false) {
@@ -38,13 +40,11 @@ class ShopCartActivity : BaseActivity() {
                     adapter.addItems(it?.goodsList, FAVORITE_COMMODITY, true)
                 }
             }
-
-
         }
         adapter.setOnItemClick { position, data, action, extra ->
-            if (data is CommodityDetail) {
-                when (action) {
-                    1 -> {
+            when (action) {
+                1 -> {
+                    if (data is CommodityDetail) {
                         val body = JSONObject(mapOf(Pair("productIds", data.productId)))
                         doHttpRequest(apiService.deleteCartItem(body)) {
                             adapter.removeItem(position)
@@ -53,13 +53,26 @@ class ShopCartActivity : BaseActivity() {
                             }
                         }
                     }
-                    2, 3 -> {
+                }
+                2, 3 -> {
+                    if (data is CommodityDetail) {
                         val body = JSONObject(mapOf(Pair("productId", data.productId), Pair("goodsId", data.goodsId), Pair("number", 1)))
                         val single = if (action == 2) apiService.minusCartItems(body) else apiService.addCartItem(body)
                         doHttpRequest(single) {
                             shopCart?.updateNum(position, extra as Int)
                         }
                     }
+                }
+                4 -> {
+                    openActivity(MainActivity::class.java, INDEX, 0)
+                }
+                5 -> {
+                    if(shopCart?.getSelectItems()?.isEmpty()==true){
+                        toast("没有选择商品")
+                        return@setOnItemClick
+                    }
+                    Account.shopCart = shopCart
+                    openActivity(SettlementActivity::class.java)
                 }
             }
         }

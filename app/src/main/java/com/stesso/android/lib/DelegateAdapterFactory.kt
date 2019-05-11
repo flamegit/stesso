@@ -125,7 +125,7 @@ class DelegateAdapterFactory {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     holder.get<View>(R.id.action_view).setOnClickListener{
-                        onItemClick(position,data,4,null)
+                        onItemClick(position,data,5,null)
                     }
                 }
             }

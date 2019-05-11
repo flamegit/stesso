@@ -16,13 +16,8 @@ import com.stesso.android.model.CommodityInfoDTO
 import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.*
 import com.stesso.android.widget.QuantityView
-import com.umeng.socialize.ShareAction
-import com.umeng.socialize.UMShareListener
-import com.umeng.socialize.bean.SHARE_MEDIA
 import kotlinx.android.synthetic.main.activity_commodity_detail.*
 import org.json.JSONObject
-import com.umeng.socialize.media.UMWeb
-
 
 class CommodityDetailActivity : BaseActivity() {
 
@@ -48,7 +43,6 @@ class CommodityDetailActivity : BaseActivity() {
         configTitleView(title_view) {
             checkLogin { openActivity(ShopCartActivity::class.java) }
         }
-
         pagerAdapter = CommonPagerAdapter { group, str ->
             val imageView = ImageView(group.context)
             imageView.scaleType = ImageView.ScaleType.CENTER_CROP
@@ -156,7 +150,6 @@ class CommodityDetailActivity : BaseActivity() {
 
                     }
                 }
-
             }
             val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             params.marginStart = paddingBig
