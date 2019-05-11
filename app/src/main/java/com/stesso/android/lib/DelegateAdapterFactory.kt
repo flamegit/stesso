@@ -64,8 +64,7 @@ class DelegateAdapterFactory {
 
     @Inject
     lateinit var apiService: ApiService
-
-    var onItemClick: (position: Int, data: Any?, action: Int,extra:Any?) -> Unit = { _, _, _,_ -> }
+    var onItemClick: (position: Int, data: Any?, action: Int,target:View?) -> Unit = { _, _, _,_ -> }
 
     init {
         App.instance().component.inject(this)
@@ -247,8 +246,8 @@ class DelegateAdapterFactory {
                         quantityView.setQuantityChangeListener(object : QuantityView.OnQuantityChangeListener {
                             override fun onLimitReached() {}
                             override fun onMinReached() {}
-                            override fun onQuantityChanged(newQuantity: Int, programmatically: Boolean, minus: Boolean) {
-                                onItemClick(position, data, if (minus) 2 else 3,newQuantity)
+                            override fun onQuantityChanged(base: Int, programmatically: Boolean, minus: Boolean) {
+                                onItemClick(position, data, if (minus) 2 else 3,quantityView)
                             }
                         })
                     }
@@ -318,7 +317,7 @@ class DelegateAdapterFactory {
                         val priceView = holder.get<TextView>(R.id.price_view)
                         discountView.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG //中划线
                         if (data.counterPrice != data.retailPrice) {
-                            priceView.text = "￥：${data.retailPrice}"
+                            priceView.text = "￥:${data.retailPrice}"
                         }
                     }
                 }
@@ -430,6 +429,13 @@ class DelegateAdapterFactory {
                             //已付款
                             201 -> {
                                 action1View.text = "等待发货"
+                                action1View.visibility = View.VISIBLE
+                                action2View.visibility = View.GONE
+                            }
+                            202 -> {
+                                action1View.visibility = View.VISIBLE
+                                action2View.visibility = View.GONE
+                                action1View.text = "退款中"
                             }
                             301 -> {
                                 action1View.visibility = View.VISIBLE
@@ -451,13 +457,17 @@ class DelegateAdapterFactory {
                             }
                             //售后
                             501 -> {
-
+                                action1View.text = "搜后"
                             }
                             //售后完成
                             502 -> {
+                                action1View.text = "搜后完成"
+                            }
+                            else ->{
+                                action1View.visibility = View.INVISIBLE
+                                action2View.visibility = View.INVISIBLE
                             }
                         }
-
                     }
                 }
             }

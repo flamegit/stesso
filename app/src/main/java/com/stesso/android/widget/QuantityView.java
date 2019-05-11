@@ -18,9 +18,8 @@ public class QuantityView extends LinearLayout implements View.OnClickListener {
     private TextView mTextViewQuantity;
     int quantity,maxQuantity,hintCount;
 
-
     public interface OnQuantityChangeListener {
-        void onQuantityChanged(int newQuantity, boolean programmatically,boolean minus);
+        void onQuantityChanged(int base, boolean programmatically,boolean minus);
         void onLimitReached();
         void onMinReached();
     }
@@ -79,8 +78,7 @@ public class QuantityView extends LinearLayout implements View.OnClickListener {
             if (quantity + 1 > maxQuantity) {
                 if (onQuantityChangeListener != null) onQuantityChangeListener.onLimitReached();
             } else {
-                quantity += 1;
-                mTextViewQuantity.setText(String.valueOf(quantity));
+                //quantity += 1;
                 if (onQuantityChangeListener != null)
                     onQuantityChangeListener.onQuantityChanged(quantity, false,false);
             }
@@ -88,8 +86,8 @@ public class QuantityView extends LinearLayout implements View.OnClickListener {
             if (quantity <=1) {
                 if (onQuantityChangeListener != null) onQuantityChangeListener.onMinReached();
             } else {
-                quantity -= 1;
-                mTextViewQuantity.setText(String.valueOf(quantity));
+                //quantity -= 1;
+                //mTextViewQuantity.setText(String.valueOf(quantity));
                 if (onQuantityChangeListener != null)
                     onQuantityChangeListener.onQuantityChanged(quantity, false,true);
             }
@@ -105,6 +103,16 @@ public class QuantityView extends LinearLayout implements View.OnClickListener {
 
     private int pxFromDp(final float dp) {
         return (int) (dp * getResources().getDisplayMetrics().density);
+    }
+
+    public void minus(){
+        quantity-=1;
+        setQuantity(quantity);
+    }
+
+    public void add(){
+        quantity+=1;
+        setQuantity(quantity);
     }
 
 }

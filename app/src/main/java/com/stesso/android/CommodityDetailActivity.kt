@@ -22,8 +22,8 @@ import org.json.JSONObject
 class CommodityDetailActivity : BaseActivity() {
 
     var pagerAdapter: CommonPagerAdapter<String>? = null
-    var choseValues: Array<String?>? = null
-    var choseViews: Array<TextView?>? = null
+    private var choseValues: Array<String?>? = null
+    private var choseViews: Array<TextView?>? = null
     var info: CommodityInfoDTO? = null
     private val paddingSmall = dip2px(8)
     private val paddingBig = dip2px(16)
@@ -53,10 +53,14 @@ class CommodityDetailActivity : BaseActivity() {
             override fun onLimitReached() {}
             override fun onMinReached() {}
             override fun onQuantityChanged(newQuantity: Int, programmatically: Boolean, minus: Boolean) {
-                num = newQuantity
+                if (minus) {
+                    quantity_view.minus()
+                } else {
+                    quantity_view.add()
+                }
+                num = quantity_view.quantity
             }
         })
-
         favorite_view.setOnClickListener {
             checkLogin {
                 val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", info?.info?.id)))
@@ -100,9 +104,19 @@ class CommodityDetailActivity : BaseActivity() {
             productId?.let {
                 val body = JSONObject(mapOf(Pair("goodsId", goodId), Pair("productId", it), Pair("number", num)))
                 doHttpRequest(apiService.addCartItem(body)) {
-                   toast("加入成功")
+                    Account.count += num
+                    title_view.setCount(Account.count)
+                    toast("加入成功")
                 }
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val count = Account.count
+        if (count > 0) {
+            title_view.setCount(count)
         }
     }
 

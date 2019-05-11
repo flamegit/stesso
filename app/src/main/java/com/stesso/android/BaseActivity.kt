@@ -43,6 +43,7 @@ open class BaseActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
         }
     }
+
     protected fun getActivityComponent(): ActivityComponent {
         val app = application as App
         return app.component.plus(ActivityModule(this))
@@ -55,45 +56,35 @@ open class BaseActivity : AppCompatActivity() {
 
     protected open fun configTitleView(titleBar: TitleBar) {
         titleBar.setLeftAction { onBackPressed() }
-
     }
 
     protected fun configRecyclerView(recyclerView: RecyclerView) {
         recyclerView.layoutManager = LinearLayoutManager(this)
-
     }
 
-//    protected fun doHttpRequest(single: Single<JSONObject>, onSuccess: (JSONObject) -> Unit) {
-//        val disposable = single.compose(applySingleSchedulers())
-//                .subscribe({ jsonObject ->
-//                    val code = jsonObject.optInt("errno")
-//                    if (code != 0) {
-//                        toast(jsonObject.optString("errmsg"))
-//                    } else {
-//                        onSuccess(jsonObject)
-//                    }
-//                }, {
-//
-//                })
-//        disposableContainer.add(disposable)
-//    }
-
-    protected fun <T> doHttpRequest(single: Single<RootNode<T>>, onSuccess: (T?) -> Unit) {
-        progressDialog.show()
+    protected fun <T> doHttpRequest(single: Single<RootNode<T>>, quite: Boolean = false, onSuccess: (T?) -> Unit) {
+        if (!quite) {
+            progressDialog.show()
+        }
         val disposable = single.compose(applySingleSchedulers())
+                .doFinally {
+                    if (!quite) {
+                        progressDialog.dismiss()
+                    }
+                }
                 .subscribe({ rootNode ->
-                    progressDialog.dismiss()
                     if (rootNode.errno != 0) {
-                        if(rootNode.errno ==501){
+                        if (rootNode.errno == 501) {
                             Account.logout()
                         }
-                        toast(rootNode.errmsg ?: "")
+                        if (!quite) {
+                            toast(rootNode.errmsg ?: "")
+                        }
                     } else {
                         onSuccess(rootNode.data)
                     }
                 }, {
-                    progressDialog.dismiss()
-                    it.printStackTrace()
+                    toast(it.message.toString())
                 })
         disposableContainer.add(disposable)
     }

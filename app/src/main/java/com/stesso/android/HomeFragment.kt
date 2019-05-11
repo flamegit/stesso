@@ -1,6 +1,5 @@
 package com.stesso.android
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -16,7 +15,6 @@ import com.stesso.android.utils.checkLogin
 import com.stesso.android.utils.openActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
-
 class HomeFragment : BaseFragment() {
 
     private val adapter = MultiTypeAdapter()
@@ -25,6 +23,14 @@ class HomeFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getFragmentComponent().inject(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (Account.count > 0) {
+            count_view.visibility = View.VISIBLE
+            count_view.text = Account.count.toString()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -36,9 +42,6 @@ class HomeFragment : BaseFragment() {
                 context.openActivity(MessageActivity::class.java)
             }
         }
-//        title_view.setLeftAction {
-//            context?.checkLogin { context?.openActivity(SettingActivity::class.java) }
-//        }
         shopcart_view.setOnClickListener {
             context?.checkLogin { context?.openActivity(ShopCartActivity::class.java) }
         }
@@ -49,14 +52,6 @@ class HomeFragment : BaseFragment() {
             }
         })
         loadData(false)
-
-        doHttpRequest(apiService.getCartItems(), true) {
-            Account.count = it?.cartTotal?.goodsCount ?: 0
-            if (Account.count > 0) {
-                count_view.visibility= View.VISIBLE
-                count_view.text = Account.count.toString()
-            }
-        }
     }
 
     override fun onPause() {
@@ -87,12 +82,11 @@ class HomeFragment : BaseFragment() {
                         hotList.add(commodity)
                     }
                 }
-                if (hotList.isNotEmpty()) {
-                    adapter.addItem(hotList, HOT_COMMODITY, true)
-                    hotList.clear()
-                }
+            }
+            if (hotList.isNotEmpty()) {
+                adapter.addItem(hotList, HOT_COMMODITY, true)
+                hotList.clear()
             }
         }
     }
-
 }

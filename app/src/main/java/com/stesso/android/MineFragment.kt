@@ -106,7 +106,6 @@ class MineFragment : BaseFragment() {
                 doHttpRequest(apiService.getCollectInfo(1, 1, 10)) {
                     adapter.addItems(it?.collectList, FAVORITE_NEWS)
                 }
-
             }
         }
     }
