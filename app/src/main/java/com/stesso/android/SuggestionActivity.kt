@@ -20,8 +20,9 @@ class SuggestionActivity : BaseActivity() {
                 return@configTitleView
             }
             val suggestion = SuggestionDTO(Account.user?.mobile
-                    ?: "", 1, suggestion_view.text.toString(),"0")
+                    ?: "", 1, suggestion_view.text.toString(),0)
             doHttpRequest(apiService.submitSuggestion(suggestion)) {
+                toast("提交成功")
                 finish()
             }
         }

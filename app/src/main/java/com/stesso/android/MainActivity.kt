@@ -88,8 +88,8 @@ class MainActivity : BaseActivity() {
         } else {
             supportFragmentManager
                     .beginTransaction()
-                    .show(curr)
-                   // .attach(curr)
+                    //.show(curr)
+                    .attach(curr)
                     .commit()
         }
         if (mPrePosition != -1) {
@@ -97,8 +97,8 @@ class MainActivity : BaseActivity() {
             if (pre != null) {
                 supportFragmentManager
                         .beginTransaction()
-                        .hide(pre)
-                        //.detach(pre)
+                        //.hide(pre)
+                        .detach(pre)
                         .commit()
             }
         }

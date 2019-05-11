@@ -69,7 +69,7 @@ class OrderDetailActivity : PayActivity() {
             orderDetail = it
             adapter.addItems(it?.orderGoods, ORDER_GOODS)
             adapter.addItem(it?.orderInfo, ORDER_STATUS, true)
-            if (it?.orderInfo?.orderStatus == 301 && it.expressInfo != null) {
+            if (it?.expressInfo != null) {
                 adapter.addItem(it.expressInfo, EXPRESS_INFO, true)
             }
             adapter.addItem(it?.orderInfo, ORDER_ADDRESS, true)

@@ -2,7 +2,7 @@ package com.stesso.android.model
 
 class ShopcartDTO {
     var cartTotal: Info? = null
-    var cartList: List<CommodityDetail>? = null
+    var cartList: MutableList<CommodityDetail>? = null
 
     class Info {
         var id = 0

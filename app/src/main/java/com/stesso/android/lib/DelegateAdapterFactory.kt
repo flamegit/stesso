@@ -59,12 +59,14 @@ const val SEARCH_GOODS = 26
 const val EMPTY_CART = 27
 const val ACTION_BUTTON = 28
 const val TITLE_TYPE = 29
+const val EXPRESS_ITEM = 30
+
 
 class DelegateAdapterFactory {
 
     @Inject
     lateinit var apiService: ApiService
-    var onItemClick: (position: Int, data: Any?, action: Int,target:View?) -> Unit = { _, _, _,_ -> }
+    var onItemClick: (position: Int, data: Any?, action: Int, target: View?) -> Unit = { _, _, _, _ -> }
 
     init {
         App.instance().component.inject(this)
@@ -112,19 +114,19 @@ class DelegateAdapterFactory {
             TITLE_TYPE -> object : BaseDelegateAdapter(R.layout.viewholder_title_view) {
 
             }
-            EMPTY_CART -> object :BaseDelegateAdapter(R.layout.viewholder_empty_cart){
+            EMPTY_CART -> object : BaseDelegateAdapter(R.layout.viewholder_empty_cart) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
-                    holder.get<View>(R.id.action_view).setOnClickListener{
-                        onItemClick(position,data,4,null)
+                    holder.get<View>(R.id.action_view).setOnClickListener {
+                        onItemClick(position, data, 4, null)
                     }
                 }
             }
-            ACTION_BUTTON -> object :BaseDelegateAdapter(R.layout.viewholder_action_button){
+            ACTION_BUTTON -> object : BaseDelegateAdapter(R.layout.viewholder_action_button) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
-                    holder.get<View>(R.id.action_view).setOnClickListener{
-                        onItemClick(position,data,5,null)
+                    holder.get<View>(R.id.action_view).setOnClickListener {
+                        onItemClick(position, data, 5, null)
                     }
                 }
             }
@@ -138,7 +140,14 @@ class DelegateAdapterFactory {
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<TextView>(R.id.name_view).text = data.name
                         holder.get<TextView>(R.id.brief_view).text = data.brief
-                        holder.get<TextView>(R.id.discount_price).text = "${data.counterPrice}"
+
+                        val discountView = holder.get<TextView>(R.id.discount_price)
+                        discountView.text = "￥:${data.retailPrice}"
+                        val priceView = holder.get<TextView>(R.id.price_view)
+                        priceView.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG //中划线
+                        if (data.counterPrice != data.retailPrice) {
+                            priceView.text = "￥:${data.counterPrice}"
+                        }
                     }
                 }
             }
@@ -196,7 +205,7 @@ class DelegateAdapterFactory {
                     alipayView.isEnabled = false
                     alipayView.setOnCheckedChangeListener { button, isChecked ->
                         if (isChecked and button.isPressed) {
-                            onItemClick(position, data, 0,null)
+                            onItemClick(position, data, 0, null)
                             button.isEnabled = false
                             wechatPayView.isEnabled = true
                             wechatPayView.isChecked = false
@@ -204,7 +213,7 @@ class DelegateAdapterFactory {
                     }
                     wechatPayView.setOnCheckedChangeListener { button, isChecked ->
                         if (isChecked and button.isPressed) {
-                            onItemClick(position, data, 1,null)
+                            onItemClick(position, data, 1, null)
                             button.isEnabled = false
                             alipayView.isEnabled = true
                             alipayView.isChecked = false
@@ -230,7 +239,7 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.name_view).text = data.goodsName
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<View>(R.id.delete_view).setOnClickListener {
-                            onItemClick(holder.adapterPosition, data, 1,null)
+                            onItemClick(holder.adapterPosition, data, 1, null)
                         }
                         val checkBox = holder.get<CheckBox>(R.id.checkbox)
                         checkBox.isChecked = data.checked
@@ -247,7 +256,7 @@ class DelegateAdapterFactory {
                             override fun onLimitReached() {}
                             override fun onMinReached() {}
                             override fun onQuantityChanged(base: Int, programmatically: Boolean, minus: Boolean) {
-                                onItemClick(position, data, if (minus) 2 else 3,quantityView)
+                                onItemClick(position, data, if (minus) 2 else 3, quantityView)
                             }
                         })
                     }
@@ -284,7 +293,7 @@ class DelegateAdapterFactory {
                             v.context.openActivity(AddAddressActivity::class.java, ADDRESS_ID, data.id)
                         }
                         holder.itemView.setOnClickListener {
-                            onItemClick(position, data, 0,null)
+                            onItemClick(position, data, 0, null)
                         }
                     }
                 }
@@ -297,7 +306,7 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.tel_view).text = data.mobile
                         holder.get<TextView>(R.id.address_detail).text = "收获地址：${data.detailedAddress}"
                         holder.itemView.setOnClickListener {
-                            onItemClick(position, data, SETTLEMENT_ADDRESS,null)
+                            onItemClick(position, data, SETTLEMENT_ADDRESS, null)
                         }
                     }
                 }
@@ -388,9 +397,25 @@ class DelegateAdapterFactory {
                             holder.get<TextView>(R.id.time_view).text = "${data.traces[0].acceptTime}"
                             holder.get<TextView>(R.id.station_view).text = "${data.traces[0].acceptStation}"
                         }
+
+                        holder.itemView.setOnClickListener { v ->
+                            Account.expressInfo = data
+                            v.context.openActivity(ExpressInfoActivity::class.java)
+                        }
                     }
                 }
             }
+
+            EXPRESS_ITEM -> object : BaseDelegateAdapter(R.layout.viewholder_express_item) {
+                override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
+                    super.onBindViewHolder(holder, position, data)
+                    if (data is ExpressInfo.Trace) {
+                        holder.get<TextView>(R.id.time_view).text = "${data.acceptTime}"
+                        holder.get<TextView>(R.id.station_view).text = "${data.acceptStation}"
+                    }
+                }
+            }
+
             ORDER_STATUS -> object : BaseDelegateAdapter(R.layout.viewholder_order_status) {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
@@ -420,10 +445,10 @@ class DelegateAdapterFactory {
                                 action2View.setTextColor(Color.parseColor("#FFFFFF"))
                                 action2View.setBackgroundResource(R.drawable.solid_red_bg)
                                 action1View.setOnClickListener {
-                                    onItemClick(position, data, 1,null)
+                                    onItemClick(position, data, 1, null)
                                 }
                                 action2View.setOnClickListener {
-                                    onItemClick(position, data, 2,null)
+                                    onItemClick(position, data, 2, null)
                                 }
                             }
                             //已付款
@@ -444,7 +469,7 @@ class DelegateAdapterFactory {
                                 action2View.text = "确认收货"
                                 action1View.text = "运送中"
                                 action2View.setOnClickListener {
-                                    onItemClick(position, data, 3,null)
+                                    onItemClick(position, data, 3, null)
                                 }
                             }
                             401, 402 -> {
@@ -452,7 +477,7 @@ class DelegateAdapterFactory {
                                 action2View.text = "已送达"
                                 action1View.text = "退货"
                                 action1View.setOnClickListener {
-                                    onItemClick(position, data, 4,null)
+                                    onItemClick(position, data, 4, null)
                                 }
                             }
                             //售后
@@ -463,7 +488,7 @@ class DelegateAdapterFactory {
                             502 -> {
                                 action1View.text = "搜后完成"
                             }
-                            else ->{
+                            else -> {
                                 action1View.visibility = View.INVISIBLE
                                 action2View.visibility = View.INVISIBLE
                             }

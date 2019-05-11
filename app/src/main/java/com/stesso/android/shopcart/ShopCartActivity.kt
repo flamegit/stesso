@@ -48,7 +48,9 @@ class ShopCartActivity : BaseActivity() {
                     if (data is CommodityDetail) {
                         val body = JSONObject(mapOf(Pair("productIds", data.productId)))
                         doHttpRequest(apiService.deleteCartItem(body)) {
+                            Account.count = it?.cartTotal?.goodsCount ?: 0
                             adapter.removeItem(position)
+                            shopCart?.cartList?.removeAt(position)
                             if (adapter.getItemType(0) != CART_TYPE) {
                                 adapter.changeItem(0, EmptyItem(), EMPTY_CART, 2)
                             }

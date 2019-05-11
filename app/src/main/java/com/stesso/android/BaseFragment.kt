@@ -49,6 +49,9 @@ open class BaseFragment : Fragment() {
     protected fun <T> doHttpRequest(single: Single<RootNode<T>>, quite: Boolean = false, onSuccess: (T?) -> Unit) {
         progressDialog.show()
         val disposable = single.compose(applySingleSchedulers())
+                .doFinally {
+                    progressDialog.dismiss()
+                }
                 .subscribe({ rootNode ->
                     if (rootNode.errno != 0) {
                         if (rootNode.errno == 501) {
@@ -59,10 +62,8 @@ open class BaseFragment : Fragment() {
                         }
                     } else {
                         onSuccess(rootNode.data)
-                        progressDialog.dismiss()
                     }
                 }, {
-                    progressDialog.dismiss()
                     it.printStackTrace()
                 })
         disposableContainer.add(disposable)

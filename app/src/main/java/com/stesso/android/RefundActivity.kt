@@ -8,6 +8,8 @@ import com.bumptech.glide.Glide
 import com.stesso.android.lib.CommonViewHolder
 import com.stesso.android.model.CommodityDetail
 import com.stesso.android.model.SuggestionDTO
+import com.stesso.android.utils.openActivity
+import com.stesso.android.utils.toast
 import kotlinx.android.synthetic.main.activity_refund.*
 
 class RefundActivity : BaseActivity() {
@@ -20,7 +22,6 @@ class RefundActivity : BaseActivity() {
         val goodsList = intent.getParcelableArrayListExtra<CommodityDetail>(GOODS_LIST)
         val orderId = intent.getIntExtra(ORDER_ID, 0)
         goodsList?.forEach {
-            //if(it is CommodityDetail){
             val view = LayoutInflater.from(this).inflate(R.layout.refund_item, goods_container, true)
             val holder = CommonViewHolder(view)
             holder.get<TextView>(R.id.name_view).text = it.goodsName
@@ -46,10 +47,21 @@ class RefundActivity : BaseActivity() {
             return idlist
         }
         submit_view.setOnClickListener {
-            val mobile = mobile_view.text.toString()
-            val body = SuggestionDTO(mobile, 2, "refund", orderId.toString(), getIdList())
-            doHttpRequest(apiService.submit(body)) {
 
+            if(mobile_view.text.isEmpty()){
+                toast("请输入手机号")
+                return@setOnClickListener
+            }
+            if(reason_view.text.isEmpty()){
+                toast("请填写退货原因")
+                return@setOnClickListener
+            }
+            val mobile = mobile_view.text.toString()
+            val reason = reason_view.text.toString()
+            val body = SuggestionDTO(mobile, 2, reason, orderId, getIdList())
+            doHttpRequest(apiService.submit(body)) {
+              finish()
+              openActivity(OrderDetailActivity::class.java, ORDER_ID,orderId)
             }
         }
     }

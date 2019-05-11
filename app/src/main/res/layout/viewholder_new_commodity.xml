@@ -12,10 +12,12 @@
     tools:context=".PersonInfoFragment">
 
     <ImageView
+        android:scaleType="centerCrop"
         android:id="@+id/commodity_img"
         android:layout_width="80dp"
         android:layout_height="100dp"
         android:layout_margin="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
