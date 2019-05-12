@@ -2,6 +2,7 @@ package com.stesso.android
 
 import android.os.Bundle
 import com.alipay.sdk.app.PayTask
+import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.applySingleSchedulers
 import com.stesso.android.utils.openActivity
 import com.stesso.android.utils.toast
@@ -33,6 +34,8 @@ open class PayActivity : BaseActivity() {
                         {
                             // progressDialog.dismiss()
                             if (it["resultStatus"] == "9000") {
+                                ShopCartActivity.reload = true
+                                finish()
                                 openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
                             } else {
                                 toast("支付失败")

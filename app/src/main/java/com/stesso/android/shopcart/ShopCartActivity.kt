@@ -26,22 +26,7 @@ class ShopCartActivity : BaseActivity() {
         getActivityComponent().inject(this)
         recycler_view.layoutManager = GridLayoutManager(this, 2)
         recycler_view.adapter = adapter
-        doHttpRequest(apiService.getCartItems()) {
-            shopCart = it
-            Account.count = it?.cartTotal?.goodsCount ?: 0
-            if (it?.cartList?.isEmpty() == true) {
-                adapter.addItem(EmptyItem(), EMPTY_CART, spanSize = 2)
-            } else {
-                adapter.addItems(it?.cartList, CART_TYPE, spanSize = 2)
-                adapter.addItem("进入结算中心", ACTION_BUTTON, true, 2)
-            }
-            doHttpRequest(apiService.getRelatedGoods(), true) {
-                if (it?.goodsList?.isEmpty() == false) {
-                    adapter.addItem("", TITLE_TYPE, true, 2)
-                    adapter.addItems(it?.goodsList, FAVORITE_COMMODITY, true)
-                }
-            }
-        }
+        loadData()
         adapter.setOnItemClick { position, data, action, target ->
             when (action) {
                 1 -> {
@@ -83,5 +68,36 @@ class ShopCartActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+    private fun loadData(){
+        doHttpRequest(apiService.getCartItems()) {
+            shopCart = it
+            Account.count = it?.cartTotal?.goodsCount ?: 0
+            if (it?.cartList?.isEmpty() == true) {
+                adapter.addItem(EmptyItem(), EMPTY_CART, spanSize = 2)
+            } else {
+                adapter.addItems(it?.cartList, CART_TYPE, spanSize = 2)
+                adapter.addItem("进入结算中心", ACTION_BUTTON, true, 2)
+            }
+            doHttpRequest(apiService.getRelatedGoods(), true) {
+                if (it?.goodsList?.isEmpty() == false) {
+                    adapter.addItem("", TITLE_TYPE, true, 2)
+                    adapter.addItems(it?.goodsList, FAVORITE_COMMODITY, true)
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(reload){
+            loadData()
+            reload = false
+        }
+    }
+
+    companion object {
+        var reload = false
     }
 }

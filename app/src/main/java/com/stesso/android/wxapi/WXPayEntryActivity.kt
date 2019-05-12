@@ -37,7 +37,6 @@ class WXPayEntryActivity : AppCompatActivity(), IWXAPIEventHandler {
         if (resp.type == ConstantsAPI.COMMAND_PAY_BY_WX) {
             if (resp.errCode == 0) {
                 openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
-
                 toast("支付成功")
             } else {
                 toast("支付失败")
