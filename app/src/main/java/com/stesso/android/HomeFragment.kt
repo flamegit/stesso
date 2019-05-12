@@ -27,9 +27,14 @@ class HomeFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        if (Account.count > 0) {
-            count_view.visibility = View.VISIBLE
-            count_view.text = Account.count.toString()
+        if (Account.count >= 0) {
+            if (Account.count == 0) {
+                count_view.visibility = View.INVISIBLE
+            } else {
+                count_view.visibility = View.VISIBLE
+                count_view.text = Account.count.toString()
+            }
+
         }
     }
 

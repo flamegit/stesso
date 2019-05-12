@@ -115,7 +115,7 @@ class CommodityDetailActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         val count = Account.count
-        if (count > 0) {
+        if (count >= 0) {
             title_view.setCount(count)
         }
     }

@@ -36,7 +36,7 @@ class MineFragment : BaseFragment() {
     fun fillView() {
         if (Account.isLogin()) {
             val count = Account.count
-            if (count > 0) {
+            if (count >= 0) {
                 title_view.setCount(count)
             }
             time_view.visibility = View.VISIBLE

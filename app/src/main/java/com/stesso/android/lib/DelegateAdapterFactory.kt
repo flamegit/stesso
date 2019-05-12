@@ -393,7 +393,7 @@ class DelegateAdapterFactory {
                     if (data is ExpressInfo) {
                         holder.get<TextView>(R.id.company_view).text = "${data.shipperName}"
                         holder.get<TextView>(R.id.code_view).text = "${data.logisticCode}"
-                        if (data.traces.isNotEmpty()) {
+                        if (data.traces?.isNotEmpty()==true) {
                             holder.get<TextView>(R.id.time_view).text = "${data.traces[0].acceptTime}"
                             holder.get<TextView>(R.id.station_view).text = "${data.traces[0].acceptStation}"
                         }
@@ -489,8 +489,8 @@ class DelegateAdapterFactory {
                                 action1View.text = "搜后完成"
                             }
                             else -> {
-                                action1View.visibility = View.INVISIBLE
-                                action2View.visibility = View.INVISIBLE
+                                action1View.visibility = View.GONE
+                                action2View.visibility = View.GONE
                             }
                         }
                     }

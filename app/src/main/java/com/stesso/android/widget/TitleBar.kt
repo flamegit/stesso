@@ -82,7 +82,7 @@ class TitleBar(context: Context, attrs: AttributeSet, defStyle: Int) : FrameLayo
             }
         }
 
-       titleView = TextView(context).apply {
+        titleView = TextView(context).apply {
             val centerParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
             centerParams.gravity = Gravity.CENTER
             addView(this, centerParams)
@@ -108,12 +108,16 @@ class TitleBar(context: Context, attrs: AttributeSet, defStyle: Int) : FrameLayo
     }
 
     fun setCount(count: Int) {
-        countView?.visibility = View.VISIBLE
-        countView?.text = count.toString()
+        if (count == 0) {
+            countView?.visibility = View.INVISIBLE
+        } else {
+            countView?.visibility = View.VISIBLE
+            countView?.text = count.toString()
+        }
     }
 
-    fun setTitle(title:String){
-        titleView?.text =title
+    fun setTitle(title: String) {
+        titleView?.text = title
     }
 
     fun setLeftAction(action: (View) -> Unit) {
