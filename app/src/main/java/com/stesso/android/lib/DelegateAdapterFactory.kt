@@ -117,8 +117,14 @@ class DelegateAdapterFactory {
                         }
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<TextView>(R.id.name_view).text = data.name
-                        holder.get<TextView>(R.id.brief_view).text = data.brief
-                        holder.get<TextView>(R.id.discount_price).text = "${data.counterPrice}"
+                        val discountView = holder.get<TextView>(R.id.discount_price)
+                        discountView.text = "￥：${data.retailPrice}"
+
+                        val priceView = holder.get<TextView>(R.id.price_view)
+                        priceView.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG //中划线
+                        if (data.counterPrice != data.retailPrice) {
+                            priceView.text = "￥：${data.counterPrice}"
+                        }
                     }
                 }
             }

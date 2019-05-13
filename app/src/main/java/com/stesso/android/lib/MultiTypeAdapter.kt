@@ -51,7 +51,7 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
             if (!append) {
                 mContent.clear()
             }
-            mContent.add(CommonAdapterItem(item, type))
+            mContent.add(CommonAdapterItem(item.toMutableList(), type))
             notifyDataSetChanged()
         }
     }

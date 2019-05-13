@@ -35,5 +35,7 @@ interface ActivityComponent {
     fun inject(activity: SettingActivity)
     fun inject(activity: RefundActivity)
     fun inject(activity: ModifyNameActivity)
+    fun inject(activity: SplashActivity)
+
 }
 

@@ -50,6 +50,11 @@ class HomeFragment : BaseFragment() {
         })
         loadData(false)
 
+        if (Account.count > 0) {
+            count_view.visibility= View.VISIBLE
+            count_view.text = Account.count.toString()
+        }
+
         doHttpRequest(apiService.getCartItems(), true) {
             Account.count = it?.cartTotal?.goodsCount ?: 0
             if (Account.count > 0) {
@@ -87,10 +92,11 @@ class HomeFragment : BaseFragment() {
                         hotList.add(commodity)
                     }
                 }
-                if (hotList.isNotEmpty()) {
-                    adapter.addItem(hotList, HOT_COMMODITY, true)
-                    hotList.clear()
-                }
+            }
+
+            if (hotList.isNotEmpty()) {
+                adapter.addItem(hotList, HOT_COMMODITY, true)
+                hotList.clear()
             }
         }
     }

@@ -1,8 +1,8 @@
 package com.stesso.android
 
 import android.os.Bundle
+import com.stesso.android.model.Account
 import com.stesso.android.utils.openActivity
-import com.stesso.android.utils.toast
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,6 +14,12 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         setStatusBarDark()
+        getActivityComponent().inject(this)
+
+        doHttpRequest(apiService.getCartItems(), true) {
+            Account.count = it?.cartTotal?.goodsCount ?: 0
+        }
+
         RxPermissions(this).request(android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 android.Manifest.permission.READ_EXTERNAL_STORAGE,android.Manifest.permission.READ_PHONE_STATE)
                 .subscribe{
@@ -27,5 +33,7 @@ class SplashActivity : BaseActivity() {
                     openActivity(MainActivity::class.java)
                     finish()
                 }
+
+
     }
 }

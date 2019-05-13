@@ -22,6 +22,9 @@ import com.umeng.socialize.bean.SHARE_MEDIA
 import kotlinx.android.synthetic.main.activity_commodity_detail.*
 import org.json.JSONObject
 import com.umeng.socialize.media.UMWeb
+import kotlinx.android.synthetic.main.activity_commodity_detail.indicator_view
+import kotlinx.android.synthetic.main.activity_commodity_detail.title_view
+import kotlinx.android.synthetic.main.fragment_mine.*
 
 
 class CommodityDetailActivity : BaseActivity() {
@@ -45,9 +48,11 @@ class CommodityDetailActivity : BaseActivity() {
         fontColor = ContextCompat.getColor(this, R.color.font_4A)
         getActivityComponent().inject(this)
         val goodId = intent.getIntExtra(GOODS_ID, 0)
+
         configTitleView(title_view) {
             checkLogin { openActivity(ShopCartActivity::class.java) }
         }
+        updateCount()
 
         pagerAdapter = CommonPagerAdapter { group, str ->
             val imageView = ImageView(group.context)
@@ -106,9 +111,18 @@ class CommodityDetailActivity : BaseActivity() {
             productId?.let {
                 val body = JSONObject(mapOf(Pair("goodsId", goodId), Pair("productId", it), Pair("number", num)))
                 doHttpRequest(apiService.addCartItem(body)) {
-                   toast("加入成功")
+                    Account.count += num
+                    updateCount()
+                    toast("加入成功")
                 }
             }
+        }
+    }
+
+    private fun updateCount() {
+        val count = Account.count
+        if (count > 0) {
+            title_view.setCount(count)
         }
     }
 
@@ -148,15 +162,13 @@ class CommodityDetailActivity : BaseActivity() {
                     val product = info?.getProduct(choseValues?.reduce { acc, s -> "$acc$s" })
                     if (product != null && product.number > 0) {
                         add_cart_view.isEnabled = true
-                        add_cart_view.text = "添加到购物车"
+                        add_cart_view.text = "添加至购物车"
                         discount_price.text = "￥：${product?.price}"
                     } else if (product != null) {
                         add_cart_view.isEnabled = false
                         add_cart_view.text = "Hey,下次来早点"
-
                     }
                 }
-
             }
             val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             params.marginStart = paddingBig

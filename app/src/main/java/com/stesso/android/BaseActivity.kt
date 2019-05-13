@@ -78,7 +78,7 @@ open class BaseActivity : AppCompatActivity() {
 //        disposableContainer.add(disposable)
 //    }
 
-    protected fun <T> doHttpRequest(single: Single<RootNode<T>>, onSuccess: (T?) -> Unit) {
+    protected fun <T> doHttpRequest(single: Single<RootNode<T>>, quite:Boolean=false, onSuccess: (T?) -> Unit) {
         progressDialog.show()
         val disposable = single.compose(applySingleSchedulers())
                 .subscribe({ rootNode ->
@@ -87,7 +87,9 @@ open class BaseActivity : AppCompatActivity() {
                         if(rootNode.errno ==501){
                             Account.logout()
                         }
-                        toast(rootNode.errmsg ?: "")
+                        if(!quite){
+                            toast(rootNode.errmsg ?: "")
+                        }
                     } else {
                         onSuccess(rootNode.data)
                     }
