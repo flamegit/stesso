@@ -118,7 +118,8 @@
                 android:id="@+id/select_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/padding_16"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
                 android:text="选择数量"
                 android:textColor="@color/font_4A"
                 android:textSize="@dimen/txt_13"
@@ -129,6 +130,7 @@
                 android:id="@+id/quantity_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintBottom_toBottomOf="@id/select_num"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -136,6 +138,7 @@
                 android:id="@+id/divider_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:background="@color/space"
                 android:gravity="center"
                 android:padding="@dimen/padding_4"

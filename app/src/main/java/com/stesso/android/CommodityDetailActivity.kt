@@ -16,22 +16,14 @@ import com.stesso.android.model.CommodityInfoDTO
 import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.*
 import com.stesso.android.widget.QuantityView
-import com.umeng.socialize.ShareAction
-import com.umeng.socialize.UMShareListener
-import com.umeng.socialize.bean.SHARE_MEDIA
 import kotlinx.android.synthetic.main.activity_commodity_detail.*
 import org.json.JSONObject
-import com.umeng.socialize.media.UMWeb
-import kotlinx.android.synthetic.main.activity_commodity_detail.indicator_view
-import kotlinx.android.synthetic.main.activity_commodity_detail.title_view
-import kotlinx.android.synthetic.main.fragment_mine.*
-
 
 class CommodityDetailActivity : BaseActivity() {
 
     var pagerAdapter: CommonPagerAdapter<String>? = null
-    var choseValues: Array<String?>? = null
-    var choseViews: Array<TextView?>? = null
+    private var choseValues: Array<String?>? = null
+    private var choseViews: Array<TextView?>? = null
     var info: CommodityInfoDTO? = null
     private val paddingSmall = dip2px(8)
     private val paddingBig = dip2px(16)
@@ -48,12 +40,9 @@ class CommodityDetailActivity : BaseActivity() {
         fontColor = ContextCompat.getColor(this, R.color.font_4A)
         getActivityComponent().inject(this)
         val goodId = intent.getIntExtra(GOODS_ID, 0)
-
         configTitleView(title_view) {
             checkLogin { openActivity(ShopCartActivity::class.java) }
         }
-        updateCount()
-
         pagerAdapter = CommonPagerAdapter { group, str ->
             val imageView = ImageView(group.context)
             imageView.scaleType = ImageView.ScaleType.CENTER_CROP
@@ -64,10 +53,14 @@ class CommodityDetailActivity : BaseActivity() {
             override fun onLimitReached() {}
             override fun onMinReached() {}
             override fun onQuantityChanged(newQuantity: Int, programmatically: Boolean, minus: Boolean) {
-                num = newQuantity
+                if (minus) {
+                    quantity_view.minus()
+                } else {
+                    quantity_view.add()
+                }
+                num = quantity_view.quantity
             }
         })
-
         favorite_view.setOnClickListener {
             checkLogin {
                 val body = JSONObject(mapOf(Pair("type", 0), Pair("valueId", info?.info?.id)))
@@ -112,16 +105,17 @@ class CommodityDetailActivity : BaseActivity() {
                 val body = JSONObject(mapOf(Pair("goodsId", goodId), Pair("productId", it), Pair("number", num)))
                 doHttpRequest(apiService.addCartItem(body)) {
                     Account.count += num
-                    updateCount()
+                    title_view.setCount(Account.count)
                     toast("加入成功")
                 }
             }
         }
     }
 
-    private fun updateCount() {
+    override fun onResume() {
+        super.onResume()
         val count = Account.count
-        if (count > 0) {
+        if (count >= 0) {
             title_view.setCount(count)
         }
     }
@@ -162,11 +156,12 @@ class CommodityDetailActivity : BaseActivity() {
                     val product = info?.getProduct(choseValues?.reduce { acc, s -> "$acc$s" })
                     if (product != null && product.number > 0) {
                         add_cart_view.isEnabled = true
-                        add_cart_view.text = "添加至购物车"
+                        add_cart_view.text = "添加到购物车"
                         discount_price.text = "￥：${product?.price}"
                     } else if (product != null) {
                         add_cart_view.isEnabled = false
                         add_cart_view.text = "Hey,下次来早点"
+
                     }
                 }
             }

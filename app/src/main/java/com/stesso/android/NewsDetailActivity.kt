@@ -1,14 +1,9 @@
 package com.stesso.android
 
-
 import android.os.Bundle
 import com.stesso.android.model.News
 import com.stesso.android.utils.share
 import com.stesso.android.utils.toast
-import com.umeng.socialize.ShareAction
-import com.umeng.socialize.UMShareListener
-import com.umeng.socialize.bean.SHARE_MEDIA
-import com.umeng.socialize.media.UMWeb
 import kotlinx.android.synthetic.main.activity_news_detail.*
 import org.json.JSONObject
 
@@ -22,6 +17,7 @@ class NewsDetailActivity : BaseActivity() {
         configTitleView(title_view)
         doHttpRequest(apiService.getNewsDetail(intent.getIntExtra(NEWS_ID, 0))) {
             news = it?.topic
+            //title_view.setTitle(news?.title?:"NOW")
             favorite_view.setImageResource(if (it?.userHasCollect == 0) R.drawable.gray_mouth else R.drawable.red_mouth)
             web_view.loadData(getHtmlData(it?.topic?.content), "text/html; charset=utf-8", "utf-8")
         }
@@ -41,7 +37,6 @@ class NewsDetailActivity : BaseActivity() {
                 }
             }
         }
-
         share_view.setOnClickListener {
             this.share()
         }

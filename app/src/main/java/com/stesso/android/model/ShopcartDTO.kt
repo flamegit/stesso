@@ -2,7 +2,7 @@ package com.stesso.android.model
 
 class ShopcartDTO {
     var cartTotal: Info? = null
-    var cartList: List<CommodityDetail>? = null
+    var cartList: MutableList<CommodityDetail>? = null
 
     class Info {
         var id = 0
@@ -32,7 +32,9 @@ class ShopcartDTO {
     fun getTotalPrice(): Float {
         var sum = 0.0F
         cartList?.forEach {
-            sum += it.getTotalPrice()
+            if(it.checked){
+                sum += it.getTotalPrice()
+            }
         }
         return sum
     }

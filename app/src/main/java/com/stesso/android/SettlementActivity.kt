@@ -6,9 +6,8 @@ import com.stesso.android.address.AddressListActivity
 import com.stesso.android.lib.*
 import com.stesso.android.model.Account
 import com.stesso.android.model.Address
-import com.stesso.android.model.EmptyAddress
+import com.stesso.android.model.EmptyItem
 import com.stesso.android.utils.toast
-import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.activity_settlement.*
 import kotlinx.android.synthetic.main.activity_settlement.title_view
 
@@ -25,7 +24,7 @@ class SettlementActivity : PayActivity() {
         setContentView(R.layout.activity_settlement)
         configTitleView(title_view)
         recycler_view.adapter = adapter
-        adapter.addItem(EmptyAddress(), EMPTY_ADDRESS)
+        adapter.addItem(EmptyItem(), EMPTY_ADDRESS)
         adapter.addItems(shopCart?.getSelectItems(), SETTLEMENT_ITEM, true)
         adapter.addItem(shopCart, SETTLEMENT_INFO, true)
         adapter.addItem("pay", SETTLEMENT_PAY, true)
@@ -44,7 +43,7 @@ class SettlementActivity : PayActivity() {
         }
         doHttpRequest(apiService.getAddressList()) {
             if (it == null || it.isEmpty()) {
-                //adapter.addTopItem(EmptyAddress(), EMPTY_ADDRESS)
+                //adapter.addTopItem(EmptyItem(), EMPTY_ADDRESS)
             } else {
                 address = getDefaultAddress(it)
                 adapter.changeItem(0, address, SETTLEMENT_ADDRESS)

@@ -16,96 +16,23 @@
         app:left_icon="@drawable/close"
         app:title_text="购物车" />
 
+    <View
+        android:id="@+id/space_view"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/space"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_view" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="0dp"
-        android:layout_height="260dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_view" />
-
-    <ImageView
-        android:layout_marginTop="@dimen/padding_32"
-        android:id="@+id/empty_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/empty_cart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_view" />
-
-    <TextView
-        android:id="@+id/empty_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingTop="@dimen/padding_20"
-        android:paddingBottom="@dimen/padding_20"
-        android:text="Oooops，你的购物车是空的！"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/empty_view" />
-
-    <com.phillipcalvin.iconbutton.IconButton
-        android:id="@+id/select_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_16"
-        android:background="@drawable/solid_black_bg"
-        android:drawableLeft="@drawable/cart_white"
-        android:gravity="center"
-        android:text="果断挑选几件"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/txt_15"
-        app:iconPadding="@dimen/padding_10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/empty_text" />
-
-    <com.phillipcalvin.iconbutton.IconButton
-        android:visibility="invisible"
-        android:id="@+id/settlement_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_16"
-        android:background="@drawable/solid_black_bg"
-        android:drawableLeft="@drawable/cart_white"
-        android:gravity="center"
-        android:text="进入结算中心"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/txt_15"
-        app:iconPadding="@dimen/padding_10"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
-
-    <android.support.constraint.Group
-        android:visibility="gone"
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="empty_view,empty_text,select_view" />
-
-    <TextView
-        android:id="@+id/hint_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:drawableLeft="@drawable/red_mouth"
-        android:drawablePadding="@dimen/padding_4"
-        android:text="猜你喜欢"
-        android:textColor="@color/font_red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settlement_view" />
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/related_view"
-        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hint_view" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space_view" />
 
 </android.support.constraint.ConstraintLayout>

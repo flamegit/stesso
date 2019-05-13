@@ -23,6 +23,8 @@ object Account {
         }
     var shopCart: ShopcartDTO? = null
     var count = 0
+    var expressInfo: ExpressInfo? = null
+
     var token: String? = null
         get() {
             if (field == null) {

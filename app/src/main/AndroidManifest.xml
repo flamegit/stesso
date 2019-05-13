@@ -20,10 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ExpressInfoActivity"></activity>
         <activity
             android:name=".ModifyNameActivity"
             android:label="@string/title_activity_modify_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RefundActivity" />
         <activity android:name=".SuggestionActivity" />
         <activity android:name=".account.ModifyPasswordActivity" />

@@ -11,6 +11,7 @@ import com.stesso.android.lib.*
 import com.stesso.android.model.Account
 import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.checkLogin
+import com.stesso.android.utils.getWindowWidth
 import com.stesso.android.utils.openActivity
 import com.stesso.android.utils.parseTime
 import kotlinx.android.synthetic.main.fragment_mine.*
@@ -19,8 +20,7 @@ class MineFragment : BaseFragment() {
 
     private val adapter = MultiTypeAdapter()
     override fun getLayoutId() = R.layout.fragment_mine
-
-    private var currIndex = 0
+    private var currIndex = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getFragmentComponent().inject(this)
@@ -29,16 +29,14 @@ class MineFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
         if (reload) {
-            currIndex = 0
-            reload = false
+            fillView()
         }
-        fillView()
     }
 
     fun fillView() {
         if (Account.isLogin()) {
             val count = Account.count
-            if (count > 0) {
+            if (count >= 0) {
                 title_view.setCount(count)
             }
             time_view.visibility = View.VISIBLE
@@ -46,19 +44,16 @@ class MineFragment : BaseFragment() {
             name_view.text = Account.user?.nickname
             time_view.text = "${parseTime(Account.user?.addTime ?: "")}加入"
             group.visibility = View.INVISIBLE
-            loadData(if (currIndex == 0) 1 else currIndex)
+            loadData( currIndex)
             info_section.setOnClickListener {
-                setIndicatorView(3)
                 loadData(3)
             }
 
             commodity_section.setOnClickListener {
-                setIndicatorView(2)
                 loadData(2)
             }
 
             order_section.setOnClickListener {
-                setIndicatorView(1)
                 loadData(1)
             }
 
@@ -70,25 +65,23 @@ class MineFragment : BaseFragment() {
     }
 
     private fun setIndicatorView(index: Int) {
-        if (index == currIndex) {
-            return
-        }
-        val w = 1.0F * indicator_view.width
+        val w = context.getWindowWidth()/3.0F
         ViewCompat.animate(indicator_view).translationX((index - 1) * w).start()
-
     }
 
     private fun loadData(index: Int) {
-        if (index == currIndex) {
+        if (index == currIndex && !reload) {
             return
         }
+        reload = false
+        setIndicatorView(index)
         currIndex = index
         when (index) {
             1 -> {
                 adapter.clear()
                 recycler_view.layoutManager = LinearLayoutManager(context)
                 doHttpRequest(apiService.getOrderList(0)) {
-                    adapter.addItems(it?.data?.filter { !it.orderStatusText.startsWith("已取消") }, ORDER_LIST)
+                    adapter.addItems(it?.data/*?.filter { !it.orderStatusText.startsWith("已取消") }*/, ORDER_LIST)
                 }
 
             }
@@ -98,7 +91,6 @@ class MineFragment : BaseFragment() {
                 doHttpRequest(apiService.getCollectCommodity(0, 1, 10)) {
                     adapter.addItems(it?.collectList, FAVORITE_COMMODITY)
                 }
-
             }
             3 -> {
                 adapter.clear()
@@ -106,7 +98,6 @@ class MineFragment : BaseFragment() {
                 doHttpRequest(apiService.getCollectInfo(1, 1, 10)) {
                     adapter.addItems(it?.collectList, FAVORITE_NEWS)
                 }
-
             }
         }
     }

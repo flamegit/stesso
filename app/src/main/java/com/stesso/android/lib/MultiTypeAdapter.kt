@@ -27,12 +27,12 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
 
     override fun getItemCount(): Int = mContent.size
 
-    fun addItems(items: Collection<Any>?, type: Int = TYPE1, append: Boolean = false) {
+    fun addItems(items: Collection<Any>?, type: Int = TYPE1, append: Boolean = false, spanSize: Int = 1) {
         items?.let {
             if (!append) {
                 mContent.clear()
             }
-            mContent.addAll(transform(items, type))
+            mContent.addAll(transform(items, type, spanSize))
             notifyDataSetChanged()
         }
     }
@@ -42,8 +42,23 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun setOnItemClick(callback: (position: Int, data: Any?, action: Int) -> Unit) {
+    fun setOnItemClick(callback: (position: Int, data: Any?, action: Int, extra: Any?) -> Unit) {
         mFactory.onItemClick = callback
+    }
+
+    fun setOnItemClick(callback: (position: Int, data: Any?, action: Int) -> Unit) {
+        mFactory.onItemClick = { position, data, action, _ ->
+            callback(position, data, action)
+        }
+    }
+
+    fun getItemType(position: Int): Int {
+        return mContent[position].type
+    }
+
+    fun removeItem(position: Int) {
+        mContent.removeAt(position)
+        notifyItemRemoved(position)
     }
 
     fun addItem(item: Collection<Any>?, type: Int = TYPE1, append: Boolean = false) {
@@ -56,20 +71,20 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
         }
     }
 
-    fun addItem(item: Any?, type: Int = TYPE1, append: Boolean = false) {
+    fun addItem(item: Any?, type: Int = TYPE1, append: Boolean = false, spanSize: Int = 1) {
         item?.let {
             if (!append) {
                 mContent.clear()
             }
-            mContent.add(transform(item, type))
+            mContent.add(transform(item, type, spanSize))
             notifyDataSetChanged()
         }
     }
 
-    fun changeItem(position: Int, item: Any?, type: Int) {
+    fun changeItem(position: Int, item: Any?, type: Int,spanSize: Int=1) {
         item?.let {
             if (position < mContent.size) {
-                mContent[position] = transform(item, type)
+                mContent[position] = transform(item, type,spanSize)
                 notifyItemChanged(position)
             }
         }
@@ -87,13 +102,13 @@ class MultiTypeAdapter : RecyclerView.Adapter<CommonViewHolder>() {
         }
     }
 
-    private fun transform(item: Any, type: Int): CommonAdapterItem {
-        return CommonAdapterItem(item, type)
+    private fun transform(item: Any, type: Int, spanSize: Int = 1): CommonAdapterItem {
+        return CommonAdapterItem(item, type, spanSize)
     }
 
-    private fun transform(items: Collection<Any>, type: Int): List<CommonAdapterItem> {
-        return items.map { CommonAdapterItem(it, type) }
+    private fun transform(items: Collection<Any>, type: Int, spanSize: Int = 1): List<CommonAdapterItem> {
+        return items.map { CommonAdapterItem(it, type, spanSize) }
     }
 
-    data class CommonAdapterItem(val data: Any, val type: Int, val spanSize: Int = 1)
+    data class CommonAdapterItem(val data: Any, val type: Int, var spanSize: Int = 1)
 }

@@ -10,6 +10,7 @@
     tools:context=".PersonInfoFragment">
 
     <ImageView
+        android:scaleType="centerCrop"
         android:id="@+id/commodity_img"
         android:layout_width="80dp"
         android:layout_height="100dp"
