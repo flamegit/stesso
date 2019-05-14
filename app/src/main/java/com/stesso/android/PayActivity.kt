@@ -35,6 +35,7 @@ open class PayActivity : BaseActivity() {
                             if (it["resultStatus"] == "9000") {
                                 openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
                             } else {
+                                //openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
                                 toast("支付失败")
                             }
                         },
