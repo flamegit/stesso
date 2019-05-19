@@ -7,6 +7,8 @@ import com.stesso.android.lib.*
 import com.stesso.android.model.Account
 import com.stesso.android.model.Address
 import com.stesso.android.model.EmptyItem
+import com.stesso.android.shopcart.ShopCartActivity
+import com.stesso.android.utils.openActivity
 import com.stesso.android.utils.toast
 import kotlinx.android.synthetic.main.activity_settlement.*
 import kotlinx.android.synthetic.main.activity_settlement.title_view
@@ -28,7 +30,7 @@ class SettlementActivity : PayActivity() {
         adapter.addItems(shopCart?.getSelectItems(), SETTLEMENT_ITEM, true)
         adapter.addItem(shopCart, SETTLEMENT_INFO, true)
         adapter.addItem("pay", SETTLEMENT_PAY, true)
-        adapter.addItem("footer", FOOTER,true)
+        adapter.addItem("footer", FOOTER, true)
         adapter.setOnItemClick { _, _, action ->
             when (action) {
                 0, 1 -> {
@@ -66,6 +68,17 @@ class SettlementActivity : PayActivity() {
                 }
             }
         }
+
+        disposableContainer.add(RxBus.subject.subscribe {
+            if (it.code == 0) {
+                toast("支付成功")
+            } else {
+                toast("支付失败")
+            }
+            ShopCartActivity.reload = true
+            this.openActivity(OrderDetailActivity::class.java, ORDER_ID, orderId)
+            finish()
+        })
     }
 
     private fun getDefaultAddress(list: List<Address>): Address {

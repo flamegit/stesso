@@ -2,6 +2,7 @@ package com.stesso.android.widget
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
@@ -21,7 +22,6 @@ class TitleBar(context: Context, attrs: AttributeSet, defStyle: Int) : FrameLayo
     var leftTextView: TextView? = null
     var rightTextView: TextView? = null
     var titleView: TextView? = null
-
     var countView: TextView? = null
 
     init {
@@ -87,7 +87,9 @@ class TitleBar(context: Context, attrs: AttributeSet, defStyle: Int) : FrameLayo
             centerParams.gravity = Gravity.CENTER
             addView(this, centerParams)
             this.text = titleText
-            setPadding(padding, padding, padding, padding)
+            setSingleLine()
+            ellipsize =TextUtils.TruncateAt.END
+            setPadding(padding*2, padding, padding, padding)
             this.setTextColor(ContextCompat.getColor(context, R.color.font_4A))
             this.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15F)
         }

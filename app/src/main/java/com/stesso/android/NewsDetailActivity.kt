@@ -17,7 +17,7 @@ class NewsDetailActivity : BaseActivity() {
         configTitleView(title_view)
         doHttpRequest(apiService.getNewsDetail(intent.getIntExtra(NEWS_ID, 0))) {
             news = it?.topic
-            //title_view.setTitle(news?.title?:"NOW")
+            title_view.setTitle(news?.title?:"NOW")
             favorite_view.setImageResource(if (it?.userHasCollect == 0) R.drawable.gray_mouth else R.drawable.red_mouth)
             web_view.loadData(getHtmlData(it?.topic?.content), "text/html; charset=utf-8", "utf-8")
         }

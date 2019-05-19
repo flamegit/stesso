@@ -34,12 +34,13 @@ open class PayActivity : BaseActivity() {
                         {
                             // progressDialog.dismiss()
                             if (it["resultStatus"] == "9000") {
-                                ShopCartActivity.reload = true
-                                this.openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
-                                finish()
+                                toast("支付成功")
                             } else {
                                 toast("支付失败")
                             }
+                            ShopCartActivity.reload = true
+                            this.openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
+                            finish()
                         },
                         {
                             // progressDialog.dismiss()
