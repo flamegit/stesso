@@ -35,8 +35,8 @@ open class PayActivity : BaseActivity() {
                             // progressDialog.dismiss()
                             if (it["resultStatus"] == "9000") {
                                 ShopCartActivity.reload = true
+                                this.openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
                                 finish()
-                                openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
                             } else {
                                 toast("支付失败")
                             }
@@ -46,7 +46,7 @@ open class PayActivity : BaseActivity() {
                             it.printStackTrace()
                         }
                 )
-        disposableContainer.add(disposable)
+        //disposableContainer.add(disposable)
     }
 
     fun wechatPay(orderNo: Int) {
