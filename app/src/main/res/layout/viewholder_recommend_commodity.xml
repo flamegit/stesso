@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="#251619"
-        android:textSize="@dimen/txt_20"
+        android:textSize="@dimen/txt_18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/commodity_img" />

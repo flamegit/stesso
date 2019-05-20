@@ -154,12 +154,17 @@ class CommodityDetailActivity : BaseActivity() {
                 }
                 if (choseValues?.size == 2) {
                     val product = info?.getProduct(choseValues?.reduce { acc, s -> "$acc$s" })
+                    if (product != null) {
+                        discount_price.text = "￥：${product?.price}"
+                    }
                     if (product != null && product.number > 0) {
                         add_cart_view.isEnabled = true
                         add_cart_view.text = "添加到购物车"
-                        discount_price.text = "￥：${product?.price}"
+                        add_cart_view.setIconPadding(dip2px(10))
+
                     } else if (product != null) {
                         add_cart_view.isEnabled = false
+                        add_cart_view.setIconPadding(dip2px(10))
                         add_cart_view.text = "Hey,下次来早点"
 
                     }

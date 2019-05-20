@@ -89,7 +89,7 @@ class TitleBar(context: Context, attrs: AttributeSet, defStyle: Int) : FrameLayo
             this.text = titleText
             setSingleLine()
             ellipsize =TextUtils.TruncateAt.END
-            setPadding(padding*2, padding, padding, padding)
+            setPadding(padding*2, padding, padding*2, padding)
             this.setTextColor(ContextCompat.getColor(context, R.color.font_4A))
             this.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15F)
         }
