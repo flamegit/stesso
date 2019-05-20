@@ -2,6 +2,7 @@ package com.stesso.android
 
 import android.os.Bundle
 import com.alipay.sdk.app.PayTask
+import com.stesso.android.shopcart.ShopCartActivity
 import com.stesso.android.utils.applySingleSchedulers
 import com.stesso.android.utils.openActivity
 import com.stesso.android.utils.toast
@@ -33,18 +34,21 @@ open class PayActivity : BaseActivity() {
                         {
                             // progressDialog.dismiss()
                             if (it["resultStatus"] == "9000") {
-                                openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
+                                toast("支付成功")
                             } else {
                                 //openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
                                 toast("支付失败")
                             }
+                            ShopCartActivity.reload = true
+                            this.openActivity(OrderDetailActivity::class.java, ORDER_ID, orderNo)
+                            finish()
                         },
                         {
                             // progressDialog.dismiss()
                             it.printStackTrace()
                         }
                 )
-        disposableContainer.add(disposable)
+        //disposableContainer.add(disposable)
     }
 
     fun wechatPay(orderNo: Int) {
