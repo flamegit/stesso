@@ -1,10 +1,10 @@
 package com.stesso.android
 
-import android.app.Application
 import android.support.multidex.MultiDexApplication
 import com.stesso.android.di.component.AppComponent
 import com.stesso.android.di.component.DaggerAppComponent
 import com.stesso.android.di.module.AppModule
+import com.tencent.bugly.crashreport.CrashReport
 import com.tendcloud.tenddata.TCAgent
 import com.umeng.commonsdk.UMConfigure
 import com.umeng.socialize.PlatformConfig
@@ -22,7 +22,7 @@ class App : MultiDexApplication() {
         super.onCreate()
         component = DaggerAppComponent.builder().appModule(AppModule(this)).build()
 
-        TCAgent.LOG_ON=true
+        TCAgent.LOG_ON= BuildConfig.DEBUG
         // App ID: 在TalkingData创建应用后，进入数据报表页中，在“系统设置”-“编辑应用”页面里查看App ID。
         // 渠道 ID: 是渠道标识符，可通过不同渠道单独追踪数据。
         TCAgent.init(this)
@@ -32,6 +32,7 @@ class App : MultiDexApplication() {
         //极光推送
 //        JPushInterface.setDebugMode(true)
 //        JPushInterface.init(this)
+        CrashReport.initCrashReport(this, "81ab1036a0", BuildConfig.DEBUG)
 
         UMConfigure.init(this,"5cc80f934ca3578209000666"
                 ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"")
