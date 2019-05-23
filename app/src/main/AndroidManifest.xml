@@ -75,7 +75,7 @@
             android:value="4D54D4B060B04746924DAD11943DA73D" />
         <meta-data
             android:name="TD_CHANNEL_ID"
-            android:value="channel_id" />
+            android:value="${TD_CHANNEL_VALUE}" />
 
         <activity
             android:name=".wxapi.WXPayEntryActivity"
