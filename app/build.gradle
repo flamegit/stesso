@@ -9,7 +9,7 @@ android {
         applicationId "com.stesso.android"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 10
+        versionCode 101
         versionName "1.0.1"
         multiDexEnabled true //important
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
