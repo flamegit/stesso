@@ -47,6 +47,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "${variant.flavorName}_v${variant.versionName}_${variant.buildType.name}.apk"
+        }
+    }
 
     flavorDimensions "default"
     productFlavors {
@@ -81,13 +86,6 @@ android {
                 ]
         }
     }
-
-
-
-
-
-
-
 
 }
 
