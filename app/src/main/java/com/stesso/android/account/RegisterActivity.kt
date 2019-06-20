@@ -36,6 +36,8 @@ class RegisterActivity : BaseActivity() {
                     .subscribe {
                         if (it > 60) {
                             get_verify_code.isEnabled = true
+                            get_verify_code.text = "获取验证码"
+
                         } else {
                             get_verify_code.text = "等待 ${60 - it} s"
                         }
@@ -43,7 +45,7 @@ class RegisterActivity : BaseActivity() {
 
         }
 
-        cancel_view.setOnClickListener{
+        cancel_view.setOnClickListener {
             onBackPressed()
         }
 
@@ -55,11 +57,16 @@ class RegisterActivity : BaseActivity() {
             val password = password_view.text.toString()
             if (checkLoginInfo(mobile, password, verifyCode)) {
                 val body = JSONObject(mapOf(Pair("mobile", mobile), Pair("password", password), Pair("vcode", verifyCode)))
-                val single = if (type == 0) apiService.register(body) else apiService.resetPassword(body)
-
-                doHttpRequest(single) {
-                    toast(if (type == 0) "注册成功" else "重置密码成功")
-                    onBackPressed()
+                if (type == 0) {
+                    doHttpRequest(apiService.register(body)) {
+                        toast("注册成功")
+                        onBackPressed()
+                    }
+                } else {
+                    doHttpRequest(apiService.resetPassword(body)) {
+                        toast("重置密码成功")
+                        onBackPressed()
+                    }
                 }
             }
         }

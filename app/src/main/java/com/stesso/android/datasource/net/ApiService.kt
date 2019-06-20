@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface ApiService {
 
     @POST("app/register")
-    fun register(@Body body: JSONObject): Single<RootNode<String>>
+    fun register(@Body body: JSONObject): Single<RootNode<UserDTO>>
 
     @POST("wx/auth/reset")
     fun resetPassword(@Body body: JSONObject): Single<RootNode<String>>
