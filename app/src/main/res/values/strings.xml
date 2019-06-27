@@ -19,4 +19,6 @@
 
     <string name="password_hint">※ 长度为8-12个字符\n\n※ 建议至少含数字/字母/符号2种组合</string>
     <string name="title_activity_modify_name">ModifyNameActivity</string>
+
+    <string name="agreement"><![CDATA[点击注册即代表已阅读并接受<font color="#007AFF">STESSO用户协议</font>]]></string>
 </resources>

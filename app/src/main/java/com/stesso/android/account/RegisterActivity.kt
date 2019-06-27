@@ -1,11 +1,14 @@
 package com.stesso.android.account
 
 import android.os.Bundle
+import android.text.Html
+import com.stesso.android.AgreementActivity
 import com.stesso.android.BaseActivity
 import com.stesso.android.R
 import com.stesso.android.TYPE
 import com.stesso.android.model.RootNode
 import com.stesso.android.utils.checkLoginInfo
+import com.stesso.android.utils.openActivity
 import com.stesso.android.utils.toast
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -47,6 +50,15 @@ class RegisterActivity : BaseActivity() {
 
         cancel_view.setOnClickListener {
             onBackPressed()
+        }
+
+
+
+        if (type == 0) {
+            agreement_view.setOnClickListener {
+                openActivity(AgreementActivity::class.java)
+            }
+            agreement_view.text = Html.fromHtml(getString(R.string.agreement))
         }
 
         register_view.text = if (type == 0) "注册" else "重置密码"
