@@ -103,8 +103,8 @@ class DelegateAdapterFactory {
                 override fun onBindViewHolder(holder: CommonViewHolder, position: Int, data: Any?) {
                     super.onBindViewHolder(holder, position, data)
                     if (data is EmptyItem) {
-                        holder.itemView.setOnClickListener { v ->
-                            v.context.openActivity(AddressListActivity::class.java)
+                        holder.itemView.setOnClickListener { _ ->
+                            onItemClick(position, data, SETTLEMENT_ADDRESS, null)
                         }
                     }
                 }
