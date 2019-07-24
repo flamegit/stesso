@@ -138,7 +138,6 @@ class DelegateAdapterFactory {
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.commodity_img))
                         holder.get<TextView>(R.id.name_view).text = data.name
                         //holder.get<TextView>(R.id.brief_view).text = data.brief
-
                         val discountView = holder.get<TextView>(R.id.discount_price)
                         discountView.text = "￥:${data.retailPrice}"
                         val priceView = holder.get<TextView>(R.id.price_view)
@@ -350,8 +349,8 @@ class DelegateAdapterFactory {
                         holder.get<TextView>(R.id.title_view).text = data.title
                         holder.get<TextView>(R.id.time_view).text = parseTime(data.addTime)
                         Glide.with(holder.itemView).load(data.picUrl).into(holder.get(R.id.cover_view))
-                        holder.itemView.setOnClickListener { v ->
-                            v.context.openActivity(NewsDetailActivity::class.java, NEWS_ID, data.id)
+                        holder.itemView.setOnClickListener {
+                            onItemClick(position,data,1,null)
                         }
                     }
                 }
