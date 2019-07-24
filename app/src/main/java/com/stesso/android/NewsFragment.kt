@@ -28,7 +28,7 @@ class NewsFragment : BaseFragment() {
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
 
-        doHttpRequest(apiService.getNewsList(1, 100)) {
+        doHttpRequest(apiService.getNewsList(1, 400)) {
             if (it?.data?.isNotEmpty() == true) {
                 newsList = it?.data
                 adapter.addItems(newsList, NEWS_TYPE)

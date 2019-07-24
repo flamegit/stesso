@@ -7,6 +7,7 @@ import android.view.View
 import com.lcodecore.tkrefreshlayout.IBottomView
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+import com.lcodecore.tkrefreshlayout.footer.BallPulseView
 import com.stesso.android.model.News
 import com.stesso.android.utils.share
 import com.stesso.android.utils.toast
@@ -27,7 +28,7 @@ class NewsDetailActivity : BaseActivity() {
         curId = intent.getIntExtra(NEWS_ID, 0)
         loadData(curId, null)
         //refreshLayout.setAutoLoadMore(true)
-        refreshLayout.setBottomView(BottomView(this))
+        refreshLayout.setBottomView(BallPulseView(this))
 
         refreshLayout.setOnRefreshListener(object : RefreshListenerAdapter() {
             override fun onLoadMore(refreshLayout: TwinklingRefreshLayout?) {
@@ -77,11 +78,12 @@ class NewsDetailActivity : BaseActivity() {
     }
 
     private fun getHtmlData(body: String?): String {
+        val next = if (nextId(curId) != null) "<div class=\"text\" style=\" text-align:center;\">下拉查看下一篇</div><br/><br/><br/>" else ""
         val head = "<head>" +
                 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"> " +
                 "<style>img{max-width: 100%; width:auto; height:auto;}</style>" +
                 "</head>"
-        return "<html>$head<body>$body</body></html>"
+        return "<html>$head<body>$body$next</body></html>"
     }
 
     class BottomView(val context: Context) : IBottomView {

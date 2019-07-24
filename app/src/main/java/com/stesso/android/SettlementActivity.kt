@@ -62,6 +62,7 @@ class SettlementActivity : PayActivity() {
                 val body = mapOf(Pair("addressId", address?.id), Pair("cartId", shopCart?.getIdList()), Pair("message", "pay"))
                 doHttpRequest(apiService.submitOrder(body)) { data ->
                     data?.orderId?.let {
+                        ShopCartActivity.reload = true
                         orderId = it
                         if (payType == 0) alipay(it) else wechatPay(it)
                     }
@@ -95,7 +96,8 @@ class SettlementActivity : PayActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == SELECT_ADDRESS) {
-            adapter.changeItem(0, data?.getParcelableExtra(KEY_ADDRESS), SETTLEMENT_ADDRESS)
+            address = data?.getParcelableExtra(KEY_ADDRESS)
+            adapter.changeItem(0, address, SETTLEMENT_ADDRESS)
         }
     }
 }
