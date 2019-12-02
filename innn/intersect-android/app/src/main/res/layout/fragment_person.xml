@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:padding="@dimen/padding_10"
+        android:background="#F8F8F8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_gravity="right"
+            android:id="@+id/message_view"
+            android:src="@mipmap/message_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:padding="@dimen/padding_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/me"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/setting_view"
+            android:src="@mipmap/setting_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:background="@mipmap/person_bg"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/account_view"
+                android:padding="@dimen/padding_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:padding="@dimen/padding_8"
+                    android:textStyle="bold"
+                    android:id="@+id/user_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/padding_32"
+                    android:textSize="25sp"
+                    android:text="Join Snow" />
+
+                <TextView
+                    android:drawablePadding="@dimen/padding_4"
+                    android:layout_gravity="right|center"
+                    android:drawableRight="@mipmap/chevron_right"
+                    android:textColor="@android:color/secondary_text_dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="管理" />
+
+            </FrameLayout>
+            <LinearLayout
+                android:paddingTop="@dimen/padding_32"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/order_view"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/padding_10"
+                    android:drawableTop="@mipmap/orders_icon"
+                    android:text="@string/my_order" />
+
+                <TextView
+                    android:id="@+id/coupon_view"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/padding_10"
+                    android:drawableTop="@mipmap/coupon_icon"
+                    android:text="@string/coupon" />
+
+                <TextView
+                    android:id="@+id/award_view"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/padding_10"
+                    android:drawableTop="@mipmap/award_icon"
+                    android:text="@string/my_award" />
+
+            </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="@dimen/padding_20"
+                android:layout_marginLeft="@dimen/padding_16"
+                android:layout_marginRight="@dimen/padding_16"
+                android:background="@color/colorLine"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divide_1"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/padding_16"
+                android:paddingRight="@dimen/padding_16">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/padding_16"
+    tools:context="com.tmmt.innersect.ui.activity.BaseActivity">
+
+    <TextView
+        android:textStyle="normal"
+        android:textSize="@dimen/txt_16"
+        android:id="@+id/title_view"
+        android:text="够In才能抢购哦"
+        android:padding="@dimen/padding_16"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="请在30分钟内完成支付"
+        android:id="@+id/content_view"
+        android:gravity="center"
+        android:textColor="@android:color/secondary_text_dark"
+        android:textSize="@dimen/txt_12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:paddingTop="@dimen/padding_16"
+        android:layout_marginTop="@dimen/divide_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/cancel"
+            android:text="暂不支付"
+            android:padding="@dimen/padding_8"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/ok"
+            android:layout_marginLeft="@dimen/divide_1"
+            android:text="重新支付"
+            android:padding="@dimen/padding_8"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</LinearLayout>

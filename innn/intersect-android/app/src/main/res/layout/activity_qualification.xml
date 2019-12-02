@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.tmmt.innersect.ui.activity.ReserveSuccessActivity">
+
+        <include layout="@layout/common_top_bar" />
+
+        <TextView
+            android:id="@+id/name_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/padding_10"
+            android:textSize="@dimen/txt_24"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sub_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="@dimen/padding_16" />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="288dp"
+            android:layout_height="288dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/padding_32"
+            android:layout_marginRight="@dimen/padding_32"
+            android:layout_marginTop="@dimen/padding_16">
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/hint_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_32"
+            android:padding="@dimen/padding_16"
+            android:textColor="@android:color/secondary_text_dark" />
+
+    </LinearLayout>
+</ScrollView>

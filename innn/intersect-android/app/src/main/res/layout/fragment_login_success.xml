@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLine"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_16"
+    tools:context="com.tmmt.innersect.ui.activity.BaseActivity">
+
+    <ImageView
+        android:padding="@dimen/padding_8"
+        android:id="@+id/close_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/close_icon" />
+
+
+    <TextView
+        android:paddingTop="@dimen/padding_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:text="登录成功" />
+
+    <TextView
+        android:paddingTop="@dimen/padding_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VLONE POP-UP 中预售商品\n会已邮寄方式给您，因此我们需要您的地址信息" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/add_address"
+        android:gravity="center"
+        android:padding="@dimen/padding_8"
+        android:textColor="@android:color/white"
+        android:text="@string/add_address"
+        android:background="@drawable/solid_black_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

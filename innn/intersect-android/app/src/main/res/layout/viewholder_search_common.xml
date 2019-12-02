@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/show_all"
+        android:padding="@dimen/padding_16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title_view"
+            android:drawablePadding="@dimen/padding_4"
+            android:drawableLeft="@mipmap/left_decorate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最IN品牌" />
+
+        <TextView
+            android:id="@+id/show_more"
+            android:textColor="@android:color/secondary_text_dark"
+            android:drawablePadding="@dimen/padding_4"
+            android:layout_gravity="right"
+            android:drawableRight="@mipmap/chevron_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看全部" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:paddingRight="@dimen/padding_8"
+        android:paddingLeft="@dimen/padding_8"
+        android:orientation="horizontal"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+

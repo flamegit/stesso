@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_10"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/show_all"
+        android:padding="@dimen/padding_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:id="@+id/title_view"
+            android:drawablePadding="@dimen/padding_4"
+            android:drawableRight="@mipmap/gray_triangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最IN品牌" />
+
+        <TextView
+            android:textSize="@dimen/txt_10"
+            android:paddingTop="@dimen/padding_4"
+            android:layout_gravity="center"
+            android:letterSpacing="0.7"
+            android:id="@+id/sub_title"
+            android:textColor="@android:color/secondary_text_dark"
+            android:drawablePadding="@dimen/padding_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NEW ARRIVALS" />
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"/>
+
+    <com.tmmt.innersect.widget.CirclePageIndicator
+        android:id="@+id/pager_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="@dimen/padding_4"
+        android:padding="@dimen/padding_16"
+        app:pageColor="@android:color/darker_gray"
+        app:fillColor="@color/homeBg"/>
+
+</LinearLayout>

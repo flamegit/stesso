@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/empty_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/hint_view"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/padding_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="你还没有收货地址哦!" />
+
+    <ImageView
+        android:layout_above="@id/hint_view"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/empty_address" />
+
+
+    <TextView
+        android:id="@+id/add_address"
+        android:layout_below="@id/hint_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/padding_32"
+        android:padding="@dimen/padding_8"
+        android:minWidth="150dp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/stroke_black_bg"
+        android:text="添加地址" />
+
+</RelativeLayout>
+
+
+
+

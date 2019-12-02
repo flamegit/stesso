@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tmmt.innersect.ui.activity.SearchActivity">
+
+    <LinearLayout
+        android:background="#F7F7F7"
+        android:paddingLeft="@dimen/padding_20"
+        android:paddingRight="@dimen/padding_8"
+        android:paddingTop="@dimen/padding_8"
+        android:paddingBottom="@dimen/padding_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:background="@drawable/solid_search_bg"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:textSize="@dimen/txt_14"
+                android:background="@null"
+                android:singleLine="true"
+                android:id="@+id/search_view"
+                android:drawableLeft="@mipmap/search_icon"
+                android:drawablePadding="@dimen/padding_16"
+                android:layout_weight="1"
+                android:hint="搜索商品、品牌、品类"
+                android:textColorHint="@android:color/secondary_text_dark"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_8"
+                />
+
+            <ImageView
+                android:visibility="invisible"
+                android:id="@+id/delete_view"
+                android:padding="@dimen/padding_8"
+                android:layout_gravity="center"
+                android:src="@mipmap/search_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/close_view"
+            android:layout_gravity="center"
+            android:padding="@dimen/padding_8"
+            android:text="取消"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/result_view"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TabLayout
+                android:visibility="invisible"
+                android:layout_gravity="center"
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/homeBg"
+                app:tabIndicatorHeight="2dp"
+                app:tabMode="fixed" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </android.support.v4.view.ViewPager>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+
+    </FrameLayout>
+
+</LinearLayout>

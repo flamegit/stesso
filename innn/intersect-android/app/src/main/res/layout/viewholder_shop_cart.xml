@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_16"
+    android:paddingBottom="@dimen/padding_16">
+
+    <CheckBox
+        android:paddingLeft="@dimen/padding_16"
+        android:paddingTop="@dimen/padding_16"
+        android:paddingBottom="@dimen/padding_16"
+        android:id="@+id/check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:button="@drawable/check_box_bg"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/icon_view"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_toRightOf="@id/check_box"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:visibility="invisible"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:id="@+id/sale_status"
+        android:layout_alignLeft="@id/icon_view"
+        android:layout_alignBottom="@id/icon_view"
+        android:layout_width="76dp"
+        android:layout_height="20dp"/>
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/padding_8"
+        android:layout_alignTop="@id/icon_view"
+        android:layout_toRightOf="@id/icon_view"
+        android:id="@+id/name_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:id="@+id/name_view"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="adidas" />
+
+        <TextView
+            android:id="@+id/price_view"
+            android:layout_marginLeft="@dimen/padding_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="@dimen/padding_8"
+        android:layout_toRightOf="@id/icon_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/icon_view"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_gravity="bottom"
+            android:id="@+id/color_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="@dimen/padding_8"
+            android:id="@+id/size_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_gravity="bottom"
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/padding_8"
+            android:id="@+id/pre_sale"
+            android:padding="@dimen/padding_2"
+            android:minWidth="50dp"
+            android:textSize="@dimen/txt_12"
+            android:background="@drawable/stroke_black_bg"
+            android:text="预售"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <android.support.v4.widget.Space
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <com.tmmt.innersect.widget.QuantityView
+            android:id="@+id/quantity_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right" />
+    </LinearLayout>
+
+</RelativeLayout>
+

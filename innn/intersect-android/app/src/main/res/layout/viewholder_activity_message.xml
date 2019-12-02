@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/padding_10">
+
+    <TextView
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:id="@+id/head_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/activity_message"
+        android:drawablePadding="@dimen/padding_8"
+        android:text="活动通知" />
+
+    <LinearLayout
+        android:paddingTop="@dimen/padding_8"
+        android:paddingLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="180dp" />
+
+        <TextView
+            android:textStyle="bold"
+            android:paddingTop="@dimen/padding_8"
+            android:id="@+id/title_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="客服消息" />
+
+        <TextView
+            android:id="@+id/time_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/padding_10"
+            android:text="2018.3.4. 19:00"
+            android:textColor="@color/gray_text"
+            android:textSize="@dimen/txt_10" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divide_1"
+            android:layout_below="@id/message_view"
+            android:layout_marginTop="@dimen/padding_16"
+            android:background="@color/colorLine" />
+
+    </LinearLayout>
+
+</LinearLayout>
+

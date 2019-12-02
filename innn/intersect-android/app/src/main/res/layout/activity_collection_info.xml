@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_top_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:paddingTop="@dimen/padding_4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@drawable/divider_bg"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padding_16"
+            android:paddingRight="@dimen/padding_16"
+            android:showDividers="middle|end">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_10"
+                android:paddingBottom="@dimen/padding_10">
+                <EditText
+                    android:id="@+id/name_view"
+                    android:textSize="@dimen/txt_14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_8"
+                    android:background="@null"
+                    android:hint="@string/name"
+                    android:inputType="textPersonName"
+                    android:maxLength="20"
+                    android:paddingTop="@dimen/padding_8"
+                    android:textCursorDrawable="@null" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_10"
+                android:paddingBottom="@dimen/padding_10">
+
+                <EditText
+                    android:textSize="@dimen/txt_14"
+                    android:id="@+id/tel_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:digits="0123456789"
+                    android:hint="@string/tel_num"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:paddingTop="@dimen/padding_8"
+                    android:textCursorDrawable="@null" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <FrameLayout
+                android:paddingBottom="@dimen/padding_10"
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                        <EditText
+                            android:textSize="@dimen/txt_14"
+                            android:id="@+id/type_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:focusable="false"
+                            android:hint="@string/credentials_type"
+                            android:paddingTop="@dimen/padding_8"
+                            android:textCursorDrawable="@null" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageView
+                        android:paddingLeft="@dimen/padding_40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:src="@mipmap/chevron_right" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/select_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </FrameLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_10"
+                android:paddingBottom="@dimen/padding_10">
+
+                <EditText
+                    android:id="@+id/num_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/credentials_num"
+                    android:paddingTop="@dimen/padding_8"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/txt_14" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <FrameLayout
+                android:paddingBottom="@dimen/padding_10"
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <EditText
+                        android:textSize="@dimen/txt_14"
+                        android:id="@+id/gender_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:focusable="false"
+                        android:hint="@string/gender"
+                        android:paddingTop="@dimen/padding_8"
+                        android:textCursorDrawable="@null" />
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:paddingLeft="@dimen/padding_40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:src="@mipmap/chevron_right" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/select_gender"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            </FrameLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_10"
+                android:paddingBottom="@dimen/padding_10">
+                <EditText
+                    android:id="@+id/age_view"
+                    android:textSize="@dimen/txt_14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_8"
+                    android:background="@null"
+                    android:hint="@string/age"
+                    android:inputType="number"
+                    android:paddingTop="@dimen/padding_8"
+                    android:textCursorDrawable="@null" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
+

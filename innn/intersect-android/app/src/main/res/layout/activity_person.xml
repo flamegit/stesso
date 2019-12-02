@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tmmt.innersect.ui.MainActivity">
+    <include layout="@layout/common_title_bar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/user_view"
+                android:padding="@dimen/padding_32"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:text="Join Snow"/>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:paddingTop="@dimen/padding_8"
+                android:paddingBottom="@dimen/padding_8"
+                android:paddingLeft="@dimen/padding_16"
+                android:paddingRight="@dimen/padding_16"
+                android:id="@+id/award_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@mipmap/award_icon"
+                    android:id="@+id/award_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+
+                <View
+                    android:layout_marginTop="@dimen/padding_16"
+                    android:layout_below="@id/award_icon"
+                    android:background="@drawable/divider_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <TextView
+                    android:paddingLeft="@dimen/padding_8"
+                    android:text="你已获得"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/award_icon"
+                    android:id="@+id/award_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="@dimen/txt_12"
+                    android:paddingLeft="@dimen/padding_8"
+                    android:paddingTop="@dimen/padding_4"
+                    android:text="10月7日过期"
+                    android:textColor="@android:color/secondary_text_dark"
+                    android:layout_toRightOf="@id/award_icon"
+                    android:layout_below="@id/award_des"
+                    android:id="@+id/expire_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src ="@mipmap/chevron_right"/>
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:paddingLeft="@dimen/padding_16"
+                android:paddingRight="@dimen/padding_16"
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

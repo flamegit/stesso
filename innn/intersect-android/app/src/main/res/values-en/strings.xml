@@ -1,0 +1,277 @@
+<resources>
+    <string name="app_name">innersect</string>
+
+    <!-- hints -->
+    <string name="email_hint">Email</string>
+    <string name="username_hint">Username</string>
+    <string name="username_email_hint">Username/Email</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="forgot">forgot?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">No account yet? Create one</string>
+    <string name="sign_up_button">Sign up</string>
+    <string name="more">More</string>
+    <string name="week_new">Week New</string>
+    <string name="login_out">Logout</string>
+    <string name="share_app">Recommend this App</string>
+    <string name="rate_app">Rate this App</string>
+    <string name="qv_add">+</string>
+    <string name="qv_remove">-</string>
+    <string name="select_num">Quantity</string>
+    <string name="select_color">Color</string>
+    <string name="select_size">Size</string>
+    <string name="service">FAQ</string>
+    <string name="add_address">Shipping address</string>
+    <string name="edit_address">Edit address</string>
+    <string name="account_manager">My information</string>
+    <string name="address_management">Shipping Addresses</string>
+    <string name="setting">Setting</string>
+    <string name="share">Recommend this app</string>
+    <string name="my_order">Orders Placed</string>
+    <string name="accept_message">Notifications</string>
+    <string name="tel_num">Phone number</string>
+    <string name="receiver">Name</string>
+    <string name="buy_ticket">Purchase</string>
+    <string name="wechat">WeChat</string>
+    <string name="sina">Weibo</string>
+    <string name="facebook">Facebook</string>
+
+    <string name="set_password">Set password</string>
+    <string name="user_name">User name</string>
+    <string name="suggestion">Feedback</string>
+    <string name="clear_cache">Clear cache</string>
+    <string name="about_innersect">About innersect</string>
+    <string name="set_default">Set as Default</string>
+    <string name="edit">Edit </string>
+    <string name="complete">Complete</string>
+    <string name="unreceived">Shipping</string>
+    <string name="settlement">Checkout</string>
+    <string name="select_all">Select all</string>
+    <string name="remove_select">Delete</string>
+    <string name="commodity_total_price">Total</string>
+    <string name="commodity_detail">Product details</string>
+    <string name="order_detail">Order detail</string>
+    <string name="order_list">Orders Placed</string>
+    <string name="transport_price">Shipping price</string>
+    <string name="commit_order">Submit</string>
+    <string name="input_tel">Phone number</string>
+    <string name="save">Save</string>
+    <string name="me">Me</string>
+    <string name="retry_code">Resend(%s)</string>
+
+    <string name="select_count">Selected（%s）</string>
+    <string name="month">%s </string>
+    <string name="commodity_num">% items</string>
+    <string name="order_code">Order number: %s</string>
+    <string name="acquire_code">Verification code</string>
+    <string name="contract">By joining INNERSECT, you accept our service term</string>
+    <string name="add_shop_cart">Add to cart</string>
+    <string name="delete">Delete</string>
+    <string name="brand_introduction">About brand</string>
+    <string name="select_pay_method">Select a payment method</string>
+    <string name="phone_format_error">Please enter the correct phone number</string>
+    <string name="order_success">Your reservation is now verified</string>
+    <string name="enter_hint">Now you can enter by showing staff this page</string>
+    <string name="order_now">Reservation</string>
+    <string name="scan_hint">Align QR code within frame to scan</string>
+    <string name="order">Reservation</string>
+    <string name="select_pay">Select a payment method</string>
+    <string name="enter_origin_pwd">Password</string>
+    <string name="associate_account">Connect account</string>
+    <string name="ali_pay">Alipay</string>
+    <string name="wechat_pay">WeChat pay</string>
+
+    <string name="un_pay">Pending payment </string>
+    <string name="order_cancel">Cancelled</string>
+    <string name="on_transport">Payment completed</string>
+    <string name="finish">Completed</string>
+   
+    <string name="show_transport">Track it</string>
+    <string name="help_service">FAQ</string>
+    <string name="order_time">Order time:</string>
+    <string name="check_time">Pay time:</string>
+    <string name="pay_style">Pay type</string>
+    <string name="start_reverse">Reservation</string>
+    <string name="reversed">Reserved</string>
+    <string name="reverse_full">Full</string>
+    <string name="reverse_finish">Reservation closed</string>
+    <string name="sale_out">Sold out</string>
+    <string name="paypal_hint">Payment will be settled in dollars</string>
+    <string name="hint">Goods in stock should be picked up before 18:00</string>
+    <string name="enter_way">"Shanghai World Expo Exhibition And Convention Center Hall 3, Entrance is on Shiboguan Rd.\n\n Transportation: Line 8 at  China Art Museum; Line 7 at Yaohua Road; Line 13 at Shibo Avenue station.</string>
+    <string name="end_hint">That’s all we recommend for you</string>
+    <string name="time_end_hint">Time left：</string>
+    <string name="pick_code">Pick-up code</string>
+    <string name="bind_">Connected with wristband</string>
+    <string name="bing_hint">Connect to wristband once QR code been scanned by staff</string>
+    <string name="bind_ring">connect to wristband</string>
+    <string name="transport">Ship</string>
+    <string name="pick_up">Pick up</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="service_policy"> Service term </string>
+    <string name="connect_custom">Contact us</string>
+    <string name="modify_name">User name</string>
+    <string name="enter_instruction">How to get there</string>
+    <string name="post">Submit</string>
+   
+    <string name="product_promise" formatted="false">100% authentic </string>
+    <string name="time_promise">Priority shipping</string>
+    <string name="transport_promise"> Return Policy </string>
+    <string name="product_promise_desc">"All products on INNERSECT are officially authenticated by brand,100% authentic guaranteed;"</string>
+    <string name="transport_promise_desc">Orders could be delivered to all the domestic area including HongKong, Taiwan and Macao.</string>
+    <string name="time_promise_desc">You have 7 days to request a return from the date you received order.Once we process your return we will refund you for the amount you paid.</string>
+
+    <string name="home">Home</string>
+    <string name="infor">News</string>
+    <string name="my">My</string>
+    <string name="buy_hint">FAQ</string>
+    <string name="shop_cart">Shopping cart</string>
+    <string name="skip">"%d Skip</string>
+
+    <string name="schedule">Event</string>
+    <string name="exhibitor">Visit</string>
+    <string name="map">Map</string>
+
+    <string name="change">（Change）</string>
+
+    <string name="chose_date">Chose date</string>
+    <string name="see">View</string>
+    <string name="is_coming">Is coming</string>
+
+    <string name="feed_hint">Hi, how can we help you?</string>
+    <string name="desc_problem">We will give you feedback ASAP.</string>
+    <string name="contact">Phone number</string>
+
+    <string name="feed_warm">Please complete your feedback.</string>
+
+    <string name="authentic" formatted="false"> 100% Authentic </string>
+    <string name="arrive">Shipping</string>
+    <string name="refund">Return</string>
+
+    <string name="product_detail">Product details</string>
+    <string name="color">Color:</string>
+
+    <string name="size_table">Size guide</string>
+    <string name="item">/item</string>
+
+    <string name="payment">Payment</string>
+    <string name="sub_total">Subtotal</string>
+
+    <string name="discount">Discount</string>
+    <string name="delivery_method">Delivery method</string>
+    <string name="shipping_price">Shipping Price</string>
+
+    <string name="pay_immediately">Pay</string>
+    <string name="reserve_time">The order will be kept for：</string>
+    <string name="product_wait">Your order is packing now</string>
+    <string name="arrive_hint">Hope you will enjoy it !</string>
+    <string name="track">Track it</string>
+    <string name="apply">FAQ</string>
+
+    <string name="welcome">Welcome to INNERSECT</string>
+    <string name="next">Next</string>
+
+    <string name="input_pwd">Password</string>
+
+    <string name="pwd_hint">At least 8-16 characters</string>
+
+    <string name="forget_pwd">forgot pwd</string>
+    <string name="bind_phone">Phone number</string>
+
+    <string name="logout_title">Are you sure to log out now?</string>
+
+    <string name="news_list_bottom">Breaking-news coming soon</string>
+
+    <string name="code_send">Code have sent to phone:</string>
+    <string name="pick_code_hint">请向店员提供您的提货码，扫描后即可确认订单</string>
+
+    <string name="day">D</string>
+    <string name="hour">H</string>
+    <string name="minute">M</string>
+    <string name="second">S</string>
+    <string name="view_all">View all</string>
+    <string name="on_sale">On sale</string>
+    <string name="empty_cart">Your shopping bag is empty now</string>
+    <string name="shopping_now">Shopping now</string>
+    <string name="item_quantity">item</string>
+    <string name="not_open">It is not started yet, we will get you notified at the first time.</string>
+    <string name="close">Oooops, you have missed it</string>
+    <string name="see_detail">(Click to view details)</string>
+    <string name="site_map">Map</string>
+    <string name="select_country">Select country</string>
+
+    <string name="pull_down_refresh">Pull down to refresh</string>
+    <string name="loading">Loading...</string>
+    <string name="release_refresh">Release to refresh</string>
+
+    <string name="verification_code">Please input verify code</string>
+
+
+    <string name="exchange">exchange</string>
+    <string name="coupon">Coupon</string>
+
+    <string name="register_info">Registration</string>
+    <string name="name">Name</string>
+    <string name="credentials_type">ID type</string>
+    <string name="credentials_num">ID number</string>
+    <string name="gender">gender</string>
+    <string name="age">age</string>
+
+    <string name="reserve_qualification">My reservation</string>
+    <string name="activity_rule">Activity rule</string>
+
+    <string name="order_text">No.%d be selected</string>
+
+    <string name="check_info">My registration</string>
+    <string name="unfold">Unfold</string>
+    <string name="more_activity">For you</string>
+
+    <string name="my_reservation">My registration</string>
+    <string name="finished">Finished</string>
+    <string name="no_left">Fully Reserved</string>
+    <string name="start_reservation">%s start reservation</string>
+
+    <string name="in_area_hint">Congrats,the release can be reserved in your location</string>
+    <string name="out_are_hint">Sorry,you are not in the supported cities for this release</string>
+    <string name="without_permission">Location service must be enabled to make a reservation,Enable now</string>
+
+    <string name="identity_card">Identity card</string>
+    <string name="passport">Passport</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+
+    <string name="buy_guide">Buying guide</string>
+    <string name="cancel_order">Cancel order</string>
+
+
+    <string name="location_failed">Temporarily failed to obtain location information</string>
+    <string name="multi_use">Additive</string>
+    <string name="confirm">Confirm</string>
+    <string name="available">Available</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="use_instruction">Rule</string>
+    <string name="scope_all">universal use</string>
+    <string name="scope_part">Listed categories only</string>
+    <string name="scope_special">Listed products only</string>
+    <string name="use_rule">Above %d only</string>
+    <string name="no_coupon">That’s all the coupons you have</string>
+    <string name="coupon_available_count">%d Coupons</string>
+    <string name="coupon_use_count">%d selected</string>
+    <string name="save_amount">Saved ￥%d</string>
+    <string name="share_hint">share to get %s voucher</string>
+    <string name="share_result">share succeed，you’ve got %s voucher</string>
+    <string name="share_toast">share succeed，you’ve got  voucher in your account</string>
+
+
+    <string name="hot_brand">Shop by Brand</string>
+    <string name="category">Shop by Categories</string>
+    <string name="hot_search">Hot searches</string>
+    <string name="search_history">Recent searches</string>
+    <string name="clear_history">Clear history</string>
+    <string name="commodity">Commodity</string>
+    <string name="search_hint">search for products，brands and categories </string>
+
+    <string name="category_list">Category list</string>
+
+</resources>

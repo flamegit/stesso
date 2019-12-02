@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="@dimen/padding_8"
+    android:layout_height="220dp">
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/bg_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="#37000000"/>
+
+    <LinearLayout
+        android:padding="@dimen/padding_16"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/logo_view"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:paddingLeft="@dimen/padding_4"
+                android:textStyle="bold"
+                android:textSize="@dimen/txt_20"
+                android:textColor="@android:color/white"
+                android:id="@+id/name_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:paddingTop="@dimen/padding_16"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:id="@+id/desc_view"
+            android:maxLines="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</FrameLayout>

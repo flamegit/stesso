@@ -12,6 +12,7 @@ import com.stesso.android.utils.openActivity
 import com.stesso.android.utils.toast
 import kotlinx.android.synthetic.main.activity_settlement.*
 import kotlinx.android.synthetic.main.activity_settlement.title_view
+import okhttp3.OkHttpClient
 
 class SettlementActivity : PayActivity() {
 
@@ -83,6 +84,8 @@ class SettlementActivity : PayActivity() {
     }
 
     private fun getDefaultAddress(list: List<Address>): Address {
+
+        OkHttpClient
         var default = list[0]
         list.forEach {
             if (it.isDefault) {

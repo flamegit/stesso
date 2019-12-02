@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/padding_16"
+    tools:context="com.tmmt.innersect.ui.activity.BaseActivity">
+
+    <ImageView
+        android:padding="@dimen/padding_16"
+        android:layout_gravity="center"
+        android:src="@mipmap/one_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:paddingTop="@dimen/padding_16"
+        android:id="@+id/title_view"
+        android:text="恭喜你获得一次抽奖机会"
+        android:gravity="center"
+        android:textSize="@dimen/txt_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textColor="@android:color/secondary_text_dark"
+        android:text="Tips:每日打开INNERSECT\n即可获得1次抽奖机会"
+        android:padding="@dimen/padding_8"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/ok"
+        android:layout_marginTop="@dimen/padding_16"
+        android:padding="@dimen/padding_16"
+        android:background="@color/Yellow"
+        android:text="去抽奖"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="@dimen/padding_8"
+    android:paddingBottom="@dimen/padding_8"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:layout_gravity="center"
+        android:src="@mipmap/order_coupon_hint"
+        android:paddingRight="@dimen/padding_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_marginTop="@dimen/padding_16"
+        android:layout_marginBottom="@dimen/padding_16"
+        android:background="@color/colorLine"
+        android:layout_height="match_parent"
+        android:layout_width="1dp"/>
+
+    <FrameLayout
+        android:paddingLeft="@dimen/padding_16"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/use_layout"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <CheckBox
+                android:clickable="false"
+                android:checked="true"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/padding_16"
+                android:paddingBottom="@dimen/padding_16"
+                android:id="@+id/check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:button="@drawable/check_box_bg"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/count_view"
+                android:layout_gravity="center"
+                android:paddingLeft="@dimen/padding_8"
+                android:text="@string/coupon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/available_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/save_view"
+        android:visibility="invisible"
+        android:padding="@dimen/padding_16"
+        android:gravity="right"
+        android:layout_weight="1"
+        android:maxLines="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:src="@mipmap/chevron_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

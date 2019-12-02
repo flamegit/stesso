@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+    android:id="@+id/refresh_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_8">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <ImageView
+        android:id="@+id/empty_view"
+        android:visibility="gone"
+        android:src="@mipmap/coupon_empty"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
+

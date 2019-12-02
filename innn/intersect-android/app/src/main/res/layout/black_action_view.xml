@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:padding="@dimen/padding_16"
+    android:textColor="@android:color/white"
+    android:background="@color/blackBackground"
+    android:text="@string/acquire_code"
+    android:layout_height="wrap_content"/>
+
+
+
+
+
+
+

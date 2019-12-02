@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/padding_16"
+    android:paddingRight="@dimen/padding_16"
+    android:paddingBottom="@dimen/padding_32">
+
+    <TextView
+        android:id="@+id/logistics_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="已签收 签收人是：赵日天" />
+
+    <TextView
+        android:layout_marginTop="@dimen/padding_4"
+        android:textSize="@dimen/txt_12"
+        android:text="2016- 11-08 15:22:47"
+        android:id="@+id/time_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

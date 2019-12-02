@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/padding_16"
+    android:paddingRight="@dimen/padding_16"
+    android:paddingBottom="@dimen/padding_32">
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/title_view"
+        android:paddingBottom="@dimen/padding_16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:lineSpacingExtra="@dimen/padding_4"
+        android:layout_below="@id/title_view"
+        android:id="@+id/desc_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:paddingTop="@dimen/padding_8"
+        android:autoLink="phone"
+        android:layout_below="@id/desc_view"
+        android:id="@+id/tel_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/title_view"
+        android:id="@+id/logistics_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/stroke_black_bg"
+        android:paddingBottom="@dimen/padding_4"
+        android:paddingLeft="@dimen/padding_8"
+        android:paddingRight="@dimen/padding_8"
+        android:paddingTop="@dimen/padding_4"
+        android:text="@string/show_transport"
+        android:textSize="@dimen/txt_12"
+        />
+
+    <TextView
+        android:id="@+id/add_logistics"
+        android:layout_marginTop="@dimen/padding_16"
+        android:padding="@dimen/padding_8"
+        android:layout_below="@id/tel_view"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:background="@android:color/black"
+        android:text="填写物流信息"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>

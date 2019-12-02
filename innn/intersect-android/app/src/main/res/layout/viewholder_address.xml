@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/padding_16"
+    android:paddingBottom="@dimen/padding_16">
+
+    <TextView
+        android:id="@+id/name_view"
+        android:textSize="@dimen/txt_14"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/tel_view"
+        android:textSize="@dimen/txt_14"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="@string/app_name" />
+
+    <TextView
+
+        android:id="@+id/address_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_view"
+        android:layout_marginTop="@dimen/padding_8"
+        android:text="@string/app_name" />
+
+
+    <CheckBox
+        android:layout_marginTop="@dimen/padding_8"
+        android:id="@+id/default_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/address_view"
+        android:button="@drawable/check_box_bg" />
+
+    <TextView
+        android:layout_marginLeft="@dimen/padding_8"
+        android:layout_alignBottom="@id/default_view"
+        android:text="@string/set_default"
+        android:layout_toRightOf="@id/default_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <TextView
+        android:id="@+id/edit_view"
+        android:drawableLeft="@mipmap/edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/address_view"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        android:drawablePadding="@dimen/padding_8"
+        android:text="编辑" />
+
+</RelativeLayout>

@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.tmmt.innersect.ui.activity.BaseActivity">
+
+    <include layout="@layout/common_title_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/divider_bg"
+        android:showDividers="middle"
+        android:paddingLeft="@dimen/padding_16"
+        android:paddingRight="@dimen/padding_16"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/user_view"
+            android:paddingTop="@dimen/padding_16"
+            android:paddingBottom="@dimen/padding_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:gravity="center"
+                android:drawableLeft="@mipmap/user_icon"
+                android:drawablePadding="@dimen/padding_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/user_name" />
+
+            <ImageView
+
+                android:id="@+id/action_view1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/chevron_right" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/padding_8"
+                android:layout_toLeftOf="@id/action_view1"
+                android:text="user name" />
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/set_password"
+            android:paddingTop="@dimen/padding_16"
+            android:paddingBottom="@dimen/padding_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:drawablePadding="@dimen/padding_8"
+                android:drawableLeft="@mipmap/password_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center"
+                android:gravity="center"
+                android:text="@string/set_password" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="right"
+                android:src="@mipmap/chevron_right" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/my_address"
+            android:paddingTop="@dimen/padding_16"
+            android:paddingBottom="@dimen/padding_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:drawablePadding="@dimen/padding_8"
+                android:drawableLeft="@mipmap/location_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center"
+                android:gravity="center"
+                android:text="我的地址" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="right"
+                android:src="@mipmap/chevron_right" />
+
+        </FrameLayout>
+
+        <TextView
+            android:textStyle="bold"
+            android:paddingTop="@dimen/padding_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/associate_account" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/divider_bg"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_16"
+        android:paddingRight="@dimen/padding_16"
+        android:showDividers="middle">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_16"
+            android:paddingTop="@dimen/padding_16">
+
+            <ImageView
+                android:id="@+id/icon_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/black_phone" />
+
+            <TextView
+                android:id="@+id/tel_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_8"
+                android:layout_toRightOf="@id/icon_view"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_16"
+            android:paddingTop="@dimen/padding_16">
+
+            <ImageView
+                android:id="@+id/icon_wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/black_wechat" />
+
+            <TextView
+                android:id="@+id/title_wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_8"
+                android:layout_toRightOf="@id/icon_wechat"
+                android:text="@string/wechat" />
+
+            <Switch
+                android:track="@drawable/switch_select"
+                android:thumb="@drawable/switch_button"
+                android:id="@+id/weixin_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_16"
+            android:paddingTop="@dimen/padding_16">
+
+            <ImageView
+                android:id="@+id/icon_sina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/black_sina" />
+
+            <TextView
+                android:id="@+id/title_sina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_8"
+                android:layout_toRightOf="@id/icon_sina"
+                android:text="@string/sina" />
+
+            <Switch
+                android:track="@drawable/switch_select"
+                android:thumb="@drawable/switch_button"
+                android:id="@+id/sina_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_16"
+            android:paddingTop="@dimen/padding_16">
+
+            <ImageView
+                android:id="@+id/icon_qq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/black_qq" />
+
+            <TextView
+                android:id="@+id/title_qq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_8"
+                android:layout_toRightOf="@id/icon_qq"
+                android:text="QQ" />
+
+            <Switch
+                android:track="@drawable/switch_select"
+                android:thumb="@drawable/switch_button"
+                android:id="@+id/qq_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_16"
+            android:paddingTop="@dimen/padding_16">
+
+            <ImageView
+                android:id="@+id/icon_fb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/black_fb" />
+
+            <TextView
+                android:id="@+id/title_fb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_8"
+                android:layout_toRightOf="@id/icon_fb"
+                android:text="@string/facebook" />
+
+            <Switch
+                android:track="@drawable/switch_select"
+                android:thumb="@drawable/switch_button"
+                android:id="@+id/fb_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

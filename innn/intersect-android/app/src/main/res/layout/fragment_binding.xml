@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tmmt.innersect.ui.activity.BaseActivity">
+
+    <include layout="@layout/navigation_bar"
+        android:id="@+id/action_bar"></include>
+
+    <LinearLayout
+        android:paddingLeft="@dimen/padding_16"
+        android:layout_marginTop="@dimen/padding_32"
+        android:layout_below="@id/action_bar"
+        android:id="@+id/container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_16"
+            android:text="绑定手机号"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_16"
+            android:text="我们将发生验证码至您填写的手机号" />
+
+
+        <LinearLayout
+            android:id="@+id/tel_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_40"
+            android:divider="@drawable/divider_bg"
+            android:showDividers="middle">
+
+            <TextView
+                android:id="@+id/select_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/padding_4"
+                android:drawableRight="@mipmap/arrow"
+                android:paddingRight="@dimen/padding_4"
+                android:text="+86"
+                android:textSize="@dimen/txt_20" />
+
+            <EditText
+                android:id="@+id/tel_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:textColorHint="@android:color/secondary_text_dark"
+                android:digits="1234567890"
+                android:inputType="phone"
+                android:hint="@string/input_tel"
+                android:paddingLeft="@dimen/padding_4" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tel_container"
+            android:layout_marginTop="@dimen/padding_8"
+            android:background="@color/darkWhite" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

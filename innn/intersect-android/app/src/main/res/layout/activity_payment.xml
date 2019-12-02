@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.tmmt.innersect.ui.activity.BaseActivity">
+
+    <include
+        android:id="@+id/top_bar"
+        layout="@layout/common_title_bar" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_bar">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/address_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/add_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/yellowBackground"
+                android:padding="@dimen/padding_16">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    android:padding="@dimen/padding_8"
+                    android:text="add address" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:src="@mipmap/chevron_right_black" />
+
+            </FrameLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/address_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_16"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/name_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <TextView
+                    android:id="@+id/tel_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/name_view"
+                    android:layout_marginLeft="@dimen/padding_16"
+                    android:layout_toRightOf="@id/name_view"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <TextView
+                    android:id="@+id/address_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/name_view"
+                    android:layout_marginTop="@dimen/padding_16"
+                    android:text="@string/app_name" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingRight="@dimen/padding_8"
+                    android:src="@mipmap/chevron_right_black" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/divide_1"
+                    android:layout_below="@id/address_view"
+                    android:layout_marginTop="@dimen/padding_16"
+                    android:background="@color/darkWhite" />
+
+            </RelativeLayout>
+
+
+        </FrameLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/address_bar"
+            android:padding="@dimen/padding_8"
+            android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <include layout="@layout/common_bottom_title" />
+
+
+</RelativeLayout>

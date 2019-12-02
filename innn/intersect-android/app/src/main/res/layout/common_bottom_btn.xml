@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_16"
+    android:background="@drawable/top_line_bg">
+
+    <TextView
+        android:id="@+id/add_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/stroke_black_bg"
+        android:gravity="center"
+        android:padding="@dimen/padding_8"
+        android:text="@string/add_address"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+</FrameLayout>
+

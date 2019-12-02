@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="32dp"
+    android:padding="2dp"
+    android:layout_height="32dp">
+
+    <ImageView
+        android:src="@android:color/white"
+        android:id="@+id/color_view"
+        android:padding="1dp"
+        android:background="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>
